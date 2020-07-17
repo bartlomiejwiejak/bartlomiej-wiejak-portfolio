@@ -1,0 +1,28 @@
+.navigation {
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  &__item {
+    overflow: hidden;
+    text-align: center;
+    &:nth-child(2)
+     {
+      margin-left: auto;
+    }
+    &:nth-child(3) {
+      margin-left: 5rem;
+      @include respond(large) {
+        margin-left: 4rem;
+      }
+      @include respond(small) {
+        margin-left: 3rem;
+      }
+      @include respond(xxsmall) {
+        margin-left: 2rem;
+      }
+    }
+  }
+  &__text {
+    mix-blend-mode: difference;
+  }
+}

@@ -1,0 +1,16 @@
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 5rem;
+  @include respond(large) {
+    padding: 4rem;
+  }
+  @include respond(small) {
+    padding: 3rem;
+  }
+  @include respond(xxsmall) {
+    padding: 2rem;
+  }
+}

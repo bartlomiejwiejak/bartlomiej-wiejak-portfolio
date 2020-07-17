@@ -1,0 +1,13 @@
+$breakpoints: (
+  xxsmall: (max-width: 460px),
+  xsmall: (max-width: 640px),
+  small: (max-width: 800px),
+  medium: (max-width: 1024px),
+  large: (max-width: 1200px),
+  xlarge: (max-width: 1440px)
+);
+
+:root {
+--black: rgb(5,5,5);
+--white: #fff;
+}
