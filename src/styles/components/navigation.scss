@@ -1,10 +1,10 @@
 .navigation {
-  font-size: 2rem;
-  font-weight: bold;
   display: flex;
   &__item {
-    overflow: hidden;
-    text-align: center;
+  font-size: 2rem;
+  letter-spacing: .1rem;
+  overflow: hidden;
+  mix-blend-mode: difference;
     &:nth-child(2)
      {
       margin-left: auto;
@@ -21,8 +21,5 @@
         margin-left: 2rem;
       }
     }
-  }
-  &__text {
-    mix-blend-mode: difference;
   }
 }
