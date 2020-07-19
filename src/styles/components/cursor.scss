@@ -12,7 +12,7 @@
   top: -65px;
   left: -65px;  
   mix-blend-mode: difference;
-  
+  z-index: 1;
   &--expand {
     transform: scale(1.5);
     border: .5px solid #666;
@@ -24,14 +24,32 @@
   &__dot {
     width: 6px;
     height: 6px;
+    z-index: 1;
     border-radius: 50%;
     position: absolute;
     top: -50px;
     left: -50px;
-    background-color: white;
+    background-color: var(--white);
     mix-blend-mode: difference;
-    &--shrink {
-      transform: scale(0.8);
+    transition: .2s transform;
+    &--multi {
+      transform: translateY(-30px);
+    }
+    &--inner {
+      position: absolute;
+      left: 0%;
+      top: 0%;
+      background-color: var(--white);
+      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      transition: .2s;
+    }
+    &--multi-inner {
+      transform: translateY(60px);
+    }
+    &--dont-multi {
+      transform: none !important;
     }
   }
 }

@@ -1,0 +1,64 @@
+.switcher {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: grid;
+  mix-blend-mode: difference;
+  z-index: 2;
+  transform: translate(50%,50%);
+  color: var(--white);
+  transition: 1s;
+  &--rotated {
+    transform: translate(50%,50%) rotate(180deg);
+  }
+  &__moon-container {
+    margin: 0 5rem 5rem 0;
+    @include respond(large) {
+      margin: 0 4rem 4rem 0;
+    }
+    @include respond(small) {
+      margin: 0 3rem 3rem 0;
+    }
+    @include respond(xxsmall) {
+      margin: 0 2rem 2rem 0;
+    }
+  }
+  &__sun-container {
+    margin: 5rem 0 0 5rem;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    transform: rotate(180deg);
+  }
+  i {
+   font-size: 4rem;
+  }
+  &__text {
+    text-align: center;
+    padding-top: .5rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+  &__expand-dark {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: var(--black);
+    right: -100px;
+    bottom: -100px;
+    border-radius: 50%;
+    transition: 1s;
+    z-index: 1;
+    &--expanded {
+      transform: scale(50);
+ }
+  }
+  &__background-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+    z-index: 0;
+  }
+}

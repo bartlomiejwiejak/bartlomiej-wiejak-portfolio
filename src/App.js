@@ -2,12 +2,13 @@ import React from 'react';
 import Header from './layout/Header';
 import Cursor from './components/Cursor';
 import Contact from './components/Contact';
+import Switcher from './components/Switcher';
 
 function App() {
 
   return (
     <div className="App">
-      <div className="background"></div>
+      <Switcher />
       <Header />
       <Contact />
       <Cursor />

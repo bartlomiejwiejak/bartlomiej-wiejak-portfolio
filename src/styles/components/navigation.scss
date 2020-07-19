@@ -2,7 +2,7 @@
   display: flex;
   &__item {
   font-size: 2rem;
-  letter-spacing: .1rem;
+  letter-spacing: 1px;
   overflow: hidden;
   mix-blend-mode: difference;
     &:nth-child(2)

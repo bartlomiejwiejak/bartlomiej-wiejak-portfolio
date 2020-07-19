@@ -1,20 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
+import cursorExpand from '../utilities/cursorExpand';
+import cursorBackToNormalFromExpand from '../utilities/cursorBackToNormalFromExpand';
 
 const Button = ({ children }) => {
-  const btnRef = useRef();
-  const cursorExpand = () => {
-    document.querySelector('.cursor__circle').classList.add('cursor__circle--expand');
-  }
-  const cursorBackToNormalFromExpand = () => {
-    document.querySelector('.cursor__circle').classList.remove('cursor__circle--expand');
-  }
-  useEffect(() => {
-    btnRef.current.addEventListener('mouseover', cursorExpand)
-    btnRef.current.addEventListener('mouseout', cursorBackToNormalFromExpand)
-  }, [])
 
   return (
-    <div ref={btnRef} className='button'>
+    <div onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className='button'>
       <div className="button__content">{children}</div>
       <div className="button__underline">
         <div className="button__underline--left">

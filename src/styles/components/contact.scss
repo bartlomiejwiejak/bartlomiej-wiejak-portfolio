@@ -4,10 +4,11 @@
   font-size: 1.8rem;
   transform: rotate(-90deg);
   transform-origin: 0 0;
+  letter-spacing: 1px;
   left: 5rem;
   bottom: 5rem;
   backface-visibility: hidden;
-  z-index: 4;
+  z-index: 2;
   @include respond(large) {
     left: 4rem;
     bottom: 4rem;
