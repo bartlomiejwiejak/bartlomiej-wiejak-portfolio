@@ -1,0 +1,30 @@
+.button {
+  position: relative;
+  font-weight: 500;
+  &:hover &__underline--fill {
+    width: 100%;
+  }
+&__underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  display: flex;
+  &--left {
+    height: 1px;
+    transform: rotate(180deg);
+    width: 50%;
+  }
+  &--right{
+    width: 50%;
+    height: 1px;
+  }
+  &--fill {
+    height: 1px;
+    transition: .5s;
+    width: 0;
+    background-color: var(--white);
+  }
+}
+}

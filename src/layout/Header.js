@@ -1,17 +1,18 @@
 import React from 'react';
+import Button from '../components/Button';
 
 const Header = () => {
   return (
     <header>
       <ul className='navigation'>
         <li className='navigation__item'>
-          <span className='navigation__text'>WieJak—</span>
+          <Button>WieJak—</Button>
         </li>
         <li className='navigation__item'>
-          <span className='navigation__text'>Work</span>
+          <Button>Work</Button>
         </li>
         <li className='navigation__item'>
-          <span className='navigation__text'>About</span>
+          <Button>About</Button>
         </li>
       </ul>
     </header>

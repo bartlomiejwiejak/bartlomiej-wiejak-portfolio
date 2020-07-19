@@ -2,8 +2,8 @@ header {
   width: 100%;
   position: fixed;
   mix-blend-mode: difference;
-  z-index: 2;
   padding: 5rem;
+  z-index: 2;
   @include respond(large) {
     padding: 4rem;
   }
@@ -14,3 +14,4 @@ header {
     padding: 2rem;
   }
 }
+

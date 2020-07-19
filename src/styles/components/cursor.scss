@@ -6,12 +6,17 @@
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid #666;
   position: absolute;
   transition: .2s ease-out;
   top: -65px;
   left: -65px;  
   mix-blend-mode: difference;
+  
+  &--expand {
+    transform: scale(1.5);
+    border: .5px solid #666;
+  }
   &--shrink {
     transform: scale(.5);
   }
@@ -25,10 +30,7 @@
     left: -50px;
     background-color: white;
     mix-blend-mode: difference;
-    &--scroll {
-      // clip-path: polygon(51% 0, 83% 31%, 66% 31%, 66% 64%, 83% 63%, 50% 100%, 16% 64%, 33% 65%, 33% 30%, 16% 30%);
-      // border-radius: 0;
-      // transform: scaleY(4) scaleX(2);
+    &--shrink {
       transform: scale(0.8);
     }
   }

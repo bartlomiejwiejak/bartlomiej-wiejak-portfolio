@@ -1,0 +1,32 @@
+.contact {
+  position: fixed;
+  mix-blend-mode: difference;
+  font-size: 1.8rem;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  left: 5rem;
+  bottom: 5rem;
+  backface-visibility: hidden;
+  z-index: 4;
+  @include respond(large) {
+    left: 4rem;
+    bottom: 4rem;
+  }
+  @include respond(small) {
+    left: 3rem;
+    bottom: 3rem;
+  }
+  @include respond(xxsmall) {
+    left: 2rem;
+    bottom: 2rem;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+  }
+  &__item {
+    margin-right: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+}
