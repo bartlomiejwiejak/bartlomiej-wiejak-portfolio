@@ -4,6 +4,8 @@ header {
   mix-blend-mode: difference;
   padding: 5rem;
   z-index: 2;
+  top: 0;
+  left: 0;
   @include respond(large) {
     padding: 4rem;
   }

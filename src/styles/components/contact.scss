@@ -29,5 +29,14 @@
     margin-right: 5rem;
     position: relative;
     overflow: hidden;
+    @include respond(large) {
+      margin-right: 4rem;
+    }
+    @include respond(small) {
+      margin-right: 3rem;
+    }
+    @include respond(xxsmall) {
+      margin-right: 2rem;
+    }
   }
 }

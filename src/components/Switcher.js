@@ -17,11 +17,11 @@ export default function Switcher() {
       <div className="switcher__expand-dark"></div>
       <div className='switcher'>
         <div onClick={switchToDark} onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className="switcher__moon-container">
-          <i class="fas fa-moon"></i>
+          <i className="fas fa-moon"></i>
           <div className="switcher__text">Dark</div>
         </div>
         <div onClick={switchToLight} onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className="switcher__sun-container">
-          <i class="fas fa-sun"></i>
+          <i className="fas fa-sun"></i>
           <div className="switcher__text">Light</div>
         </div>
       </div>
