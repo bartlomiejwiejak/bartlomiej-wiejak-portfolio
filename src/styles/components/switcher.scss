@@ -8,6 +8,8 @@
   transform: translate(50%,50%);
   color: var(--white);
   transition: 1s;
+  opacity: 0;
+  visibility: 0;
   &--rotated {
     transform: translate(50%,50%) rotate(180deg);
   }

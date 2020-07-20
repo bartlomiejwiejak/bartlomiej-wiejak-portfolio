@@ -18,7 +18,8 @@
     max-width: 80rem;
   }
   @include respond(xsmall) {
-    max-width: 60rem;
+   max-width: 60rem;
+   margin: 15rem auto 0;
   }
   @include respond(xxsmall) {
     max-width: 40rem;
@@ -31,10 +32,21 @@
     font-weight: 700;
     text-align: center;
     font-size: 10rem;
-    line-height: 1;
+    line-height: .9;
     text-transform: uppercase;
     letter-spacing: .15rem;
     transition: .2s ease-out;
+    span {
+      display: inline-block;
+      margin: 0 .5rem;
+    }
+    span {
+      overflow: hidden;
+      span {
+        transform: translateY(110%);
+        opacity: 0;
+      }
+    }
     @include respond(xlarge) {
       font-size: 8rem;
     }
@@ -46,6 +58,9 @@
     }
     @include respond(small) {
       font-size: 5rem;
+    }
+    @include respond(xsmall) {
+      font-size: 4rem;
     }
     &--highlight-text {
       color: transparent;

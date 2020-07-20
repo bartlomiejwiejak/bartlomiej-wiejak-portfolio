@@ -5,6 +5,9 @@
   letter-spacing: 1px;
   overflow: hidden;
   mix-blend-mode: difference;
+  .button {
+    transform: translateY(100%);
+  }
     &:nth-child(2)
      {
       margin-left: auto;

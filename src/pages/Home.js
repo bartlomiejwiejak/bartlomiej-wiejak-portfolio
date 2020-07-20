@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
-import cursorBackToNormalFromShrink from '../utilities/cursorBackToNormalFromExpand';
-import cursorExpand from '../utilities/cursorExpand';
+import cursorBackToNormalFromShrink from '../functions/cursorBackToNormalFromExpand';
+import cursorExpand from '../functions/cursorExpand';
+import isMobile from '../functions/isMobile';
+import gsap from 'gsap';
 
 const Home = () => {
 
   useEffect(() => {
+    gsap.to('.home__welcome span span', { y: 0, duration: .5, stagger: .05, ease: 'Power2.easeOut', opacity: 1 }, .7);
+  }, [])
+
+  useEffect(() => {
+    if (isMobile()) return;
     const moveObjects = (e) => {
       const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
       const positionY = -(window.innerHeight / 2 - e.clientY) * 0.03;
@@ -55,7 +62,7 @@ const Home = () => {
           <span>developer </span>
         </span>
         <span>
-          <span> focussing </span>
+          <span> focussed </span>
         </span>
         <span>
           <span>on </span>

@@ -1,6 +1,6 @@
 import React from 'react';
-import cursorExpand from '../utilities/cursorExpand';
-import cursorBackToNormalFromExpand from '../utilities/cursorBackToNormalFromExpand';
+import cursorExpand from '../functions/cursorExpand';
+import cursorBackToNormalFromExpand from '../functions/cursorBackToNormalFromExpand';
 
 const Button = ({ children }) => {
 
