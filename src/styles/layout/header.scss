@@ -3,7 +3,7 @@ header {
   position: fixed;
   mix-blend-mode: difference;
   padding: 5rem;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   @include respond(large) {

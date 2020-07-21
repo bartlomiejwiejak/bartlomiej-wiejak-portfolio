@@ -4,7 +4,7 @@
   right: 0;
   display: grid;
   mix-blend-mode: difference;
-  z-index: 2;
+  z-index: 3;
   transform: translate(50%,50%);
   color: var(--white);
   transition: 1s;
@@ -53,14 +53,5 @@
     &--expanded {
       transform: scale(50);
  }
-  }
-  &__background-light {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--white);
-    z-index: 0;
   }
 }

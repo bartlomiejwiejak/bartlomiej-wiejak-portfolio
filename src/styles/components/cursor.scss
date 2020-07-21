@@ -17,6 +17,10 @@
     transform: scale(1.5);
     border: .5px solid #666;
   }
+  &--expand-big {
+    transform: scale(2);
+    border: .3px solid #666;
+  }
   &--shrink {
     transform: scale(.5);
   }

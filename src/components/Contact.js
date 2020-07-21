@@ -18,7 +18,7 @@ const Contact = () => {
           <Button>Github</Button>
         </li>
         <li className='contact__item'>
-          <Button>Facebook</Button>
+          <Button>Reach out</Button>
         </li>
       </ul>
     </div>

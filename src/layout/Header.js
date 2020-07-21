@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Button from '../components/Button';
 import gsap from 'gsap';
+import cursorExpandBig from '../functions/cursorExpandBig';
 
 const Header = () => {
 
@@ -11,7 +12,7 @@ const Header = () => {
   return (
     <header>
       <ul className='navigation'>
-        <li className='navigation__item'>
+        <li onMouseOver={cursorExpandBig} className='navigation__item'>
           <Button>WieJak—</Button>
         </li>
         <li className='navigation__item'>

@@ -2,6 +2,7 @@
 @import './abstracts/mixins.scss';
 @import './base/base.scss';
 @import './base/typography.scss';
+@import './layout/background.scss';
 @import './layout/header.scss';
 @import './components/navigation.scss';
 @import './components/cursor.scss';
@@ -9,3 +10,4 @@
 @import './components/button.scss';
 @import './components/switcher.scss';
 @import './pages/home.scss';
+@import './pages/about.scss';

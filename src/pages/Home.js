@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import cursorBackToNormalFromShrink from '../functions/cursorBackToNormalFromExpand';
-import cursorExpand from '../functions/cursorExpand';
+import cursorExpandBig from '../functions/cursorExpandBig';
 import isMobile from '../functions/isMobile';
 import gsap from 'gsap';
 
@@ -44,7 +44,7 @@ const Home = () => {
         <span>
           <span>Bartłomiej </span>
         </span>
-        <span onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromShrink}>
+        <span onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormalFromShrink}>
           <span data-text='Wiejak.' className='home__welcome--highlight-text'>
             Wiejak.
             </span>
@@ -85,7 +85,7 @@ const Home = () => {
         <span>
           <span>my </span>
         </span>
-        <span onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromShrink}>
+        <span onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormalFromShrink}>
           <span data-text='apps.' className='home__welcome--highlight-text'>apps.</span>
         </span>
       </h1>

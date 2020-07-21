@@ -19,7 +19,6 @@ export default function Switcher() {
   }
   return (
     <>
-      <div className="switcher__background-light"></div>
       <div className="switcher__expand-dark"></div>
       <div className='switcher'>
         <div onClick={switchToDark} onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className="switcher__moon-container">

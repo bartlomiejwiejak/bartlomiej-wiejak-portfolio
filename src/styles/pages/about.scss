@@ -1,0 +1,171 @@
+.about {
+  margin: 0 auto;
+  padding: 15rem;
+  &__heading {
+    position: relative;
+    z-index: 2;
+    font-size: 20rem;
+    line-height: .8;
+    margin-top: 5rem;
+    mix-blend-mode: difference;
+  }
+  &__line {
+    &--2 {
+      text-align: end;
+    }
+  }
+  &__description {
+   margin: 30rem 0;
+   display: flex;
+   justify-content: space-between;
+   position: relative;
+   &__heading {
+     font-size: 9rem;
+     top: -5%;
+     line-height: 1;
+     left: 0;
+     z-index: 3;
+     width: 80%;
+     position: absolute;
+     mix-blend-mode: difference;
+   }
+   &__text {
+       font-size: 2.5rem;
+       line-height: 1.8;
+       flex-basis: 40%;
+       align-self: center;
+       mix-blend-mode: difference;
+       position: relative;
+       z-index: 2;
+   }
+   &__img-container {
+     flex-basis: 40%;
+     position: relative;
+       z-index: 2;
+   }
+   &__img {
+     width: 100%;
+   }
+  }
+  &__circle {
+    width: 25rem;
+    margin: 0 auto;
+    mix-blend-mode: difference;
+    position: relative;
+    z-index: 3;
+    bottom: 5%;
+
+    left: 20%;
+    &__img {
+      width: 100%;
+    }
+  }
+  &__skills {
+    mix-blend-mode: difference;
+    position: relative;
+    z-index: 2;
+    &__heading {
+      font-size: 2.5rem;
+      width: 30%;
+      margin: 0 0 0 auto;
+    }
+    &__technologies {
+      width: 80%;
+      margin: 15rem auto;
+      display: grid;
+      grid-auto-flow: dense;
+      grid-template-columns: repeat(4, 30rem);
+      &__technology {
+       
+        height: 30rem;
+        div {
+          width: 100%;
+          height: 100%;
+          border: 1px solid var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        img {
+          width: 30%;
+        }
+        svg {
+          width: 30%;
+        }
+        &--1 {
+          font-size: 3.5rem;
+          border: none;
+        }
+        &--4 {
+          grid-row: 2/3;
+        }
+        &--5 {
+          grid-row: 2/3;
+        }
+        &--6 {
+          grid-row: 2/3;
+        }
+        &--7 {
+          grid-row: 3/4;
+        }
+        &--8 {
+          grid-row: 3/4;
+        }
+        &--9 {
+          grid-row: 3/4;
+        }
+        &--10 {
+          grid-row: 3/4;
+        }
+        &--11 {
+          grid-row: 4/5;
+          grid-column: 2/3;
+        }
+        &--12 {
+          grid-row: 4/5;
+          grid-column: 3/4;
+        }
+      }
+    }
+  }
+  &__contact {
+    display: flex;
+    margin: 30rem 0;
+    position: relative;
+    z-index: 3;
+    ul:first-child {
+      flex-basis: 60%;
+    }
+    ul {
+      list-style: none;
+      flex-basis: 40%;
+      li {
+        font-size: 3rem;
+      }
+      li:nth-child(1) {
+        font-weight: bold;
+      }
+    }
+    ul:first-child {
+      flex-basis: 60%;
+    }
+  }
+  &__footer {
+    position: relative;
+    z-index: 3;
+    mix-blend-mode: difference;
+    display: flex;
+    justify-content: space-between;
+    &__copyright {
+      font-size: 8rem;
+    }
+    &__author {
+      font-size: 4rem;
+      align-self: center;
+      display: flex;
+      .button {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+} 

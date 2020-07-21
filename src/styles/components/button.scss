@@ -1,6 +1,6 @@
 .button {
   position: relative;
-  font-weight: 400;
+  display: inline-block;
   &:hover &__underline--fill {
     width: 100%;
   }
