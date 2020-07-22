@@ -2,6 +2,9 @@
   color: transparent;
   position: relative;
   display: inline-block;
+  span {
+    overflow: hidden;
+  }
   &::before {
     color: var(--white);
     content: attr(data-text);

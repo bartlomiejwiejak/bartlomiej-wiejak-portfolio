@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from '../components/Button';
-import gsap from 'gsap';
 import cursorExpandBig from '../functions/cursorExpandBig';
 
 const Header = () => {
-
-  useEffect(() => {
-    gsap.to('.navigation__item .button', { y: 0, duration: 1, ease: 'Power2.easeOut' }, '+=.2');
-  }, [])
 
   return (
     <header>

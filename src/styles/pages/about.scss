@@ -2,6 +2,15 @@
   margin: 0 auto;
   padding: 15rem 7rem 10rem 15rem;
   overflow: hidden;
+  span {
+    display: inline-block;
+    margin-right: .4rem;
+    overflow: hidden;
+    span {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+  }
   @include respond(large) {
     padding: 10rem 5rem 10rem 10rem;
   }
@@ -16,7 +25,7 @@
     z-index: 2;
     font-size: 18rem;
     line-height: .8;
-    margin-top: 5rem;
+    padding-top: 5rem;
     mix-blend-mode: difference;
     @include respond(xlarge) {
       font-size: 14rem;
@@ -40,6 +49,7 @@
   &__line {
     span {
       display: inline-block;
+      transition: .1s ease-out;
     }
     &--1 {
       transform: translateX(120%);
@@ -145,8 +155,8 @@
     }
    }
    &__img {
+     transform: translateY(-120%) scale(1.2);
      width: 100%;
-     transform: scale(1.1);
    }
   }
   &__circle {
@@ -223,6 +233,7 @@
       }
       &__technology {
         height: 30rem;
+        overflow: hidden;
         @include respond(xlarge) {
           height: 25rem;
         }
@@ -283,34 +294,71 @@
             border: none;
           }
         }
+        &--2 {
+          div {
+            transform: translateX(-100%);
+          }
+        }
+        &--3 {
+          div {
+            transform: translateX(-100%);
+          }
+        }
         &--4 {
           grid-row: 2/3;
+          div {
+            transform: translateX(100%);
+          }
         }
         &--5 {
           grid-row: 2/3;
+          div {
+            transform: translateY(-100%);
+          }
         }
         &--6 {
           grid-row: 2/3;
+          div {
+            transform: translateX(-100%);
+          }
         }
         &--7 {
           grid-row: 3/4;
+          div {
+            transform: translateY(-100%);
+          }
         }
         &--8 {
           grid-row: 3/4;
+          div {
+            transform: translateX(-100%);
+          }
         }
         &--9 {
           grid-row: 3/4;
+          div {
+            transform: translateX(-100%);
+          }
         }
         &--10 {
           grid-row: 3/4;
+          div {
+            transform: translateX(-100%);
+          }
         }
         &--11 {
           grid-row: 4/5;
           grid-column: 2/3;
+          div {
+            transform: translateY(-100%);
+          }
         }
         &--12 {
           grid-row: 4/5;
           grid-column: 3/4;
+          div {
+            transform: translateX(-100%);
+          }
         }
       }
     }
@@ -338,6 +386,9 @@
         @include respond(medium) {
           font-size: 2.5rem;
           }
+        @include respond(xxsmall) {
+          font-size: 2rem;
+          }
       }
       li:nth-child(1) {
         font-weight: bold;
@@ -355,6 +406,7 @@
     justify-content: space-between;
     &__copyright {
       font-size: 8rem;
+      display: flex;
       @include respond(small) {
         font-size: 7rem;
         }
@@ -371,9 +423,6 @@
       display: flex;
       @include respond(xsmall) {
         font-size: 3rem;
-      }
-      .button {
-        margin-left: 1.5rem;
       }
     }
   }

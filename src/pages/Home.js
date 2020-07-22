@@ -3,10 +3,12 @@ import isMobile from '../functions/isMobile';
 import HighLightText from '../components/HighlightText';
 import gsap from 'gsap';
 import HighlightText from '../components/HighlightText';
+import showInterface from '../animations/showInterface';
 
 const Home = () => {
 
   useEffect(() => {
+    showInterface();
     gsap.to('.home__welcome span span', { y: 0, duration: .5, stagger: .05, ease: 'Power2.easeOut', opacity: 1 }, .7);
   }, [])
 

@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import cursorExpand from '../functions/cursorExpand';
 import cursorBackToNormalFromExpand from '../functions/cursorBackToNormalFromExpand';
-import gsap from 'gsap';
 
 export default function Switcher() {
-
-  useEffect(() => {
-    gsap.to('.switcher', { autoAlpha: 1, duration: .2, ease: 'Power2.easeOut' }, '+=.5');
-  }, [])
 
   const switchToDark = () => {
     document.querySelector('.switcher__expand-dark').classList.add('switcher__expand-dark--expanded');

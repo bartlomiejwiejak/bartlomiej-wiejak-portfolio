@@ -12,7 +12,7 @@
   top: -65px;
   left: -65px;  
   mix-blend-mode: difference;
-  z-index: 1;
+  z-index: 2;
   &--expand {
     transform: scale(1.5);
     border: .5px solid #666;
@@ -28,7 +28,7 @@
   &__dot {
     width: 6px;
     height: 6px;
-    z-index: 1;
+    z-index: 2;
     border-radius: 50%;
     position: absolute;
     top: -50px;
