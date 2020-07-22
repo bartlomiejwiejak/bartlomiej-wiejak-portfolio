@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import cursorBackToNormalFromShrink from '../functions/cursorBackToNormalFromExpand';
-import cursorExpandBig from '../functions/cursorExpandBig';
 import isMobile from '../functions/isMobile';
+import HighLightText from '../components/HighlightText';
 import gsap from 'gsap';
+import HighlightText from '../components/HighlightText';
 
 const Home = () => {
 
@@ -44,11 +44,7 @@ const Home = () => {
         <span>
           <span>Bartłomiej </span>
         </span>
-        <span onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormalFromShrink}>
-          <span data-text='Wiejak.' className='home__welcome--highlight-text'>
-            Wiejak.
-            </span>
-        </span>
+        <HighLightText>Wiejak.</HighLightText>
         <span>
           <span> I </span>
         </span>
@@ -85,9 +81,7 @@ const Home = () => {
         <span>
           <span>my </span>
         </span>
-        <span onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormalFromShrink}>
-          <span data-text='apps.' className='home__welcome--highlight-text'>apps.</span>
-        </span>
+        <HighlightText>Apps.</HighlightText>
       </h1>
     </div>
   );

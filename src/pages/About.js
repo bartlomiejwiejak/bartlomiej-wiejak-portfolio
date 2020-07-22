@@ -13,6 +13,7 @@ import webpack from '../assets/technologies/webpack.png';
 import mongo from '../assets/technologies/mongo.png';
 import threejs from '../assets/technologies/threejs.webp';
 import Button from '../components/Button';
+import HighlightText from '../components/HighlightText';
 import gsap from 'gsap';
 
 const About = () => {
@@ -36,54 +37,67 @@ const About = () => {
         </p>
       </h1>
       <div className="about__description">
-        <div className="about__description__heading">Hey, I'm Bartłomiej Wiejak a creative developer.</div>
-        <p className="about__description__text">
-          I enjoy building interactive, heavy javascript application with slick animations. I mostly work with react. Passionate in programming since wrote first program "Towers of Hanoi" during studies. If I'm not programming, I spend time active.
-          <div className="about__circle">
-            <img draggable={false} src={circle} alt="Circle" className="about__circle__img" />
+        <div className="about__description__text">
+          <div className="about__description__heading">
+            <p className="about__description__heading__line">Hey, I'm Bartłomiej Wiejak</p>
+            <p className="about__description__heading__line">a creative developer.</p>
           </div>
-        </p>
+          <p className='about__description__paragraph'>
+            I enjoy building interactive, heavy javascript application with slick animations. I mostly work with react. Passionate in programming since wrote first program "Towers of Hanoi" during studies. If I'm not programming, I spend time active.
+          </p>
+        </div>
         <div className="about__description__img-container">
           <img draggable={false} src={photo} alt="Bartlomiej Wiejak" className="about__description__img" />
         </div>
-
+      </div>
+      <p className="about__description__paragraph--mobile">
+        I enjoy building interactive, heavy javascript application with slick animations. I mostly work with react. Passionate in programming since wrote first program "Towers of Hanoi" during studies. If I'm not programming, I spend time active.
+        </p>
+      <div className="about__circle">
+        <img draggable={false} className="about__circle__img" src={circle} alt='Creative developer' />
       </div>
       <div className="about__skills">
         <p className="about__skills__heading">I'm ambitious and love new challenges. My variety of skills is continuously expanding.</p>
-        <div className="about__skills__technologies">
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--1"><div>Technologies:</div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--2"><div>
-            <img src={react} alt="react" />
-          </div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--3"><div>
-            <img src={js} alt="react" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--4"><div>
-            <Gsap /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--5"><div><img src={redux} alt="redux" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--6"><div><img src={html5} alt="html5" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--7"><div><img src={css3} alt="css3" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--8"><div><img src={node} alt="node" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--9"><div><img src={sass} alt="sass" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--10"><div><img src={webpack} alt="webpack" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--11"><div><img src={mongo} alt="mongo" /></div></div>
-          <div className="about__skills__technologies__technology about__skills__technologies__technology--12"><div><img src={threejs} alt="threejs" /></div></div></div>
-        <div className="about__contact">
-          <ul>
-            <li>Email</li>
-            <li>hello@wiejak.com</li>
-          </ul>
-          <ul>
-            <li>Social</li>
-            <li><Button>Facebook</Button></li>
-            <li><Button>Github</Button></li>
-            <li><Button>Linkedin</Button></li>
-          </ul>
+        <div className="about__skills__technologies-wrapper">
+          <div className="about__skills__technologies">
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--1"><div>Technologies:</div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--2"><div>
+              <img draggable={false} src={react} alt="react" />
+            </div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--3"><div>
+              <img draggable={false} src={js} alt="react" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--4"><div>
+              <Gsap /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--5"><div><img draggable={false} src={redux} alt="redux" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--6"><div><img draggable={false} src={html5} alt="html5" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--7"><div><img draggable={false} src={css3} alt="css3" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--8"><div><img draggable={false} src={node} alt="node" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--9"><div><img draggable={false} src={sass} alt="sass" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--10"><div><img draggable={false} src={webpack} alt="webpack" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--11"><div><img draggable={false} src={mongo} alt="mongo" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--12"><div><img draggable={false} src={threejs} alt="threejs" /></div></div></div>
         </div>
+      </div>
+      <div className="about__contact">
+        <ul>
+          <li>Email</li>
+          <li>hello@wiejak.com</li>
+        </ul>
+        <ul>
+          <li>Social</li>
+          <li><Button>Facebook</Button></li>
+          <li><Button>Github</Button></li>
+          <li><Button>Linkedin</Button></li>
+        </ul>
       </div>
       <footer className='about__footer'>
         <div className="about__footer__copyright">© 2020</div>
         <div className="about__footer__author">by <Button>WieJak.</Button></div>
       </footer>
+      <div className="about__go-to-work">
+        <p>Go to</p>
+        <HighlightText>Work</HighlightText>
+      </div>
     </div>
   );
 }

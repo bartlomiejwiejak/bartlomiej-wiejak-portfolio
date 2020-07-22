@@ -1,0 +1,27 @@
+.highlight-text {
+  color: transparent;
+  position: relative;
+  display: inline-block;
+  &::before {
+    color: var(--white);
+    content: attr(data-text);
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: .1rem;
+  }
+  &::after {
+    color: var(--white);
+    content: attr(data-text);
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transition: .5s;
+  }
+  &:hover::after {
+    height: 100%;
+  }
+}
