@@ -1,11 +1,11 @@
 import React from 'react';
-import cursorExpandBig from '../functions/cursorExpandBig';
-import cursorBackToNormalFromExpand from '../functions/cursorBackToNormalFromExpand';
+import cursorExpandBig from '../animations/cursorExpandBig';
+import cursorBackToNormal from '../animations/cursorBackToNormal';
 
 const HighlightText = ({ children }) => {
   return (
-    <span onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormalFromExpand}>
-      <span data-text={children} className='highlight-text'>{children}</span>
+    <span>
+      <span data-text={children} onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormal} className='highlight-text'>{children}</span>
     </span>
   );
 }

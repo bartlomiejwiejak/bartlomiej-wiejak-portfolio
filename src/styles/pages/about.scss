@@ -78,6 +78,7 @@
      margin-top: -5rem;
      position: relative;
      z-index: 1;
+     mix-blend-mode: difference;
      &__line {
        white-space: nowrap;
      }
@@ -147,7 +148,7 @@
     }
    }
    &__img {
-     transform: translateY(-120%) scale(1.2);
+     transform: translateY(-100%);
      width: 100%;
    }
   }

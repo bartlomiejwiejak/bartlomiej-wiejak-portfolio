@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import photo from '../assets/photo.jpg';
+import photo from '../assets/photo.jfif';
 import circle from '../assets/circle.png';
 import react from '../assets/technologies/react.png';
 import js from '../assets/technologies/js.png';
@@ -27,22 +27,19 @@ const About = () => {
     gsap.to('.about__line', { x: 0, duration: 1, ease: 'Power2.easeOut', onComplete: aboutheader }, .2)
     document.querySelectorAll('.about span span').forEach(span => {
       gsap.to(span, {
-        scrollTrigger: {
-          trigger: span,
-          start: '100px bottom'
-        }, y: 0, ease: 'Power2.easeOut', duration: 1, delay: .5, opacity: 1
+        scrollTrigger: span, y: 0, ease: 'Power2.easeOut', duration: 1, delay: .5, opacity: 1
       }, 2)
     })
     gsap.to('.about__description__img', {
       scrollTrigger: {
         trigger: '.about__description__img-container',
         start: '-100px center'
-      }, y: '-20%', duration: 1, delay: .5
+      }, y: 0, duration: 1
     })
     gsap.to('.about__circle', {
-      rotate: 720, duration: 10, scrollTrigger: {
+      rotate: 720, scrollTrigger: {
         trigger: 'about__circle',
-        scrub: .5
+        scrub: 2
       }
     })
     gsap.to('.about__skills__technologies__technology--2 div', {

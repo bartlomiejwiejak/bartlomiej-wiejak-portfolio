@@ -6,42 +6,51 @@ import Switcher from './components/Switcher';
 import Home from './pages/Home';
 import { Switch, Route } from 'react-router-dom';
 import About from './pages/About';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
 
   const scrollRef = useRef();
   const appRef = useRef();
+  const windowSize = useWindowSize();
 
   const skewConfig = {
-    ease: .05,
+    ease: .07,
     current: 0,
     previous: 0,
     rounded: 0
   }
 
   useEffect(() => {
-    document.body.style.height = `${scrollRef.current.getBoundingClientRect().height}px`
-  })
-
-
+    requestAnimationFrame(() => skewScrolling());
+  }, [])
 
   useEffect(() => {
-    const skewScrolling = () => {
-      skewConfig.current = window.scrollY;
-      skewConfig.previous += (skewConfig.current - skewConfig.previous) * skewConfig.ease;
-      skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
+    setTimeout(() => {
+      setBodyHeight();
+    }, 1000)
+    setBodyHeight();
+  }, [windowSize.width])
+  const setBodyHeight = () => {
+    document.body.style.height = `${
+      scrollRef.current.getBoundingClientRect().height
+      }px`;
+  };
 
-      const difference = skewConfig.current - skewConfig.rounded;
-      const acceleration = difference / window.innerWidth;
-      const velocity = +acceleration;
-      const skew = velocity * 7.5
+  const skewScrolling = () => {
+    skewConfig.current = window.scrollY;
+    skewConfig.previous += (skewConfig.current - skewConfig.previous) * skewConfig.ease;
+    skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
 
-      scrollRef.current.style.transform = `translateY(${-skewConfig.rounded}px) skewY(${skew}deg)`;
-      requestAnimationFrame(() => skewScrolling());
-    }
+    const difference = skewConfig.current - skewConfig.rounded;
+    const acceleration = difference / windowSize.width;
+    const velocity = +acceleration;
+    const skew = velocity * 7.5;
+
+    scrollRef.current.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
+
     requestAnimationFrame(() => skewScrolling());
-
-  }, [skewConfig])
+  };
 
   return (
     <>
