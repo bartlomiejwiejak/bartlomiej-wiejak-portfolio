@@ -29,18 +29,18 @@ const About = () => {
       gsap.to(span, {
         scrollTrigger: {
           trigger: span,
-          start: '50px bottom'
+          start: '100px bottom'
         }, y: 0, ease: 'Power2.easeOut', duration: 1, delay: .5, opacity: 1
       }, 2)
     })
     gsap.to('.about__description__img', {
       scrollTrigger: {
         trigger: '.about__description__img-container',
-        start: '-100px center',
-      }, y: 0, duration: 1, delay: .5
+        start: '-100px center'
+      }, y: '-20%', duration: 1, delay: .5
     })
     gsap.to('.about__circle', {
-      rotate: 360, duration: 10, scrollTrigger: {
+      rotate: 720, duration: 10, scrollTrigger: {
         trigger: 'about__circle',
         scrub: .5
       }
@@ -161,7 +161,6 @@ const About = () => {
 
   return (
     <div className='about'>
-      <div className="background"></div>
       <h1 className='about__heading'>
         <p className='about__line about__line--1'>
           <span>INTERACTIVE</span>

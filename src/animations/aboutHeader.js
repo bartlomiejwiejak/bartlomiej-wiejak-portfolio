@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-export function moveFirstLine(e) {
+import isMobile from '../functions/isMobile';
+export function moveLines(e) {
   const transformX = (window.innerWidth / 2 - e.clientX);
   const transformY = (window.innerHeight / 2 - e.clientY);
   document.querySelector('.about__line--1 span').style.transform = `translate(${transformX * 0.07}px,${transformY * 0.03}px)`;
@@ -9,8 +10,9 @@ export function moveFirstLine(e) {
 }
 
 export default function () {
-
-  document.addEventListener('mousemove', moveFirstLine)
+  if (!isMobile()) {
+    document.addEventListener('mousemove', moveLines)
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('.about__line--1, .about__line--3', {

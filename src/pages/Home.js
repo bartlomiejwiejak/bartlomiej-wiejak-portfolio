@@ -4,6 +4,7 @@ import HighLightText from '../components/HighlightText';
 import gsap from 'gsap';
 import HighlightText from '../components/HighlightText';
 import showInterface from '../animations/showInterface';
+import homeObjects from '../animations/homeObjects';
 
 const Home = () => {
 
@@ -14,17 +15,9 @@ const Home = () => {
 
   useEffect(() => {
     if (isMobile()) return;
-    const moveObjects = (e) => {
-      const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
-      const positionY = -(window.innerHeight / 2 - e.clientY) * 0.03;
-      const rotateX = -((((window.innerWidth / 2) - e.clientX) / window.innerWidth) * 10);
-      const rotateY = ((((window.innerHeight / 2) - e.clientY) / window.innerHeight) * 10);
-
-      document.querySelector('.home__welcome').style.transform = `translate(${positionX}px,${positionY}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
-    }
-    document.addEventListener('mousemove', moveObjects)
+    document.addEventListener('mousemove', homeObjects)
     return () => {
-      document.removeEventListener('mousemove', moveObjects)
+      document.removeEventListener('mousemove', homeObjects)
     }
   }, [])
 

@@ -6,3 +6,13 @@
   box-sizing: border-box;
   cursor: none;
 }
+
+.App {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  mix-blend-mode: difference;
+}

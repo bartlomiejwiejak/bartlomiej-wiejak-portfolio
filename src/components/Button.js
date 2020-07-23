@@ -5,8 +5,8 @@ import cursorBackToNormalFromExpand from '../functions/cursorBackToNormalFromExp
 const Button = ({ children }) => {
 
   return (
-    <div onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className='button'>
-      <div className="button__content">{children}</div>
+    <div className='button'>
+      <div onMouseOver={cursorExpand} onMouseOut={cursorBackToNormalFromExpand} className="button__content">{children}</div>
       <div className="button__underline">
         <div className="button__underline--left">
           <div className="button__underline--fill"></div>

@@ -7,12 +7,10 @@
   height: 65px;
   border-radius: 50%;
   border: 1px solid #666;
-  position: absolute;
+  position: fixed;
   transition: .2s ease-out;
-  top: -65px;
-  left: -65px;  
+  transform: translate(-65px,-65px);
   mix-blend-mode: difference;
-  z-index: 2;
   &--expand {
     transform: scale(1.5);
     border: .5px solid #666;
@@ -28,17 +26,11 @@
   &__dot {
     width: 6px;
     height: 6px;
-    z-index: 2;
     border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: -50px;
+    position: fixed;
+    transform: translate(-65px,-65px);
     background-color: var(--white);
     mix-blend-mode: difference;
-    transition: .2s transform;
-    &--multi {
-      transform: translateY(-30px);
-    }
     &--inner {
       position: absolute;
       left: 0%;
@@ -47,13 +39,6 @@
       border-radius: 50%;
       width: 6px;
       height: 6px;
-      transition: .2s;
-    }
-    &--multi-inner {
-      transform: translateY(60px);
-    }
-    &--dont-multi {
-      transform: none !important;
     }
   }
 }

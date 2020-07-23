@@ -4,6 +4,10 @@
   &:hover &__underline--fill {
     width: 100%;
   }
+  &__content {
+    position: relative;
+    z-index: 3;
+  }
 &__underline {
   position: absolute;
   left: 0;

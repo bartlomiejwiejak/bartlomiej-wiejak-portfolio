@@ -21,12 +21,9 @@
     padding: 5rem 2rem 5rem 5rem;
   }
   &__heading {
-    position: relative;
-    z-index: 2;
     font-size: 18rem;
     line-height: .8;
     padding-top: 5rem;
-    mix-blend-mode: difference;
     @include respond(xlarge) {
       font-size: 14rem;
     }
@@ -78,8 +75,9 @@
    &__heading {
      font-size: 9rem;
      line-height: 1;
-     mix-blend-mode: difference;
      margin-top: -5rem;
+     position: relative;
+     z-index: 1;
      &__line {
        white-space: nowrap;
      }
@@ -117,7 +115,6 @@
     }
     &--mobile {
       display: none;
-      mix-blend-mode: difference;
       font-size: 2.2rem;
       width: 70%;
       margin-top: -10rem;
@@ -135,9 +132,6 @@
        font-size: 2.5rem;
        line-height: 1.8;
        width: 40%;
-       mix-blend-mode: difference;
-       position: relative;
-       z-index: 3;
        @include respond(medium) {
         width: 50%;
       }
@@ -147,8 +141,6 @@
    }
    &__img-container {
      width: 40%;
-     position: relative;
-     z-index: 2;
      overflow: hidden;
      @include respond(xsmall) {
       width: 70%;
@@ -161,10 +153,7 @@
   }
   &__circle {
     width: 60rem;
-    mix-blend-mode: difference;
-    position: relative;
     margin: -15rem 0 0 15rem;
-    z-index: 3;
     @include respond(xlarge) {
       width: 50rem;
     margin: -3rem 0 0 15rem;
@@ -188,9 +177,6 @@
     }
   }
   &__skills {
-    mix-blend-mode: difference;
-    position: relative;
-    z-index: 2;
     &__heading {
       font-size: 2.5rem;
       width: 30%;
@@ -366,9 +352,6 @@
   &__contact {
     display: flex;
     margin: 20rem 0;
-    position: relative;
-    mix-blend-mode: difference;
-    z-index: 3;
     @include respond(xlarge) {
     margin: 15rem 0;
     }
@@ -399,9 +382,6 @@
     }
   }
   &__footer {
-    position: relative;
-    z-index: 3;
-    mix-blend-mode: difference;
     display: flex;
     justify-content: space-between;
     &__copyright {
@@ -427,10 +407,7 @@
     }
   }
   &__go-to-work {
-    mix-blend-mode: difference;
     text-align: center;
-    position: relative;
-    z-index: 3;
     margin-top: 10rem;
     font-size: 2rem;
     @include respond(medium) {
