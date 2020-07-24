@@ -11,10 +11,10 @@ const Cursor = () => {
     }
 
     const cursorMouseDown = () => {
-      gsap.to('.cursor__circle', { scale: 0.5, duration: 0.25 })
+      gsap.to('.cursor__circle', .25, { scale: 0.5 })
     }
     const cursorMouseUp = () => {
-      gsap.to('.cursor__circle', { scale: 1, duration: 0.25 })
+      gsap.to('.cursor__circle', .25, { scale: 1 })
     }
 
     document.addEventListener('mousemove', moveCursor);

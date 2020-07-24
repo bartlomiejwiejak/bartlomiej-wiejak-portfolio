@@ -1,16 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import isMobile from '../functions/isMobile';
 import HighLightText from '../components/HighlightText';
 import gsap from 'gsap';
 import HighlightText from '../components/HighlightText';
 import showInterface from '../animations/showInterface';
 import homeObjects from '../animations/homeObjects';
+import { useHistory } from 'react-router-dom';
+import { RoutingContext } from '../context/routingContext';
+import hideInterface from '../animations/hideInterface';
+import Link from '../components/Link';
 
-const Home = () => {
+const Home = ({ setBodyHeight }) => {
+
+  const { animating, path, setAnimating } = useContext(RoutingContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (animating) {
+      document.removeEventListener('mousemove', homeObjects)
+      hideInterface();
+      gsap.to('.home__welcome', .5, {
+        opacity: 0,
+        scale: .95,
+        y: '-10%'
+      })
+      setTimeout(() => {
+        setAnimating(false)
+        history.push(path)
+      }, 1200)
+    }
+  }, [animating, history, path, setAnimating])
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setBodyHeight();
+    }, 1000)
+    setBodyHeight()
+  }, [setBodyHeight])
 
   useEffect(() => {
     showInterface();
-    gsap.to('.home__welcome span span', { y: 0, duration: .5, stagger: .05, ease: 'Power2.easeOut', opacity: 1 }, .7);
+    gsap.to('.home__welcome span span', .5, { y: 0, stagger: .05, ease: 'Power2.easeOut', opacity: 1 });
   }, [])
 
   useEffect(() => {
@@ -39,7 +70,7 @@ const Home = () => {
         <span>
           <span>Bartłomiej </span>
         </span>
-        <HighLightText>Wiejak.</HighLightText>
+        <Link to='/about'><HighLightText>Wiejak.</HighLightText></Link>
         <span>
           <span> I </span>
         </span>
@@ -76,7 +107,7 @@ const Home = () => {
         <span>
           <span>my </span>
         </span>
-        <HighlightText>Apps.</HighlightText>
+        <Link to='/work'><HighlightText>Apps.</HighlightText></Link>
       </h1>
     </div>
   );

@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import { Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import useWindowSize from './hooks/useWindowSize';
+import RoutingContextProvider from './context/routingContext';
 
 function App() {
 
@@ -26,9 +27,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    setTimeout(() => {
-      setBodyHeight();
-    }, 1000)
     setBodyHeight();
   }, [windowSize.width])
   const setBodyHeight = () => {
@@ -52,22 +50,26 @@ function App() {
     requestAnimationFrame(() => skewScrolling());
   };
 
+  const routes = (
+    <Switch>
+      <Route path='/' exact render={() => <Home setBodyHeight={setBodyHeight} />} />
+      <Route path='/about' render={() => <About setBodyHeight={setBodyHeight} />} />
+    </Switch>
+  )
+
   return (
-    <>
+    <RoutingContextProvider>
       <div className="background"></div>
       <Switcher />
       <Cursor />
       <div ref={appRef} className="App">
         <div ref={scrollRef} className="scroll">
-          <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/about' component={About} />
-          </Switch>
+          {routes}
         </div>
       </div>
       <Header />
       <Contact />
-    </>
+    </RoutingContextProvider>
   );
 }
 
