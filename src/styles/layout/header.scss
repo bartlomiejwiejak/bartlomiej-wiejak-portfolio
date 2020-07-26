@@ -3,7 +3,6 @@ header {
   position: fixed;
   mix-blend-mode: difference;
   padding: 5rem;
-  z-index: 3;
   top: 0;
   left: 0;
   @include respond(large) {
@@ -13,6 +12,9 @@ header {
     padding: 3rem;
   }
   @include respond(xxsmall) {
+    padding: 2rem;
+  }
+  @media (max-width: 850px) and (orientation: landscape) {
     padding: 2rem;
   }
 }

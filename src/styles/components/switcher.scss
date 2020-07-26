@@ -4,15 +4,9 @@
   right: 0;
   display: grid;
   mix-blend-mode: difference;
-  z-index: 3;
   transform: translate(50%,50%);
   color: var(--white);
-  transition: 1s;
   opacity: 0;
-  visibility: 0;
-  &--rotated {
-    transform: translate(50%,50%) rotate(180deg);
-  }
   &__moon-container {
     margin: 0 5rem 5rem 0;
     @include respond(large) {
@@ -44,13 +38,9 @@
     position: fixed;
     width: 100px;
     height: 100px;
-    background-color: var(--black);
+    background-color: var(--dark);
     right: -100px;
     bottom: -100px;
     border-radius: 50%;
-    transition: 1s;
-    &--expanded {
-      transform: scale(50);
- }
   }
 }

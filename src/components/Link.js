@@ -8,13 +8,14 @@ const Link = ({ children, to }) => {
   const location = useLocation();
 
   function startRedirecting() {
+    console.log(to)
     if (animating || location.pathname === to) return;
     setPath(to);
     setAnimating(true);
   }
 
   return (
-    <div onClick={startRedirecting} style={{ display: 'inline-block' }}>
+    <div onClick={startRedirecting} style={{ display: 'inline-block', position: 'relative', zIndex: 1 }}>
       {children}
     </div>
   );

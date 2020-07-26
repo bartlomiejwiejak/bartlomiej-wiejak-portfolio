@@ -16,19 +16,19 @@ export default function () {
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to('.about__line--1, .about__line--3', {
-    x: '50%', scrollTrigger: {
+    x: '30%', scrollTrigger: {
       trigger: '.about__heading',
       start: 'top top',
       end: 'bottom top',
-      scrub: 1
+      scrub: 1.5
     }
   })
   gsap.to('.about__line--2', {
-    x: '-50%', scrollTrigger: {
+    x: '-30%', scrollTrigger: {
       trigger: '.about__heading',
       start: 'top top',
       end: 'bottom top',
-      scrub: 1
+      scrub: 1.5
     }
   })
 }

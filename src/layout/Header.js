@@ -9,13 +9,13 @@ const Header = () => {
     <header>
       <ul className='navigation'>
         <li onMouseOver={cursorExpandBig} className='navigation__item'>
-          <Button><Link to='/'>WieJak—</Link></Button>
+          <Button type='white'><Link to='/'>WieJak—</Link></Button>
         </li>
         <li className='navigation__item'>
-          <Button><Link to='/work'>Work</Link></Button>
+          <Button type='white'><Link to='/work'>Work</Link></Button>
         </li>
         <li className='navigation__item'>
-          <Button><Link to='/about'>About</Link></Button>
+          <Button type='white'><Link to='/about'>About</Link></Button>
         </li>
       </ul>
     </header>

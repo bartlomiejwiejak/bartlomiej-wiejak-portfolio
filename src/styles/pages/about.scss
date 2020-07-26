@@ -76,9 +76,6 @@
      font-size: 9rem;
      line-height: 1;
      margin-top: -5rem;
-     position: relative;
-     z-index: 1;
-     mix-blend-mode: difference;
      &__line {
        white-space: nowrap;
      }
@@ -119,7 +116,6 @@
       font-size: 2.2rem;
       width: 70%;
       margin-top: -10rem;
-      z-index: 3;
       position: relative;
       @include respond(xsmall) {
         display: block;
@@ -133,6 +129,8 @@
        font-size: 2.5rem;
        line-height: 1.8;
        width: 40%;
+       position: relative;
+       z-index: 1;
        @include respond(medium) {
         width: 50%;
       }
@@ -140,15 +138,15 @@
         width: 30%;
       }
    }
-   &__img-container {
-     width: 40%;
-     overflow: hidden;
-     @include respond(xsmall) {
-      width: 70%;
-    }
-   }
    &__img {
-     transform: translateY(-100%);
+    transform: translate3d(0,-100%,0);
+     &-container {
+      width: 40%;
+      overflow: hidden;
+      @include respond(xsmall) {
+       width: 70%;
+     }
+     }
      width: 100%;
    }
   }
@@ -208,11 +206,11 @@
         grid-template-columns: repeat(4, 15rem);
       }
       @include respond(xsmall) {
-        grid-template-columns: repeat(4, 10rem);
+        grid-template-columns: repeat(4, 12rem);
         margin: 10rem auto;
       }
       @include respond(xxsmall) {
-        grid-template-columns: repeat(4, 8rem);
+        grid-template-columns: repeat(4, 10rem);
       }
       &-wrapper {
         display: flex;
@@ -231,15 +229,15 @@
           height: 15rem;
         }
         @include respond(xsmall) {
-          height: 10rem;
+          height: 12rem;
         }
         @include respond(xxsmall) {
-          height: 8rem;
+          height: 10rem;
         }
         div {
           width: 100%;
           height: 100%;
-          border: 1px solid var(--white);
+          border: 1px solid var(--black);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -258,7 +256,7 @@
         }
         &--1 {
           font-size: 3.5rem;
-          border: 1px solid var(--white);
+          border: 1px solid var(--black);
           @include respond(xlarge) {
             font-size: 3rem;
           }

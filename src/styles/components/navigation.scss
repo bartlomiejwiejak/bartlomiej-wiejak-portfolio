@@ -5,7 +5,6 @@
   letter-spacing: 1px;
   font-weight: 700;
   overflow: hidden;
-  mix-blend-mode: difference;
   .button {
     transform: translateY(100%);
   }
@@ -22,6 +21,9 @@
         margin-left: 3rem;
       }
       @include respond(xxsmall) {
+        margin-left: 2rem;
+      }
+      @media (max-width: 850px) and (orientation: landscape) {
         margin-left: 2rem;
       }
     }

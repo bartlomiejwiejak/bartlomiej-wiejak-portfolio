@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import photo from '../assets/photo.jfif';
+import photo from '../assets/photo.jpg';
 import circle from '../assets/circle.png';
 import react from '../assets/technologies/react.png';
 import js from '../assets/technologies/js.png';
@@ -13,7 +13,7 @@ import webpack from '../assets/technologies/webpack.png';
 import mongo from '../assets/technologies/mongo.png';
 import threejs from '../assets/technologies/threejs.webp';
 import Button from '../components/Button';
-import HighlightText from '../components/HighlightText';
+import HighLightText from '../components/HighlightText';
 import showInterface from '../animations/showInterface';
 import hideInterface from '../animations/hideInterface';
 import aboutheader from '../animations/aboutHeader';
@@ -22,7 +22,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { moveLines } from '../animations/aboutHeader';
 import { RoutingContext } from '../context/routingContext';
 import { useHistory } from 'react-router-dom';
-import Link from '../components/Link';
+import scrollTo from '../functions/scrollTo';
 
 const About = ({ setBodyHeight }) => {
 
@@ -30,24 +30,26 @@ const About = ({ setBodyHeight }) => {
   const history = useHistory();
 
   useEffect(() => {
+    setBodyHeight()
+  }, [setBodyHeight])
+
+  useEffect(() => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      scrollTo(0, () => {
+        setTimeout(() => {
+          gsap.to('.about__line--1', 1, {
+            x: '150%', ease: 'Power2.easeOut', onComplete: () => {
+              setAnimating(false);
+              history.push(path)
+            }
+          })
+          gsap.to('.about *:not(.about__heading)', 1, { autoAlpha: 0 })
+          gsap.to('.about__line--2', 1, { x: '-150%', ease: 'Power2.easeOut' })
+          gsap.to('.about__line--3', 1, { x: '150%', ease: 'Power2.easeOut' })
+        }, 1500)
       })
-      setTimeout(() => {
-        gsap.to('.about__line--1', 1, {
-          x: '150%', ease: 'Power2.easeOut', onComplete: () => {
-            setAnimating(false);
-            history.push(path)
-          }
-        })
-        gsap.to('.about *:not(.about__heading)', 1, { autoAlpha: 0 })
-        gsap.to('.about__line--2', 1, { x: '-150%', ease: 'Power2.easeOut' })
-        gsap.to('.about__line--3', 1, { x: '150%', ease: 'Power2.easeOut' })
-      }, 2000)
     }
   }, [animating, history, path, setAnimating])
 
@@ -55,137 +57,125 @@ const About = ({ setBodyHeight }) => {
     showInterface();
     gsap.registerPlugin(ScrollTrigger);
     gsap.to('.about__line', 1, { x: 0, ease: 'Power2.easeOut', onComplete: aboutheader }, .2)
-    setTimeout(() => {
-      document.querySelectorAll('.about span span').forEach(span => {
-        gsap.to(span, 1, {
-          scrollTrigger: span, y: 0, ease: 'Power2.easeOut', delay: .5, opacity: 1
-        })
+    document.querySelectorAll('.about span span').forEach(span => {
+      gsap.to(span, 1, {
+        scrollTrigger: span, y: 0, ease: 'Power2.easeOut', delay: .5, opacity: 1
       })
-      gsap.to('.about__description__img', 1, {
-        scrollTrigger: {
-          trigger: '.about__description__img-container',
-          start: '-100px center'
-        }, y: 0
-      })
-      gsap.to('.about__circle', {
-        rotate: 720, scrollTrigger: {
-          trigger: 'about__circle',
-          scrub: 2
-        }
-      })
-      gsap.to('.about__skills__technologies__technology--2 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-      })
-      gsap.to('.about__skills__technologies__technology--3 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about__skills__technologies__technology--4 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about__skills__technologies__technology--5 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0
-      })
-      gsap.to('.about__skills__technologies__technology--6 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about__skills__technologies__technology--7 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-      })
-      gsap.to('.about__skills__technologies__technology--8 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about__skills__technologies__technology--9 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1
-      })
-      gsap.to('.about__skills__technologies__technology--10 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1.5
-      })
-      gsap.to('.about__skills__technologies__technology--11 div', {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about__skills__technologies__technology--12 div', .5, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: .5
-      })
-      gsap.to('.about .highlight-text', 1, {
-        scrollTrigger: {
-          trigger: '.about .highlight-text',
-          start: '-50px bottom'
-        }, y: 0, ease: 'Power2.easeOut', delay: .5, opacity: 1
-      })
-    }, 100)
+    })
+    gsap.to('.about__description__img', 1, {
+      scrollTrigger: {
+        trigger: '.about__description__img-container',
+        start: '-100px center'
+      }, y: 0
+    })
+    gsap.to('.about__circle', {
+      rotate: 360, scrollTrigger: {
+        trigger: '.about__circle',
+        scrub: 2,
+        start: 'top bottom',
+        end: 'bottom top'
+      }
+    })
+    gsap.to('.about__skills__technologies__technology--2 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--2',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+    })
+    gsap.to('.about__skills__technologies__technology--3 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--2',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
+    gsap.to('.about__skills__technologies__technology--4 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--4',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
+    gsap.to('.about__skills__technologies__technology--5 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--4',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0
+    })
+    gsap.to('.about__skills__technologies__technology--6 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--4',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
+    gsap.to('.about__skills__technologies__technology--7 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--7',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+    })
+    gsap.to('.about__skills__technologies__technology--8 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--7',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
+    gsap.to('.about__skills__technologies__technology--9 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--7',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 2
+    })
+    gsap.to('.about__skills__technologies__technology--10 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--7',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 3
+    })
+    gsap.to('.about__skills__technologies__technology--11 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--11',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
+    gsap.to('.about__skills__technologies__technology--12 div', 1, {
+      scrollTrigger: {
+        trigger: '.about__skills__technologies__technology--11',
+        start: '100px bottom',
+      },
+      y: 0,
+      x: 0,
+      delay: 1
+    })
     return () => {
       document.removeEventListener('mousemove', moveLines);
     }
   }, [])
-  useEffect(() => {
-    setTimeout(() => {
-      setBodyHeight();
-    }, 1000)
-    setBodyHeight()
-  }, [setBodyHeight])
   return (
     <div className='about'>
       <h1 className='about__heading'>
@@ -248,18 +238,18 @@ const About = ({ setBodyHeight }) => {
         </ul>
         <ul>
           <li><span><span>Social</span></span></li>
-          <li><span><span><Button>Facebook</Button></span></span></li>
-          <li><span><span><Button>Github</Button></span></span></li>
-          <li><span><span><Button>Linkedin</Button></span></span></li>
+          <li><span><span><Button type='black'>Facebook</Button></span></span></li>
+          <li><span><span><Button type='black'>Github</Button></span></span></li>
+          <li><span><span><Button type='black'>Linkedin</Button></span></span></li>
         </ul>
       </div>
       <footer className='about__footer'>
         <div className="about__footer__copyright"><span><span>© 2020</span></span></div>
-        <div className="about__footer__author"><span><span>by</span></span><span><span><Button>WieJak.</Button></span></span></div>
+        <div className="about__footer__author"><span><span>by</span></span><span><span><Button type='black'>WieJak.</Button></span></span></div>
       </footer>
       <div className="about__go-to-work">
         <p><span><span>Go to</span></span></p>
-        <Link to='/'><HighlightText>Work</HighlightText></Link>
+        <HighLightText type='black' to='/'>Work</HighLightText>
       </div>
     </div>
   );

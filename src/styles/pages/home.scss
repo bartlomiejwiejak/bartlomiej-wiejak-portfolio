@@ -1,9 +1,10 @@
 .home {
-  margin: 20rem auto 0;
-  mix-blend-mode: difference;
+  &-wrapper {
+    mix-blend-mode: difference;
+  }
+  padding-top: 20rem;
+  margin: 0 auto;
   max-width: 135rem;
-  position: relative;
-  z-index: 3;
   perspective: 700px;
   @include respond(xlarge) {
   max-width: 110rem;
@@ -19,13 +20,13 @@
   }
   @include respond(xsmall) {
    max-width: 60rem;
-   margin: 15rem auto 0;
   }
   @include respond(xxsmall) {
     max-width: 40rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    margin: 10rem auto 0;
+    padding-top: 10rem;
+    max-width: 60rem;
   }
   &__welcome {
     color: var(--white);
@@ -35,7 +36,7 @@
     line-height: .8;
     text-transform: uppercase;
     letter-spacing: .15rem;
-    transition: .2s ease-out;
+    mix-blend-mode: difference;
     span {
       display: inline-block;
       margin: 0 .5rem;
@@ -45,6 +46,7 @@
       span {
         transform: translateY(110%);
         opacity: 0;
+        -webkit-text-stroke: 1px var(--white);
       }
     }
     @include respond(xlarge) {
@@ -60,6 +62,9 @@
       font-size: 5rem;
     }
     @include respond(xsmall) {
+      font-size: 4rem;
+    }
+    @media (max-width: 850px) and (orientation: landscape) {
       font-size: 4rem;
     }
   }

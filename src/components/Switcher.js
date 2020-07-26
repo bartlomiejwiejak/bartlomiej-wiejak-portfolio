@@ -1,36 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import cursorExpand from '../animations/cursorExpand';
 import cursorBackToNormal from '../animations/cursorBackToNormal';
 import gsap from 'gsap';
-import photoDark from '../assets/photoDark.jpg';
-import photoLight from '../assets/photo.jfif';
 
 export default function Switcher() {
 
   const switchToDark = () => {
-    document.querySelector('.switcher__expand-dark').classList.add('switcher__expand-dark--expanded');
-    document.querySelector('.switcher').classList.add('switcher--rotated');
-    if (document.querySelector('.about__description__img')) {
-      gsap.to('.about__description__img', {
-        autoAlpha: 0, duration: 0.2, onComplete: () => {
-          gsap.to('.about__description__img', { autoAlpha: 1, duration: .2 });
-          document.querySelector('.about__description__img').setAttribute('src', photoDark);
-        }
-      })
-    }
+    gsap.to('.switcher__expand-dark', 1, { scale: 50 });
+    gsap.to('.switcher', 1, { rotate: '181deg' });
   }
   const switchToLight = () => {
-    document.querySelector('.switcher__expand-dark').classList.remove('switcher__expand-dark--expanded');
-    document.querySelector('.switcher').classList.remove('switcher--rotated');
-    if (document.querySelector('.about__description__img')) {
-      gsap.to('.about__description__img', {
-        autoAlpha: 0, duration: .2, onComplete: () => {
-          gsap.to('.about__description__img', { autoAlpha: 1, duration: .5, delay: .5 });
-          document.querySelector('.about__description__img').setAttribute('src', photoLight);
-        }
-      })
-    }
+    gsap.to('.switcher__expand-dark', 1.5, { scale: 1 });
+    gsap.to('.switcher', 1, { rotate: 0 });
   }
+
+  useEffect(() => {
+    gsap.to('.switcher', 1, { opacity: 1 })
+  }, [])
+
   return (
     <>
       <div className="switcher__expand-dark"></div>

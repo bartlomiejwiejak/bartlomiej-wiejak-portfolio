@@ -7,13 +7,13 @@ const Contact = () => {
     <div className='contact'>
       <ul className='contact__list'>
         <li className='contact__item'>
-          <Button>Linkedin</Button>
+          <Button type='white'>Linkedin</Button>
         </li>
         <li className='contact__item'>
-          <Button>Github</Button>
+          <Button type='white'>Github</Button>
         </li>
         <li className='contact__item'>
-          <Button>Reach out</Button>
+          <Button type='white'>Reach out</Button>
         </li>
       </ul>
     </div>

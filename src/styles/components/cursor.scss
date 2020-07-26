@@ -8,26 +8,20 @@
   border-radius: 50%;
   border: 1px solid #666;
   position: fixed;
-  transition: .2s ease-out;
+  left: 0;
+  top: 0;
   transform: translate(-65px,-65px);
   mix-blend-mode: difference;
-  &--expand {
-    transform: scale(1.5);
-    border: .5px solid #666;
-  }
-  &--expand-big {
-    transform: scale(2);
-    border: .3px solid #666;
-  }
-  &--shrink {
-    transform: scale(.5);
-  }
+  pointer-events: none;
   }
   &__dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
     transform: translate(-65px,-65px);
     background-color: var(--white);
     mix-blend-mode: difference;

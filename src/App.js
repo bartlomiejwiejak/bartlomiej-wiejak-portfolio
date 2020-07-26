@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import Header from './layout/Header';
 import Cursor from './components/Cursor';
 import Contact from './components/Contact';
-import Switcher from './components/Switcher';
 import Home from './pages/Home';
 import { Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import useWindowSize from './hooks/useWindowSize';
 import RoutingContextProvider from './context/routingContext';
+import Switcher from './components/Switcher';
 
 function App() {
 
@@ -50,25 +50,19 @@ function App() {
     requestAnimationFrame(() => skewScrolling());
   };
 
-  const routes = (
-    <Switch>
-      <Route path='/' exact render={() => <Home setBodyHeight={setBodyHeight} />} />
-      <Route path='/about' render={() => <About setBodyHeight={setBodyHeight} />} />
-    </Switch>
-  )
-
   return (
     <RoutingContextProvider>
       <div className="background"></div>
-      <Switcher />
-      <Cursor />
       <div ref={appRef} className="App">
         <div ref={scrollRef} className="scroll">
-          {routes}
+          <Route path='/about' render={() => <About setBodyHeight={setBodyHeight} />} />
         </div>
       </div>
+      <Route path='/' exact component={Switcher} />
+      <Route path='/' exact render={() => <Home setBodyHeight={setBodyHeight} />} />
       <Header />
       <Contact />
+      <Cursor />
     </RoutingContextProvider>
   );
 }

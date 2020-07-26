@@ -8,7 +8,6 @@ html {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--white);
   font-size: 62.5%;
   @include respond(large) {
     font-size: 56.25%;

@@ -8,7 +8,6 @@
   left: 5rem;
   bottom: 5rem;
   backface-visibility: hidden;
-  z-index: 3;
   .button {
     transform: translateY(100%);
   }
@@ -21,6 +20,10 @@
     bottom: 3rem;
   }
   @include respond(xxsmall) {
+    left: 2rem;
+    bottom: 2rem;
+  }
+  @media (max-width: 850px) and (orientation: landscape) {
     left: 2rem;
     bottom: 2rem;
   }
@@ -39,6 +42,9 @@
       margin-right: 3rem;
     }
     @include respond(xxsmall) {
+      margin-right: 2rem;
+    }
+    @media (max-width: 850px) and (orientation: landscape) {
       margin-right: 2rem;
     }
   }
