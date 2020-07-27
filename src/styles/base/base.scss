@@ -4,10 +4,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none;
+  cursor: none !important;
 }
 
-.App {
+.view {
   position: fixed;
   left: 0;
   top: 0;

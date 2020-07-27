@@ -5,7 +5,7 @@ const Cursor = () => {
   useEffect(() => {
     const moveCursor = (e) => {
       gsap.set('.cursor__dot', { y: `${e.clientY - 3}px`, x: `${e.clientX - 3}px` })
-      gsap.to('.cursor__circle', .6, { x: `${e.clientX - 32.5}px`, y: `${e.clientY - 32.5}px`, ease: 'Power2.easeOut' })
+      gsap.to('.cursor__circle', .6, { x: `${e.clientX - 32.5}px`, y: `${e.clientY - 32.5}px`, ease: 'power2.out' })
     }
 
     const cursorMouseDown = () => {

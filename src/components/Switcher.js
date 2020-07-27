@@ -10,7 +10,7 @@ export default function Switcher() {
     gsap.to('.switcher', 1, { rotate: '181deg' });
   }
   const switchToLight = () => {
-    gsap.to('.switcher__expand-dark', 1.5, { scale: 1 });
+    gsap.to('.switcher__expand-dark', .7, { scale: 1 });
     gsap.to('.switcher', 1, { rotate: 0 });
   }
 

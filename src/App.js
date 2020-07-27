@@ -3,11 +3,12 @@ import Header from './layout/Header';
 import Cursor from './components/Cursor';
 import Contact from './components/Contact';
 import Home from './pages/Home';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import About from './pages/About';
 import useWindowSize from './hooks/useWindowSize';
-import RoutingContextProvider from './context/routingContext';
+import ContextProvider from './context/context';
 import Switcher from './components/Switcher';
+import Loader from './components/Loader';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
 
   useEffect(() => {
     setBodyHeight();
-  }, [windowSize.width])
+  }, [windowSize.width, windowSize.height])
   const setBodyHeight = () => {
     document.body.style.height = `${
       scrollRef.current.getBoundingClientRect().height
@@ -51,9 +52,9 @@ function App() {
   };
 
   return (
-    <RoutingContextProvider>
+    <ContextProvider>
       <div className="background"></div>
-      <div ref={appRef} className="App">
+      <div ref={appRef} className="view">
         <div ref={scrollRef} className="scroll">
           <Route path='/about' render={() => <About setBodyHeight={setBodyHeight} />} />
         </div>
@@ -63,7 +64,8 @@ function App() {
       <Header />
       <Contact />
       <Cursor />
-    </RoutingContextProvider>
+      <Loader />
+    </ContextProvider>
   );
 }
 

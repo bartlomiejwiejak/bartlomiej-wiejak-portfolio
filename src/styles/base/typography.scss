@@ -8,7 +8,20 @@ html {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--black);
+  font-weight: normal;
   font-size: 62.5%;
+   scrollbar-color: var(--dark) var(--light);
+   scrollbar-width: thin;
+   ::-webkit-scrollbar {
+   width: .5rem;
+   }
+   ::-webkit-scrollbar-track {
+   background-color: var(--light);
+   }
+   ::-webkit-scrollbar-thumb {
+   background-color: var(--dark);
+   }
   @include respond(large) {
     font-size: 56.25%;
   }

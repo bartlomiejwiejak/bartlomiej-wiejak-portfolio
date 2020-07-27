@@ -5,12 +5,14 @@ import gsap from 'gsap';
 import showInterface from '../animations/showInterface';
 import homeObjects from '../animations/homeObjects';
 import { useHistory } from 'react-router-dom';
-import { RoutingContext } from '../context/routingContext';
+import { RoutingContext } from '../context/context';
 import hideInterface from '../animations/hideInterface';
+import { LoadingContext } from '../context/context';
 
 const Home = ({ setBodyHeight }) => {
 
   const { animating, path, setAnimating } = useContext(RoutingContext);
+  const { loaded } = useContext(LoadingContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -52,9 +54,11 @@ const Home = ({ setBodyHeight }) => {
   }, [setBodyHeight])
 
   useEffect(() => {
-    showInterface();
-    gsap.to('.home__welcome span span', .5, { y: 0, stagger: .05, ease: 'Power2.easeOut', opacity: 1 });
-  }, [])
+    if (loaded) {
+      showInterface();
+      gsap.to('.home__welcome span span', .5, { y: 0, stagger: .05, ease: 'Power2.easeOut', opacity: 1 });
+    }
+  }, [loaded])
 
   useEffect(() => {
     if (isMobile()) return;
