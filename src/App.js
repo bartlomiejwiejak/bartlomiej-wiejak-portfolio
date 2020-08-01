@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import Header from './layout/Header';
 import Cursor from './components/Cursor';
 import Contact from './components/Contact';
@@ -7,8 +7,11 @@ import { Route } from 'react-router-dom';
 import About from './pages/About';
 import useWindowSize from './hooks/useWindowSize';
 import ContextProvider from './context/context';
-import Switcher from './components/Switcher';
 import Loader from './components/Loader';
+import Work from './pages/Work';
+import { Redirect, Switch } from 'react-router-dom';
+import WorkIndicators from './components/WorkIndicators';
+import Light from './components/Light';
 
 function App() {
 
@@ -52,20 +55,31 @@ function App() {
   };
 
   return (
-    <ContextProvider>
-      <div className="background"></div>
-      <div ref={appRef} className="view">
-        <div ref={scrollRef} className="scroll">
-          <Route path='/about' render={() => <About setBodyHeight={setBodyHeight} />} />
+    <Suspense fallback={null}>
+      <ContextProvider>
+        <div className="background"></div>
+        <div ref={appRef} className="view">
+          <div ref={scrollRef} className="scroll">
+            <Switch>
+              <Route path='/' exact render={() => (
+                <>
+                  <Light />
+                  <Home setBodyHeight={setBodyHeight} />
+                </>
+              )} />
+              <Route path='/about' exact render={() => <About setBodyHeight={setBodyHeight} />} />
+              <Route path='/work' exact render={() => <Work setBodyHeight={setBodyHeight} />} />
+              <Redirect to='/' />
+            </Switch>
+          </div>
         </div>
-      </div>
-      <Route path='/' exact component={Switcher} />
-      <Route path='/' exact render={() => <Home setBodyHeight={setBodyHeight} />} />
-      <Header />
-      <Contact />
-      <Cursor />
-      <Loader />
-    </ContextProvider>
+        <Route path='/work' component={WorkIndicators} />
+        <Header />
+        <Contact />
+        <Cursor />
+        <Loader />
+      </ContextProvider>
+    </Suspense>
   );
 }
 

@@ -8,7 +8,6 @@ const Link = ({ children, to }) => {
   const location = useLocation();
 
   function startRedirecting() {
-    console.log(to)
     if (animating || location.pathname === to) return;
     setPath(to);
     setAnimating(true);

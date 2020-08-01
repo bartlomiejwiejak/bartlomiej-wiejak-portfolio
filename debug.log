@@ -1,0 +1,32 @@
+[0731/134817.298:ERROR:settings.cc(320)] Settings magic is not 1129342067
+[0731/135819.112:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\ae51a550-6d16-43e2-9c19-8201c440e808: The system cannot find the path specified. (0x3)
+[0731/135819.809:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0731/175100.079:ERROR:process_info.cc(359)] UncheckedAllocate
+[0731/175100.196:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\e470e32e-b74b-449a-9c06-2011f9e2de5e: The system cannot find the path specified. (0x3)
+[0731/190051.584:ERROR:process_info.cc(359)] UncheckedAllocate
+[0731/190051.668:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\1b98031a-757d-4172-820d-ddbbe37e9bcc: The system cannot find the path specified. (0x3)
+[0731/232142.889:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0731/232142.942:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\922dc076-e573-43c6-86e0-b26855bfd23e: The system cannot find the path specified. (0x3)
+[0731/232142.950:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\ffe600a3-70b6-4285-a111-39ed1de513db: The system cannot find the path specified. (0x3)
+[0731/232142.961:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\a51f71f0-cea6-4557-80b7-6e9827d3507d: The system cannot find the path specified. (0x3)
+[0731/232142.970:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\ca0109f9-c7ea-4785-a694-e5c9e4f3710e: The system cannot find the path specified. (0x3)
+[0801/002903.757:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0801/003606.217:ERROR:process_info.cc(359)] UncheckedAllocate
+[0801/003606.306:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\e72105ea-09c1-4b62-8cb5-e94f8a145160: The system cannot find the path specified. (0x3)
+[0801/122544.775:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0801/122544.835:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\d2edea36-0741-47a0-b80f-b004640cb76e: The system cannot find the path specified. (0x3)
+[0801/122544.849:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\0db493e3-883e-4c43-8434-c8a7d54b4a03: The system cannot find the path specified. (0x3)
+[0801/122544.861:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\adeca11c-497f-413c-881a-ac11a791d385: The system cannot find the path specified. (0x3)
+[0801/133025.674:ERROR:process_info.cc(359)] UncheckedAllocate
+[0801/133025.747:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\0aae591a-a743-4930-81b1-e26359637588: The system cannot find the path specified. (0x3)
+[0801/135013.392:ERROR:process_info.cc(359)] UncheckedAllocate
+[0801/140440.732:ERROR:process_info.cc(359)] UncheckedAllocate
+[0801/140442.647:ERROR:process_info.cc(359)] UncheckedAllocate
+[0801/203515.052:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0801/203515.089:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\f120e9a7-c5d4-4516-b1d6-c2c7d2bce0df: The system cannot find the path specified. (0x3)
+[0801/203515.098:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\f4a094aa-b506-46be-bfd3-5a052e856e1b: The system cannot find the path specified. (0x3)
+[0801/203515.107:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\ffe3559f-a419-48d7-97f1-fbfb3461a429: The system cannot find the path specified. (0x3)
+[0801/203515.115:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\fcfb11f6-e677-474d-914c-ceb5734d287c: The system cannot find the path specified. (0x3)
+[0801/203515.124:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\4d8e42dc-11e9-494b-ae80-0f1c8b132365: The system cannot find the path specified. (0x3)
+[0801/203515.133:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\8b662e3c-2285-411c-b5b5-a3c2cc6a7c7d: The system cannot find the path specified. (0x3)
+[0801/203515.143:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\110c9ace-9e9b-486a-b6c1-0c619d934c75: The system cannot find the path specified. (0x3)

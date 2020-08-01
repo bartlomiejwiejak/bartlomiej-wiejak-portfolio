@@ -1,7 +1,4 @@
 .home {
-  &-wrapper {
-    mix-blend-mode: difference;
-  }
   padding-top: 20rem;
   margin: 0 auto;
   max-width: 135rem;
@@ -29,24 +26,24 @@
     max-width: 60rem;
   }
   &__welcome {
-    color: var(--white);
     font-weight: 700;
     text-align: center;
     font-size: 10rem;
     line-height: .8;
     text-transform: uppercase;
     letter-spacing: .15rem;
-    mix-blend-mode: difference;
+    color: var(--white);
     span {
       display: inline-block;
       margin: 0 .5rem;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--white);
     }
     span {
       overflow: hidden;
       span {
         transform: translateY(110%);
         opacity: 0;
-        -webkit-text-stroke: 1px var(--white);
       }
     }
     @include respond(xlarge) {

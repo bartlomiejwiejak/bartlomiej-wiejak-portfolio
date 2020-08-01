@@ -24,12 +24,15 @@ import { RoutingContext } from '../context/context';
 import { useHistory } from 'react-router-dom';
 import scrollTo from '../functions/scrollTo';
 import { LoadingContext } from '../context/context';
+import { useLockBodyScroll, useToggle } from 'react-use';
 
 const About = ({ setBodyHeight }) => {
 
   const { animating, path, setAnimating } = useContext(RoutingContext);
   const { loaded } = useContext(LoadingContext);
   const history = useHistory();
+  const [locked, setLocked] = useToggle(false);
+  useLockBodyScroll(locked);
 
   useEffect(() => {
     setTimeout(setBodyHeight, 1000)
@@ -40,6 +43,7 @@ const About = ({ setBodyHeight }) => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
+      setLocked(true)
       scrollTo(0, () => {
         setTimeout(() => {
           gsap.to('.about__line--1', 1, {
@@ -54,10 +58,11 @@ const About = ({ setBodyHeight }) => {
         }, 1500)
       })
     }
-  }, [animating, history, path, setAnimating])
+  }, [animating, history, path, setAnimating, setLocked])
 
   useEffect(() => {
     if (loaded) {
+      document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
       gsap.registerPlugin(ScrollTrigger);
       gsap.to('.about__line', 1, { x: 0, ease: 'power2.out', onComplete: aboutheader }, .2)
@@ -209,7 +214,7 @@ const About = ({ setBodyHeight }) => {
         <div className="about__description__text">
           <div className="about__description__heading">
             <p className="about__description__heading__line"><span><span>Hey, I'm Bartłomiej Wiejak</span></span></p>
-            <p className="about__description__heading__line"><span><span>a creative developer.</span></span></p>
+            <p className="about__description__heading__line"><span><span>a self taught developer.</span></span></p>
           </div>
           <p className='about__description__paragraph'>
             <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>Passionate</span></span><span><span>about</span></span><span><span>programming</span></span><span><span>since</span></span><span><span>wrote</span></span><span><span>first</span></span><span><span>program</span></span><span><span>"Towers</span></span><span><span>of</span></span><span><span>Hanoi"</span></span><span><span>during</span></span><span><span>studies.</span></span><span><span>If</span></span><span><span>I'm</span></span><span><span>not</span></span><span><span>hacking,</span></span><span><span>I</span></span><span><span>spend</span></span><span><span>time</span></span><span><span>active.</span></span>

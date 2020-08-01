@@ -1,0 +1,37 @@
+.project {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  &__container {
+    height: 50vh;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+  &__img {
+     height: 100%;
+     position: relative;
+  }
+  &__button-container {
+    font-size: 2rem;
+    overflow: hidden;
+    position: absolute;
+    right: -3rem;
+    bottom: -8rem;
+  }
+  &__title {
+    position: absolute;
+    font-size: 25rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+    &--down {
+      bottom: 0;
+      left: 0;
+    }
+    &--up {
+      top: 0;
+      right: 0;
+    }
+  }
+}

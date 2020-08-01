@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import gsap from 'gsap';
 import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
-import useWindowSize from '../hooks/useWindowSize';
 const Loader = () => {
   const { setIsLoaded } = useContext(LoadingContext)
   const [loaded, setLoaded] = useState(false);
@@ -10,12 +9,8 @@ const Loader = () => {
   const [mounted, setMounted] = useState(true);
   const [locked, toggleLocked] = useToggle(true);
 
-  const windowSize = useWindowSize()
-
   useLockBodyScroll(locked);
-  useEffect(() => {
-    document.querySelector('.loader').style.height = windowSize.height
-  }, [windowSize.height])
+
   useEffect(() => {
     window.addEventListener('load', () => {
       setLoaded(true)
