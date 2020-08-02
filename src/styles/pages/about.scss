@@ -429,6 +429,9 @@
       @include respond(xsmall) {
         font-size: 16rem;
       }
+      @include respond(xxsmall) {
+        transform: translateY(0);
+      }
     }
   }
 } 

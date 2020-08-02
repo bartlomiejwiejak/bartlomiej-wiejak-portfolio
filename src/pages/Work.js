@@ -14,6 +14,7 @@ const Work = ({ setBodyHeight }) => {
   const { animating, path, setAnimating } = useContext(RoutingContext)
   const canScrollRef = useRef(true)
   const currentProjectIndexRef = useRef(0);
+  const initialYRef = useRef(0);
   const history = useHistory();
 
   const slider = useCallback((event) => {
@@ -51,6 +52,48 @@ const Work = ({ setBodyHeight }) => {
       })
     }, 300)
   }, [])
+
+  const swipeListen = useCallback((event, projects) => {
+    if (!canScrollRef.current) return;
+    const currentY = event.touches[0].clientY;
+    if (Math.abs(currentY - initialYRef.current) < 50) return;
+    const direction = initialYRef.current - currentY > 0 ? 1 : -1;
+    if (direction === 1) {
+      const isLastProject = currentProjectIndexRef.current === projects.length - 1;
+      if (isLastProject) return;
+    }
+    if (direction === -1) {
+      const firstProject = currentProjectIndexRef.current === 0;
+      if (firstProject) return;
+    }
+    canScrollRef.current = false;
+    if (direction > 0) {
+      gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+    }
+    if (direction < 0) {
+      gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+    }
+    setTimeout(() => {
+      currentProjectIndexRef.current += direction;
+      gsap.to('.work__pagination__active', 1, { y: `${-42 * (currentProjectIndexRef.current)}px` })
+      window.scrollTo({
+        top: projects[currentProjectIndexRef.current].offsetTop,
+        behavior: 'smooth'
+      })
+    }, 300)
+  }, [])
+
+  const swiper = useCallback((event) => {
+    document.removeEventListener('touchend', swipeListen)
+    if (!canScrollRef.current) return;
+    const projects = document.querySelectorAll('.project');
+    initialYRef.current = event.touches[0].clientY;
+    document.addEventListener('touchend', swipeListen.bind(this, event, projects))
+  }, [swipeListen])
 
   useEffect(() => {
     if (animating) {
@@ -103,11 +146,19 @@ const Work = ({ setBodyHeight }) => {
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
         gsap.to('.project__title div', 1, { y: 0 })
         gsap.to('.work__pagination > div', 1, { y: 0 })
-        gsap.to('.project .button', 1, { y: 0, onComplete: document.addEventListener('wheel', slider) })
+        gsap.to('.project .button', 1, {
+          y: 0, onComplete: () => {
+            document.addEventListener('wheel', slider)
+            document.addEventListener('touchstart', swiper)
+          }
+        })
       }, 2000)
     }
-    return () => document.removeEventListener('wheel', slider)
-  }, [loaded, slider])
+    return () => {
+      document.removeEventListener('wheel', slider)
+      document.removeEventListener('touchstart', swiper)
+    }
+  }, [loaded, slider, swiper])
 
 
 
