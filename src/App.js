@@ -10,8 +10,9 @@ import ContextProvider from './context/context';
 import Loader from './components/Loader';
 import Work from './pages/Work';
 import { Redirect, Switch } from 'react-router-dom';
-import WorkIndicators from './components/WorkIndicators';
+import WorkPagination from './components/WorkPagination';
 import Light from './components/Light';
+import Circle from './components/Circle';
 
 function App() {
 
@@ -73,9 +74,10 @@ function App() {
             </Switch>
           </div>
         </div>
-        <Route path='/work' component={WorkIndicators} />
+        <Route path='/work' exact component={WorkPagination} />
+        <Route path='/work' exact component={Circle} />
         <Header />
-        <Contact />
+        <Route path='/' exact component={Contact} />
         <Cursor />
         <Loader />
       </ContextProvider>

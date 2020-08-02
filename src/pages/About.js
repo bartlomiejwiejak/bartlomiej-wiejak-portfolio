@@ -71,11 +71,17 @@ const About = ({ setBodyHeight }) => {
           scrollTrigger: span, y: 0, ease: 'power2.out', delay: .5, opacity: 1
         })
       })
-      gsap.to('.about__description__img', 1, {
+      gsap.to('.about__description__img-reveal', 1.6, {
         scrollTrigger: {
           trigger: '.about__description__img-container',
-          start: '-100px center'
-        }, y: 0, ease: 'power2.out'
+          start: 'top center',
+        }, height: 0, ease: 'power2.out'
+      })
+      gsap.from('.about__description__img', 1.6, {
+        scrollTrigger: {
+          trigger: '.about__description__img-container',
+          start: 'top center',
+        }, scale: 1.6, ease: 'power2.out'
       })
       gsap.to('.about__circle', {
         rotate: 360, scrollTrigger: {
@@ -222,6 +228,7 @@ const About = ({ setBodyHeight }) => {
         </div>
         <div className="about__description__img-container">
           <img draggable={false} src={photo} alt="Bartlomiej Wiejak" className="about__description__img" />
+          <div className="about__description__img-reveal"></div>
         </div>
       </div>
       <p className="about__description__paragraph--mobile">
@@ -270,7 +277,7 @@ const About = ({ setBodyHeight }) => {
       </footer>
       <div className="about__go-to-work">
         <p><span><span>Go to</span></span></p>
-        <HighLightText type='black' to='/'>Work</HighLightText>
+        <HighLightText type='black' to='/work'>Work</HighLightText>
       </div>
     </div>
   );

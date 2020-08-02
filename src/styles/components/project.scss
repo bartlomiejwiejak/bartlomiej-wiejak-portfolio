@@ -10,8 +10,21 @@
     top: 50%;
   }
   &__img {
-     height: 100%;
-     position: relative;
+    height: 100%;
+    opacity: 0;
+     &-container {
+       height: 100%;
+       width: 100%;
+       overflow: hidden;
+       position: relative;
+     }
+     &-reveal {
+       width: 100%;
+       height: 100%;
+       position: absolute;
+       top: 0;
+       right: 0;
+     }
   }
   &__button-container {
     font-size: 2rem;
@@ -19,19 +32,78 @@
     position: absolute;
     right: -3rem;
     bottom: -8rem;
+    @include respond(xlarge) {
+      right: -2.5rem;
+      bottom: -7rem;
+    }
+    @include respond(large) {
+      right: -2rem;
+      bottom: -6rem;
+    }
+    @include respond(medium) {
+      right: 0rem;
+      bottom: -5rem;
+    }
+    @include respond(small) {
+      right: 2rem;
+    }
+    @include respond(xsmall) {
+      right: 4rem;
+    }
+    @include respond(xxsmall) {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -4rem;
+    }
+  }
+  .button {
+    transform: translateY(100%);
   }
   &__title {
     position: absolute;
-    font-size: 25rem;
+    font-size: 27rem;
     font-weight: normal;
+    overflow: hidden;
     letter-spacing: 2px;
+    @include respond(xlarge) {
+       font-size: 25rem;
+    }
+    @include respond(large) {
+      font-size: 22.5rem;
+   }
+   @include respond(medium) {
+    font-size: 20rem;
+ }
+ @include respond(small) {
+  font-size: 17.5rem;
+}
+@include respond(xsmall) {
+  font-size: 15rem;
+}
+@include respond(xxsmall) {
+  font-size: 12.5rem;
+}
+@media (max-width: 850px) and (orientation: landscape) {
+  font-size: 15rem;
+}
+
     &--down {
       bottom: 0;
       left: 0;
+      @include respond(xxsmall) {
+        bottom: 5%;
+      }
     }
     &--up {
       top: 0;
       right: 0;
+      @include respond(xxsmall) {
+        top: 5%;
+      }
+    }
+    div {
+      transform: translate3d(0,100%,0);
     }
   }
 }
