@@ -3,10 +3,10 @@ import photo from '../assets/photo.jpg';
 import circle from '../assets/circle.png';
 import react from '../assets/technologies/react.png';
 import js from '../assets/technologies/js.png';
-import { ReactComponent as Gsap } from '../assets/technologies/gsap.svg';
+import gsapLogo from '../assets/technologies/gsap.png';
 import redux from '../assets/technologies/redux.png';
-import html5 from '../assets/technologies/html5.png';
-import css3 from '../assets/technologies/css3.png';
+import firebase from '../assets/technologies/firebase.png';
+import git from '../assets/technologies/git.png';
 import node from '../assets/technologies/node.png';
 import sass from '../assets/technologies/sass.png';
 import webpack from '../assets/technologies/webpack.png';
@@ -25,6 +25,7 @@ import { useHistory } from 'react-router-dom';
 import scrollTo from '../functions/scrollTo';
 import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
+import isMobile from '../functions/isMobile';
 
 const About = ({ setBodyHeight }) => {
 
@@ -63,6 +64,8 @@ const About = ({ setBodyHeight }) => {
   useEffect(() => {
     if (loaded) {
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
+      gsap.to('.about__description__img-reveal', .7, { opacity: 1 })
+      gsap.to('.about__description__img', .7, { opacity: 1 })
       showInterface();
       gsap.registerPlugin(ScrollTrigger);
       gsap.to('.about__line', 1, { x: 0, ease: 'power2.out', onComplete: aboutheader }, .2)
@@ -71,17 +74,27 @@ const About = ({ setBodyHeight }) => {
           scrollTrigger: span, y: 0, ease: 'power2.out', delay: .5, opacity: 1
         })
       })
-      gsap.to('.about__description__img-reveal', 1.6, {
+      if (isMobile()) {
+        gsap.to('.about__description__img-reveal', 1.6, {
+          height: 0, ease: 'power2.out'
+        })
+      } else {
+        gsap.to('.about__description__img-reveal', 1.6, {
+          scrollTrigger: {
+            trigger: '.about__description__img-container',
+            start: 'top center',
+          }, height: 0, ease: 'power2.out'
+        })
+      }
+
+      gsap.from('.about__description__img', {
         scrollTrigger: {
           trigger: '.about__description__img-container',
-          start: 'top center',
-        }, height: 0, ease: 'power2.out'
-      })
-      gsap.from('.about__description__img', 1.6, {
-        scrollTrigger: {
-          trigger: '.about__description__img-container',
-          start: 'top center',
-        }, scale: 1.6, ease: 'power2.out'
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        scale: 1.2
       })
       gsap.to('.about__circle', {
         rotate: 360, scrollTrigger: {
@@ -223,7 +236,7 @@ const About = ({ setBodyHeight }) => {
             <p className="about__description__heading__line"><span><span>a self taught developer.</span></span></p>
           </div>
           <p className='about__description__paragraph'>
-            <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>Passionate</span></span><span><span>about</span></span><span><span>programming</span></span><span><span>since</span></span><span><span>wrote</span></span><span><span>first</span></span><span><span>program</span></span><span><span>"Towers</span></span><span><span>of</span></span><span><span>Hanoi"</span></span><span><span>during</span></span><span><span>studies.</span></span><span><span>If</span></span><span><span>I'm</span></span><span><span>not</span></span><span><span>hacking,</span></span><span><span>I</span></span><span><span>spend</span></span><span><span>time</span></span><span><span>active.</span></span>
+            <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>I'm</span></span><span><span>simply</span></span><span><span>passionate</span></span><span><span>about</span></span><span><span>technology</span></span><span><span>and</span></span><span><span>seek</span></span><span><span>to</span></span><span><span>perfect</span></span><span><span>myself</span></span><span><span>every</span></span><span><span>day.</span></span><span><span>Now</span></span><span><span>I'm</span></span><span><span>focussing</span></span><span><span>on</span></span><span><span>WebGl</span></span><span><span>and</span></span><span><span>GLSL.</span></span>
           </p>
         </div>
         <div className="about__description__img-container">
@@ -232,7 +245,7 @@ const About = ({ setBodyHeight }) => {
         </div>
       </div>
       <p className="about__description__paragraph--mobile">
-        <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>Passionate</span></span><span><span>about</span></span><span><span>programming</span></span><span><span>since</span></span><span><span>wrote</span></span><span><span>first</span></span><span><span>program</span></span><span><span>"Towers</span></span><span><span>of</span></span><span><span>Hanoi"</span></span><span><span>during</span></span><span><span>studies.</span></span><span><span>If</span></span><span><span>I'm</span></span><span><span>not</span></span><span><span>hacking,</span></span><span><span>I</span></span><span><span>spend</span></span><span><span>time</span></span><span><span>active.</span></span>
+        <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>I'm</span></span><span><span>simply</span></span><span><span>passionate</span></span><span><span>about</span></span><span><span>technology</span></span><span><span>and</span></span><span><span>seek</span></span><span><span>to</span></span><span><span>perfect</span></span><span><span>myself</span></span><span><span>every</span></span><span><span>day.</span></span><span><span>Now</span></span><span><span>I'm</span></span><span><span>focussing</span></span><span><span>on</span></span><span><span>WebGl</span></span><span><span>and</span></span><span><span>GLSL.</span></span>
       </p>
       <div className="about__circle">
         <img draggable={false} className="about__circle__img" src={circle} alt='Creative developer' />
@@ -248,10 +261,10 @@ const About = ({ setBodyHeight }) => {
             <div className="about__skills__technologies__technology about__skills__technologies__technology--3"><div>
               <img draggable={false} src={js} alt="react" /></div></div>
             <div className="about__skills__technologies__technology about__skills__technologies__technology--4"><div>
-              <Gsap /></div></div>
+              <img draggable={false} src={gsapLogo} alt="gsap" /></div></div>
             <div className="about__skills__technologies__technology about__skills__technologies__technology--5"><div><img draggable={false} src={redux} alt="redux" /></div></div>
-            <div className="about__skills__technologies__technology about__skills__technologies__technology--6"><div><img draggable={false} src={html5} alt="html5" /></div></div>
-            <div className="about__skills__technologies__technology about__skills__technologies__technology--7"><div><img draggable={false} src={css3} alt="css3" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--6"><div><img draggable={false} src={firebase} alt="firebase" /></div></div>
+            <div className="about__skills__technologies__technology about__skills__technologies__technology--7"><div><img draggable={false} src={git} alt="css3" /></div></div>
             <div className="about__skills__technologies__technology about__skills__technologies__technology--8"><div><img draggable={false} src={node} alt="node" /></div></div>
             <div className="about__skills__technologies__technology about__skills__technologies__technology--9"><div><img draggable={false} src={sass} alt="sass" /></div></div>
             <div className="about__skills__technologies__technology about__skills__technologies__technology--10"><div><img draggable={false} src={webpack} alt="webpack" /></div></div>
@@ -266,14 +279,14 @@ const About = ({ setBodyHeight }) => {
         </ul>
         <ul>
           <li><span><span>Social</span></span></li>
-          <li><span><span><Button type='black'>Facebook</Button></span></span></li>
-          <li><span><span><Button type='black'>Github</Button></span></span></li>
-          <li><span><span><Button type='black'>Linkedin</Button></span></span></li>
+          <li><span><span><a href='https://twitter.com/BartekWiejak' target='blank'><Button type='black'>Twitter</Button></a></span></span></li>
+          <li><span><span><a href='https://github.com/bartlomiejwiejak' target='blank'><Button type='black'>Github</Button></a></span></span></li>
+          <li><span><span><a href='https://www.linkedin.com/in/bart%C5%82omiej-wiejak-4b9a891b3/' target='blank'><Button type='black'>Linkedin</Button></a></span></span></li>
         </ul>
       </div>
       <footer className='about__footer'>
         <div className="about__footer__copyright"><span><span>© 2020</span></span></div>
-        <div className="about__footer__author"><span><span>by</span></span><span><span><Button type='black'>WieJak.</Button></span></span></div>
+        <div className="about__footer__author"><span><span>by</span></span><span><span><a href='https://github.com/bartlomiejwiejak' target='blank'><Button type='black'>Bartłomiej Wiejak.</Button></a></span></span></div>
       </footer>
       <div className="about__go-to-work">
         <p><span><span>Go to</span></span></p>

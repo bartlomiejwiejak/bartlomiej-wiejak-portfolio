@@ -9,7 +9,7 @@ const Header = () => {
     <header>
       <ul className='navigation'>
         <li onMouseOver={cursorExpandBig} className='navigation__item'>
-          <Button type='white'><Link to='/'>WieJak—</Link></Button>
+          <Button type='white'><Link to='/'>Bartłomiej Wiejak—</Link></Button>
         </li>
         <li className='navigation__item'>
           <Button type='white'><Link to='/work'>Work</Link></Button>

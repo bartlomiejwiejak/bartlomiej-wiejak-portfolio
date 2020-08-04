@@ -53,11 +53,13 @@ const Work = ({ setBodyHeight }) => {
     }, 300)
   }, [])
 
-  const swipeListen = useCallback((event, projects) => {
+  const swipeListen = useCallback((event) => {
     if (!canScrollRef.current) return;
+    const projects = document.querySelectorAll('.project');
     const currentY = event.touches[0].clientY;
     if (Math.abs(currentY - initialYRef.current) < 50) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
+    console.log(initialYRef.current, currentY)
     if (direction === 1) {
       const isLastProject = currentProjectIndexRef.current === projects.length - 1;
       if (isLastProject) return;
@@ -88,12 +90,9 @@ const Work = ({ setBodyHeight }) => {
   }, [])
 
   const swiper = useCallback((event) => {
-    document.removeEventListener('touchend', swipeListen)
     if (!canScrollRef.current) return;
-    const projects = document.querySelectorAll('.project');
     initialYRef.current = event.touches[0].clientY;
-    document.addEventListener('touchend', swipeListen.bind(this, event, projects))
-  }, [swipeListen])
+  }, [])
 
   useEffect(() => {
     if (animating) {
@@ -138,11 +137,11 @@ const Work = ({ setBodyHeight }) => {
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
         gsap.set('.project__img', { opacity: 1 })
-        showInterface();
         gsap.to('.project__img-reveal', 1.4, { width: 0 })
         gsap.from('.project__img', 1.4, { scale: 1.6 })
       }, 500)
       setTimeout(() => {
+        showInterface();
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
         gsap.to('.project__title div', 1, { y: 0 })
         gsap.to('.work__pagination > div', 1, { y: 0 })
@@ -150,6 +149,7 @@ const Work = ({ setBodyHeight }) => {
           y: 0, onComplete: () => {
             document.addEventListener('wheel', slider)
             document.addEventListener('touchstart', swiper)
+            document.addEventListener('touchmove', swipeListen)
           }
         })
       }, 2000)
@@ -157,8 +157,9 @@ const Work = ({ setBodyHeight }) => {
     return () => {
       document.removeEventListener('wheel', slider)
       document.removeEventListener('touchstart', swiper)
+      document.removeEventListener('touchmove', swipeListen)
     }
-  }, [loaded, slider, swiper])
+  }, [loaded, slider, swiper, swipeListen])
 
 
 

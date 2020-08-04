@@ -25,7 +25,6 @@ const Home = ({ setBodyHeight }) => {
         color: 'transparent'
       })
       gsap.to('.home__welcome span span', .5, { delay: .6, y: '110%' })
-      gsap.to('.switcher', 1, { autoAlpha: 0 })
       setTimeout(() => {
         setAnimating(false)
         history.push(path)

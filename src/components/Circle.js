@@ -4,7 +4,7 @@ import circle from '../assets/circleWork.png';
 const Circle = () => {
   return (
     <div className='circle'>
-      <img src={circle} alt="circle" className="circle__img" />
+      <img src={circle} draggable='false' alt="circle" className="circle__img" />
     </div>
   );
 }

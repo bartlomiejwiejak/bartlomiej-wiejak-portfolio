@@ -1,6 +1,6 @@
 .about {
   margin: 0 auto;
-  padding: 15rem 7rem 10rem 15rem;
+  padding: 15rem 7rem;
   overflow: hidden;
   span {
     display: inline-block;
@@ -12,13 +12,13 @@
     }
   }
   @include respond(large) {
-    padding: 10rem 5rem 10rem 10rem;
+    padding: 10rem 5rem;
   }
   @include respond(small) {
-    padding: 7rem 3rem 7rem 7rem;
+    padding: 7rem 3rem
   }
   @include respond(xxsmall) {
-    padding: 5rem 2rem 5rem 5rem;
+    padding: 5rem 2rem;
   }
   &__heading {
     font-size: 18rem;
@@ -73,8 +73,8 @@
     margin-top: 15rem;
   }
    &__heading {
-     font-size: 9rem;
-     line-height: 1;
+     font-size: 10rem;
+     line-height: 1.1;
      margin-top: -5rem;
      &__line {
        white-space: nowrap;
@@ -148,6 +148,7 @@
      }
      }
      width: 100%;
+     opacity: 0;
      &-reveal {
        position: absolute;
        right: 0;
@@ -155,6 +156,7 @@
        width: 105%;
        height: 105%;
        background-color: var(--light);
+       opacity: 0;
      }
    }
   }
@@ -251,13 +253,7 @@
           justify-content: center;
         }
         img {
-          width: 30%;
-          @include respond(xxsmall) {
-            width: 50%;
-          }
-        }
-        svg {
-          width: 30%;
+          width: 35%;
           @include respond(xxsmall) {
             width: 50%;
           }
@@ -401,7 +397,7 @@
           font-size: 6rem;
         }
         @include respond(xxsmall) {
-          font-size: 5rem;
+          font-size: 4rem;
         }
     }
     &__author {
@@ -410,6 +406,9 @@
       display: flex;
       @include respond(xsmall) {
         font-size: 3rem;
+      }
+      @include respond(xxsmall) {
+        font-size: 2.5rem;
       }
     }
   }

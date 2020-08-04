@@ -57,7 +57,7 @@ const Loader = () => {
               <span>LOADING</span>
             </div>
           </div>
-          <div className="loader__copyright"><span>Copyright 2020 © WieJak</span></div>
+          <div className="loader__copyright"><span>Copyright 2020 © Bartłomiej Wiejak</span></div>
         </div>
       </div>
     )

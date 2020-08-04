@@ -1,3 +1,0 @@
-[0802/151501.188:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[0802/181742.524:ERROR:process_info.cc(359)] UncheckedAllocate
-[0802/181742.653:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vipos\AppData\Local\Google\Chrome Dev\User Data\Crashpad\attachments\fcaeb33b-d2e0-420f-9f86-3598398c52bd: The system cannot find the path specified. (0x3)
