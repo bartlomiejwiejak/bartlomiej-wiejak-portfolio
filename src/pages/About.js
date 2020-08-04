@@ -44,6 +44,19 @@ const About = ({ setBodyHeight }) => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
+      if (navigator.userAgent.indexOf("Firefox") > -1) {
+        setTimeout(() => {
+          gsap.to('.about__line--1', 1, {
+            x: '150%', ease: 'power2.out', onComplete: () => {
+              setAnimating(false);
+              history.push(path)
+            }
+          })
+          gsap.to('.about *:not(.about__heading)', 1, { ease: 'power2.out', autoAlpha: 0 })
+          gsap.to('.about__line--2', 1, { x: '-150%', ease: 'power2.out' })
+          gsap.to('.about__line--3', 1, { x: '150%', ease: 'power2.out' })
+        }, 1500)
+      }
       setLocked(true)
       scrollTo(0, () => {
         setTimeout(() => {
