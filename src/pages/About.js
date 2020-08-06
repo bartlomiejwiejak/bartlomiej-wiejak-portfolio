@@ -75,18 +75,17 @@ const About = ({ setBodyHeight }) => {
   }, [animating, history, path, setAnimating, setLocked])
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0
+    })
     if (loaded) {
+      document.querySelector('html').classList.remove('scrollbar-light')
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       gsap.to('.about__description__img-reveal', .7, { opacity: 1 })
       gsap.to('.about__description__img', .7, { opacity: 1 })
       showInterface();
       gsap.registerPlugin(ScrollTrigger);
       gsap.to('.about__line', 1, { x: 0, ease: 'power2.out', onComplete: aboutheader }, .2)
-      document.querySelectorAll('.about span span').forEach(span => {
-        gsap.to(span, 1, {
-          scrollTrigger: span, y: 0, ease: 'power2.out', delay: .5, opacity: 1
-        })
-      })
       if (isMobile()) {
         gsap.to('.about__description__img-reveal', 1.6, {
           height: 0, ease: 'power2.out'
@@ -99,131 +98,137 @@ const About = ({ setBodyHeight }) => {
           }, height: 0, ease: 'power2.out'
         })
       }
-
-      gsap.from('.about__description__img', {
-        scrollTrigger: {
-          trigger: '.about__description__img-container',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1
-        },
-        scale: 1.2
-      })
-      gsap.to('.about__circle', {
-        rotate: 360, scrollTrigger: {
-          trigger: '.about__circle',
-          scrub: 2,
-          start: 'top bottom',
-          end: 'bottom top'
-        }
-      })
-      gsap.to('.about__skills__technologies__technology--2 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--3 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--4 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--5 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--6 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--7 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--8 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--9 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 2,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--10 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 3,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--11 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--12 div', 1, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: '100px bottom',
-        },
-        y: 0,
-        x: 0,
-        delay: 1,
-        ease: 'power2.out'
-      })
+      setTimeout(() => {
+        document.querySelectorAll('.about span span').forEach(span => {
+          gsap.to(span, 1, {
+            scrollTrigger: span, y: 0, ease: 'power2.out', delay: .5, opacity: 1
+          })
+        })
+        gsap.from('.about__description__img', {
+          scrollTrigger: {
+            trigger: '.about__description__img-container',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          },
+          scale: 1.2
+        })
+        gsap.to('.about__circle', {
+          rotate: 360, scrollTrigger: {
+            trigger: '.about__circle',
+            scrub: 2,
+            start: 'top bottom',
+            end: 'bottom top'
+          }
+        })
+        gsap.to('.about__skills__technologies__technology--2 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--2',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--3 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--2',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--4 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--4',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--5 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--4',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--6 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--4',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--7 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--7',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--8 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--7',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--9 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--7',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: 1.4,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--10 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--7',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: 2.1,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--11 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--11',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+        gsap.to('.about__skills__technologies__technology--12 div', .7, {
+          scrollTrigger: {
+            trigger: '.about__skills__technologies__technology--11',
+            start: '100px bottom',
+          },
+          y: 0,
+          x: 0,
+          delay: .7,
+          ease: 'power2.out'
+        })
+      }, 500)
     }
     return () => {
       document.removeEventListener('mousemove', moveLines);

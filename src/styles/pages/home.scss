@@ -31,13 +31,25 @@
     font-size: 10rem;
     line-height: .8;
     text-transform: uppercase;
+    text-shadow: 1.5rem .5rem var(--dark);
     letter-spacing: .15rem;
     color: var(--white);
     span {
       display: inline-block;
-      margin: 0 .5rem;
+      padding: 0 .5rem;
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: var(--white);
+    }
+    .highlight-text {
+      text-shadow: none;
+      &:before {
+        left: .5rem;
+        text-shadow: none;
+      }
+      &:after {
+        text-shadow: 1.5rem .5rem var(--dark);
+        left: .5rem;
+      }
     }
     span {
       overflow: hidden;

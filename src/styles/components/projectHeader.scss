@@ -1,0 +1,74 @@
+.project-header {
+   height: 100vh;
+   width: 100vw;
+   position: fixed;
+   top: 0;
+   left: 0;
+   letter-spacing: 2px;
+   &__img {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     height: 50vh;
+     transform: translate(-50%,-50%);
+   }
+   &__scroll-indicator {
+     position: absolute;
+     right: 10%;
+     bottom: 10%;
+     overflow: hidden;
+     span {
+       font-size: 2.5rem;
+       display: inline-block;
+       transform: translateY(100%);
+       opacity: 0;
+     }
+     i {
+       font-size: 4rem;
+       margin-left: 1rem;
+     }
+   }
+   &__title {
+    pointer-events: none;
+    letter-spacing: 2px;
+    font-size: 27rem;
+    position: absolute;
+    font-weight: normal;
+    
+    @include respond(xlarge) {
+      font-size: 25rem;
+    }
+    @include respond(large) {
+      font-size: 22.5rem;
+    }
+    @include respond(medium) {
+      font-size: 20rem;
+   }
+   @include respond(small) {
+      font-size: 17.5rem;
+   }
+   @include respond(xsmall) {
+      font-size: 15rem;
+   }
+   @include respond(xxsmall) {
+      font-size: 12.5rem;
+   }
+   @media (max-width: 850px) and (orientation: landscape) {
+     font-size: 15rem;
+   }
+    &--left {
+      bottom: 0;
+      left: 0;
+      @include respond(xxsmall) {
+        bottom: 5%;
+      }
+    }
+    &--right {
+      right: 0;
+      top: 0;
+      @include respond(xxsmall) {
+        top: 5%;
+      }
+    }
+   }
+}

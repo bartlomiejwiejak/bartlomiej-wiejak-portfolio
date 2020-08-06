@@ -6,7 +6,7 @@ import Link from '../components/Link';
 const Header = () => {
 
   return (
-    <header>
+    <header className='header'>
       <ul className='navigation'>
         <li onMouseOver={cursorExpandBig} className='navigation__item'>
           <Button type='white'><Link to='/'>Bartłomiej Wiejak—</Link></Button>

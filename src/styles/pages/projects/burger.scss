@@ -1,0 +1,147 @@
+.burger {
+  &__header {
+    height: 100vh;
+    width: 100vw;
+  }
+  &__content {
+    background: var(--dark);
+    width: 100vw;
+    top: 100%;
+    position: relative;
+    padding: 15rem 7rem;
+    @include respond(large) {
+      padding: 10rem 5rem;
+    }
+    @include respond(small) {
+      padding: 7rem 3rem
+    }
+    @include respond(xxsmall) {
+      padding: 5rem 2rem;
+    }
+  }
+  &__info {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: var(--white);
+    flex-wrap: wrap;
+    font-size: 2.6rem;
+    @include respond(xsmall) {
+      width: 90vw;
+      font-size: 2.3rem;
+    }
+    @include respond(xxsmall) {
+      width: 90vw;
+      font-size: 2rem;
+    }
+  }
+  &__title {
+    font-weight: normal;
+    flex-basis: 50%;
+    font-size: inherit;
+  }
+  &__date {
+    flex-basis: 50%;
+    text-align: end;
+  }
+  &__launch {
+    margin-left: auto;
+    overflow: hidden;
+    i {
+      margin-left: 1rem;
+    }
+  }
+  &__description {
+    margin: 5rem 0;
+    @include respond(xxsmall) {
+      margin: 3rem 0;
+    }
+  }
+  span {
+    overflow: hidden;
+    display: inline-block;
+    span {
+      display: inline-block;
+      margin-right: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(100%);
+    }
+   }
+  &__container {
+      width: 100%;
+      margin: 25rem 0;
+      position: relative;
+      @include respond(medium) {
+        margin: 20rem 0;
+      }
+      @include respond(xxsmall) {
+        margin: 15rem 0;
+      }
+    }
+  &__big {
+    width: 100%;
+  }
+  &__mobile {
+    position: absolute;
+    bottom: -5vw;
+    right: 5vw;
+    width: 15%;
+  }
+  &__video {
+    width: 100%;
+    margin: 10rem 0;
+    @include respond(medium) {
+      margin: 7.5rem 0;
+    }
+    @include respond(xxsmall) {
+      margin: 5rem 0;
+    }
+  }
+  &__mobile-container {
+    display: flex;
+    width: 100%;
+    margin: 20rem 0;
+    @include respond(medium) {
+      margin: 15rem 0;
+    }
+    @include respond(xxsmall) {
+      margin: 10rem 0;
+    }
+    justify-content: space-around;
+    @include respond(xxsmall) {
+      justify-content: space-between;
+    }
+    &__img {
+      width: 20%;
+      @include respond(xxsmall) {
+        width: 30%;
+      }
+    }
+  }
+  .content-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+  &__next-project {
+    text-align: center;
+    p {
+      font-size: 2rem;
+      color: var(--white);
+    }
+    .highlight-text {
+      font-size: 20rem;
+      line-height: 1.2;
+      @include respond(medium) {
+        font-size: 16rem;
+      }
+      @include respond(xsmall) {
+        font-size: 12rem;
+      }
+      @include respond(xsmall) {
+        font-size: 8rem;
+      }
+    }
+  }
+}

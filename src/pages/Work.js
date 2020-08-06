@@ -3,11 +3,12 @@ import gsap from 'gsap';
 import showInterface from '../animations/showInterface';
 import { LoadingContext, RoutingContext } from '../context/context';
 import Project from '../components/Project';
-import burger from '../assets/burgerek.png';
+import burger from '../assets/projects/burger/header.png';
 import { useLockBodyScroll } from 'react-use';
 import scrollTo from '../functions/scrollTo';
 import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
+import incoming from '../assets/incoming.jpg';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -107,8 +108,14 @@ const Work = ({ setBodyHeight }) => {
     initialYRef.current = event.touches[0].clientY;
   }, [])
 
+  const removeListeners = useCallback(() => {
+    document.removeEventListener('wheel', slider)
+    document.removeEventListener('touchstart', swiper)
+    document.removeEventListener('touchmove', swipeListen)
+  }, [slider, swiper, swipeListen])
+
   useEffect(() => {
-    if (animating) {
+    if (animating && (path === '/' || path === '/about')) {
       document.removeEventListener('wheel', slider)
       gsap.set('.project__title div', { y: 0 })
       gsap.to('.work__pagination__active', 1, { y: 0, ease: 'power2.out' })
@@ -125,7 +132,7 @@ const Work = ({ setBodyHeight }) => {
             gsap.to('.project__title--down', 1, { x: '300%', ease: 'power2.out' })
             gsap.to('.project__title--up', 1, { x: '-300%', ease: 'power2.out' })
             gsap.to('.project:nth-child(1) .project__img-container', 1, {
-              y: '-200%', onComplete: () => {
+              y: '-200%', scale: .5, onComplete: () => {
                 setAnimating(false)
                 history.push(path)
               }
@@ -167,21 +174,15 @@ const Work = ({ setBodyHeight }) => {
         })
       }, 2000)
     }
-    return () => {
-      document.removeEventListener('wheel', slider)
-      document.removeEventListener('touchstart', swiper)
-      document.removeEventListener('touchmove', swipeListen)
-    }
-  }, [loaded, slider, swiper, swipeListen])
-
-
+    return removeListeners;
+  }, [loaded, slider, swiper, swipeListen, removeListeners])
 
   return (
     <div className='work'>
-      <Project src={burger} titleUp='Project' titleDown='Burger' />
-      <Project src={burger} titleUp='Project' titleDown='Super2' />
-      <Project src={burger} titleUp='Project' titleDown='Super3' />
-      <Project src={burger} titleUp='Project' titleDown='Super4' />
+      <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
+      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
+      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
+      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
     </div>
   );
 }
