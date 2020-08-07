@@ -2,6 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import gsap from 'gsap';
 import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
+import header from '../assets/projects/burger/header.png';
+import photo from '../assets/photo.jpg';
+import incoming from '../assets/incoming.jpg';
+
+const images = [header, photo, incoming]
+
 const Loader = () => {
   const { setIsLoaded } = useContext(LoadingContext)
   const [loaded, setLoaded] = useState(false);
@@ -10,6 +16,12 @@ const Loader = () => {
   const [locked, toggleLocked] = useToggle(true);
 
   useLockBodyScroll(locked);
+
+  useEffect(() => {
+    images.forEach(img => {
+      new Image().src = img;
+    })
+  }, [])
 
   useEffect(() => {
     window.addEventListener('load', () => {

@@ -9,12 +9,22 @@ import { skewConfig } from '../App';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
 
-  const { path, setAnimating, animating } = useContext(RoutingContext);
+  const { path, setAnimating, animating, lastProject } = useContext(RoutingContext);
   const history = useHistory()
 
   const projectRef = useRef(null);
 
   const ref = useRef(null);
+
+  let styles = {};
+
+  if (lastProject !== null) {
+    styles = {
+      projectImg: { opacity: 1 },
+      imgReveal: { width: 0 },
+      title: { transform: 'translate3d(0,0,0)' }
+    }
+  }
 
   useEffect(() => {
     if (inactive) {
@@ -40,19 +50,19 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) =>
         }
       })
     }
-  }, [animating, removeListeners, path, url, setAnimating, history])
+  }, [animating, removeListeners, path, url, setAnimating, history, inactive])
 
   return (
     <div ref={projectRef} className='project'>
       <div className="project__container">
         <div className="project__img-container">
-          <img draggable={false} src={src} alt="project" className="project__img" />
-          <div className="project__img-reveal"></div>
+          <img style={styles.projectImg} draggable={false} src={src} alt="project" className="project__img" />
+          <div style={styles.imgReveal} className="project__img-reveal"></div>
         </div>
         <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type='black'><Link to={url}>Explore project</Link></Button></div>
       </div>
-      <h2 className="project__title project__title--down"><div>{titleDown}</div></h2>
-      <h2 className="project__title project__title--up"><div>{titleUp}</div></h2>
+      <h2 className="project__title project__title--down"><div style={styles.title}>{titleDown}</div></h2>
+      <h2 className="project__title project__title--up"><div style={styles.title}>{titleUp}</div></h2>
     </div>
   );
 }

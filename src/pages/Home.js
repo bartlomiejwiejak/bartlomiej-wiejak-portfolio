@@ -42,11 +42,12 @@ const Home = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (loaded) {
+      console.log('animacja')
       document.querySelector('.background').style.setProperty('background-color', 'var(--dark)');
-      gsap.to('.light', 1, { opacity: 1 })
+      gsap.to('.light', 2, { opacity: 1 })
       showInterface();
       gsap.to('.contact__item .button', 1, { y: 0, ease: 'power2.out' });
-      gsap.to('.home__welcome span span', .5, { y: 0, stagger: .05, ease: 'Power2.easeOut', opacity: 1 });
+      gsap.to('.home__welcome span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
     }
   }, [loaded])
 

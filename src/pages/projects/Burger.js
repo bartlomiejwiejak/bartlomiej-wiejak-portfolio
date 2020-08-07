@@ -23,7 +23,7 @@ import HighLightText from '../../components/HighlightText';
 const Burger = ({ setBodyHeight }) => {
 
   const { loaded } = useContext(LoadingContext);
-  const { animating, setAnimating, path } = useContext(RoutingContext);
+  const { animating, setAnimating, path, setLastProject } = useContext(RoutingContext);
   const [toggle, setToggle] = useToggle(true);
   const history = useHistory()
 
@@ -80,7 +80,7 @@ const Burger = ({ setBodyHeight }) => {
   }, [loaded, setToggle, setBodyHeight])
 
   useEffect(() => {
-    if (animating) {
+    if (animating && path !== '/work') {
       setToggle(true)
       scrollTo(0, () => {
         gsap.to('.project-header', .7, {
@@ -92,6 +92,27 @@ const Burger = ({ setBodyHeight }) => {
       })
     }
   }, [animating, path, history, setAnimating, setToggle])
+
+  useEffect(() => {
+    if (animating && path === '/work') {
+      setToggle(true)
+      scrollTo(0, () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
+        tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
+          .to('.project-header__title', .5, { rotateY: '20deg', delay: .5 })
+          .to('.project-header__title', .5, { rotateY: 0 })
+          .to('.project-header__title--left', 1, { bottom: 0, left: 0, y: '0%', x: '0%', scale: 1, delay: -0.5 })
+          .to('.project-header__title--right', 1, { top: 0, y: '0%', right: 0, x: '0%', scale: 1, delay: -1 })
+          .to('.project-header__img', 1, {
+            scale: 1, delay: -1, onComplete: () => {
+              setLastProject(0)
+              setAnimating(false)
+              history.push(path)
+            }
+          })
+      })
+    }
+  }, [animating, path, setToggle, setAnimating, history, setLastProject])
 
   return (
     <div className='burger'>
@@ -129,8 +150,8 @@ const Burger = ({ setBodyHeight }) => {
           <video loop autoPlay src={sideDrawer} className="burger__mobile"></video>
         </div>
         <div className="burger__next-project">
-          <p><span><span>Go to</span></span></p>
-          <HighLightText type='white' to='/work' >Next Project</HighLightText>
+          <p><span><span>See</span></span></p>
+          <HighLightText type='white' to='/work' >More Projects</HighLightText>
         </div>
       </div>
     </div>

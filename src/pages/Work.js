@@ -12,7 +12,7 @@ import incoming from '../assets/incoming.jpg';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating } = useContext(RoutingContext)
+  const { animating, path, setAnimating, lastProject, setLastProject } = useContext(RoutingContext)
   const canScrollRef = useRef(true)
   const currentProjectIndexRef = useRef(0);
   const initialYRef = useRef(0);
@@ -73,7 +73,6 @@ const Work = ({ setBodyHeight }) => {
     const currentY = event.touches[0].clientY;
     if (Math.abs(currentY - initialYRef.current) < 50) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
-    console.log(initialYRef.current, currentY)
     if (direction === 1) {
       const isLastProject = currentProjectIndexRef.current === projects.length - 1;
       if (isLastProject) return;
@@ -148,7 +147,7 @@ const Work = ({ setBodyHeight }) => {
     setBodyHeight()
   }, [setBodyHeight])
   useEffect(() => {
-    if (loaded) {
+    if (loaded && lastProject === null) {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -175,7 +174,29 @@ const Work = ({ setBodyHeight }) => {
       }, 2000)
     }
     return removeListeners;
-  }, [loaded, slider, swiper, swipeListen, removeListeners])
+  }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject])
+
+  useEffect(() => {
+    if (lastProject !== null) {
+      document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
+      showInterface();
+      gsap.to('.circle', 1, { y: '50%', x: '50%' })
+      gsap.to('.work__pagination > div', 1, { y: 0 })
+      gsap.to('.project .button', 1, {
+        y: 0, onComplete: () => {
+          document.addEventListener('wheel', slider)
+          document.addEventListener('touchstart', swiper)
+          document.addEventListener('touchmove', swipeListen)
+        }
+      })
+    }
+  }, [lastProject, slider, swipeListen, swiper])
+
+  useEffect(() => {
+    return () => {
+      setLastProject(null)
+    }
+  }, [setLastProject])
 
   return (
     <div className='work'>
