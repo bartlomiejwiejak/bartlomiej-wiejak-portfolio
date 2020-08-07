@@ -250,8 +250,8 @@ const About = ({ setBodyHeight }) => {
       <div className="about__description">
         <div className="about__description__text">
           <div className="about__description__heading">
-            <p className="about__description__heading__line"><span><span>Hey, I'm Bartłomiej Wiejak</span></span></p>
-            <p className="about__description__heading__line"><span><span>a self taught developer.</span></span></p>
+            <h2 className="about__description__heading__line"><span><span>Hey, I'm Bartłomiej Wiejak</span></span></h2>
+            <h2 className="about__description__heading__line"><span><span>a self taught developer.</span></span></h2>
           </div>
           <p className='about__description__paragraph'>
             <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>I'm</span></span><span><span>simply</span></span><span><span>passionate</span></span><span><span>about</span></span><span><span>technology</span></span><span><span>and</span></span><span><span>seek</span></span><span><span>to</span></span><span><span>perfect</span></span><span><span>myself</span></span><span><span>every</span></span><span><span>day.</span></span><span><span>Now</span></span><span><span>I'm</span></span><span><span>focussing</span></span><span><span>on</span></span><span><span>WebGl</span></span><span><span>and</span></span><span><span>GLSL.</span></span>
@@ -266,7 +266,7 @@ const About = ({ setBodyHeight }) => {
         <span><span>I</span></span><span><span>enjoy</span></span><span><span>building</span></span><span><span>interactive,</span></span><span><span>heavy</span></span><span><span>javascript</span></span><span><span>application</span></span><span><span>with</span></span><span><span>slick</span></span><span><span>animations.</span></span><span><span>I</span></span><span><span>mostly</span></span><span><span>work</span></span><span><span>with</span></span><span><span>react.</span></span><span><span>I'm</span></span><span><span>simply</span></span><span><span>passionate</span></span><span><span>about</span></span><span><span>technology</span></span><span><span>and</span></span><span><span>seek</span></span><span><span>to</span></span><span><span>perfect</span></span><span><span>myself</span></span><span><span>every</span></span><span><span>day.</span></span><span><span>Now</span></span><span><span>I'm</span></span><span><span>focussing</span></span><span><span>on</span></span><span><span>WebGl</span></span><span><span>and</span></span><span><span>GLSL.</span></span>
       </p>
       <div className="about__circle">
-        <img draggable={false} className="about__circle__img" src={circle} alt='Creative developer' />
+        <img draggable={false} className="about__circle__img" src={circle} alt='Creative Developer' />
       </div>
       <div className="about__skills">
         <p className="about__skills__heading"><span><span>I'm</span></span><span><span>ambitious</span></span><span><span>and</span></span><span><span>love</span></span><span><span>new</span></span><span><span>challenges.</span></span><span><span>My</span></span><span><span>variety</span></span><span><span>of</span></span><span><span>skills</span></span><span><span>is</span></span><span><span>continuosly</span></span> <span><span>expanding..</span></span></p>
@@ -292,11 +292,11 @@ const About = ({ setBodyHeight }) => {
       </div>
       <div className="about__contact">
         <ul>
-          <li><span><span>Email</span></span></li>
+          <h3><span><span>Email</span></span></h3>
           <li><span><span>hello@bartlomiejwiejak.com</span></span></li>
         </ul>
         <ul>
-          <li><span><span>Social</span></span></li>
+          <h3><span><span>Social</span></span></h3>
           <li><span><span><a href='https://twitter.com/BartekWiejak' target='blank'><Button type='black'>Twitter</Button></a></span></span></li>
           <li><span><span><a href='https://github.com/bartlomiejwiejak' target='blank'><Button type='black'>Github</Button></a></span></span></li>
           <li><span><span><a href='https://www.linkedin.com/in/bart%C5%82omiej-wiejak-4b9a891b3/' target='blank'><Button type='black'>Linkedin</Button></a></span></span></li>

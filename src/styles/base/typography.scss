@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
-
+@font-face {
+  font-family: Monument;
+  src: url('../../assets/fonts/Monument/MonumentExtended-Regular.otf');
+}
+@font-face {
+  font-family: Peace Sans;
+  src: url('../../assets/fonts/Peace\ Sans/Peace\ Sans.otf');
+}
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Monument', sans-serif;
   font-weight: 400;
   line-height: 1.7;
   user-select: none;
@@ -32,7 +38,9 @@ html {
     font-size: 43.75%;
   }
 }
-
+h1, h2, h3, .highlight-text {
+  font-family: Peace Sans, sans-serif;
+}
 .scrollbar-light {
   scrollbar-color: var(--light) var(--dark);
   scrollbar-width: thin;

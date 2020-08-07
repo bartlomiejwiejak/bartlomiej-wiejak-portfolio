@@ -66,7 +66,7 @@ const Work = ({ setBodyHeight }) => {
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
-      gsap.to('.work__pagination__active', 1, { y: `${-42 * (currentProjectIndexRef.current)}px` })
+      gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       window.scrollTo({
         top: projects[currentProjectIndexRef.current].offsetTop,
         behavior: 'smooth'
@@ -101,7 +101,7 @@ const Work = ({ setBodyHeight }) => {
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
-      gsap.to('.work__pagination__active', 1, { y: `${-42 * (currentProjectIndexRef.current)}px` })
+      gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       window.scrollTo({
         top: projects[currentProjectIndexRef.current].offsetTop,
         behavior: 'smooth'
@@ -141,7 +141,7 @@ const Work = ({ setBodyHeight }) => {
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
-      gsap.to('.work__pagination__active', 1, { y: `${-42 * (currentProjectIndexRef.current)}px` })
+      gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       window.scrollTo({
         top: projects[currentProjectIndexRef.current].offsetTop,
         behavior: 'smooth'
@@ -240,9 +240,9 @@ const Work = ({ setBodyHeight }) => {
       gsap.set('.scroll', { y: lastProject * window.innerHeight })
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
-      gsap.to('.circle', 1, { y: '50%', x: '50%' })
+      gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })
       gsap.to('.work__pagination > div', 1, { y: 0 })
-      gsap.set('.work__pagination__active', { y: -lastProject * 42 })
+      gsap.set('.work__pagination__active', { y: -lastProject * 34 })
       gsap.to('.project .button', 1, {
         y: 0, onComplete: addListeners
       })
@@ -259,8 +259,8 @@ const Work = ({ setBodyHeight }) => {
     <div className='work'>
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' />
-      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
-      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
+      <Project src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
+      <Project src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
     </div>
   );
 }

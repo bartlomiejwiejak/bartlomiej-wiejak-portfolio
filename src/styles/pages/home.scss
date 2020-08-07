@@ -1,7 +1,7 @@
 .home {
   padding-top: 20rem;
   margin: 0 auto;
-  max-width: 135rem;
+  max-width: 140rem;
   perspective: 700px;
   @include respond(xlarge) {
   max-width: 110rem;
@@ -26,9 +26,9 @@
     max-width: 60rem;
   }
   &__welcome {
-    font-weight: 700;
+    font-weight: normal;
     text-align: center;
-    font-size: 10rem;
+    font-size: 9.5rem;
     line-height: .8;
     text-transform: uppercase;
     text-shadow: 1.5rem .5rem var(--dark);
@@ -73,8 +73,11 @@
     @include respond(xsmall) {
       font-size: 4rem;
     }
+    @include respond(xxsmall) {
+      font-size: 3.5rem;
+    }
     @media (max-width: 850px) and (orientation: landscape) {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
   }
 }

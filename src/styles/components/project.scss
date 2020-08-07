@@ -9,7 +9,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-  perspective: 700px;
+    perspective: 700px;
   }
   &__img {
     height: 100%;
@@ -29,7 +29,7 @@
      }
   }
   &__button-container {
-    font-size: 2rem;
+    font-size: 1.7rem;
     overflow: hidden;
     position: absolute;
     right: -3rem;
@@ -64,31 +64,31 @@
   }
   &__title {
     position: absolute;
-    font-size: 27rem;
-    font-weight: normal;
+    font-size: 25rem;
+    font-weight: bold;
     overflow: hidden;
     pointer-events: none;
     letter-spacing: 2px;
     @include respond(xlarge) {
-       font-size: 25rem;
+       font-size: 23rem;
     }
     @include respond(large) {
-      font-size: 22.5rem;
+      font-size: 20rem;
    }
    @include respond(medium) {
-    font-size: 20rem;
+    font-size: 18rem;
  }
  @include respond(small) {
-  font-size: 17.5rem;
+  font-size: 15rem;
 }
 @include respond(xsmall) {
-  font-size: 15rem;
-}
-@include respond(xxsmall) {
   font-size: 12.5rem;
 }
+@include respond(xxsmall) {
+  font-size: 10rem;
+}
 @media (max-width: 850px) and (orientation: landscape) {
-  font-size: 15rem;
+  font-size: 10rem;
 }
 
     &--down {

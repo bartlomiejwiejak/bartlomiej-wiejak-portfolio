@@ -1,13 +1,16 @@
 .contact {
   position: fixed;
   mix-blend-mode: difference;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   transform: rotate(-90deg);
   transform-origin: 0 0;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   left: 5rem;
   bottom: 5rem;
   backface-visibility: hidden;
+  @include respond(xxsmall) {
+    font-size: 1.2rem;
+  }
   .button {
     transform: translateY(100%);
   }
@@ -20,12 +23,13 @@
     bottom: 3rem;
   }
   @include respond(xxsmall) {
-    left: 2rem;
-    bottom: 2rem;
+    left: 1rem;
+    bottom: 1rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    left: 2rem;
-    bottom: 2rem;
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 1.2rem;
   }
   &__list {
     list-style: none;
@@ -42,10 +46,10 @@
       margin-right: 3rem;
     }
     @include respond(xxsmall) {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
     @media (max-width: 850px) and (orientation: landscape) {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
   }
 }
