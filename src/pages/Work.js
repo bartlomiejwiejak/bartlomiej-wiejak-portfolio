@@ -9,6 +9,8 @@ import scrollTo from '../functions/scrollTo';
 import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
 import incoming from '../assets/incoming.jpg';
+import { skewConfig } from '../App';
+import cursorMultiDot from '../animations/cursorMultiDot';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -17,6 +19,11 @@ const Work = ({ setBodyHeight }) => {
   const currentProjectIndexRef = useRef(0);
   const initialYRef = useRef(0);
   const history = useHistory();
+  const initialMouseClientYRef = useRef(0);
+
+  if (lastProject !== null) {
+    currentProjectIndexRef.current = lastProject;
+  }
 
   const slider = useCallback((event) => {
     if (!canScrollRef.current) return;
@@ -107,11 +114,63 @@ const Work = ({ setBodyHeight }) => {
     initialYRef.current = event.touches[0].clientY;
   }, [])
 
+  const swipeMouseListen = useCallback((event) => {
+    if (!canScrollRef.current) return;
+    const projects = document.querySelectorAll('.project');
+    const currentY = event.clientY;
+    if (Math.abs(currentY - initialMouseClientYRef.current) < 50) return;
+    const direction = initialMouseClientYRef.current - currentY > 0 ? 1 : -1;
+    if (direction === 1) {
+      const isLastProject = currentProjectIndexRef.current === projects.length - 1;
+      if (isLastProject) return;
+    }
+    if (direction === -1) {
+      const firstProject = currentProjectIndexRef.current === 0;
+      if (firstProject) return;
+    }
+    canScrollRef.current = false;
+    if (direction > 0) {
+      gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+    }
+    if (direction < 0) {
+      gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
+      gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+    }
+    setTimeout(() => {
+      currentProjectIndexRef.current += direction;
+      gsap.to('.work__pagination__active', 1, { y: `${-42 * (currentProjectIndexRef.current)}px` })
+      window.scrollTo({
+        top: projects[currentProjectIndexRef.current].offsetTop,
+        behavior: 'smooth'
+      })
+    }, 300)
+  }, [])
+
+  const swiperMouse = useCallback((event) => {
+    if (!canScrollRef.current) return;
+    initialMouseClientYRef.current = event.clientY;
+  }, [])
+
   const removeListeners = useCallback(() => {
     document.removeEventListener('wheel', slider)
     document.removeEventListener('touchstart', swiper)
     document.removeEventListener('touchmove', swipeListen)
-  }, [slider, swiper, swipeListen])
+    document.removeEventListener('mousedown', cursorMultiDot)
+    document.removeEventListener('mousedown', swiperMouse)
+    document.removeEventListener('mouseup', swipeMouseListen)
+  }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
+
+  const addListeners = useCallback(() => {
+    document.addEventListener('wheel', slider)
+    document.addEventListener('touchstart', swiper)
+    document.addEventListener('touchmove', swipeListen)
+    document.addEventListener('mousedown', cursorMultiDot)
+    document.addEventListener('mousedown', swiperMouse)
+    document.addEventListener('mouseup', swipeMouseListen)
+  }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
 
   useEffect(() => {
     if (animating && (path === '/' || path === '/about')) {
@@ -165,32 +224,30 @@ const Work = ({ setBodyHeight }) => {
         gsap.to('.project__title div', 1, { y: 0 })
         gsap.to('.work__pagination > div', 1, { y: 0 })
         gsap.to('.project .button', 1, {
-          y: 0, onComplete: () => {
-            document.addEventListener('wheel', slider)
-            document.addEventListener('touchstart', swiper)
-            document.addEventListener('touchmove', swipeListen)
-          }
+          y: 0, onComplete: addListeners
         })
       }, 2000)
     }
     return removeListeners;
-  }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject])
+  }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
 
   useEffect(() => {
     if (lastProject !== null) {
+      gsap.set('.scroll', { y: lastProject * window.innerHeight })
+      window.scrollTo({ top: lastProject * window.innerHeight })
+      gsap.set('.scroll', { y: lastProject * window.innerHeight })           //prevents screen flashing due to request animation frame
+      skewConfig.previous = lastProject * window.innerHeight;
+      gsap.set('.scroll', { y: lastProject * window.innerHeight })
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
       gsap.to('.circle', 1, { y: '50%', x: '50%' })
       gsap.to('.work__pagination > div', 1, { y: 0 })
+      gsap.set('.work__pagination__active', { y: -lastProject * 42 })
       gsap.to('.project .button', 1, {
-        y: 0, onComplete: () => {
-          document.addEventListener('wheel', slider)
-          document.addEventListener('touchstart', swiper)
-          document.addEventListener('touchmove', swipeListen)
-        }
+        y: 0, onComplete: addListeners
       })
     }
-  }, [lastProject, slider, swipeListen, swiper])
+  }, [lastProject, slider, swipeListen, swiper, addListeners])
 
   useEffect(() => {
     return () => {
@@ -201,7 +258,7 @@ const Work = ({ setBodyHeight }) => {
   return (
     <div className='work'>
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
-      <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
+      <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' />
       <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
       <Project src={incoming} titleUp='Project' titleDown='Incoming' url='/work' inactive={true} />
     </div>

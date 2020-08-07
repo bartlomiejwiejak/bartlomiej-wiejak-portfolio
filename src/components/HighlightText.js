@@ -2,9 +2,12 @@ import React from 'react';
 import cursorExpandBig from '../animations/cursorExpandBig';
 import cursorBackToNormal from '../animations/cursorBackToNormal';
 import Link from './Link';
+import { useLocation } from 'react-router-dom';
+import cursorMultiDot from '../animations/cursorMultiDot'
 
 const HighlightText = ({ children, type, to }) => {
   let classes = ['highlight-text']
+  const location = useLocation()
   let selectType = () => {
     switch (type) {
       case 'white':
@@ -23,9 +26,23 @@ const HighlightText = ({ children, type, to }) => {
   if (to) {
     content = <Link to={to}>{children}</Link>
   }
+
+  const mouseOver = () => {
+    cursorExpandBig();
+    if (location.pathname === '/work') {
+      document.removeEventListener('mousedown', cursorMultiDot);
+    }
+  }
+  const mouseOut = () => {
+    cursorBackToNormal();
+    if (location.pathname === '/work') {
+      document.addEventListener('mousedown', cursorMultiDot);
+    }
+  }
+
   return (
     <span>
-      <span data-text={children} onMouseOver={cursorExpandBig} onMouseOut={cursorBackToNormal} className={classes.join(' ')}>{content}</span>
+      <span data-text={children} onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>{content}</span>
     </span>
   );
 }

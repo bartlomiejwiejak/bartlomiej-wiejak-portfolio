@@ -15,16 +15,18 @@
   pointer-events: none;
   }
   &__dot {
+    &-container {
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translate(-65px,-65px);
+       pointer-events: none;
+       mix-blend-mode: difference;
+    }
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    transform: translate(-65px,-65px);
     background-color: var(--white);
-    mix-blend-mode: difference;
     &--inner {
       position: absolute;
       left: 0%;

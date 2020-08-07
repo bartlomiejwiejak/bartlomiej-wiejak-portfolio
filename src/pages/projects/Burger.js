@@ -31,6 +31,7 @@ const Burger = ({ setBodyHeight }) => {
 
   useEffect(() => {
     setBodyHeight();
+
   }, [setBodyHeight])
 
   useEffect(() => {
@@ -105,7 +106,7 @@ const Burger = ({ setBodyHeight }) => {
           .to('.project-header__title--right', 1, { top: 0, y: '0%', right: 0, x: '0%', scale: 1, delay: -1 })
           .to('.project-header__img', 1, {
             scale: 1, delay: -1, onComplete: () => {
-              setLastProject(0)
+              setLastProject(1)
               setAnimating(false)
               history.push(path)
             }
