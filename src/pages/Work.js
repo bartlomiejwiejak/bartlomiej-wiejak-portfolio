@@ -8,7 +8,7 @@ import { useLockBodyScroll } from 'react-use';
 import scrollTo from '../functions/scrollTo';
 import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
-import incoming from '../assets/incoming.jpg';
+import incoming from '../assets/projects/incoming.jpg';
 import { skewConfig } from '../App';
 import cursorMultiDot from '../animations/cursorMultiDot';
 

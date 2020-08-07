@@ -3,8 +3,8 @@ import gsap from 'gsap';
 import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
 import header from '../assets/projects/burger/header.png';
-import photo from '../assets/photo.jpg';
-import incoming from '../assets/incoming.jpg';
+import photo from '../assets/about/photo.jpg';
+import incoming from '../assets/projects/incoming.jpg';
 
 const images = [header, photo, incoming]
 

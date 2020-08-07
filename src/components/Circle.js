@@ -1,5 +1,5 @@
 import React from 'react';
-import circle from '../assets/circleWork.png';
+import circle from '../assets/work/circle.png';
 
 const Circle = () => {
   return (
