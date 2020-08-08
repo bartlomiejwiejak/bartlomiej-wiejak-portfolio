@@ -93,6 +93,9 @@
     bottom: -5vw;
     right: 5vw;
     width: 15%;
+    @include respond(xxsmall) {
+      width: 25%;
+    }
   }
   &__video {
     width: 100%;

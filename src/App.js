@@ -63,7 +63,7 @@ function App() {
     <Suspense fallback={null}>
       <ContextProvider>
         <div className="background"></div>
-        <Route path='/work/burger-project' exact render={() => <ProjectHeader src={burger} titleLeft='Burger' titleRight='Project' />} />
+        <Route path='/work/burger-project' exact render={() => <ProjectHeader src={burger} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={1} />} />
         <div ref={appRef} className="view">
           <div ref={scrollRef} className="scroll">
             <Switch>

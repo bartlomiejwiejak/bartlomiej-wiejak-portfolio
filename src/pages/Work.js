@@ -9,8 +9,8 @@ import scrollTo from '../functions/scrollTo';
 import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
 import incoming from '../assets/projects/incoming.jpg';
-import { skewConfig } from '../App';
 import cursorMultiDot from '../animations/cursorMultiDot';
+import scrollInstant from '../functions/scrollInstant';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -207,10 +207,7 @@ const Work = ({ setBodyHeight }) => {
   }, [setBodyHeight])
   useEffect(() => {
     if (loaded && lastProject === null) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
+      scrollInstant(0);
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
@@ -233,11 +230,7 @@ const Work = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (lastProject !== null) {
-      gsap.set('.scroll', { y: lastProject * window.innerHeight })
-      window.scrollTo({ top: lastProject * window.innerHeight })
-      gsap.set('.scroll', { y: lastProject * window.innerHeight })           //prevents screen flashing due to request animation frame
-      skewConfig.previous = lastProject * window.innerHeight;
-      gsap.set('.scroll', { y: lastProject * window.innerHeight })
+      scrollInstant(lastProject * window.innerHeight)
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
       gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })

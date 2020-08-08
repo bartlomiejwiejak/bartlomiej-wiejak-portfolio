@@ -26,6 +26,7 @@ import scrollTo from '../functions/scrollTo';
 import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
 import isMobile from '../functions/isMobile';
+import scrollInstant from '../functions/scrollInstant';
 
 const About = ({ setBodyHeight }) => {
 
@@ -75,9 +76,7 @@ const About = ({ setBodyHeight }) => {
   }, [animating, history, path, setAnimating, setLocked])
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0
-    })
+    scrollInstant(0);
     if (loaded) {
       document.querySelector('html').classList.remove('scrollbar-light')
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');

@@ -1,11 +1,7 @@
 import React, { useEffect, useContext } from 'react';
-import { LoadingContext, RoutingContext } from '../../context/context';
+import { LoadingContext } from '../../context/context';
 import gsap from 'gsap';
-import { useLockBodyScroll, useToggle } from 'react-use';
 import Button from '../../components/Button';
-import showInterface from '../../animations/showInterface';
-import scrollTo from '../../functions/scrollTo';
-import { useHistory } from 'react-router-dom';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import homeDesktop from '../../assets/projects/burger/home-desktop.png';
 import homeMobile from '../../assets/projects/burger/home-mobile.png';
@@ -20,100 +16,40 @@ import sideDrawer from '../../assets/projects/burger/sidedrawer.mp4';
 import order from '../../assets/projects/burger/order.png';
 import HighLightText from '../../components/HighlightText';
 
-const Burger = ({ setBodyHeight }) => {
+const Burger = () => {
 
   const { loaded } = useContext(LoadingContext);
-  const { animating, setAnimating, path, setLastProject } = useContext(RoutingContext);
-  const [toggle, setToggle] = useToggle(true);
-  const history = useHistory()
-
-  useLockBodyScroll(toggle)
 
   useEffect(() => {
-    setBodyHeight();
-
-  }, [setBodyHeight])
-
-  useEffect(() => {
-    document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
-    window.scrollTo(0, 0);
     if (loaded) {
-      document.querySelector('html').classList.add('scrollbar-light')
       gsap.registerPlugin(ScrollTrigger)
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-      tl.to('.project-header__title', .5, { rotateY: '20deg' })
-        .to('.project-header__title', .5, { rotateY: 0 })
-        .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', y: '50%', x: '-80%', scale: .5, delay: -0.5 })
-        .to('.project-header__title--right', 1, { top: '50%', y: '-50%', right: '50%', x: '80%', scale: .5, delay: -1 })
-        .to('.project-header__img', 1, { scale: 2, delay: -1, onComplete: showInterface })
-        .to('.project-header__scroll-indicator span', 1, {
-          y: 0, opacity: 1, onComplete: () => {
-            setToggle(false)
-            setBodyHeight();
-            document.querySelectorAll('.burger span span').forEach(span => {
-              if (span.querySelector('.highlight-text')) return;
-              gsap.to(span, 1, {
-                y: 0, autoAlpha: 1, delay: .5, scrollTrigger: {
-                  trigger: span,
-                  start: 'bottom bottom'
-                }
-              })
-            })
-            gsap.to('.burger__next-project .highlight-text', 1, {
-              y: 0, autoAlpha: 1, scrollTrigger: {
-                trigger: '.burger__next-project > span',
-                start: 'bottom bottom'
-              }
-            })
-            document.querySelectorAll('.burger .content-wrapper > *').forEach(item => {
-              gsap.from(item, {
-                scale: 1.1, scrollTrigger: {
-                  trigger: item,
-                  start: 'top bottom',
-                  end: 'bottom top',
-                  scrub: 1
-                }
-              })
-            })
+      document.querySelectorAll('.burger span span').forEach(span => {
+        if (span.querySelector('.highlight-text')) return;
+        gsap.to(span, 1, {
+          y: 0, autoAlpha: 1, delay: .5, scrollTrigger: {
+            trigger: span,
+            start: 'bottom bottom'
           }
         })
-    }
-  }, [loaded, setToggle, setBodyHeight])
-
-  useEffect(() => {
-    if (animating && path !== '/work') {
-      setToggle(true)
-      scrollTo(0, () => {
-        gsap.to('.project-header', .7, {
-          y: '-100%', scale: .5, delay: 1.2, onComplete: () => {
-            setAnimating(false)
-            history.push(path)
+      })
+      gsap.to('.burger__next-project .highlight-text', 1, {
+        y: 0, autoAlpha: 1, scrollTrigger: {
+          trigger: '.burger__next-project > span',
+          start: 'bottom bottom'
+        }
+      })
+      document.querySelectorAll('.burger .content-wrapper > *').forEach(item => {
+        gsap.from(item, {
+          scale: 1.1, scrollTrigger: {
+            trigger: item,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
           }
         })
       })
     }
-  }, [animating, path, history, setAnimating, setToggle])
-
-  useEffect(() => {
-    if (animating && path === '/work') {
-      setToggle(true)
-      scrollTo(0, () => {
-        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-        tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title', .5, { rotateY: '20deg', delay: .5 })
-          .to('.project-header__title', .5, { rotateY: 0 })
-          .to('.project-header__title--left', 1, { bottom: 0, left: 0, y: '0%', x: '0%', scale: 1, delay: -0.5 })
-          .to('.project-header__title--right', 1, { top: 0, y: '0%', right: 0, x: '0%', scale: 1, delay: -1 })
-          .to('.project-header__img', 1, {
-            scale: 1, delay: -1, onComplete: () => {
-              setLastProject(1)
-              setAnimating(false)
-              history.push(path)
-            }
-          })
-      })
-    }
-  }, [animating, path, setToggle, setAnimating, history, setLastProject])
+  }, [loaded])
 
   return (
     <div className='burger'>

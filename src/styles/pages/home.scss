@@ -20,6 +20,7 @@
   }
   @include respond(xxsmall) {
     max-width: 40rem;
+    padding-top: 15rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
     padding-top: 10rem;
@@ -70,14 +71,9 @@
     @include respond(small) {
       font-size: 5rem;
     }
-    @include respond(xsmall) {
-      font-size: 4rem;
-    }
-    @include respond(xxsmall) {
-      font-size: 3.5rem;
-    }
+    
     @media (max-width: 850px) and (orientation: landscape) {
-      font-size: 3.5rem;
+      font-size: 4rem;
     }
   }
 }
