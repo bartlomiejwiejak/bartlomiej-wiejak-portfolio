@@ -24,11 +24,13 @@ const Burger = () => {
     if (loaded) {
       gsap.registerPlugin(ScrollTrigger)
       document.querySelectorAll('.burger span span').forEach(span => {
-        if (span.querySelector('.highlight-text')) return;
-        gsap.to(span, 1, {
-          y: 0, autoAlpha: 1, delay: .5, scrollTrigger: {
+        if (span.classList.contains('highlight-text')) {
+          return;
+        }
+        gsap.to(span, 1.5, {
+          y: 0, autoAlpha: 1, delay: .2, scrollTrigger: {
             trigger: span,
-            start: 'bottom bottom'
+            start: '100px bottom'
           }
         })
       })

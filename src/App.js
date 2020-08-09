@@ -16,12 +16,22 @@ import Circle from './components/Circle';
 import BurgerProject from './pages/projects/Burger'
 import ProjectHeader from './layout/ProjectHeader';
 import burger from './assets/projects/burger/header.png';
+import isMobile from './functions/isMobile';
+
+let ease = .05;
+let skew = 10;
+
+if (isMobile()) {
+  ease = 0.075;
+  skew = 7.5;
+}
 
 export const skewConfig = {
-  ease: .07,
+  ease: ease,
   current: 0,
   previous: 0,
-  rounded: 0
+  rounded: 0,
+  skew: skew
 }
 
 function App() {
@@ -52,7 +62,7 @@ function App() {
     const difference = skewConfig.current - skewConfig.rounded;
     const acceleration = difference / windowSize.width;
     const velocity = +acceleration;
-    const skew = velocity * 7.5;
+    const skew = velocity * 10;
 
     scrollRef.current.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
 

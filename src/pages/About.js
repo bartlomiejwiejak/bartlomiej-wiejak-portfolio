@@ -97,12 +97,20 @@ const About = ({ setBodyHeight }) => {
           }, height: 0, ease: 'power2.out'
         })
       }
+      let topText = '100px';
+      let topTechnologies = '400px'
+      if (isMobile()) {
+        topText = '50px';
+        topTechnologies = '100px';
+      }
       setTimeout(() => {
         document.querySelectorAll('.about span span').forEach(span => {
-          gsap.to(span, 1, {
-            scrollTrigger: span, y: 0, ease: 'power2.out', delay: .5, opacity: 1
+          if (span.classList.contains('highlight-text')) return;
+          gsap.to(span, 1.5, {
+            scrollTrigger: { trigger: span, start: `${topText} bottom` }, y: 0, ease: 'power2.out', delay: .2, opacity: 1
           })
         })
+        gsap.to('.about .highlight-text', 1.5, { y: 0, autoAlpha: 1, scrollTrigger: '.about .highlight-text' })
         gsap.from('.about__description__img', {
           scrollTrigger: {
             trigger: '.about__description__img-container',
@@ -112,18 +120,26 @@ const About = ({ setBodyHeight }) => {
           },
           scale: 1.2
         })
-        gsap.to('.about__circle', {
-          rotate: 360, scrollTrigger: {
+        gsap.to('.about__circle img', .7, {
+          y: 0, autoAlpha: 1, scrollTrigger: {
             trigger: '.about__circle',
-            scrub: 2,
-            start: 'top bottom',
-            end: 'bottom top'
+            start: 'top center'
+          },
+          onComplete: () => {
+            gsap.to('.about__circle', {
+              rotate: 360, scrollTrigger: {
+                trigger: '.about__circle',
+                scrub: 2,
+                start: 'top bottom',
+                end: 'bottom top'
+              }
+            })
           }
         })
         gsap.to('.about__skills__technologies__technology--2 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--2',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -132,7 +148,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--3 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--2',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -142,7 +158,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--4 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--4',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -152,7 +168,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--5 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--4',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -161,7 +177,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--6 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--4',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -171,7 +187,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--7 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--7',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -180,7 +196,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--8 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--7',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -190,7 +206,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--9 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--7',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -200,7 +216,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--10 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--7',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -210,7 +226,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--11 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--11',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
@@ -220,7 +236,7 @@ const About = ({ setBodyHeight }) => {
         gsap.to('.about__skills__technologies__technology--12 div', .7, {
           scrollTrigger: {
             trigger: '.about__skills__technologies__technology--11',
-            start: '100px bottom',
+            start: `${topTechnologies} bottom`,
           },
           y: 0,
           x: 0,
