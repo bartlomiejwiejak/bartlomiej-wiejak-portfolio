@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { RoutingContext } from '../context/context';
+
+import { RoutingContext } from '../../context';
 import { useLocation } from 'react-router-dom';
 
 const Link = ({ children, to }) => {

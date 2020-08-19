@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import gsap from 'gsap';
-import { LoadingContext } from '../context/context';
 import { useLockBodyScroll, useToggle } from 'react-use';
-import header from '../assets/projects/burger/header.png';
-import photo from '../assets/about/photo.jpg';
-import incoming from '../assets/projects/incoming.jpg';
+
+import { LoadingContext } from '../../context';
+import header from '../../assets/projects/burger/header.png';
+import photo from '../../assets/about/photo.jpg';
+import incoming from '../../assets/projects/incoming.jpg';
 
 const images = [header, photo, incoming]
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useContext, useRef } from 'react';
-import Button from './Button';
-import Link from '../components/Link';
-import { RoutingContext } from '../context/context';
-import gsap from 'gsap';
-import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
-import { skewConfig } from '../App';
+import gsap from 'gsap';
+
+import Button from '../../shared/Button';
+import Link from '../../shared/Link';
+import { RoutingContext } from '../../../context';
+import hideInterface from '../../../animations/hideInterface';
+import skewConfig from '../../../config/skewConfig';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
 

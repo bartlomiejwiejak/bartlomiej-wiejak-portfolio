@@ -1,12 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import { LoadingContext, RoutingContext } from '../context/context';
 import gsap from 'gsap';
-import { useToggle, useLockBodyScroll } from 'react-use';
-import showInterface from '../animations/showInterface';
-import scrollTo from '../functions/scrollTo';
 import { useHistory } from 'react-router-dom';
-import hideInterface from '../animations/hideInterface';
-import scrollInstant from '../functions/scrollInstant';
+
+import { LoadingContext, RoutingContext } from '../../../context';
+import { useToggle, useLockBodyScroll } from 'react-use';
+import showInterface from '../../../animations/showInterface';
+import scrollTo from '../../../functions/scrollTo';
+import hideInterface from '../../../animations/hideInterface';
+import scrollInstant from '../../../functions/scrollInstant';
+
 const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex }) => {
 
   const { loaded } = useContext(LoadingContext);

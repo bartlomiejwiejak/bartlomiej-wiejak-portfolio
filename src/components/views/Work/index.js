@@ -1,16 +1,17 @@
 import React, { useEffect, useContext, useRef, useCallback } from 'react';
-import gsap from 'gsap';
-import showInterface from '../animations/showInterface';
-import { LoadingContext, RoutingContext } from '../context/context';
-import Project from '../components/Project';
-import burger from '../assets/projects/burger/header.png';
-import { useLockBodyScroll } from 'react-use';
-import scrollTo from '../functions/scrollTo';
-import hideInterface from '../animations/hideInterface';
 import { useHistory } from 'react-router-dom';
-import incoming from '../assets/projects/incoming.jpg';
-import cursorMultiDot from '../animations/cursorMultiDot';
-import scrollInstant from '../functions/scrollInstant';
+import { useLockBodyScroll } from 'react-use';
+import gsap from 'gsap';
+
+import showInterface from '../../../animations/showInterface';
+import { LoadingContext, RoutingContext } from '../../../context';
+import Project from './Project';
+import burger from '../../../assets/projects/burger/header.png';
+import scrollTo from '../../../functions/scrollTo';
+import hideInterface from '../../../animations/hideInterface';
+import incoming from '../../../assets/projects/incoming.jpg';
+import cursorMultiDot from '../../../animations/cursorMultiDot';
+import scrollInstant from '../../../functions/scrollInstant';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);

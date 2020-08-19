@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
-import isMobile from '../functions/isMobile';
+
+import isMobile from '../../../functions/isMobile';
 
 const Light = () => {
 

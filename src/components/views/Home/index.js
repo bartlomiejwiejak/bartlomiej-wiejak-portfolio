@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from 'react';
-import isMobile from '../functions/isMobile';
-import HighLightText from '../components/HighlightText';
 import gsap from 'gsap';
-import showInterface from '../animations/showInterface';
-import homeObjects from '../animations/homeObjects';
+
+import isMobile from '../../../functions/isMobile';
+import HighLightText from '../../shared/HighlightText';
+import showInterface from '../../../animations/showInterface';
+import homeObjects from '../../../animations/homeObjects';
 import { useHistory } from 'react-router-dom';
-import { RoutingContext } from '../context/context';
-import hideInterface from '../animations/hideInterface';
-import { LoadingContext } from '../context/context';
+import { RoutingContext } from '../../../context';
+import hideInterface from '../../../animations/hideInterface';
+import { LoadingContext } from '../../../context';
 
 const Home = ({ setBodyHeight }) => {
 
@@ -42,7 +43,6 @@ const Home = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (loaded) {
-      console.log('animacja')
       document.querySelector('.background').style.setProperty('background-color', 'var(--dark)');
       gsap.to('.light', 2, { opacity: 1 })
       showInterface();

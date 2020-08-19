@@ -1,10 +1,11 @@
 import React from 'react';
-import cursorExpand from '../animations/cursorExpand';
-import cursorBackToNormal from '../animations/cursorBackToNormal';
 import { useLocation } from 'react-router-dom';
-import cursorMultiDot from '../animations/cursorMultiDot';
 
-const Button = ({ children, type }) => {
+import cursorExpand from '../../animations/cursorExpand';
+import cursorBackToNormal from '../../animations/cursorBackToNormal';
+import cursorMultiDot from '../../animations/cursorMultiDot';
+
+const Button = ({ children, type, href }) => {
 
   const location = useLocation();
 
@@ -37,19 +38,21 @@ const Button = ({ children, type }) => {
 
   selectType()
 
-  return (
-    <div onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>
-      <div className="button__content">{children}</div>
-      <div className="button__underline">
-        <div className="button__underline--left">
-          <div className="button__underline--fill"></div>
-        </div>
-        <div className="button__underline--right">
-          <div className="button__underline--fill"></div>
-        </div>
+  const content = <div onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>
+    <div className="button__content">{children}</div>
+    <div className="button__underline">
+      <div className="button__underline--left">
+        <div className="button__underline--fill"></div>
+      </div>
+      <div className="button__underline--right">
+        <div className="button__underline--fill"></div>
       </div>
     </div>
-  );
+  </div>
+
+  if (href) return <a href={href} target='blank'>{content}</a>
+
+  return content;
 }
 
 export default Button;

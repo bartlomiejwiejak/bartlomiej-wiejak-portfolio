@@ -1,60 +1,30 @@
 import React, { useEffect, useRef, Suspense, useCallback } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
+
 import Header from './layout/Header';
-import Cursor from './components/Cursor';
-import Contact from './components/Contact';
-import Home from './pages/Home';
-import { Route } from 'react-router-dom';
-import About from './pages/About';
-import useWindowSize from './hooks/useWindowSize';
-import ContextProvider from './context/context';
+import Cursor from './layout/Cursor';
+import Contact from './views/Home/Contact';
+import Home from './views/Home';
+import About from './views/About';
+import useWindowSize from '../hooks/useWindowSize';
+import ContextProvider from '../context';
 import Loader from './layout/Loader';
-import Work from './pages/Work';
-import { Redirect, Switch } from 'react-router-dom';
-import WorkPagination from './components/WorkPagination';
-import Light from './components/Light';
-import Circle from './components/Circle';
-import BurgerProject from './pages/projects/Burger'
-import ProjectHeader from './layout/ProjectHeader';
-import burger from './assets/projects/burger/header.png';
-import isMobile from './functions/isMobile';
+import Work from './views/Work';
+import WorkPagination from './views/Work/WorkPagination';
+import Light from './views/Home/Light';
+import Circle from './shared/Circle';
+import BurgerProject from './views/projects/Burger'
+import ProjectHeader from './views/projects/ProjectHeader';
+import burger from '../assets/projects/burger/header.png';
+import skewConfig from '../config/skewConfig';
 
-let ease = .05;
-let skew = 10;
-
-if (isMobile()) {
-  ease = 0.075;
-  skew = 7.5;
-}
-
-export const skewConfig = {
-  ease: ease,
-  current: 0,
-  previous: 0,
-  rounded: 0,
-  skew: skew
-}
-
-function App() {
+export default function () {
 
   const scrollRef = useRef();
   const appRef = useRef();
   const windowSize = useWindowSize();
 
-  useEffect(() => {
-    requestAnimationFrame(() => skewScrolling());
-  }, [])
-
-  const setBodyHeight = useCallback(() => {
-    document.body.style.height = `${
-      scrollRef.current.getBoundingClientRect().height
-      }px`;
-  }, []);
-
-  useEffect(() => {
-    setBodyHeight();
-  }, [windowSize.width, windowSize.height, setBodyHeight])
-
-  const skewScrolling = () => {
+  const skewScrolling = useCallback(() => {
     skewConfig.current = window.scrollY;
     skewConfig.previous += (skewConfig.current - skewConfig.previous) * skewConfig.ease;
     skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
@@ -67,7 +37,21 @@ function App() {
     scrollRef.current.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
 
     requestAnimationFrame(skewScrolling);
-  };
+  }, [windowSize.width]);
+
+  useEffect(() => {
+    requestAnimationFrame(() => skewScrolling());
+  }, [skewScrolling])
+
+  const setBodyHeight = useCallback(() => {
+    document.body.style.height = `${
+      scrollRef.current.getBoundingClientRect().height
+      }px`;
+  }, []);
+
+  useEffect(() => {
+    setBodyHeight();
+  }, [windowSize.width, windowSize.height, setBodyHeight])
 
   return (
     <Suspense fallback={null}>
@@ -100,5 +84,3 @@ function App() {
     </Suspense>
   );
 }
-
-export default App;

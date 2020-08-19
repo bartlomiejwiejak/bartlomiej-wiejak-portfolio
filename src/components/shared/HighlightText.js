@@ -1,9 +1,10 @@
 import React from 'react';
-import cursorExpandBig from '../animations/cursorExpandBig';
-import cursorBackToNormal from '../animations/cursorBackToNormal';
-import Link from './Link';
 import { useLocation } from 'react-router-dom';
-import cursorMultiDot from '../animations/cursorMultiDot'
+
+import cursorExpandBig from '../../animations/cursorExpandBig';
+import cursorBackToNormal from '../../animations/cursorBackToNormal';
+import Link from './Link';
+import cursorMultiDot from '../../animations/cursorMultiDot'
 
 const HighlightText = ({ children, type, to }) => {
   let classes = ['highlight-text']

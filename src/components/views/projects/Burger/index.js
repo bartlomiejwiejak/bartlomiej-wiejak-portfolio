@@ -1,20 +1,21 @@
 import React, { useEffect, useContext } from 'react';
-import { LoadingContext } from '../../context/context';
 import gsap from 'gsap';
-import Button from '../../components/Button';
+
+import Button from '../../../shared/Button';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import homeDesktop from '../../assets/projects/burger/home-desktop.png';
-import homeMobile from '../../assets/projects/burger/home-mobile.png';
-import homeVideo from '../../assets/projects/burger/home-video.mp4';
-import mobile1 from '../../assets/projects/burger/home-mobile.png';
-import mobile2 from '../../assets/projects/burger/builder-mobile.png';
-import mobile3 from '../../assets/projects/burger/menu-mobile.png';
-import buildingVideo from '../../assets/projects/burger/building-video.mp4';
-import homeLoad from '../../assets/projects/burger/home-load.mp4';
-import homeLoadMobile from '../../assets/projects/burger/home-load-mobile.mp4';
-import sideDrawer from '../../assets/projects/burger/sidedrawer.mp4';
-import order from '../../assets/projects/burger/order.png';
-import HighLightText from '../../components/HighlightText';
+import homeDesktop from '../../../../assets/projects/burger/home-desktop.png';
+import homeMobile from '../../../../assets/projects/burger/home-mobile.png';
+import homeVideo from '../../../../assets/projects/burger/home-video.mp4';
+import mobile1 from '../../../../assets/projects/burger/home-mobile.png';
+import mobile2 from '../../../../assets/projects/burger/builder-mobile.png';
+import mobile3 from '../../../../assets/projects/burger/menu-mobile.png';
+import buildingVideo from '../../../../assets/projects/burger/building-video.mp4';
+import homeLoad from '../../../../assets/projects/burger/home-load.mp4';
+import homeLoadMobile from '../../../../assets/projects/burger/home-load-mobile.mp4';
+import sideDrawer from '../../../../assets/projects/burger/sidedrawer.mp4';
+import order from '../../../../assets/projects/burger/order.png';
+import { LoadingContext } from '../../../../context';
+import HighLightText from '../../../shared/HighlightText';
 
 const Burger = () => {
 

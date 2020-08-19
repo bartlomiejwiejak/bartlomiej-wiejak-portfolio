@@ -1,7 +1,8 @@
 import React from 'react';
-import Button from '../components/Button';
-import cursorExpandBig from '../animations/cursorExpandBig';
-import Link from '../components/Link';
+
+import Button from '../shared/Button';
+import cursorExpandBig from '../../animations/cursorExpandBig';
+import Link from '../shared/Link';
 
 const Header = () => {
 

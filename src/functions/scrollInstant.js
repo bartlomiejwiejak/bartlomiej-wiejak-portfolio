@@ -1,5 +1,7 @@
 import gsap from 'gsap';
-import { skewConfig } from '../App';
+
+import skewConfig from '../config/skewConfig';
+
 export default function (top) {
   gsap.set('.scroll', { y: top })
   window.scrollTo({ top: top })
