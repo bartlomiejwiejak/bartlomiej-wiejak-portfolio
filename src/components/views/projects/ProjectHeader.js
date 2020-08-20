@@ -46,8 +46,8 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
     if (animating && path !== '/work') {
       setToggle(true)
       hideInterface()
-      scrollbarHide();
       scrollTo(0, () => {
+        scrollbarHide();
         gsap.to('.project-header', .75, {
           y: '-100%', scale: .4, delay: 1.7, onComplete: () => setTimeout(() => {
             setAnimating(false)
@@ -61,9 +61,9 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
   useEffect(() => {
     if (animating && path === '/work') {
       hideInterface()
-      scrollbarHide();
       setToggle(true)
       scrollTo(0, () => {
+        scrollbarHide();
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
           .to('.project-header__title--left', .5, { rotateY: '15deg', delay: .5 })

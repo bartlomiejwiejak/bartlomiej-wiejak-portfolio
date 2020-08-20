@@ -41,7 +41,6 @@ const About = ({ setBodyHeight }) => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
-      scrollbarHide();
       if (navigator.userAgent.indexOf("Firefox") > -1) {
         setTimeout(() => {
           gsap.to('.about__line--1', 1, {
@@ -58,6 +57,7 @@ const About = ({ setBodyHeight }) => {
       setLocked(true)
       scrollTo(0, () => {
         setTimeout(() => {
+          scrollbarHide();
           gsap.to('.about__line--1', 1, {
             x: '150%', ease: 'power2.out', onComplete: () => {
               setAnimating(false);

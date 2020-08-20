@@ -1,6 +1,8 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+
 import isMobile from '../functions/isMobile';
+
 export function moveLines(e) {
   const transformX = (window.innerWidth / 2 - e.clientX);
   const transformY = (window.innerHeight / 2 - e.clientY);

@@ -63,14 +63,12 @@
       left: 0;
       transform: scale(1.05);
       top: 0;
-      opacity: 0;
       filter: blur(1px);
       span {
         -webkit-text-stroke-color: var(--dark);
         overflow: hidden;
         span {
-          transform: translateY(0);
-          opacity: 1;
+          transform: translateY(110%);
         }
       }
     }

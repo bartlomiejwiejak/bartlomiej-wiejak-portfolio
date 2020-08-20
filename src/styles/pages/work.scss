@@ -6,6 +6,7 @@
     font-size: 20px;
     overflow: hidden;
     height: 34px;
+    z-index: 4;
     @include respond(xlarge) {
       left: 12.5%;
     }
