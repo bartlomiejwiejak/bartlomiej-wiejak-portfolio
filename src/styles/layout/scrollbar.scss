@@ -1,0 +1,17 @@
+.scrollbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: .5rem;
+  bottom: 0;
+  mix-blend-mode: difference;
+  z-index: 4;
+  &__thumb {
+    background-color: var(--white);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0;
+  }
+}

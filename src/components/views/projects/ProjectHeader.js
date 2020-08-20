@@ -8,6 +8,7 @@ import showInterface from '../../../animations/showInterface';
 import scrollTo from '../../../functions/scrollTo';
 import hideInterface from '../../../animations/hideInterface';
 import scrollInstant from '../../../functions/scrollInstant';
+import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
 const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex }) => {
 
@@ -22,18 +23,20 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
     document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
     if (loaded) {
       scrollInstant(0)
-      document.querySelector('html').classList.add('scrollbar-light')
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
       tl.to('.project-header__title--left', .5, { rotateY: '-15deg', delay: .5 })
         .to('.project-header__title--right', .5, { rotateY: '15deg', delay: -.5 })
         .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
         .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', y: '50%', x: '-80%', scale: .5, delay: -0.5 })
         .to('.project-header__title--right', 1, { top: '50%', y: '-50%', right: '50%', x: '80%', scale: .5, delay: -1 })
-        .to('.project-header__img', 1, { scale: 2, delay: -1, onComplete: showInterface })
+        .to('.project-header__img', 1, {
+          scale: 2, delay: -1, onComplete: showInterface
+        })
         .to('.project-header__scroll-indicator span', 1, {
           y: 0, opacity: 1, onComplete: () => {
             setToggle(false)
             setBodyHeight();
+            scrollbarAppear();
           }
         })
     }
@@ -43,6 +46,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
     if (animating && path !== '/work') {
       setToggle(true)
       hideInterface()
+      scrollbarHide();
       scrollTo(0, () => {
         gsap.to('.project-header', .75, {
           y: '-100%', scale: .4, delay: 1.7, onComplete: () => setTimeout(() => {
@@ -57,6 +61,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
   useEffect(() => {
     if (animating && path === '/work') {
       hideInterface()
+      scrollbarHide();
       setToggle(true)
       scrollTo(0, () => {
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })

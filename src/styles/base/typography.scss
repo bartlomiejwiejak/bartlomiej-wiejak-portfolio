@@ -15,20 +15,13 @@ html {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   color: var(--black);
   font-weight: normal;
   font-size: 62.5%;
-   scrollbar-color: var(--dark) var(--light);
-   scrollbar-width: thin;
-   ::-webkit-scrollbar {
-   width: .5rem;
-   }
-   ::-webkit-scrollbar-track {
-   background-color: var(--light);
-   }
-   ::-webkit-scrollbar-thumb {
-   background-color: var(--dark);
-   }
   @include respond(large) {
     font-size: 56.25%;
   }
@@ -43,19 +36,6 @@ h1, h2, h3, .highlight-text {
   font-family: Peace Sans, sans-serif;
 }
 
-.scrollbar-light {
-  scrollbar-color: var(--light) var(--dark);
-  scrollbar-width: thin;
-  ::-webkit-scrollbar {
-  width: .5rem;
-  }
-  ::-webkit-scrollbar-track {
-  background-color: var(--dark);
-  }
-  ::-webkit-scrollbar-thumb {
-  background-color: var(--light);
-  }
-}
 *:focus, *:active {
   outline: none;
 }

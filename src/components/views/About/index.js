@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useLockBodyScroll, useToggle } from 'react-use';
+import gsap from 'gsap';
 
 import showInterface from '../../../animations/showInterface';
 import hideInterface from '../../../animations/hideInterface';
-import gsap from 'gsap';
 import { RoutingContext } from '../../../context';
-import { useHistory } from 'react-router-dom';
 import scrollTo from '../../../functions/scrollTo';
 import { LoadingContext } from '../../../context';
-import { useLockBodyScroll, useToggle } from 'react-use';
 import isMobile from '../../../functions/isMobile';
 import scrollInstant from '../../../functions/scrollInstant';
 import { moveLines } from '../../../animations/aboutHeader'
@@ -17,7 +18,7 @@ import Circle from './Circle';
 import Skills from './Skills';
 import Contact from './Contact';
 import Footer from './Footer';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
 const About = ({ setBodyHeight }) => {
 
@@ -29,7 +30,10 @@ const About = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (!loaded) return;
-    setTimeout(setBodyHeight, 1000)
+    setTimeout(() => {
+      setBodyHeight()
+      scrollbarAppear()
+    }, 500)
     setBodyHeight()
   }, [setBodyHeight, loaded])
 
@@ -37,6 +41,7 @@ const About = ({ setBodyHeight }) => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
+      scrollbarHide();
       if (navigator.userAgent.indexOf("Firefox") > -1) {
         setTimeout(() => {
           gsap.to('.about__line--1', 1, {
@@ -71,9 +76,7 @@ const About = ({ setBodyHeight }) => {
     scrollInstant(0);
     if (loaded) {
       setLocked(false)
-      document.querySelector('html').classList.remove('scrollbar-light')
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
-
       showInterface();
 
       let topText = '100px';

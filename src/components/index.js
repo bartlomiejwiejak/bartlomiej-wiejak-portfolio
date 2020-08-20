@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Suspense, useCallback } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './layout/Header';
@@ -11,12 +11,16 @@ import Loader from './layout/Loader';
 import Work from './views/Work';
 import BurgerProject from './views/projects/Burger'
 import skewConfig from '../config/skewScrolling';
+import ScrollBar from './layout/ScrollBar';
+import useBodyHeight from '../hooks/useBodyHeight';
+import gsap from 'gsap';
 
 export default function () {
 
   const scrollRef = useRef();
   const appRef = useRef();
   const windowSize = useWindowSize();
+  const { setBodyHeight, bodyHeight } = useBodyHeight()
 
   useEffect(() => {
     const skewScrolling = () => {
@@ -29,16 +33,17 @@ export default function () {
       const velocity = +acceleration;
       const skew = velocity * 10;
       scrollRef.current.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
+      const bodyHeight = document.querySelector('body').getBoundingClientRect().height;
+      if (bodyHeight) {
+        const y = (window.innerHeight / bodyHeight) * window.scrollY;
+        gsap.to('.scrollbar__thumb', 1, { y: y })
+      }
+
       requestAnimationFrame(skewScrolling);
     }
-    skewScrolling()
+    const animationFrame = requestAnimationFrame(skewScrolling)
+    return () => cancelAnimationFrame(animationFrame)
   }, [])
-
-  const setBodyHeight = useCallback(() => {
-    document.body.style.height = `${
-      scrollRef.current.getBoundingClientRect().height
-      }px`;
-  }, []);
 
   useEffect(() => {
     setBodyHeight();
@@ -48,6 +53,7 @@ export default function () {
     <Suspense fallback={null}>
       <ContextProvider>
         <Loader />
+        <ScrollBar bodyHeight={bodyHeight} />
         <Header />
         <div className="background"></div>
         <div ref={appRef} className="view">
