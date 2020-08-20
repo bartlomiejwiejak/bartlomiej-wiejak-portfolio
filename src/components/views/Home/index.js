@@ -49,11 +49,11 @@ const Home = ({ setBodyHeight }) => {
     if (loaded) {
       document.querySelector('.background').style.setProperty('background-color', 'var(--dark)');
       if (!isMobile()) {
-        gsap.to('.light', 2, { scale: .7, delay: 1.5 })
+        gsap.to('.light', 1, { scale: .8, delay: 1.7 })
       }
       showInterface();
       gsap.to('.contact__item .button', 1, { y: 0, ease: 'power2.out' });
-      gsap.to('.home__welcome--shadow', .1, { opacity: 1, delay: 1.5 })
+      gsap.to('.home__welcome--shadow', .1, { opacity: 1, delay: 1.7 })
       gsap.to('.home > .home__welcome > span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
     }
   }, [loaded])

@@ -31,7 +31,7 @@ export default function () {
       scrollRef.current.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
       requestAnimationFrame(skewScrolling);
     }
-    requestAnimationFrame(skewScrolling);
+    skewScrolling()
   }, [])
 
   const setBodyHeight = useCallback(() => {

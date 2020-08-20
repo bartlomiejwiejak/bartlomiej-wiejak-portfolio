@@ -61,8 +61,10 @@
       position: absolute;
       color: var(--dark);
       left: 0;
+      transform: scale(1.05);
       top: 0;
       opacity: 0;
+      filter: blur(1px);
       span {
         -webkit-text-stroke-color: var(--dark);
         overflow: hidden;

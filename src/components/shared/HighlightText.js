@@ -33,14 +33,18 @@ const HighlightText = ({ children, type, to }) => {
   }
 
   const mouseOver = () => {
-    document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).focus()
+    if (location.pathname === '/') {
+      document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).focus()
+    }
     cursorExpandBig();
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
   }
   const mouseOut = () => {
-    document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).blur()
+    if (location.pathname === '/') {
+      document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).blur()
+    }
     cursorBackToNormal();
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);

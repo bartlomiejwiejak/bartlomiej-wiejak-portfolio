@@ -45,10 +45,10 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       hideInterface()
       scrollTo(0, () => {
         gsap.to('.project-header', .75, {
-          y: '-100%', scale: .3, delay: 1.7, onComplete: () => {
+          y: '-100%', scale: .4, delay: 1.7, onComplete: () => setTimeout(() => {
             setAnimating(false)
             history.push(path)
-          }
+          }, 200)
         })
       })
     }
