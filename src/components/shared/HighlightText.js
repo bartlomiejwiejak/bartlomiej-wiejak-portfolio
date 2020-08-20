@@ -18,6 +18,10 @@ const HighlightText = ({ children, type, to }) => {
         classes.push('highlight-text--black')
         return;
       }
+      case 'dark': {
+        classes.push('highlight-text--dark')
+        return;
+      }
       default: return;
     }
   }
@@ -29,12 +33,14 @@ const HighlightText = ({ children, type, to }) => {
   }
 
   const mouseOver = () => {
+    document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).focus()
     cursorExpandBig();
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
   }
   const mouseOut = () => {
+    document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).blur()
     cursorBackToNormal();
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);
@@ -43,7 +49,7 @@ const HighlightText = ({ children, type, to }) => {
 
   return (
     <span>
-      <span data-text={children} onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>{content}</span>
+      <span data-text={children} tabIndex="-1" onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>{content}</span>
     </span>
   );
 }

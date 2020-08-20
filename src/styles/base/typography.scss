@@ -40,6 +40,7 @@ html {
 h1, h2, h3, .highlight-text {
   font-family: Peace Sans, sans-serif;
 }
+
 .scrollbar-light {
   scrollbar-color: var(--light) var(--dark);
   scrollbar-width: thin;
@@ -52,4 +53,7 @@ h1, h2, h3, .highlight-text {
   ::-webkit-scrollbar-thumb {
   background-color: var(--light);
   }
+}
+*:focus, *:active {
+  outline: none;
 }
