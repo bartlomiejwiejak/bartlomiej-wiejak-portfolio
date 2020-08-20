@@ -6,7 +6,7 @@ import Button from '../../shared/Button';
 import Link from '../../shared/Link';
 import { RoutingContext } from '../../../context';
 import hideInterface from '../../../animations/hideInterface';
-import skewConfig from '../../../config/skewConfig';
+import skewConfig from '../../../config/skewScrolling';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
 

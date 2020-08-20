@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 
 import isMobile from '../../../functions/isMobile';
@@ -9,6 +10,8 @@ import { useHistory } from 'react-router-dom';
 import { RoutingContext } from '../../../context';
 import hideInterface from '../../../animations/hideInterface';
 import { LoadingContext } from '../../../context';
+import Contact from './Contact';
+import Light from './Light';
 
 const Home = ({ setBodyHeight }) => {
 
@@ -32,7 +35,6 @@ const Home = ({ setBodyHeight }) => {
       }, 1200)
     }
   }, [animating, history, path, setAnimating])
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,63 +62,67 @@ const Home = ({ setBodyHeight }) => {
   }, [])
 
   return (
-    <div className="home">
-      <h1 className="home__welcome">
-        <span>
-          <span>Hello,</span>
-        </span>
-        <span>
-          <span>my</span>
-        </span>
-        <span>
-          <span>name</span>
-        </span>
-        <span>
-          <span>is</span>
-        </span>
-        <span>
-          <span>Bartłomiej</span>
-        </span>
-        <HighLightText type='white' to='/about'>Wiejak.</HighLightText>
-        <span>
-          <span>I'm</span>
-        </span>
-        <span>
-          <span>a</span>
-        </span>
-        <span>
-          <span>web</span>
-        </span>
-        <span>
-          <span>developer</span>
-        </span>
-        <span>
-          <span> focussed</span>
-        </span>
-        <span>
-          <span>on</span>
-        </span>
-        <span>
-          <span>creative</span>
-        </span>
-        <span>
-          <span>interactions</span>
-        </span>
-        <span>
-          <span>& </span>
-        </span>
-        <span>
-          <span>animations</span>
-        </span>
-        <span>
-          <span>in</span>
-        </span>
-        <span>
-          <span>my</span>
-        </span>
-        <HighLightText type='white' to='/work'>apps.</HighLightText>
-      </h1>
-    </div>
+    <>
+      {ReactDOM.createPortal(<Contact />, document.getElementById('root'))}
+      <Light />
+      <div className="home">
+        <h1 className="home__welcome">
+          <span>
+            <span>Hello,</span>
+          </span>
+          <span>
+            <span>my</span>
+          </span>
+          <span>
+            <span>name</span>
+          </span>
+          <span>
+            <span>is</span>
+          </span>
+          <span>
+            <span>Bartłomiej</span>
+          </span>
+          <HighLightText type='white' to='/about'>Wiejak.</HighLightText>
+          <span>
+            <span>I'm</span>
+          </span>
+          <span>
+            <span>a</span>
+          </span>
+          <span>
+            <span>web</span>
+          </span>
+          <span>
+            <span>developer</span>
+          </span>
+          <span>
+            <span> focussed</span>
+          </span>
+          <span>
+            <span>on</span>
+          </span>
+          <span>
+            <span>creative</span>
+          </span>
+          <span>
+            <span>interactions</span>
+          </span>
+          <span>
+            <span>& </span>
+          </span>
+          <span>
+            <span>animations</span>
+          </span>
+          <span>
+            <span>in</span>
+          </span>
+          <span>
+            <span>my</span>
+          </span>
+          <HighLightText type='white' to='/work'>apps.</HighLightText>
+        </h1>
+      </div>
+    </>
   );
 }
 

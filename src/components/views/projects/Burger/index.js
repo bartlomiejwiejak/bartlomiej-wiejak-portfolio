@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 
 import Button from '../../../shared/Button';
@@ -16,8 +17,10 @@ import sideDrawer from '../../../../assets/projects/burger/sidedrawer.mp4';
 import order from '../../../../assets/projects/burger/order.png';
 import { LoadingContext } from '../../../../context';
 import HighLightText from '../../../shared/HighlightText';
+import ProjectHeader from '../ProjectHeader';
+import headerImg from '../../../../assets/projects/burger/header.png';
 
-const Burger = () => {
+const Burger = ({ setBodyHeight }) => {
 
   const { loaded } = useContext(LoadingContext);
 
@@ -56,6 +59,7 @@ const Burger = () => {
 
   return (
     <div className='burger'>
+      {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={1} />, document.getElementById('root'))}
       <div className='burger__header'></div>
       <div className='burger__content'>
         <div className='burger__info'>

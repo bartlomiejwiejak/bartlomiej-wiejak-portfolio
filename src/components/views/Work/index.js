@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom';
 import { useLockBodyScroll } from 'react-use';
 import gsap from 'gsap';
@@ -12,6 +13,8 @@ import hideInterface from '../../../animations/hideInterface';
 import incoming from '../../../assets/projects/incoming.jpg';
 import cursorMultiDot from '../../../animations/cursorMultiDot';
 import scrollInstant from '../../../functions/scrollInstant';
+import WorkPagination from './WorkPagination';
+import Circle from './Circle';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -251,6 +254,8 @@ const Work = ({ setBodyHeight }) => {
 
   return (
     <div className='work'>
+      {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
+      {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' />
       <Project src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />

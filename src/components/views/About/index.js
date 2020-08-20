@@ -17,19 +17,21 @@ import Circle from './Circle';
 import Skills from './Skills';
 import Contact from './Contact';
 import Footer from './Footer';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const About = ({ setBodyHeight }) => {
 
   const { animating, path, setAnimating } = useContext(RoutingContext);
   const { loaded } = useContext(LoadingContext);
   const history = useHistory();
-  const [locked, setLocked] = useToggle(false);
+  const [locked, setLocked] = useToggle(!loaded);
   useLockBodyScroll(locked);
 
   useEffect(() => {
+    if (!loaded) return;
     setTimeout(setBodyHeight, 1000)
     setBodyHeight()
-  }, [setBodyHeight])
+  }, [setBodyHeight, loaded])
 
   useEffect(() => {
     if (animating) {
@@ -68,6 +70,7 @@ const About = ({ setBodyHeight }) => {
   useEffect(() => {
     scrollInstant(0);
     if (loaded) {
+      setLocked(false)
       document.querySelector('html').classList.remove('scrollbar-light')
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
 
@@ -78,6 +81,7 @@ const About = ({ setBodyHeight }) => {
         topText = '50px';
       }
       setTimeout(() => {
+        gsap.registerPlugin(ScrollTrigger)
         document.querySelectorAll('.about span span').forEach(span => {
           if (span.classList.contains('highlight-text')) return;
           gsap.to(span, 1.5, {
@@ -88,7 +92,7 @@ const About = ({ setBodyHeight }) => {
       }, 500)
     }
 
-  }, [loaded])
+  }, [loaded, setLocked])
   return (
     <div className='about'>
       <Header />

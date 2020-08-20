@@ -44,8 +44,8 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       setToggle(true)
       hideInterface()
       scrollTo(0, () => {
-        gsap.to('.project-header', .7, {
-          y: '-100%', scale: .5, delay: 1.2, onComplete: () => {
+        gsap.to('.project-header', .75, {
+          y: '-100%', scale: .3, delay: 1.7, onComplete: () => {
             setAnimating(false)
             history.push(path)
           }
