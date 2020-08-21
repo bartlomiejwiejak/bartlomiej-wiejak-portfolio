@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import cursorExpand from '../../animations/cursorExpand';
 import cursorBackToNormal from '../../animations/cursorBackToNormal';
 import cursorMultiDot from '../../animations/cursorMultiDot';
+import isMobile from '../../functions/isMobile';
 
 const Button = ({ children, type, href }) => {
 
@@ -24,12 +25,14 @@ const Button = ({ children, type, href }) => {
   }
 
   const mouseOver = () => {
+    if (isMobile()) return;
     cursorExpand();
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
   }
   const mouseOut = () => {
+    if (isMobile()) return;
     cursorBackToNormal();
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);

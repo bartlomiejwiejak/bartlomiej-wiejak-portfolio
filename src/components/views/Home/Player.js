@@ -46,7 +46,7 @@ function Player() {
 
       let animatingContent = (fbc_array) => {
         gsap.set('.player__line', { width: fbc_array[1] / 5 })
-        gsap.set('.light', { scale: .5 + (fbc_array[1] / 2) / 100 })
+        gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 2) / 100, scaleY: .5 + (fbc_array[99] / 2) / 100 })
       }
       if (isMobile()) {
         animatingContent = (fbc_array) => {
@@ -110,7 +110,7 @@ function Player() {
       <div className="player__content">
         {content}
       </div>
-      <span className="player__song"><span>dvno - justice</span></span>
+      <a href='https://soundcloud.com/downtownrecords/justice-dvno' target='_blank' rel='noopener noreferrer'><span className="player__song"><span>dvno - justice</span></span></a>
     </div>
   )
 }

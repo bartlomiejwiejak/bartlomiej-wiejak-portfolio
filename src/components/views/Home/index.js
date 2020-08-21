@@ -13,9 +13,9 @@ import Contact from './Contact';
 import Light from './Light';
 import Header from './Header';
 import Player from './Player';
+import cursorBackToNormal from '../../../animations/cursorBackToNormal';
 
 const Home = ({ setBodyHeight }) => {
-
   const { animating, path, setAnimating } = useContext(RoutingContext);
   const { loaded } = useContext(LoadingContext);
   const history = useHistory();
@@ -54,6 +54,7 @@ const Home = ({ setBodyHeight }) => {
       if (!isMobile()) {
         gsap.to('.light', 1, { scale: .5, delay: .5 })
       }
+      cursorBackToNormal();
       showInterface();
       gsap.to('.contact__item .button', 1, { y: 0, ease: 'power2.out' });
       gsap.to('.player__content i', 1, { y: 0, autoAlpha: 1 })

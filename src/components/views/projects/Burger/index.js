@@ -7,13 +7,14 @@ import { LoadingContext } from '../../../../context';
 import ProjectHeader from '../ProjectHeader';
 import headerImg from '../../../../assets/projects/burger/header.png';
 import Content from './Content';
+import cursorBackToNormal from '../../../../animations/cursorBackToNormal';
 
 const Burger = ({ setBodyHeight }) => {
-
   const { loaded } = useContext(LoadingContext);
 
   useEffect(() => {
     if (loaded) {
+      cursorBackToNormal();
       gsap.registerPlugin(ScrollTrigger)
       document.querySelectorAll('.burger span span').forEach(span => {
         if (span.classList.contains('highlight-text')) {

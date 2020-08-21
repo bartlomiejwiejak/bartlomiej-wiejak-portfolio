@@ -18,6 +18,7 @@ import Circle from './Circle';
 import Skills from './Skills';
 import Contact from './Contact';
 import Footer from './Footer';
+import cursorBackToNormal from '../../../animations/cursorBackToNormal';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
 const About = ({ setBodyHeight }) => {
@@ -31,6 +32,7 @@ const About = ({ setBodyHeight }) => {
   useEffect(() => {
     if (!loaded) return;
     setBodyHeight()
+    setTimeout(setBodyHeight, 2000)
   }, [setBodyHeight, loaded])
 
   useEffect(() => {
@@ -72,6 +74,7 @@ const About = ({ setBodyHeight }) => {
     scrollInstant(0);
     if (loaded) {
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
+      cursorBackToNormal();
       showInterface();
       let topText = '100px';
       if (isMobile()) {

@@ -31,8 +31,9 @@
     overflow: hidden;
     i {
       position: relative;
-        opacity: 0;
-        transform: translateY(100%);
+      opacity: 0;
+      transform: translateY(100%);
+      font-size: 2rem;
     }
   }
   &__line {
@@ -53,6 +54,7 @@
   &__song {
     overflow: hidden;
     display: inline-block;
+    margin-top: .5rem;
     span {
         display: inline-block;
         transform: translateY(100%);

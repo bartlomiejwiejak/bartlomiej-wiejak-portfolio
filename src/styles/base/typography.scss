@@ -35,7 +35,10 @@ html {
 h1, h2, h3, .highlight-text {
   font-family: Peace Sans, sans-serif;
 }
-
 *:focus, *:active {
   outline: none;
+}
+a {
+color: inherit;
+text-decoration: none;
 }

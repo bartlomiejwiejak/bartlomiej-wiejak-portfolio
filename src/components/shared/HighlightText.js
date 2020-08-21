@@ -5,6 +5,7 @@ import cursorExpandBig from '../../animations/cursorExpandBig';
 import cursorBackToNormal from '../../animations/cursorBackToNormal';
 import Link from './Link';
 import cursorMultiDot from '../../animations/cursorMultiDot'
+import isMobile from '../../functions/isMobile'
 
 const HighlightText = ({ children, type, to }) => {
   let classes = ['highlight-text']
@@ -33,6 +34,7 @@ const HighlightText = ({ children, type, to }) => {
   }
 
   const mouseOver = () => {
+    if (isMobile()) return;
     if (location.pathname === '/') {
       document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).focus()
     }
@@ -42,6 +44,7 @@ const HighlightText = ({ children, type, to }) => {
     }
   }
   const mouseOut = () => {
+    if (isMobile()) return;
     if (location.pathname === '/') {
       document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).blur()
     }

@@ -15,6 +15,7 @@ import cursorMultiDot from '../../../animations/cursorMultiDot';
 import scrollInstant from '../../../functions/scrollInstant';
 import WorkPagination from './WorkPagination';
 import Circle from './Circle';
+import cursorBackToNormal from '../../../animations/cursorBackToNormal';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -213,6 +214,7 @@ const Work = ({ setBodyHeight }) => {
   useEffect(() => {
     if (loaded && lastProject === null) {
       scrollInstant(0);
+      cursorBackToNormal()
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
@@ -235,6 +237,7 @@ const Work = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (lastProject !== null) {
+      cursorBackToNormal()
       scrollInstant(lastProject * window.innerHeight)
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
