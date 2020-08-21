@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+import cursorExpand from '../../../animations/cursorExpand';
+import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -11,33 +14,43 @@ function Player() {
       return;
     }
     const audio = document.createElement('audio');
-    audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
     audio.className = 'player__audio';
     audio.loop = true;
     audio.style.display = 'none';
+    audio.volume = .5
     document.getElementById('root').appendChild(audio);
   }, [])
 
-  const playHandle = () => {
+  const playHandle = async () => {
     if (isPlaying) {
       document.querySelector('.player__audio').pause()
       setIsPlaying(false)
     } else {
-      console.log(document.querySelector('.player__audio'))
-      document.querySelector('.player__audio').volume = .2
-      document.querySelector('.player__audio').play()
+      const audio = document.querySelector('.player__audio')
+      if (!audio.src) {
+        const url = `//api.soundcloud.com/resolve.json?url=https://soundcloud.com/downtownrecords/justice-dvno&client_id=${process.env.REACT_APP_CLIENT_ID}`
+        const response = await fetch(url);
+        const responseData = await response.json();
+
+        if (responseData.stream_url) {
+          audio.src = `${responseData.stream_url}?client_id=${process.env.REACT_APP_CLIENT_ID}`
+        } else {
+          return;
+        }
+      }
+      audio.play()
       setIsPlaying(true)
     }
   }
 
   let content;
   if (isPlaying) {
-    content = <i onClick={playHandle} className="fas fa-pause">
+    content = <i onMouseOver={cursorExpand} onMouseOut={cursorBackToNormal} onClick={playHandle} className="fas fa-pause">
       <div className="player__line player__line--right"></div>
       <div className="player__line player__line--left"></div>
     </i>
   } else {
-    content = <i onClick={playHandle} className="fas fa-play">
+    content = <i onMouseOver={cursorExpand} onMouseOut={cursorBackToNormal} onClick={playHandle} className="fas fa-play">
       <div className="player__line player__line--right"></div>
       <div className="player__line player__line--left"></div>
     </i>
