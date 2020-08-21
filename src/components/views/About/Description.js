@@ -28,17 +28,19 @@ function Description() {
         }, height: 0, ease: 'power2.out'
       })
     }
-    setTimeout(() => {
-      gsap.from('.about__description__img', {
-        scrollTrigger: {
-          trigger: '.about__description__img-container',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1
-        },
-        scale: 1.2
-      })
-    }, 700)
+    if (!isMobile()) {
+      setTimeout(() => {
+        gsap.from('.about__description__img', {
+          scrollTrigger: {
+            trigger: '.about__description__img-container',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          },
+          scale: 1.2
+        })
+      }, 700)
+    }
   }, [loaded])
 
   return (

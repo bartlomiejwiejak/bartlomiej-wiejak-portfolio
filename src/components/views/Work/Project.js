@@ -6,7 +6,7 @@ import Button from '../../shared/Button';
 import Link from '../../shared/Link';
 import { RoutingContext } from '../../../context';
 import hideInterface from '../../../animations/hideInterface';
-import skewConfig from '../../../config/skewScrolling';
+import scrollInstant from '../../../functions/scrollInstant';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
 
@@ -34,6 +34,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) =>
       gsap.set(button, { color: '#999' })
     }
     if (animating && path === url) {
+      removeListeners();
       const project = projectRef.current;
       const btn = project.querySelector('.button');
 
@@ -41,11 +42,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) =>
       gsap.to([btn, '.work__pagination div'], 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 });
       gsap.to('.circle', 1, {
         y: '100%', x: '100%', ease: 'power2.out', onComplete: () => {
-          gsap.set('.scroll', { y: 0 })
-          window.scrollTo(0, 0)
-          gsap.set('.scroll', { y: 0 })           //prevents screen flashing
-          skewConfig.previous = 0;
-          gsap.set('.scroll', { y: 0 })
+          scrollInstant(0)
           setAnimating(false)
           history.push(path)
         }

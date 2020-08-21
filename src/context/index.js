@@ -8,10 +8,11 @@ export default ({ children }) => {
   const [animating, setAnimating] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [lastProject, setLastProject] = useState(null);
+  const [analyser, setAnalyser] = useState(null);
 
   return (
     <LoadingContext.Provider
-      value={{ loaded: loaded, setIsLoaded: setLoaded }}>
+      value={{ loaded: loaded, setIsLoaded: setLoaded, analyser: analyser, setAnalyser: setAnalyser }}>
       <RoutingContext.Provider
         value={{ path: path, setPath: setPath, setAnimating: setAnimating, animating: animating, lastProject: lastProject, setLastProject: setLastProject }}>
         {children}

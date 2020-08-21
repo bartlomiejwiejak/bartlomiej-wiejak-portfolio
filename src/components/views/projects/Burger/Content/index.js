@@ -19,14 +19,14 @@ function Content() {
     <div className='burger__content'>
       <Info />
       <div className='burger__container'>
-        <div className='content-wrapper'><img className='burger__big' src={homeDesktop} alt='burger home dekstop' /></div>
-        <img className='burger__mobile' src={homeMobile} alt="burger home mobile" />
+        <div className='content-wrapper'><img draggable={false} className='burger__big' src={homeDesktop} alt='burger home dekstop' /></div>
+        <img draggable={false} className='burger__mobile' src={homeMobile} alt="burger home mobile" />
       </div>
       <div className='content-wrapper'><video src={homeVideo} autoPlay loop className="burger__video"></video></div>
       <div className="burger__mobile-container">
-        <img src={mobile1} alt='mobile burger 1' className="burger__mobile-container__img" />
-        <img src={mobile2} alt='mobile burger 1' className="burger__mobile-container__img" />
-        <img src={mobile3} alt='mobile burger 1' className="burger__mobile-container__img" />
+        <img draggable={false} src={mobile1} alt='mobile burger 1' className="burger__mobile-container__img" />
+        <img draggable={false} src={mobile2} alt='mobile burger 1' className="burger__mobile-container__img" />
+        <img draggable={false} src={mobile3} alt='mobile burger 1' className="burger__mobile-container__img" />
       </div>
       <div className='content-wrapper'><video src={buildingVideo} autoPlay loop className='burger__video'></video></div>
       <div className="burger__container">
@@ -34,7 +34,7 @@ function Content() {
         <video autoPlay loop className='burger__mobile' src={homeLoadMobile}></video>
       </div>
       <div className="burger__container">
-        <div className="content-wrapper"><img src={order} alt="order" className="burger__big" /></div>
+        <div className="content-wrapper"><img draggable={false} src={order} alt="order" className="burger__big" /></div>
         <video loop autoPlay src={sideDrawer} className="burger__mobile"></video>
       </div>
       <div className="burger__next-project">

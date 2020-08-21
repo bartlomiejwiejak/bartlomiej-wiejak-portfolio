@@ -1,25 +1,74 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import gsap from 'gsap';
 
 import cursorExpand from '../../../animations/cursorExpand';
 import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+import { LoadingContext } from '../../../context/index';
+import isMobile from '../../../functions/isMobile';
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false)
+  const { loaded, analyser, setAnalyser } = useContext(LoadingContext);
 
   useEffect(() => {
-    if (document.querySelector('.player__audio')) {
-      if (!document.querySelector('.player__audio').paused) {
-        setIsPlaying(true)
+    if (loaded) {
+      if (document.querySelector('.player__audio')) {
+        if (!document.querySelector('.player__audio').paused) {
+          setIsPlaying(true)
+        }
+        return;
       }
-      return;
+      const audio = document.createElement('audio');
+      audio.className = 'player__audio';
+      audio.loop = true;
+      audio.crossOrigin = "anonymous";
+      audio.style.display = 'none';
+      audio.volume = .5
+      document.getElementById('root').appendChild(audio);
     }
-    const audio = document.createElement('audio');
-    audio.className = 'player__audio';
-    audio.loop = true;
-    audio.style.display = 'none';
-    audio.volume = .5
-    document.getElementById('root').appendChild(audio);
-  }, [])
+  }, [loaded])
+
+  useEffect(() => {
+    let animation;
+    if (loaded & isPlaying) {
+      let contextAnalyser;
+      if (!analyser) {
+        const audio = document.querySelector('.player__audio')
+        const context = new AudioContext();
+        contextAnalyser = context.createAnalyser();
+        const source = context.createMediaElementSource(audio);
+        source.connect(contextAnalyser);
+        contextAnalyser.connect(context.destination);
+        setAnalyser(contextAnalyser)
+      } else {
+        contextAnalyser = analyser;
+      }
+
+      let animatingContent = (fbc_array) => {
+        gsap.set('.player__line', { width: fbc_array[1] / 5 })
+        gsap.set('.light', { scale: .5 + (fbc_array[1] / 2) / 100 })
+      }
+      if (isMobile()) {
+        animatingContent = (fbc_array) => {
+          gsap.set('.player__line', { width: fbc_array[1] / 5 })
+        }
+      }
+
+      const frameLooper = () => {
+        const fbc_array = new Uint8Array(contextAnalyser.frequencyBinCount);
+        contextAnalyser.getByteFrequencyData(fbc_array);
+        if (!!document.querySelector('.light') || !!document.querySelector('.player__line--left')) {
+          animatingContent(fbc_array);
+          requestAnimationFrame(frameLooper)
+        } else return;
+      }
+
+      animation = requestAnimationFrame(frameLooper);
+
+      return () => cancelAnimationFrame(animation);
+    }
+    return () => cancelAnimationFrame(animation);
+  }, [isPlaying, loaded, analyser, setAnalyser])
 
   const playHandle = async () => {
     if (isPlaying) {

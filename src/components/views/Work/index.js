@@ -82,7 +82,7 @@ const Work = ({ setBodyHeight }) => {
     if (!canScrollRef.current) return;
     const projects = document.querySelectorAll('.project');
     const currentY = event.touches[0].clientY;
-    if (Math.abs(currentY - initialYRef.current) < 50) return;
+    if (Math.abs(currentY - initialYRef.current) < 100) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
     if (direction === 1) {
       const isLastProject = currentProjectIndexRef.current === projects.length - 1;
@@ -122,7 +122,7 @@ const Work = ({ setBodyHeight }) => {
     if (!canScrollRef.current) return;
     const projects = document.querySelectorAll('.project');
     const currentY = event.clientY;
-    if (Math.abs(currentY - initialMouseClientYRef.current) < 50) return;
+    if (Math.abs(currentY - initialMouseClientYRef.current) < 100) return;
     const direction = initialMouseClientYRef.current - currentY > 0 ? 1 : -1;
     if (direction === 1) {
       const isLastProject = currentProjectIndexRef.current === projects.length - 1;
@@ -178,7 +178,7 @@ const Work = ({ setBodyHeight }) => {
 
   useEffect(() => {
     if (animating && (path === '/' || path === '/about')) {
-      document.removeEventListener('wheel', slider)
+      removeListeners();
       gsap.set('.project__title div', { y: 0 })
       gsap.to('.work__pagination__active', 1, { y: 0, ease: 'power2.out' })
       gsap.to('.project .button', 1, { y: '100%', ease: 'power2.out' })
@@ -203,12 +203,13 @@ const Work = ({ setBodyHeight }) => {
         }, 300)
       })
     }
-  }, [animating, path, slider, history, setAnimating])
+  }, [animating, path, slider, history, setAnimating, removeListeners])
 
   useLockBodyScroll(true)
   useEffect(() => {
     setBodyHeight()
   }, [setBodyHeight])
+
   useEffect(() => {
     if (loaded && lastProject === null) {
       scrollInstant(0);
@@ -257,7 +258,7 @@ const Work = ({ setBodyHeight }) => {
       {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
       {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
       <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
-      <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' />
+      <Project src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
       <Project src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
       <Project src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
     </div>

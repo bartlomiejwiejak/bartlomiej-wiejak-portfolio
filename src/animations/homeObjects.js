@@ -13,8 +13,8 @@ export default (e) => {
   document.querySelectorAll('.home__welcome--shadow > span').forEach((el, i) => {
     const span = document.querySelector(`.home > .home__welcome > span:nth-of-type(${i + 1})`)
     const spanRect = span.getBoundingClientRect();
-    const spanX = (spanRect.x + spanRect.width / 2 - e.clientX) * 0.15;
-    const spanY = (spanRect.y + spanRect.height / 2 - e.clientY) * 0.25;
+    const spanX = (spanRect.x + spanRect.width / 2 - e.clientX) * 0.1;
+    const spanY = (spanRect.y + spanRect.height / 2 - e.clientY) * 0.2;
 
     gsap.to(el, .2, { x: spanX, y: spanY, scaleX: 1 + Math.abs(spanX / spanRect.width), scaleY: 1 + Math.abs(spanY / spanRect.height) })
   })

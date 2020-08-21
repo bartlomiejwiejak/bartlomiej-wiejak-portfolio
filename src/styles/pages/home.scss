@@ -22,8 +22,18 @@
     max-width: 40rem;
     padding-top: 15rem;
   }
+  @media (max-height: 600px) {
+    padding-top: 10rem;
+  }
+  @media (max-height: 500px) {
+    padding-top: 5rem;
+  }
   @media (max-width: 850px) and (orientation: landscape) {
     padding-top: 10rem;
+    max-width: 60rem;
+  }
+  @media (max-width: 600px) and (orientation: landscape) {
+    padding-top: 7.5rem;
     max-width: 60rem;
   }
   &__welcome {
