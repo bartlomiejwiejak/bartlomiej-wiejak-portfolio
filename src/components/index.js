@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import gsap from 'gsap';
 
 import Header from './layout/Header';
 import Cursor from './layout/Cursor';
@@ -13,7 +14,6 @@ import BurgerProject from './views/projects/Burger'
 import skewConfig from '../config/skewScrolling';
 import ScrollBar from './layout/ScrollBar';
 import useBodyHeight from '../hooks/useBodyHeight';
-import gsap from 'gsap';
 
 export default function () {
 

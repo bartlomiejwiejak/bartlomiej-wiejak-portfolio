@@ -1,35 +1,28 @@
 .contact {
   position: fixed;
   mix-blend-mode: difference;
-  font-size: 1.5rem;
   transform: rotate(-90deg);
   transform-origin: 0 0;
   letter-spacing: 2px;
   z-index: 3;
   left: 5rem;
-  bottom: 5rem;
+  bottom: 4rem;
   backface-visibility: hidden;
-  @include respond(xxsmall) {
-    font-size: 1.2rem;
-  }
-  .button {
-    transform: translateY(100%);
-  }
   @include respond(large) {
     left: 4rem;
-    bottom: 4rem;
+    bottom: 3rem;
   }
   @include respond(small) {
     left: 3rem;
-    bottom: 3rem;
+    bottom: 2rem;
   }
   @include respond(xxsmall) {
     left: 1rem;
-    bottom: 1rem;
+    bottom: 0rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
     left: 1rem;
-    bottom: 1rem;
+    bottom: 0rem;
     font-size: 1.2rem;
   }
   &__list {
@@ -40,6 +33,13 @@
     margin-right: 5rem;
     position: relative;
     overflow: hidden;
+    font-size: 1.5rem;
+    .button {
+      transform: translateY(100%);
+    }
+    @include respond(xxsmall) {
+      font-size: 1.2rem;
+    }
     @include respond(large) {
       margin-right: 4rem;
     }
@@ -51,6 +51,27 @@
     }
     @media (max-width: 850px) and (orientation: landscape) {
       margin-right: 1rem;
+    }
+  }
+  &__reach {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    letter-spacing: 1px;
+    margin-bottom: 5rem;
+    overflow: hidden;
+    z-index: 3;
+    @include respond(large) {
+      margin-bottom: 4rem;
+    }
+    @include respond(small) {
+      margin-bottom: 3rem;
+    }
+    @include respond(xxsmall) {
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 850px) and (orientation: landscape) {
+      margin-bottom: 1rem;
     }
   }
 }

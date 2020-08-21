@@ -13,7 +13,7 @@
   transform: translate(-65px,-65px);
   mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 3;
+  z-index: 4;
   }
   &__dot {
     &-container {
@@ -23,7 +23,7 @@
       transform: translate(-65px,-65px);
       pointer-events: none;
       mix-blend-mode: difference;
-      z-index: 3;
+      z-index: 4;
 
     }
     width: 6px;

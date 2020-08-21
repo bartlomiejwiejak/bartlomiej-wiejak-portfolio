@@ -23,7 +23,7 @@
         margin-left: 3rem;
       }
       @include respond(xxsmall) {
-        margin-left: 2rem;
+        margin-left: 1rem;
       }
       @media (max-width: 850px) and (orientation: landscape) {
         margin-left: 1rem;

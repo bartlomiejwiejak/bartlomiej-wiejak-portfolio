@@ -29,7 +29,7 @@ function Circle() {
           })
         }
       })
-    }, 500)
+    }, 700)
   }, [loaded])
 
   return (

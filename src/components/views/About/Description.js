@@ -38,7 +38,7 @@ function Description() {
         },
         scale: 1.2
       })
-    }, 500)
+    }, 700)
   }, [loaded])
 
   return (

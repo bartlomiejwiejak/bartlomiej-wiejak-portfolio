@@ -12,6 +12,7 @@ import { LoadingContext } from '../../../context';
 import Contact from './Contact';
 import Light from './Light';
 import Header from './Header';
+import Player from './Player';
 
 const Home = ({ setBodyHeight }) => {
 
@@ -26,6 +27,8 @@ const Home = ({ setBodyHeight }) => {
         gsap.to('.light', .5, { opacity: 0 })
       }
       hideInterface();
+      gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0 })
+      gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0 })
       gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power2.out', delay: .2 });
       gsap.to('.home > .home__welcome > span span', .5, {
         color: 'transparent'
@@ -53,6 +56,8 @@ const Home = ({ setBodyHeight }) => {
       }
       showInterface();
       gsap.to('.contact__item .button', 1, { y: 0, ease: 'power2.out' });
+      gsap.to('.player__content i', 1, { y: 0, autoAlpha: 1 })
+      gsap.to('.player__song span', 1, { y: 0, autoAlpha: 1 })
       gsap.to('.home > .home__welcome >  span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
       gsap.to('.home .home__welcome--shadow span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
     }
@@ -69,6 +74,7 @@ const Home = ({ setBodyHeight }) => {
   return (
     <>
       {ReactDOM.createPortal(<Contact />, document.getElementById('root'))}
+      {ReactDOM.createPortal(<Player />, document.getElementById('root'))}
       <Light />
       <div className="home">
         <Header>

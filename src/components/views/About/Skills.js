@@ -135,7 +135,7 @@ function Skills() {
         delay: .7,
         ease: 'power2.out'
       })
-    }, 500)
+    }, 700)
   }, [loaded])
 
   return (

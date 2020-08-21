@@ -25,15 +25,11 @@ const About = ({ setBodyHeight }) => {
   const { animating, path, setAnimating } = useContext(RoutingContext);
   const { loaded } = useContext(LoadingContext);
   const history = useHistory();
-  const [locked, setLocked] = useToggle(!loaded);
+  const [locked, setLocked] = useToggle(loaded);
   useLockBodyScroll(locked);
 
   useEffect(() => {
     if (!loaded) return;
-    setTimeout(() => {
-      setBodyHeight()
-      scrollbarAppear()
-    }, 500)
     setBodyHeight()
   }, [setBodyHeight, loaded])
 
@@ -75,15 +71,16 @@ const About = ({ setBodyHeight }) => {
   useEffect(() => {
     scrollInstant(0);
     if (loaded) {
-      setLocked(false)
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
-
       let topText = '100px';
       if (isMobile()) {
         topText = '50px';
       }
+      setTimeout(scrollbarAppear, 500);
       setTimeout(() => {
+        setLocked(false);
+        setBodyHeight();
         gsap.registerPlugin(ScrollTrigger)
         document.querySelectorAll('.about span span').forEach(span => {
           if (span.classList.contains('highlight-text')) return;
@@ -92,10 +89,10 @@ const About = ({ setBodyHeight }) => {
           })
         })
         gsap.to('.about .highlight-text', 1.5, { y: 0, autoAlpha: 1, scrollTrigger: '.about .highlight-text' })
-      }, 500)
+      }, 1000)
     }
+  }, [loaded, setLocked, setBodyHeight])
 
-  }, [loaded, setLocked])
   return (
     <div className='about'>
       <Header />
