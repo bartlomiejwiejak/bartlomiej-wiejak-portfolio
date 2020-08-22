@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import cursorExpandBig from '../../animations/cursorExpandBig';
-import cursorBackToNormal from '../../animations/cursorBackToNormal';
+import { cursorExpandBig } from '../../animations/cursor';
+import { cursorBackToNormal } from '../../animations/cursor';
 import Link from './Link';
-import cursorMultiDot from '../../animations/cursorMultiDot'
+import { cursorMultiDot } from '../../animations/cursor'
 import isMobile from '../../functions/isMobile'
 
 const HighlightText = ({ children, type, to }) => {

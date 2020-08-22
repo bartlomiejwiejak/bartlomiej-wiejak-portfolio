@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 
 import isMobile from '../../../functions/isMobile';
-import showInterface from '../../../animations/showInterface';
+import { showInterface } from '../../../animations/interface';
 import homeObjects from '../../../animations/homeObjects';
 import { useHistory } from 'react-router-dom';
 import { RoutingContext } from '../../../context';
-import hideInterface from '../../../animations/hideInterface';
+import { hideInterface } from '../../../animations/interface';
 import { LoadingContext } from '../../../context';
 import Contact from './Contact';
 import Light from './Light';
 import Header from './Header';
 import Player from './Player';
-import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+import { cursorBackToNormal } from '../../../animations/cursor';
 
 const Home = ({ setBodyHeight }) => {
   const { animating, path, setAnimating } = useContext(RoutingContext);

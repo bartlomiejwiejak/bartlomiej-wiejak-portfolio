@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import gsap from 'gsap';
 
-import cursorExpand from '../../../animations/cursorExpand';
-import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+import { cursorExpand } from '../../../animations/cursor';
+import { cursorBackToNormal } from '../../../animations/cursor';
 import { LoadingContext } from '../../../context/index';
 import isMobile from '../../../functions/isMobile';
 

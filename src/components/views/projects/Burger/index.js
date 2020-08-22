@@ -7,7 +7,7 @@ import { LoadingContext } from '../../../../context';
 import ProjectHeader from '../ProjectHeader';
 import headerImg from '../../../../assets/projects/burger/header.png';
 import Content from './Content';
-import cursorBackToNormal from '../../../../animations/cursorBackToNormal';
+import { cursorBackToNormal } from '../../../../animations/cursor';
 
 const Burger = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);

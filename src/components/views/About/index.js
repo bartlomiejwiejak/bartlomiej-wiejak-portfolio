@@ -4,8 +4,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useLockBodyScroll, useToggle } from 'react-use';
 import gsap from 'gsap';
 
-import showInterface from '../../../animations/showInterface';
-import hideInterface from '../../../animations/hideInterface';
+import { showInterface } from '../../../animations/interface';
+import { hideInterface } from '../../../animations/interface';
 import { RoutingContext } from '../../../context';
 import scrollTo from '../../../functions/scrollTo';
 import { LoadingContext } from '../../../context';
@@ -18,7 +18,7 @@ import Circle from './Circle';
 import Skills from './Skills';
 import Contact from './Contact';
 import Footer from './Footer';
-import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+import { cursorBackToNormal } from '../../../animations/cursor';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
 const About = ({ setBodyHeight }) => {

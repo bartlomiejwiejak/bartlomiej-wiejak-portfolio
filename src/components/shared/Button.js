@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import cursorExpand from '../../animations/cursorExpand';
-import cursorBackToNormal from '../../animations/cursorBackToNormal';
-import cursorMultiDot from '../../animations/cursorMultiDot';
+import { cursorExpand } from '../../animations/cursor';
+import { cursorBackToNormal } from '../../animations/cursor';
+import { cursorMultiDot } from '../../animations/cursor';
 import isMobile from '../../functions/isMobile';
 
 const Button = ({ children, type, href }) => {

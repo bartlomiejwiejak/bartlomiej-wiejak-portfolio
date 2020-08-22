@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import { LoadingContext, RoutingContext } from '../../../context';
 import { useToggle, useLockBodyScroll } from 'react-use';
-import showInterface from '../../../animations/showInterface';
+import { showInterface } from '../../../animations/interface';
 import scrollTo from '../../../functions/scrollTo';
-import hideInterface from '../../../animations/hideInterface';
+import { hideInterface } from '../../../animations/interface';
 import scrollInstant from '../../../functions/scrollInstant';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 

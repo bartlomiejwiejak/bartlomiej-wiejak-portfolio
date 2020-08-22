@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import Button from '../../shared/Button';
 import Link from '../../shared/Link';
 import { RoutingContext } from '../../../context';
-import hideInterface from '../../../animations/hideInterface';
+import { hideInterface } from '../../../animations/interface';
 import scrollInstant from '../../../functions/scrollInstant';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {

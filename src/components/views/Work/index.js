@@ -4,18 +4,18 @@ import { useHistory } from 'react-router-dom';
 import { useLockBodyScroll } from 'react-use';
 import gsap from 'gsap';
 
-import showInterface from '../../../animations/showInterface';
+import { showInterface } from '../../../animations/interface';
 import { LoadingContext, RoutingContext } from '../../../context';
 import Project from './Project';
 import burger from '../../../assets/projects/burger/header.png';
 import scrollTo from '../../../functions/scrollTo';
-import hideInterface from '../../../animations/hideInterface';
+import { hideInterface } from '../../../animations/interface';
 import incoming from '../../../assets/projects/incoming.jpg';
-import cursorMultiDot from '../../../animations/cursorMultiDot';
+import { cursorMultiDot } from '../../../animations/cursor';
 import scrollInstant from '../../../functions/scrollInstant';
 import WorkPagination from './WorkPagination';
 import Circle from './Circle';
-import cursorBackToNormal from '../../../animations/cursorBackToNormal';
+import { cursorBackToNormal } from '../../../animations/cursor';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -25,20 +25,19 @@ const Work = ({ setBodyHeight }) => {
   const initialYRef = useRef(0);
   const history = useHistory();
   const initialMouseClientYRef = useRef(0);
+  const projectsRef = useRef(null);
 
   if (lastProject !== null) {
     currentProjectIndexRef.current = lastProject;
   }
 
-  const slider = useCallback((event) => {
-    if (!canScrollRef.current) return;
+  useEffect(() => {
+    projectsRef.current = document.querySelectorAll('.project')
+  }, [])
 
-    const projects = document.querySelectorAll('.project');
-
-    const direction = event.deltaY < 0 ? -1 : 1;
-
+  const slideHandle = useCallback((direction) => {
     if (direction === 1) {
-      const isLastProject = currentProjectIndexRef.current === projects.length - 1;
+      const isLastProject = currentProjectIndexRef.current === projectsRef.current.length - 1;
       if (isLastProject) return;
     }
     if (direction === -1) {
@@ -49,70 +48,51 @@ const Work = ({ setBodyHeight }) => {
     if (navigator.userAgent.indexOf("Firefox") > -1) {
       if (direction > 0) {
         gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { y: 0 }, { y: '-100%', ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { y: '100%' }, { y: 0, delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { y: 0 }, { y: '-100%', ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { y: '100%' }, { y: 0, delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
         gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { y: 0 }, { y: '100%', ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { y: '-100%' }, { y: 0, delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { y: 0 }, { y: '100%', ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { y: '-100%' }, { y: 0, delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
       if (direction > 0) {
         gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
         gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
-        gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       window.scrollTo({
-        top: projects[currentProjectIndexRef.current].offsetTop,
+        top: projectsRef.current[currentProjectIndexRef.current].offsetTop,
         behavior: 'smooth'
       })
     }, 300)
   }, [])
 
+  const slider = useCallback((event) => {
+    if (!canScrollRef.current) return;
+    const direction = event.deltaY < 0 ? -1 : 1;
+
+    slideHandle(direction)
+  }, [slideHandle])
+
   const swipeListen = useCallback((event) => {
     if (!canScrollRef.current) return;
-    const projects = document.querySelectorAll('.project');
     const currentY = event.touches[0].clientY;
     if (Math.abs(currentY - initialYRef.current) < 100) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
-    if (direction === 1) {
-      const isLastProject = currentProjectIndexRef.current === projects.length - 1;
-      if (isLastProject) return;
-    }
-    if (direction === -1) {
-      const firstProject = currentProjectIndexRef.current === 0;
-      if (firstProject) return;
-    }
-    canScrollRef.current = false;
-    if (direction > 0) {
-      gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
-    }
-    if (direction < 0) {
-      gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
-    }
-    setTimeout(() => {
-      currentProjectIndexRef.current += direction;
-      gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
-      window.scrollTo({
-        top: projects[currentProjectIndexRef.current].offsetTop,
-        behavior: 'smooth'
-      })
-    }, 300)
-  }, [])
+
+    slideHandle(direction)
+  }, [slideHandle])
 
   const swiper = useCallback((event) => {
     if (!canScrollRef.current) return;
@@ -121,38 +101,12 @@ const Work = ({ setBodyHeight }) => {
 
   const swipeMouseListen = useCallback((event) => {
     if (!canScrollRef.current) return;
-    const projects = document.querySelectorAll('.project');
     const currentY = event.clientY;
     if (Math.abs(currentY - initialMouseClientYRef.current) < 100) return;
     const direction = initialMouseClientYRef.current - currentY > 0 ? 1 : -1;
-    if (direction === 1) {
-      const isLastProject = currentProjectIndexRef.current === projects.length - 1;
-      if (isLastProject) return;
-    }
-    if (direction === -1) {
-      const firstProject = currentProjectIndexRef.current === 0;
-      if (firstProject) return;
-    }
-    canScrollRef.current = false;
-    if (direction > 0) {
-      gsap.to('.circle', 1, { rotate: '+=90deg', delay: .5, ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
-    }
-    if (direction < 0) {
-      gsap.to('.circle', 1, { rotate: '-=90deg', delay: .5, ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
-      gsap.fromTo(projects[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.5, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .5, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
-    }
-    setTimeout(() => {
-      currentProjectIndexRef.current += direction;
-      gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
-      window.scrollTo({
-        top: projects[currentProjectIndexRef.current].offsetTop,
-        behavior: 'smooth'
-      })
-    }, 300)
-  }, [])
+
+    slideHandle(direction)
+  }, [slideHandle])
 
   const swiperMouse = useCallback((event) => {
     if (!canScrollRef.current) return;
