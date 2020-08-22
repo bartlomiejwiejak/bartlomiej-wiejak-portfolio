@@ -38,6 +38,8 @@
     margin: 25rem 0;
     color: var(--grey);
     position: relative;
+    display: flex;
+    justify-content: center;
     @include respond(xsmall) {
       font-size: 5rem;
     }
