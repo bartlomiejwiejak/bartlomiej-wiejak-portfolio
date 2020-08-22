@@ -26,7 +26,7 @@ const Loader = () => {
 
   useEffect(() => {
     window.addEventListener('load', () => {
-      setLoaded(true)
+      //setLoaded(true)
     })
   }, [])
   useEffect(() => {
@@ -59,20 +59,18 @@ const Loader = () => {
   if (mounted) {
     content = (
       <div className='loader'>
-        <div className="loader__content">
-          <div className="loader__name-box">
-            <h1><span>Bartłomiej Wiejak</span></h1>
-            <h2><span>Portfolio 2020</span></h2>
-          </div>
-          <div className="loader__loading">
-            <div className="loader__loading-right"></div>
-            <div className="loader__loading-left"></div>
-            <div className="loader__loading-text">
-              <span>LOADING</span>
-            </div>
-          </div>
-          <div className="loader__copyright"><span>Copyright 2020 © Bartłomiej Wiejak</span></div>
+        <div className="loader__name-box">
+          <h1><span>Bartłomiej Wiejak</span></h1>
+          <h2><span>Portfolio 2020</span></h2>
         </div>
+        <div className="loader__loading">
+          <div className="loader__loading-right"></div>
+          <div className="loader__loading-left"></div>
+          <div className="loader__loading-text">
+            <span>LOADING</span>
+          </div>
+        </div>
+        <div className="loader__copyright"><span>Copyright 2020 © Bartłomiej Wiejak</span></div>
       </div>
     )
   }
