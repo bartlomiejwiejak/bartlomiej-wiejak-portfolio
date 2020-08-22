@@ -27,7 +27,7 @@ function Skills() {
       topTechnologies = '100px';
     }
     gsap.registerPlugin(ScrollTrigger);
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       gsap.to('.about__skills__technologies__technology--2 div', .7, {
         scrollTrigger: {
           trigger: '.about__skills__technologies__technology--2',
@@ -136,6 +136,9 @@ function Skills() {
         ease: 'power2.out'
       })
     }, 700)
+    return () => {
+      if (timeout) clearTimeout(timeout)
+    }
   }, [loaded])
 
   return (

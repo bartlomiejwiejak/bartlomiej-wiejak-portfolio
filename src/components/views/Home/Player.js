@@ -46,7 +46,8 @@ function Player() {
 
       let animatingContent = (fbc_array) => {
         gsap.set('.player__line', { width: fbc_array[1] / 5 })
-        gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 2) / 100, scaleY: .5 + (fbc_array[99] / 2) / 100 })
+        gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 })
+        gsap.set('.home__welcome--shadow', { scale: 1.05 + (fbc_array[1] / 50) / 100 })
       }
       if (isMobile()) {
         animatingContent = (fbc_array) => {

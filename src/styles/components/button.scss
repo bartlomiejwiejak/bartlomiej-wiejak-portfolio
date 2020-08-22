@@ -3,6 +3,9 @@
   display: inline-block;
   &:hover &__underline--fill {
     width: 100%;
+    @include respond(xxsmall) {
+      width: 0%;
+    }
   }
   &__content {
     position: relative;

@@ -166,6 +166,7 @@ const Work = ({ setBodyHeight }) => {
   }, [setBodyHeight])
 
   useEffect(() => {
+    let timeout;
     if (loaded && lastProject === null) {
       scrollInstant(0);
       cursorBackToNormal()
@@ -176,7 +177,7 @@ const Work = ({ setBodyHeight }) => {
         gsap.to('.project__img-reveal', 1.4, { width: 0 })
         gsap.from('.project__img', 1.4, { scale: 1.6 })
       }, 500)
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         showInterface();
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
         gsap.to('.project__title div', 1, { y: 0 })
@@ -186,7 +187,10 @@ const Work = ({ setBodyHeight }) => {
         })
       }, 2000)
     }
-    return removeListeners;
+    return () => {
+      removeListeners();
+      clearTimeout(timeout)
+    }
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
 
   useEffect(() => {

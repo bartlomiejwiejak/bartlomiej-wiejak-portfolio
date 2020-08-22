@@ -6,6 +6,9 @@
   bottom: 0;
   mix-blend-mode: difference;
   z-index: 4;
+  @include respond(xsmall) {
+    display: none;
+  }
   &__thumb {
     background-color: var(--white);
     position: absolute;

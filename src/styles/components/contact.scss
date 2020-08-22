@@ -17,7 +17,7 @@
     bottom: 2rem;
   }
   @include respond(xxsmall) {
-    left: 1rem;
+    left: 1.5rem;
     bottom: 0rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
@@ -47,10 +47,10 @@
       margin-right: 3rem;
     }
     @include respond(xxsmall) {
-      margin-right: 1rem;
+      margin-right: 1.5rem;
     }
     @media (max-width: 850px) and (orientation: landscape) {
-      margin-right: 1rem;
+      margin-right: 1.5rem;
     }
   }
   &__reach {
@@ -68,10 +68,10 @@
       margin-bottom: 3rem;
     }
     @include respond(xxsmall) {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     @media (max-width: 850px) and (orientation: landscape) {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 }

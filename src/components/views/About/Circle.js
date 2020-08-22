@@ -11,8 +11,9 @@ function Circle() {
 
   useEffect(() => {
     if (!loaded) return
+    let timeout;
     gsap.registerPlugin(ScrollTrigger)
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       gsap.to('.about__circle img', .7, {
         y: 0, autoAlpha: 1, scrollTrigger: {
           trigger: '.about__circle',
@@ -30,6 +31,9 @@ function Circle() {
         }
       })
     }, 700)
+    return () => {
+      if (timeout) clearTimeout(timeout)
+    }
   }, [loaded])
 
   return (

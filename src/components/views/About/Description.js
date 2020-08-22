@@ -12,6 +12,7 @@ function Description() {
 
   useEffect(() => {
     if (!loaded) return;
+    let timeout;
     gsap.to('.about__description__img-reveal', .7, { opacity: 1 })
     gsap.to('.about__description__img', .7, { opacity: 1 })
     gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +30,7 @@ function Description() {
       })
     }
     if (!isMobile()) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         gsap.from('.about__description__img', {
           scrollTrigger: {
             trigger: '.about__description__img-container',
@@ -40,6 +41,9 @@ function Description() {
           scale: 1.2
         })
       }, 700)
+    }
+    return () => {
+      if (timeout) clearTimeout(timeout)
     }
   }, [loaded])
 

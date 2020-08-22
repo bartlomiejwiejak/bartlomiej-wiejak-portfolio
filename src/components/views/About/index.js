@@ -72,6 +72,7 @@ const About = ({ setBodyHeight }) => {
 
   useEffect(() => {
     scrollInstant(0);
+    let timeout;
     if (loaded) {
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       cursorBackToNormal();
@@ -81,7 +82,7 @@ const About = ({ setBodyHeight }) => {
         topText = '50px';
       }
       setTimeout(scrollbarAppear, 500);
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setLocked(false);
         setBodyHeight();
         gsap.registerPlugin(ScrollTrigger)
@@ -93,6 +94,9 @@ const About = ({ setBodyHeight }) => {
         })
         gsap.to('.about .highlight-text', 1.5, { y: 0, autoAlpha: 1, scrollTrigger: '.about .highlight-text' })
       }, 1000)
+    }
+    return () => {
+      if (timeout) clearTimeout(timeout)
     }
   }, [loaded, setLocked, setBodyHeight])
 
