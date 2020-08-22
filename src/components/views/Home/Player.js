@@ -5,6 +5,7 @@ import { cursorExpand } from '../../../animations/cursor';
 import { cursorBackToNormal } from '../../../animations/cursor';
 import { LoadingContext } from '../../../context/index';
 import isMobile from '../../../functions/isMobile';
+import audio from '../../../config/player';
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -12,19 +13,10 @@ function Player() {
 
   useEffect(() => {
     if (loaded) {
-      if (document.querySelector('.player__audio')) {
-        if (!document.querySelector('.player__audio').paused) {
-          setIsPlaying(true)
-        }
-        return;
+      if (!audio.paused) {
+        setIsPlaying(true)
       }
-      const audio = document.createElement('audio');
-      audio.className = 'player__audio';
-      audio.loop = true;
-      audio.crossOrigin = "anonymous";
-      audio.style.display = 'none';
-      audio.volume = .5
-      document.getElementById('root').appendChild(audio);
+      return;
     }
   }, [loaded])
 
@@ -33,7 +25,6 @@ function Player() {
     if (loaded & isPlaying) {
       let contextAnalyser;
       if (!analyser) {
-        const audio = document.querySelector('.player__audio')
         const context = new AudioContext();
         contextAnalyser = context.createAnalyser();
         const source = context.createMediaElementSource(audio);
@@ -73,10 +64,9 @@ function Player() {
 
   const playHandle = async () => {
     if (isPlaying) {
-      document.querySelector('.player__audio').pause()
+      audio.pause()
       setIsPlaying(false)
     } else {
-      const audio = document.querySelector('.player__audio')
       if (!audio.src) {
         const url = `//api.soundcloud.com/resolve.json?url=https://soundcloud.com/downtownrecords/justice-dvno&client_id=${process.env.REACT_APP_CLIENT_ID}`
         const response = await fetch(url);

@@ -26,7 +26,7 @@ const Loader = () => {
 
   useEffect(() => {
     window.addEventListener('load', () => {
-      //setLoaded(true)
+      setLoaded(true)
     })
   }, [])
   useEffect(() => {
