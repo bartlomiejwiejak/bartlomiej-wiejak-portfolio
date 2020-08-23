@@ -18,7 +18,7 @@ import Circle from './Circle';
 import Skills from './Skills';
 import Contact from './Contact';
 import Footer from './Footer';
-import { cursorBackToNormal } from '../../../animations/cursor';
+import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
 const About = ({ setBodyHeight }) => {
@@ -39,6 +39,7 @@ const About = ({ setBodyHeight }) => {
     if (animating) {
       document.removeEventListener('mousemove', moveLines);
       hideInterface();
+      cursorHide();
       if (navigator.userAgent.indexOf("Firefox") > -1) {
         setTimeout(() => {
           gsap.to('.about__line--1', 1, {

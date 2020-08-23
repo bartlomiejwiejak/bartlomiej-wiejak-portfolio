@@ -1,0 +1,196 @@
+.project-content {
+  width: 100vw;
+  top: 100%;
+  position: relative;
+  &__header {
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+  }
+  &__section {
+    padding-top: 25rem;
+    margin-bottom: -1rem;
+    @include respond(xlarge) {
+      padding-top: 20rem;
+    }
+    @include respond(large) {
+      padding-top: 17.5rem;
+    }
+    @include respond(medium) {
+      padding-top: 15rem;
+    }
+    @include respond(small) {
+      padding-top: 12.5rem;
+    }
+    @include respond(xsmall) {
+      padding-top: 10rem;
+    }
+    &:last-child {
+      padding-bottom: 20rem;
+    @include respond(xlarge) {
+      padding-bottom: 15rem;
+    }
+    @include respond(large) {
+      padding-bottom: 12.5rem;
+    }
+    @include respond(medium) {
+      padding-bottom: 10rem;
+    }
+    @include respond(small) {
+      padding-bottom: 7.5rem;
+    }
+    @include respond(xsmall) {
+      padding-bottom: 5rem;
+    }
+    }
+    &--light {
+      background-color: var(--light);
+    }
+    &--dark {
+      background-color: var(--dark);
+    }
+  }
+  &__info {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: var(--white);
+    flex-wrap: wrap;
+    font-size: 2rem;
+    @include respond(xxsmall) {
+      width: 90vw;
+      font-size: 1.6rem;
+    }
+  }
+  &__title {
+    flex-basis: 50%;
+    font-size: inherit;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    @include respond(xxsmall) {
+      font-size: 2rem;
+    }
+  }
+  &__date {
+    flex-basis: 50%;
+    text-align: end;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    @include respond(xxsmall) {
+      font-size: 2rem;
+    }
+  }
+  &__launch {
+    margin-left: auto;
+    overflow: hidden;
+    i {
+      margin-left: 1rem;
+    }
+  }
+  &__description {
+    margin: 5rem 0;
+    @include respond(xxsmall) {
+      margin: 3rem 0;
+    }
+  }
+  span {
+    overflow: hidden;
+    display: inline-block;
+    span {
+      display: inline-block;
+      margin-right: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(100%);
+    }
+  }
+  &__image {
+    width: 100%;
+    &-wrapper {
+      width: 80%;
+      margin: 0 auto;
+      position: relative;
+      &--big {
+        width: 100vw;
+      }
+    }
+    &-container {
+      overflow: hidden;
+    }
+    &__mobile {
+    position: absolute;
+    bottom: -5vw;
+    right: 5vw;
+    width: 20%;
+    }
+  }
+  &__phones {
+    display: flex;
+    justify-content: space-evenly;
+    img {
+      width: 20%;
+      @include respond(xxsmall) {
+        width: 25%;
+      }
+    }
+  }
+  &__next-project {
+    text-align: center;
+    span {
+      span {
+        margin: 0;
+      }
+    }
+    p {
+      font-size: 2rem;
+    }
+    .highlight-text {
+      font-size: 18rem;
+      white-space: nowrap;
+      line-height: 1.3;
+      @include respond(xlarge) {
+        font-size: 16rem;
+      }
+      @include respond(large) {
+        font-size: 14rem;
+      }
+      @include respond(medium) {
+        font-size: 12rem;
+      }
+      @include respond(small) {
+        font-size: 10rem;
+      }
+      @include respond(xsmall) {
+        font-size: 8rem;
+      }
+      @include respond(xxsmall) {
+        font-size: 6rem;
+      }
+    }
+  }
+  &__line {
+    white-space: nowrap;
+    font-size: 28rem;
+    width: 100vw;
+    color: var(--white);
+    @include respond(xlarge) {
+      font-size: 22rem;
+    }
+    @include respond(large) {
+      font-size: 20rem;
+    }
+    @include respond(medium) {
+      font-size: 15rem;
+    }
+    @include respond(small) {
+      font-size: 12rem;
+    }
+    @include respond(xsmall) {
+      font-size: 10rem;
+    }
+    @include respond(xxsmall) {
+      font-size: 8rem;
+    }
+  }
+}

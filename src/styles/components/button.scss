@@ -1,6 +1,7 @@
 .button {
   position: relative;
   display: inline-block;
+  pointer-events: auto;
   &:hover &__underline--fill {
     width: 100%;
     @include respond(xxsmall) {

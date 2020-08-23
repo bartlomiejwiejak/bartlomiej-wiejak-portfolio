@@ -15,7 +15,7 @@ import { cursorMultiDot } from '../../../animations/cursor';
 import scrollInstant from '../../../functions/scrollInstant';
 import WorkPagination from './WorkPagination';
 import Circle from './Circle';
-import { cursorBackToNormal } from '../../../animations/cursor';
+import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 
 const Work = ({ setBodyHeight }) => {
   const { loaded } = useContext(LoadingContext);
@@ -88,30 +88,32 @@ const Work = ({ setBodyHeight }) => {
   const swipeListen = useCallback((event) => {
     if (!canScrollRef.current) return;
     const currentY = event.touches[0].clientY;
-    if (Math.abs(currentY - initialYRef.current) < 100) return;
+    if (Math.abs(currentY - initialYRef.current) < 50) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
-
+    document.removeEventListener('touchmove', swipeListen)
     slideHandle(direction)
   }, [slideHandle])
 
   const swiper = useCallback((event) => {
     if (!canScrollRef.current) return;
     initialYRef.current = event.touches[0].clientY;
-  }, [])
+    document.addEventListener('touchmove', swipeListen)
+  }, [swipeListen])
 
   const swipeMouseListen = useCallback((event) => {
     if (!canScrollRef.current) return;
     const currentY = event.clientY;
     if (Math.abs(currentY - initialMouseClientYRef.current) < 100) return;
     const direction = initialMouseClientYRef.current - currentY > 0 ? 1 : -1;
-
+    document.removeEventListener('mousemove', swipeMouseListen)
     slideHandle(direction)
   }, [slideHandle])
 
   const swiperMouse = useCallback((event) => {
     if (!canScrollRef.current) return;
     initialMouseClientYRef.current = event.clientY;
-  }, [])
+    document.addEventListener('mousemove', swipeMouseListen)
+  }, [swipeMouseListen])
 
   const removeListeners = useCallback(() => {
     document.removeEventListener('wheel', slider)
@@ -119,16 +121,16 @@ const Work = ({ setBodyHeight }) => {
     document.removeEventListener('touchmove', swipeListen)
     document.removeEventListener('mousedown', cursorMultiDot)
     document.removeEventListener('mousedown', swiperMouse)
-    document.removeEventListener('mouseup', swipeMouseListen)
+    document.removeEventListener('mousemove', swipeMouseListen)
   }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
 
   const addListeners = useCallback(() => {
     document.addEventListener('wheel', slider)
     document.addEventListener('touchstart', swiper)
-    document.addEventListener('touchmove', swipeListen)
     document.addEventListener('mousedown', cursorMultiDot)
     document.addEventListener('mousedown', swiperMouse)
-    document.addEventListener('mouseup', swipeMouseListen)
+    document.addEventListener('mouseup', () => document.removeEventListener('mousemove', swipeMouseListen))
+    document.addEventListener('touchend', () => document.removeEventListener('touchmove', swipeListen))
   }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
 
   useEffect(() => {
@@ -138,6 +140,7 @@ const Work = ({ setBodyHeight }) => {
       gsap.to('.work__pagination__active', 1, { y: 0, ease: 'power2.out' })
       gsap.to('.project .button', 1, { y: '100%', ease: 'power2.out' })
       hideInterface();
+      cursorHide()
       if (currentProjectIndexRef.current !== 0) {
         gsap.to('.circle', .5, { rotate: '-265deg', ease: 'power2.out' })
       }
@@ -149,7 +152,7 @@ const Work = ({ setBodyHeight }) => {
             gsap.to('.project__title--down', 1, { x: '300%', ease: 'power2.out' })
             gsap.to('.project__title--up', 1, { x: '-300%', ease: 'power2.out' })
             gsap.to('.project:nth-child(1) .project__img-container', 1, {
-              y: '-200%', scale: .5, onComplete: () => {
+              y: '-200%', scaleX: .1, scaleY: .5, onComplete: () => {
                 setAnimating(false)
                 history.push(path)
               }
@@ -169,7 +172,6 @@ const Work = ({ setBodyHeight }) => {
     let timeout;
     if (loaded && lastProject === null) {
       scrollInstant(0);
-      cursorBackToNormal()
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
@@ -179,6 +181,7 @@ const Work = ({ setBodyHeight }) => {
       }, 500)
       timeout = setTimeout(() => {
         showInterface();
+        cursorBackToNormal()
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
         gsap.to('.project__title div', 1, { y: 0 })
         gsap.to('.work__pagination > div', 1, { y: 0 })

@@ -13,7 +13,7 @@ import Contact from './Contact';
 import Light from './Light';
 import Header from './Header';
 import Player from './Player';
-import { cursorBackToNormal } from '../../../animations/cursor';
+import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 
 const Home = ({ setBodyHeight }) => {
   const { animating, path, setAnimating } = useContext(RoutingContext);
@@ -27,6 +27,7 @@ const Home = ({ setBodyHeight }) => {
         gsap.to('.light', .5, { opacity: 0 })
       }
       hideInterface();
+      cursorHide()
       gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0 })
       gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0 })
       gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power2.out', delay: .2 });

@@ -10,7 +10,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  transform: translate(-65px,-65px);
+  transform: translate(-65px,-65px) scale(0);
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 4;

@@ -1,61 +1,16 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { LoadingContext } from '../../../../context';
 import ProjectHeader from '../ProjectHeader';
 import headerImg from '../../../../assets/projects/burger/header.png';
 import Content from './Content';
-import { cursorBackToNormal } from '../../../../animations/cursor';
 
 const Burger = ({ setBodyHeight }) => {
-  const { loaded } = useContext(LoadingContext);
-
-  useEffect(() => {
-    let timeout;
-    if (loaded) {
-      cursorBackToNormal();
-      gsap.registerPlugin(ScrollTrigger)
-      timeout = setTimeout(() => {
-        document.querySelectorAll('.burger span span').forEach(span => {
-          if (span.classList.contains('highlight-text')) {
-            return;
-          }
-          gsap.to(span, 1.5, {
-            y: 0, autoAlpha: 1, delay: .2, scrollTrigger: {
-              trigger: span,
-              start: '100px bottom'
-            }
-          })
-        })
-        gsap.to('.burger__next-project .highlight-text', 1, {
-          y: 0, autoAlpha: 1, scrollTrigger: {
-            trigger: '.burger__next-project > span',
-            start: 'bottom bottom'
-          }
-        })
-        document.querySelectorAll('.burger .content-wrapper > *').forEach(item => {
-          gsap.from(item, {
-            scale: 1.1, scrollTrigger: {
-              trigger: item,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1
-            }
-          })
-        })
-      }, 1000)
-    }
-    return () => {
-      if (timeout) clearTimeout(timeout)
-    }
-  }, [loaded])
 
   return (
-    <div className='burger'>
+    <div>
       {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={1} />, document.getElementById('root'))}
-      <div className='burger__header'></div>
+      <div className='project-content__header'></div>
       <Content />
     </div>
   );

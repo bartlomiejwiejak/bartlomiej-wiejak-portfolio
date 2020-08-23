@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { cursorExpand } from '../../animations/cursor';
 import { cursorBackToNormal } from '../../animations/cursor';
 import { cursorMultiDot } from '../../animations/cursor';
 import isMobile from '../../functions/isMobile';
+import { RoutingContext } from '../../context/index';
 
 const Button = ({ children, type, href }) => {
 
   const location = useLocation();
+  const { animating } = useContext(RoutingContext)
 
   let classes = ['button'];
 
@@ -41,7 +43,7 @@ const Button = ({ children, type, href }) => {
 
   selectType()
 
-  const content = <div onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>
+  const content = <div onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
     <div className="button__content">{children}</div>
     <div className="button__underline">
       <div className="button__underline--left">

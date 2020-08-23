@@ -7,6 +7,7 @@ import Link from '../../shared/Link';
 import { RoutingContext } from '../../../context';
 import { hideInterface } from '../../../animations/interface';
 import scrollInstant from '../../../functions/scrollInstant';
+import { cursorHide } from '../../../animations/cursor';
 
 const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
 
@@ -39,6 +40,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) =>
       const btn = project.querySelector('.button');
 
       hideInterface();
+      cursorHide();
       gsap.to([btn, '.work__pagination div'], 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 });
       gsap.to('.circle', 1, {
         y: '100%', x: '100%', ease: 'power2.out', onComplete: () => {

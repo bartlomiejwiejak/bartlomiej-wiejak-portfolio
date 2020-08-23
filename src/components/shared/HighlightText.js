@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { cursorExpandBig } from '../../animations/cursor';
@@ -6,8 +6,11 @@ import { cursorBackToNormal } from '../../animations/cursor';
 import Link from './Link';
 import { cursorMultiDot } from '../../animations/cursor'
 import isMobile from '../../functions/isMobile'
+import { RoutingContext } from '../../context/index';
 
 const HighlightText = ({ children, type, to }) => {
+  const { animating } = useContext(RoutingContext)
+
   let classes = ['highlight-text']
   const location = useLocation()
   let selectType = () => {
@@ -56,7 +59,7 @@ const HighlightText = ({ children, type, to }) => {
 
   return (
     <span>
-      <span data-text={children} tabIndex="-1" onMouseOver={mouseOver} onMouseOut={mouseOut} className={classes.join(' ')}>{content}</span>
+      <span data-text={children} tabIndex="-1" onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
     </span>
   );
 }
