@@ -29,11 +29,6 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, proj
   }
 
   useEffect(() => {
-    if (inactive) {
-      const btn = ref.current;
-      const button = btn.querySelector('.button')
-      gsap.set(button, { color: '#999' })
-    }
     if (animating && path === url) {
       removeListeners();
       const project = projectRef.current;
@@ -59,7 +54,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, proj
           <img style={styles.projectImg} draggable={false} src={src} alt="project" className="project__img" />
           <div style={styles.imgReveal} className="project__img-reveal"></div>
         </div>
-        <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type='black'><Link to={url}>Explore project</Link></Button></div>
+        <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type={inactive ? 'inactive' : 'black'}><Link to={url}>{inactive ? 'In developing' : 'Explore project'}</Link></Button></div>
       </div>
       <h2 className="project__title project__title--down"><div style={styles.title}>{titleDown}</div></h2>
       <h2 className="project__title project__title--up"><div style={styles.title}>{titleUp}</div></h2>

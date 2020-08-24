@@ -55,9 +55,14 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    color: var(--white);
     flex-wrap: wrap;
     font-size: 2rem;
+    &--white {
+      color: var(--white);
+    }
+    &--black {
+      color: var(--black);
+    }
     @include respond(xxsmall) {
       width: 90vw;
       font-size: 1.6rem;
@@ -137,6 +142,12 @@
   }
   &__next-project {
     text-align: center;
+    &--black {
+      color: var(--black);
+    }
+    &--white {
+      color: var(--white);
+    }
     span {
       span {
         margin: 0;
@@ -173,7 +184,12 @@
     white-space: nowrap;
     font-size: 28rem;
     width: 100vw;
-    color: var(--white);
+    &--white {
+      color: var(--white);
+    }
+    &--black {
+      color: var(--black);
+    }
     @include respond(xlarge) {
       font-size: 22rem;
     }

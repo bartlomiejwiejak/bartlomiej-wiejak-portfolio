@@ -7,8 +7,9 @@ import gsap from 'gsap';
 import { showInterface } from '../../../animations/interface';
 import { LoadingContext, RoutingContext } from '../../../context';
 import Project from './Project';
-import burger from '../../../assets/projects/burger/header.png';
-import places from '../../../assets/projects/places/header.bmp';
+import burger from '../../../assets/projects/burger/header.jpg';
+import places from '../../../assets/projects/places/header.jpg';
+import eCommerce from '../../../assets/projects/e-commerce.jpg';
 import { hideInterface } from '../../../animations/interface';
 import incoming from '../../../assets/projects/incoming.jpg';
 import { cursorMultiDot } from '../../../animations/cursor';
@@ -28,7 +29,7 @@ const Work = ({ setBodyHeight }) => {
   const initialMouseClientYRef = useRef(0);
   const projectsRef = useRef(null);
 
-  if (lastProject !== null) {
+  if (lastProject !== null && !animating) {
     currentProjectIndexRef.current = lastProject;
   }
 
@@ -142,9 +143,8 @@ const Work = ({ setBodyHeight }) => {
       gsap.to('.project .button', 1, { y: '100%', ease: 'power2.out' })
       hideInterface();
       cursorHide()
-      if (currentProjectIndexRef.current !== 0) {
-        gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
-      }
+      gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
+      console.log(currentProjectIndexRef.current)
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
         y: 0, ease: 'custom', onComplete: () => {
           setTimeout(() => {
@@ -160,7 +160,7 @@ const Work = ({ setBodyHeight }) => {
                 }
               })
             }, 700)
-          }, 100)
+          }, 200)
         }
       })
     }
@@ -230,8 +230,8 @@ const Work = ({ setBodyHeight }) => {
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
         <Project projectIndex={0} src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
-        <Project projectIndex={1} src={places} titleUp='App' titleDown='Places' url='/work/places-app' removeListeners={removeListeners} />
-        <Project projectIndex={2} src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
+        <Project projectIndex={1} src={places} titleUp='Place' titleDown='Your' url='/work/places-app' removeListeners={removeListeners} />
+        <Project projectIndex={2} src={eCommerce} titleUp='E-com' titleDown='Project' url='/work' inactive={true} />
         <Project projectIndex={3} src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
       </div>
     </div>

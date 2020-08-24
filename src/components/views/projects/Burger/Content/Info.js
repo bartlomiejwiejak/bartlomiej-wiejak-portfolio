@@ -5,7 +5,7 @@ import Button from '../../../../shared/Button';
 function Info() {
   return (
     <div className="project-content__section project-content__section--dark">
-      <div className='project-content__info'>
+      <div className='project-content__info project-content__info--white'>
         <h1 className='project-content__title'><span><span>Burger Project</span></span></h1>
         <div className='project-content__date'><span><span>/2020</span></span></div>
         <div className='project-content__description'>

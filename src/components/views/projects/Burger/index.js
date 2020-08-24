@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ProjectHeader from '../ProjectHeader';
-import headerImg from '../../../../assets/projects/burger/header.png';
+import headerImg from '../../../../assets/projects/burger/header.jpg';
 import Content from './Content';
 
 const Burger = ({ setBodyHeight }) => {

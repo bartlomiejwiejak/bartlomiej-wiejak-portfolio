@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useLockBodyScroll, useToggle } from 'react-use';
 
 import { LoadingContext } from '../../context';
-import header from '../../assets/projects/burger/header.png';
+import header from '../../assets/projects/burger/header.jpg';
 import photo from '../../assets/about/photo.jpg';
 import incoming from '../../assets/projects/incoming.jpg';
 

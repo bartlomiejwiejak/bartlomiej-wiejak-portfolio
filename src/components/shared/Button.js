@@ -7,7 +7,7 @@ import { cursorMultiDot } from '../../animations/cursor';
 import isMobile from '../../functions/isMobile';
 import { RoutingContext } from '../../context/index';
 
-const Button = ({ children, type, href }) => {
+const Button = ({ children, type, href, inactive }) => {
 
   const location = useLocation();
   const { animating } = useContext(RoutingContext)
@@ -22,19 +22,22 @@ const Button = ({ children, type, href }) => {
       case 'white':
         classes.push('button--white');
         return;
+      case 'inactive':
+        classes.push('button--inactive');
+        return;
       default: return;
     }
   }
 
   const mouseOver = () => {
-    if (isMobile()) return;
+    if (isMobile() || type === 'inactive') return;
     cursorExpand();
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
   }
   const mouseOut = () => {
-    if (isMobile()) return;
+    if (isMobile() || type === 'inactive') return;
     cursorBackToNormal();
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);

@@ -24,6 +24,12 @@
       background-color: var(--black);
     }
   }
+  &--inactive {
+    color: #999;
+    .button__underline--fill {
+      width: 0 !important;
+    }
+  }
   &__underline {
   position: absolute;
   left: 0;

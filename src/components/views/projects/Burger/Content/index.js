@@ -31,7 +31,7 @@ function Content() {
         </div>
       </div>
       <div className="project-content__section project-content__section--dark">
-        <h2 className='project-content__line'>Burger Project — Burger Project — Burger Project — Burger Project</h2>
+        <h2 className='project-content__line project-content__line--white'>Burger Project — Burger Project — Burger Project — Burger Project</h2>
       </div>
       <div className="project-content__section project-content__section--dark">
         <div className="project-content__image-container">
@@ -53,7 +53,7 @@ function Content() {
         </div>
       </div>
       <div className="project-content__section project-content__section--light">
-        <div className="project-content__next-project">
+        <div className="project-content__next-project project-content__next-project--black">
           <p><span><span>See</span></span></p>
           <HighLightText type='black' to='/work' >More Projects</HighLightText>
         </div>
