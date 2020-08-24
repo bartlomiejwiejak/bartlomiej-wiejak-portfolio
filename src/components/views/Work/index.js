@@ -175,13 +175,21 @@ const Work = ({ setBodyHeight }) => {
     let timeout;
     if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
-      document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
+      const background = document.querySelector('.background')
+      let time1 = 500;
+      let time2 = 2000;
+      if (getComputedStyle(background).backgroundColor !== 'rgb(25, 25, 25)') {
+        time1 = 0;
+        time2 = 1500;
+      } else {
+        background.style.setProperty('background-color', 'var(--light)');
+      }
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
         gsap.set('.project__img', { opacity: 1 })
         gsap.to('.project__img-reveal', 1.4, { width: 0 })
         gsap.from('.project__img', 1.4, { scale: 1.6 })
-      }, 500)
+      }, time1)
       timeout = setTimeout(() => {
         showInterface();
         cursorBackToNormal()
@@ -191,7 +199,7 @@ const Work = ({ setBodyHeight }) => {
         gsap.to('.project .button', 1, {
           y: 0, onComplete: addListeners
         })
-      }, 2000)
+      }, time2)
     }
     return () => {
       clearTimeout(timeout)

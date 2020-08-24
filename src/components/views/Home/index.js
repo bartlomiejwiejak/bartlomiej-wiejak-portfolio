@@ -53,16 +53,16 @@ const Home = ({ setBodyHeight }) => {
     if (loaded) {
       document.querySelector('.background').style.setProperty('background-color', 'var(--dark)');
       if (!isMobile()) {
-        gsap.to('.light', 1, { scale: .5, delay: .5 })
+        gsap.to('.light', 1, { scale: .5, delay: .5, ease: 'power2.out' })
       }
       cursorBackToNormal();
       showInterface();
-      gsap.to('.contact__item .button', 1, { y: 0, ease: 'power2.out' });
-      gsap.to('.player__content i', 1, { y: 0, autoAlpha: 1 })
-      gsap.to('.player__song span', 1, { y: 0, autoAlpha: 1 })
-      gsap.to('.home > .home__welcome >  span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
+      gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power2.out' });
+      gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
+      gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
+      gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
       if (isMobile()) return;
-      gsap.to('.home .home__welcome--shadow span span', 1, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
+      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
     }
   }, [loaded])
 

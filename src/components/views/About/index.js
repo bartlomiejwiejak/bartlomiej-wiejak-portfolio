@@ -76,14 +76,22 @@ const About = ({ setBodyHeight }) => {
     scrollInstant(0);
     let timeout;
     if (loaded) {
-      document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
+      let time1 = 500;
+      let time2 = 1000;
+      const background = document.querySelector('.background')
+      if (getComputedStyle(background).backgroundColor !== 'rgb(25, 25, 25)') {
+        time1 = 0;
+        time2 = 500;
+      } else {
+        background.style.setProperty('background-color', 'var(--light)');
+      }
       cursorBackToNormal();
       showInterface();
       let topText = '100px';
       if (isMobile()) {
         topText = '50px';
       }
-      setTimeout(scrollbarAppear, 500);
+      setTimeout(scrollbarAppear, time1);
       timeout = setTimeout(() => {
         setLocked(false);
         setBodyHeight();
@@ -95,7 +103,7 @@ const About = ({ setBodyHeight }) => {
           })
         })
         gsap.to('.about .highlight-text', 1.5, { y: 0, autoAlpha: 1, scrollTrigger: '.about .highlight-text' })
-      }, 1000)
+      }, time2)
     }
     return () => {
       if (timeout) clearTimeout(timeout)

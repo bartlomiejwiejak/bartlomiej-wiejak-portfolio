@@ -1,20 +1,20 @@
 .work {
   &__pagination {
     position: fixed;
-    left: 15%;
+    left: 14%;
     top: 25%;
     font-size: 20px;
     overflow: hidden;
     height: 34px;
     z-index: 4;
     @include respond(xlarge) {
-      left: 12.5%;
+      left: 8%;
     }
     @include respond(large) {
-      left: 10%;
+      left: 5%;
     }
     @include respond(medium) {
-      left: 5%;
+      left: 2%;
     }
     @include respond(small) {
       left: 0%;
@@ -23,6 +23,9 @@
       left: 2%;
       bottom: 0;
       top: auto;
+    }
+    @media (max-width: 1100px) and (orientation: portrait) {
+      top: 20%;
     }
     > div {
     display: flex;
