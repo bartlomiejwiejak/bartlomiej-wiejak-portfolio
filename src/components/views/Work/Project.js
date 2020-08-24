@@ -9,7 +9,7 @@ import { hideInterface } from '../../../animations/interface';
 import scrollInstant from '../../../functions/scrollInstant';
 import { cursorHide } from '../../../animations/cursor';
 
-const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) => {
+const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, projectIndex }) => {
 
   const { path, setAnimating, animating, lastProject } = useContext(RoutingContext);
   const history = useHistory()
@@ -20,7 +20,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive }) =>
 
   let styles = {};
 
-  if (lastProject !== null) {
+  if (lastProject === projectIndex) {
     styles = {
       projectImg: { opacity: 1 },
       imgReveal: { width: 0 },

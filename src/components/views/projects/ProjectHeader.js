@@ -113,14 +113,14 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
           .to('.project-header__title--right', 1, { top: 0, y: '0%', right: 0, x: '0%', scale: 1, delay: -1 })
           .to('.project-header__img', 1, {
             scale: 1, delay: -1, onComplete: () => {
-              setLastProject(1)
+              setLastProject(projectIndex)
               setAnimating(false)
               history.push(path)
             }
           })
       })
     }
-  }, [animating, path, setToggle, setAnimating, history, setLastProject])
+  }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
 
 
   return (

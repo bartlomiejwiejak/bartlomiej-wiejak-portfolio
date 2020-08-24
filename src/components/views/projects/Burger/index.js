@@ -9,7 +9,7 @@ const Burger = ({ setBodyHeight }) => {
 
   return (
     <div>
-      {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={1} />, document.getElementById('root'))}
+      {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={0} />, document.getElementById('root'))}
       <div className='project-content__header'></div>
       <Content />
     </div>

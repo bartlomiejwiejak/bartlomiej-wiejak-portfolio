@@ -11,6 +11,7 @@ import ContextProvider from '../context';
 import Loader from './layout/Loader';
 import Work from './views/Work';
 import BurgerProject from './views/projects/Burger'
+import PlacesApp from './views/projects/Places';
 import skewConfig from '../config/skewScrolling';
 import ScrollBar from './layout/ScrollBar';
 import useBodyHeight from '../hooks/useBodyHeight';
@@ -63,6 +64,7 @@ export default function () {
               <Route path='/about' exact render={() => <About setBodyHeight={setBodyHeight} />} />
               <Route path='/work' exact render={() => <Work setBodyHeight={setBodyHeight} />} />
               <Route path='/work/burger-project' exact render={() => <BurgerProject setBodyHeight={setBodyHeight} />} />
+              <Route path='/work/places-app' exact render={() => <PlacesApp setBodyHeight={setBodyHeight} />} />
               <Redirect to='/' />
             </Switch>
           </div>
