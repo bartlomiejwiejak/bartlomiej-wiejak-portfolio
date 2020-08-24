@@ -41,6 +41,7 @@ const About = ({ setBodyHeight }) => {
       hideInterface();
       cursorHide();
       if (navigator.userAgent.indexOf("Firefox") > -1) {
+        scrollInstant();
         setTimeout(() => {
           gsap.to('.about__line--1', 1, {
             x: '150%', ease: 'power2.out', onComplete: () => {
@@ -51,7 +52,7 @@ const About = ({ setBodyHeight }) => {
           gsap.to('.about *:not(.about__heading)', 1, { ease: 'power2.out', autoAlpha: 0 })
           gsap.to('.about__line--2', 1, { x: '-150%', ease: 'power2.out' })
           gsap.to('.about__line--3', 1, { x: '150%', ease: 'power2.out' })
-        }, 1500)
+        }, 1000)
       }
       setLocked(true)
       scrollTo(0, () => {
