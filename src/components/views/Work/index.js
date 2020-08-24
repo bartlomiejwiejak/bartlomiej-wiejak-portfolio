@@ -28,8 +28,9 @@ const Work = ({ setBodyHeight }) => {
   const history = useHistory();
   const initialMouseClientYRef = useRef(0);
   const projectsRef = useRef(null);
+  const isMountedRef = useRef(false)
 
-  if (lastProject !== null && !animating) {
+  if (lastProject !== null && !animating && !isMountedRef.current) {
     currentProjectIndexRef.current = lastProject;
   }
 
@@ -144,7 +145,6 @@ const Work = ({ setBodyHeight }) => {
       hideInterface();
       cursorHide()
       gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
-      console.log(currentProjectIndexRef.current)
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
         y: 0, ease: 'custom', onComplete: () => {
           setTimeout(() => {
@@ -164,7 +164,7 @@ const Work = ({ setBodyHeight }) => {
         }
       })
     }
-  }, [animating, path, slider, history, setAnimating, removeListeners])
+  }, [animating, path, slider, history, setAnimating, removeListeners, setLastProject])
 
   useLockBodyScroll(true)
   useEffect(() => {
@@ -173,7 +173,7 @@ const Work = ({ setBodyHeight }) => {
 
   useEffect(() => {
     let timeout;
-    if (loaded && lastProject === null) {
+    if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
       document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       setTimeout(() => {
@@ -194,7 +194,6 @@ const Work = ({ setBodyHeight }) => {
       }, 2000)
     }
     return () => {
-      removeListeners();
       clearTimeout(timeout)
     }
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
@@ -209,24 +208,22 @@ const Work = ({ setBodyHeight }) => {
       gsap.set('.project__img', { opacity: 1 })
       gsap.set('.project__img-reveal', { width: 0 })
       gsap.to('.project .button', 1, {
-        y: 0, onComplete: addListeners
+        y: 0, onComplete: () => {
+          setLastProject(null)
+          isMountedRef.current = true;
+          addListeners()
+        }
       })
     }
-  }, [lastProject, slider, swipeListen, swiper, addListeners])
-  let style;
+  }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
+  const styleRef = useRef({})
   if (lastProject !== null) {
-    style = { transform: `translateY(-${lastProject * window.innerHeight}px)` }
+    styleRef.current = { transform: `translateY(-${lastProject * window.innerHeight}px)` }
   }
-
-  useEffect(() => {
-    return () => {
-      setLastProject(null)
-    }
-  }, [setLastProject])
 
   return (
     <div style={{ overflow: 'hidden' }} className='work'>
-      <div className='work__scroller' style={style}>
+      <div className='work__scroller' style={styleRef.current}>
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
         <Project projectIndex={0} src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />

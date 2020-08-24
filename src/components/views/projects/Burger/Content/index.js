@@ -54,8 +54,8 @@ function Content() {
       </div>
       <div className="project-content__section project-content__section--light">
         <div className="project-content__next-project project-content__next-project--black">
-          <p><span><span>See</span></span></p>
-          <HighLightText type='black' to='/work' >More Projects</HighLightText>
+          <p><span><span>Go to</span></span></p>
+          <HighLightText type='black' to='/work/places-app' >Places App</HighLightText>
         </div>
       </div>
     </div>
