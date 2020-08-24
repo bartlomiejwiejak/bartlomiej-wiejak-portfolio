@@ -55,12 +55,12 @@ const Work = ({ setBodyHeight }) => {
       if (direction > 0) {
         gsap.to('.circle', 1, { rotate: '+=90deg', delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { y: '100%' }, { y: 0, delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
         gsap.to('.circle', 1, { rotate: '+=90deg', delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { y: '-100%' }, { y: 0, delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
       if (direction > 0) {
