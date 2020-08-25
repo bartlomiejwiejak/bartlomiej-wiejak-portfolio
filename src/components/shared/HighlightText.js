@@ -37,7 +37,7 @@ const HighlightText = ({ children, type, to }) => {
   }
 
   const mouseOver = () => {
-    if (isMobile()) return;
+    if (isMobile() || type === 'dark') return;
     if (location.pathname === '/') {
       document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).focus()
     }
@@ -47,7 +47,7 @@ const HighlightText = ({ children, type, to }) => {
     }
   }
   const mouseOut = () => {
-    if (isMobile()) return;
+    if (isMobile() || type === 'dark') return;
     if (location.pathname === '/') {
       document.querySelector(`.home__welcome--shadow span[data-text="${children}"]`).blur()
     }

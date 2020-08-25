@@ -74,6 +74,7 @@
       transform: scale(1.05);
       top: 0;
       filter: blur(1px);
+      pointer-events: none;
       span {
         -webkit-text-stroke-color: var(--dark);
         overflow: hidden;
