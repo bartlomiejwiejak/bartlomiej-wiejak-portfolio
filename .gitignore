@@ -24,4 +24,3 @@ yarn-error.log*
 .vscode
 debug.log
 .env
-README.md
