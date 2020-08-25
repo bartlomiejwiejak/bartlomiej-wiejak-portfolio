@@ -12,6 +12,16 @@ function Circle() {
   useEffect(() => {
     if (!loaded) return
     let timeout;
+    let animation = () => {
+      gsap.to('.about__circle', {
+        rotate: 360, scrollTrigger: {
+          trigger: '.about__circle',
+          scrub: 2,
+          start: 'top bottom',
+          end: 'bottom top'
+        }
+      })
+    }
     gsap.registerPlugin(ScrollTrigger)
     timeout = setTimeout(() => {
       gsap.to('.about__circle img', .7, {
@@ -19,19 +29,11 @@ function Circle() {
           trigger: '.about__circle',
           start: 'top center'
         },
-        onComplete: () => {
-          gsap.to('.about__circle', {
-            rotate: 360, scrollTrigger: {
-              trigger: '.about__circle',
-              scrub: 2,
-              start: 'top bottom',
-              end: 'bottom top'
-            }
-          })
-        }
+        onComplete: animation
       })
     }, 700)
     return () => {
+      animation = null;
       if (timeout) clearTimeout(timeout)
     }
   }, [loaded])

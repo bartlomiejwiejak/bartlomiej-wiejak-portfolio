@@ -89,6 +89,8 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
             setAnimating(false)
             if (path !== '/about' && path !== '/') {
               setLastProject(projectIndex)
+            } else {
+              setLastProject(null)
             }
             history.push(path)
           }, 200)
@@ -97,10 +99,12 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
         scrollTo(0, () => {
           scrollbarHide();
           gsap.to('.project-header', .75, {
-            y: '-100%', scaleX: 0, scaleY: .5, delay: 1.7, onComplete: () => setTimeout(() => {
+            y: '-100%', scaleX: .3, scaleY: .5, delay: 1.7, onComplete: () => setTimeout(() => {
               setAnimating(false)
               if (path !== '/about' && path !== '/') {
                 setLastProject(projectIndex)
+              } else {
+                setLastProject(null)
               }
               history.push(path)
             }, 200)
@@ -157,7 +161,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
   const styleRef = useRef({})
   if (lastProject !== null) {
     styleRef.current = {
-      projectHeader: { transform: 'scaleX(0) scaleY(0.5) translate3d(0,200%,0)' },
+      projectHeader: { transform: 'scaleX(.3) scaleY(0.5) translate3d(0,200%,0)' },
       projectImg: { transform: 'translate3d(-50%, -50%, 0)' },
       projectTitleLeft: { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)' },
       projectTitleRight: { top: '50%', y: '-50%', right: '50%', transform: 'translate3d(80%, -50%,0) scale(0.5)' }
