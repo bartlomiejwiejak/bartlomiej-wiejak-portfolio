@@ -1,13 +1,13 @@
 import React from 'react'
 
-import mobile1 from '../../../../../assets/projects/places/user-profile-mobile.bmp';
-import mobile2 from '../../../../../assets/projects/places/mobile-posts.bmp';
-import mobile3 from '../../../../../assets/projects/places/mobile-users.bmp';
-import desktopUsers from '../../../../../assets/projects/places/desktop-users.bmp';
+import mobile1 from '../../../../../assets/projects/places/user-profile-mobile.jpg';
+import mobile2 from '../../../../../assets/projects/places/mobile-posts.jpg';
+import mobile3 from '../../../../../assets/projects/places/mobile-users.jpg';
+import desktopUsers from '../../../../../assets/projects/places/desktop-users.jpg';
 import HighLightText from '../../../../shared/HighlightText';
-import homeDesktop from '../../../../../assets/projects/places/home-desktop.bmp';
-import homeMobile from '../../../../../assets/projects/places/home-mobile.bmp';
-import userProfile from '../../../../../assets/projects/places/user-profile.bmp';
+import homeDesktop from '../../../../../assets/projects/places/home-desktop.jpg';
+import homeMobile from '../../../../../assets/projects/places/home-mobile.jpg';
+import userProfile from '../../../../../assets/projects/places/user-profile.jpg';
 import homeVideo from '../../../../../assets/projects/places/home-video.mp4';
 import Info from './Info';
 
