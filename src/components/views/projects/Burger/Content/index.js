@@ -15,49 +15,49 @@ function Content() {
   return (
     <div className='project-content'>
       <Info />
-      <div className="project-content__section project-content__section--dark">
+      <section className="project-content__section project-content__section--dark">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
             <video autoPlay loop className='project-content__image' src={homeLoad}></video>
             <video src={homeLoadMobile} autoPlay loop className='project-content__image__mobile' alt='burger__video' />
           </div>
         </div>
-      </div>
-      <div className="project-content__section project-content__section--dark">
+      </section>
+      <section className="project-content__section project-content__section--dark">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
             <img src={order} alt="Order" className='project-content__image' />
           </div>
         </div>
-      </div>
-      <div className="project-content__section project-content__section--dark">
+      </section>
+      <section className="project-content__section project-content__section--dark">
         <h2 className='project-content__line project-content__line--white'>Burger Project — Burger Project — Burger Project — Burger Project</h2>
-      </div>
-      <div className="project-content__section project-content__section--dark">
+      </section>
+      <section className="project-content__section project-content__section--dark">
         <div className="project-content__image-container">
           <video src={homeVideo} autoPlay loop className="project-content__image"></video>
         </div>
-      </div>
-      <div className="project-content__section project-content__section--light">
+      </section>
+      <section className="project-content__section project-content__section--light">
         <div className="project-content__phones">
           <img draggable={false} src={mobile1} alt='mobile burger 1' />
           <img draggable={false} src={mobile2} alt='mobile burger 1' />
           <img draggable={false} src={mobile3} alt='mobile burger 1' />
         </div>
-      </div>
-      <div className="project-content__section project-content__section--light">
+      </section>
+      <section className="project-content__section project-content__section--light">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
             <video autoPlay loop className='project-content__image' src={buildingVideo}></video>
           </div>
         </div>
-      </div>
-      <div className="project-content__section project-content__section--light">
+      </section>
+      <section className="project-content__section project-content__section--light">
         <div className="project-content__next-project project-content__next-project--black">
           <p><span><span>Go to</span></span></p>
           <HighLightText type='black' to='/work/places-app' >Places App</HighLightText>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
