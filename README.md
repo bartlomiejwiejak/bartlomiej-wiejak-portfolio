@@ -18,4 +18,8 @@ npm install
 
 # Run the website.
 npm start
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> f263bfeb5d7096d5d236a64c152d0b1a842c5c50
