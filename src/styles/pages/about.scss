@@ -80,6 +80,7 @@
     z-index: 5;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
   }
    &__heading {
      font-size: 6.5rem;
@@ -204,6 +205,7 @@
       transform: translate(-50%,-50%);
       width: 25%;
       opacity: 0;
+      z-index: 5;
       @include respond(small) {
         width: 30%;
       }

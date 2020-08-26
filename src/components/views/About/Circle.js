@@ -59,7 +59,6 @@ function Circle() {
       })
     }
     timeout = setTimeout(() => {
-      console.log('trigger')
       gsap.to('.about__circle img', .7, {
         y: 0, autoAlpha: 1, scrollTrigger: {
           id: 'trigger-circle-appear',
