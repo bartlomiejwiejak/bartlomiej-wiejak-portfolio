@@ -1,46 +1,92 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useRef, useCallback } from 'react'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import circle from '../../../assets/about/circle.png';
 import { LoadingContext } from '../../../context';
+import img1 from '../../../assets/projects/burger/menu-mobile.png';
+import img2 from '../../../assets/projects/burger/builder-mobile.png';
+import img3 from '../../../assets/projects/places/mobile-posts.jpg';
+import img4 from '../../../assets/projects/places/home-mobile.jpg';
+const images = [img1, img2, img3, img4]
 
 function Circle() {
 
   const { loaded } = useContext(LoadingContext)
 
+  const canThrowPictureRef = useRef(true)
+  const animationTriggeredRef = useRef(false);
+
+  const throwPicture = useCallback((self = { direction: Math.random() * 2 - 1 }) => {
+    if (!canThrowPictureRef.current) return;
+    canThrowPictureRef.current = false;
+    setTimeout(() => {
+      canThrowPictureRef.current = true;
+    }, 100)
+    const image = document.createElement('img');
+    image.className = 'about__circle__inner';
+    image.src = images[(Math.random() * 3).toFixed(0)];
+    image.draggable = false;
+    const parent = document.querySelector('.about__circle')
+    parent.appendChild(image);
+    gsap.to(image, .1, { opacity: 1 })
+    gsap.to(image, 1, {
+      y: `${-150 * Math.random() * self.direction}%`, x: (Math.random() * 2 - 1) * 400, onComplete: () => {
+        parent.removeChild(image);
+      }
+    })
+    gsap.to(image, .4, { autoAlpha: 0, delay: .6, scale: 0 })
+  }, [])
+
+
   useEffect(() => {
     if (!loaded) return
     let timeout;
+    gsap.registerPlugin(ScrollTrigger)
+
     let animation = () => {
-      gsap.to('.about__circle', {
+      if (animationTriggeredRef.current) return;
+      animationTriggeredRef.current = true;
+      gsap.to('.about__circle__img', {
         rotate: 360, scrollTrigger: {
-          trigger: '.about__circle',
-          scrub: 2,
-          start: 'top center',
-          end: 'bottom top'
+          id: 'trigger-circle-rotate',
+          trigger: '.about__circle__img',
+          scrub: 1,
+          start: '100px bottom',
+          end: 'bottom top',
+          onUpdate: self => throwPicture(self)
         }
       })
     }
-    gsap.registerPlugin(ScrollTrigger)
     timeout = setTimeout(() => {
+      console.log('trigger')
       gsap.to('.about__circle img', .7, {
         y: 0, autoAlpha: 1, scrollTrigger: {
+          id: 'trigger-circle-appear',
           trigger: '.about__circle',
           start: 'top center'
+        },
+        onStart: () => {
+          ScrollTrigger.getById('trigger-circle-appear').kill()
         },
         onComplete: animation
       })
     }, 700)
     return () => {
+      if (ScrollTrigger.getById('trigger-circle-rotate')) {
+        ScrollTrigger.getById('trigger-circle-rotate').kill()
+      }
+      if (ScrollTrigger.getById('trigger-circle-appear')) {
+        ScrollTrigger.getById('trigger-circle-appear').kill()
+      }
       animation = null;
       if (timeout) clearTimeout(timeout)
     }
-  }, [loaded])
+  }, [loaded, throwPicture])
 
   return (
-    <div className="about__circle">
-      <img draggable={false} className="about__circle__img" src={circle} alt='Creative Developer' />
+    <div onClick={() => throwPicture()} className='about__circle'>
+      <img draggable={false} className='about__circle__img' src={circle} alt='Creative Developer' />
     </div>
   )
 }

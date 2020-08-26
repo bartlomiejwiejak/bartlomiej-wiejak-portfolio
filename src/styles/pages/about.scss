@@ -76,7 +76,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 200px;
+    width: 250px;
     z-index: 5;
     opacity: 0;
     visibility: hidden;
@@ -178,6 +178,7 @@
   &__circle {
     width: 60rem;
     margin: -15rem 0 0 15rem;
+    position: relative;
     @include respond(xlarge) {
       width: 50rem;
     margin: -3rem 0 0 15rem;
@@ -196,6 +197,14 @@
       @include respond(xxsmall) {
         width: 25rem;
         }
+    &__inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 20%;
+      opacity: 0;
+    }
     &__img {
       width: 100%;
       opacity: 0;

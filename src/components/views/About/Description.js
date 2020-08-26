@@ -61,7 +61,7 @@ function Description() {
   }, [loaded])
 
   const moveGifHandle = useCallback((event) => {
-    gsap.to('.about__description__gif', .5, { x: event.clientX - 50, y: event.clientY - 200 })
+    gsap.to('.about__description__gif', .5, { x: event.clientX - 50, y: event.clientY - 230 })
   }, [])
 
   const mouseEnterHandle = (url) => {
