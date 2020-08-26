@@ -7,7 +7,7 @@
   border-radius: 50%;
   filter: blur(120px);
   background-color: rgba(255,255,255,0.125);
-  box-shadow: 0 0 20vw 0 rgba(255,255,255,1);
+  box-shadow: 0 0 20vw 0 var(--white);
   pointer-events: none;
   opacity: 1;
   transform: scale(0);

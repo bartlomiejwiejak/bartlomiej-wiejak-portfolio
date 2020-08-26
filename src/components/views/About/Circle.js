@@ -17,7 +17,7 @@ function Circle() {
         rotate: 360, scrollTrigger: {
           trigger: '.about__circle',
           scrub: 2,
-          start: 'top bottom',
+          start: 'top center',
           end: 'bottom top'
         }
       })

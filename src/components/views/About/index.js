@@ -77,12 +77,12 @@ const About = ({ setBodyHeight }) => {
     scrollInstant(0);
     let timeout;
     if (loaded) {
-      let time1 = 500;
-      let time2 = 1000;
+      let time1 = 700;
+      let time2 = 1200;
       const background = document.querySelector('.background')
       if (getComputedStyle(background).backgroundColor !== 'rgb(25, 25, 25)') {
-        time1 = 0;
-        time2 = 500;
+        time1 = 200;
+        time2 = 700;
       } else {
         background.style.setProperty('background-color', 'var(--light)');
       }

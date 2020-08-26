@@ -15,6 +15,7 @@ import mongo from '../../../assets/about/technologies/mongo.png';
 import threejs from '../../../assets/about/technologies/threejs.webp';
 import isMobile from '../../../functions/isMobile';
 import { LoadingContext } from '../../../context';
+import skillAnimation from '../../../animations/skill';
 
 function Skills() {
 
@@ -28,113 +29,17 @@ function Skills() {
     }
     gsap.registerPlugin(ScrollTrigger);
     let timeout = setTimeout(() => {
-      gsap.to('.about__skills__technologies__technology--2 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--3 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--2',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--4 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--5 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--6 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--4',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--7 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--8 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--9 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: 1.4,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--10 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--7',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: 2.1,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--11 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
-      gsap.to('.about__skills__technologies__technology--12 div', .7, {
-        scrollTrigger: {
-          trigger: '.about__skills__technologies__technology--11',
-          start: `${topTechnologies} bottom`,
-        },
-        y: 0,
-        x: 0,
-        delay: .7,
-        ease: 'power2.out'
-      })
+      skillAnimation(topTechnologies, 0, '.about__skills__technologies__technology--2')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--3')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--4')
+      skillAnimation(topTechnologies, 0, '.about__skills__technologies__technology--5')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--6')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--7')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--8')
+      skillAnimation(topTechnologies, 1.4, '.about__skills__technologies__technology--9')
+      skillAnimation(topTechnologies, 2.1, '.about__skills__technologies__technology--10')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--11')
+      skillAnimation(topTechnologies, .7, '.about__skills__technologies__technology--12')
     }, 700)
     return () => {
       if (timeout) clearTimeout(timeout)

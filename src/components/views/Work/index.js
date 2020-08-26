@@ -176,18 +176,18 @@ const Work = ({ setBodyHeight }) => {
     if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
       const background = document.querySelector('.background')
-      let time1 = 500;
-      let time2 = 2000;
+      let time1 = 700;
+      let time2 = 2200;
       if (getComputedStyle(background).backgroundColor !== 'rgb(25, 25, 25)') {
-        time1 = 0;
-        time2 = 1500;
+        time1 = 200;
+        time2 = 1700;
       } else {
         background.style.setProperty('background-color', 'var(--light)');
       }
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
         gsap.set('.project__img', { opacity: 1 })
-        gsap.to('.project__img-reveal', 1.4, { width: 0 })
+        gsap.to('.project__img-reveal', 1.4, { x: '100%' })
         gsap.from('.project__img', 1.4, { scale: 1.6 })
       }, time1)
       timeout = setTimeout(() => {

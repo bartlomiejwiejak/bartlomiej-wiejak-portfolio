@@ -1,7 +1,5 @@
 import gsap from 'gsap';
 
-export const listeners = []
-
 export default (e) => {
   const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
   const positionY = -(window.innerHeight / 2 - e.clientY) * 0.03;
