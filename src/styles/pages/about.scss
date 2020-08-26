@@ -72,6 +72,15 @@
   @include respond(xsmall) {
     margin-top: 15rem;
   }
+  &__gif {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+  }
    &__heading {
      font-size: 6.5rem;
      line-height: 1.1;
