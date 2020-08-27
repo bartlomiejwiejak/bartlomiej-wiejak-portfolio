@@ -9,6 +9,7 @@
     z-index: 4;
     @include respond(xlarge) {
       left: 8%;
+      top: 20%;
     }
     @include respond(large) {
       left: 5%;
@@ -23,9 +24,6 @@
       left: 2%;
       bottom: 0;
       top: auto;
-    }
-    @media (max-width: 1100px) and (orientation: portrait) {
-      top: 20%;
     }
     > div {
     display: flex;
