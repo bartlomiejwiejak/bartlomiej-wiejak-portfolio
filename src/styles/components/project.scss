@@ -28,7 +28,7 @@
      }
   }
   &__button-container {
-    font-size: 1.7rem;
+    font-size: var(--font-size-s);
     overflow: hidden;
     position: absolute;
     right: -3rem;
@@ -58,8 +58,8 @@
       bottom: -4rem;
     }
     @media (max-width: 1100px) and (orientation: portrait) and (min-width: 600px) {
-      right: 40rem;
-      bottom: -8rem;
+      right: 45rem;
+      bottom: -9rem;
     }
   }
   .button {
@@ -76,24 +76,20 @@
        font-size: 23rem;
     }
     @include respond(large) {
-      font-size: 20rem;
-   }
-   @include respond(medium) {
+      font-size: 22rem;
+    }
+    @include respond(medium) {
+    font-size: 20rem;
+    }
+    @include respond(small) {
+    font-size: 20rem;
+    }
+    @include respond(xsmall) {
     font-size: 18rem;
- }
- @include respond(small) {
-  font-size: 15rem;
-}
-@include respond(xsmall) {
-  font-size: 12.5rem;
-}
-@include respond(xxsmall) {
-  font-size: 10rem;
-}
-@media (max-width: 850px) and (orientation: landscape) {
-  font-size: 10rem;
-}
-
+    }
+    @include respond(xxsmall) {
+    font-size: 16rem;
+    }
     &--down {
       bottom: 0;
       left: 0;
@@ -112,22 +108,5 @@
     div {
       transform: translate3d(0,100%,0);
     }
-  }
-  &__scroll-indicator {
-     position: absolute;
-     bottom: 10%;
-     right: 10%;
-     overflow: hidden;
-     font-size: 2.5rem;
-     i {
-       font-size: 4rem;
-       margin-left: 1rem;
-     }
-     span {
-       display: inline-block;
-       transform: translateY(100%);
-       visibility: hidden;
-       opacity: 0;
-     }
   }
 }

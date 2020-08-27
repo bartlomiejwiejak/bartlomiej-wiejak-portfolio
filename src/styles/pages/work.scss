@@ -1,9 +1,9 @@
 .work {
   &__pagination {
     position: fixed;
-    left: 14%;
+    left: 12%;
     top: 25%;
-    font-size: 20px;
+    font-size: var(--font-size-s);
     overflow: hidden;
     height: 34px;
     z-index: 4;
@@ -16,9 +16,6 @@
     }
     @include respond(medium) {
       left: 2%;
-    }
-    @include respond(small) {
-      left: 0%;
     }
     @include respond(xxsmall) {
       left: 2%;
@@ -41,6 +38,9 @@
     }
     &__active {
       height: 34px;
+      div {
+        height: 34px;
+      }
     }
   }
 }

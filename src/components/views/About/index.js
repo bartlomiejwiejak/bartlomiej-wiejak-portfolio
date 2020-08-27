@@ -41,21 +41,6 @@ const About = ({ setBodyHeight }) => {
       hideInterface();
       cursorHide();
       setLocked(true);
-      if (navigator.userAgent.indexOf("Firefox") > -1) {
-        scrollInstant();
-        scrollbarHide();
-        setTimeout(() => {
-          gsap.to('.about__line--1', 1, {
-            x: '150%', ease: 'power2.out', onComplete: () => {
-              setAnimating(false);
-              history.push(path)
-            }
-          })
-          gsap.to('.about *:not(.about__heading)', 1, { ease: 'power2.out', autoAlpha: 0 })
-          gsap.to('.about__line--2', 1, { x: '-150%', ease: 'power2.out' })
-          gsap.to('.about__line--3', 1, { x: '150%', ease: 'power2.out' })
-        }, 1000)
-      }
       scrollTo(0, () => {
         setTimeout(() => {
           scrollbarHide();
@@ -68,8 +53,9 @@ const About = ({ setBodyHeight }) => {
           gsap.to('.about *:not(.about__heading)', 1, { ease: 'power2.out', autoAlpha: 0 })
           gsap.to('.about__line--2', 1, { x: '-150%', ease: 'power2.out' })
           gsap.to('.about__line--3', 1, { x: '150%', ease: 'power2.out' })
-        }, 1500)
+        }, 1000)
       })
+      setLocked(true);
     }
   }, [animating, history, path, setAnimating, setLocked])
 

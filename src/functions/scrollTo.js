@@ -1,16 +1,14 @@
-export default function (offset, callback) {
-  const fixedOffset = offset.toFixed(),
-    onScroll = function () {
-      if (window.pageYOffset.toFixed() === fixedOffset) {
-        window.removeEventListener('scroll', onScroll)
-        callback()
-      }
-    }
+import skewConfig from '../config/skewScrolling';
 
-  window.addEventListener('scroll', onScroll)
-  onScroll()
+export default function (offset, callback) {
   window.scrollTo({
-    top: offset,
-    behavior: 'smooth'
+    top: offset
   })
+  function frame() {
+    console.log(skewConfig.previous)
+    if (skewConfig.previous - offset < 50) {
+      callback();
+    } else requestAnimationFrame(frame)
+  }
+  requestAnimationFrame(frame)
 }

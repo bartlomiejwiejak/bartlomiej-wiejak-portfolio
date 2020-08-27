@@ -81,11 +81,10 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       setToggle(true)
       hideInterface()
       cursorHide()
-      if (navigator.userAgent.indexOf("Firefox") > -1) {
-        scrollInstant(0);
+      scrollTo(0, () => {
         scrollbarHide();
         gsap.to('.project-header', .75, {
-          y: '-100%', scaleX: 0, scaleY: .5, delay: 1.7, onComplete: () => setTimeout(() => {
+          y: '-100%', scaleX: .2, scaleY: .5, delay: 1, onComplete: () => setTimeout(() => {
             setAnimating(false)
             if (path !== '/about' && path !== '/') {
               setLastProject(projectIndex)
@@ -95,22 +94,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
             history.push(path)
           }, 200)
         })
-      } else {
-        scrollTo(0, () => {
-          scrollbarHide();
-          gsap.to('.project-header', .75, {
-            y: '-100%', scaleX: .3, scaleY: .5, delay: 1.7, onComplete: () => setTimeout(() => {
-              setAnimating(false)
-              if (path !== '/about' && path !== '/') {
-                setLastProject(projectIndex)
-              } else {
-                setLastProject(null)
-              }
-              history.push(path)
-            }, 200)
-          })
-        })
-      }
+      })
     }
   }, [animating, path, history, setAnimating, setToggle, projectIndex, setLastProject])
 
@@ -119,8 +103,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       hideInterface()
       cursorHide()
       setToggle(true)
-      if (navigator.userAgent.indexOf("Firefox") > -1) {
-        scrollInstant(0);
+      scrollTo(0, () => {
         scrollbarHide();
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
@@ -136,25 +119,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
               history.push(path)
             }
           })
-      } else {
-        scrollTo(0, () => {
-          scrollbarHide();
-          const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-          tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-            .to('.project-header__title--left', .5, { rotateY: '15deg', delay: .5 })
-            .to('.project-header__title--right', .5, { rotateY: '-15deg', delay: -.5 })
-            .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-            .to('.project-header__title--left', 1, { bottom: 0, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -0.5 })
-            .to('.project-header__title--right', 1, { top: 0, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1 })
-            .to('.project-header__img', 1, {
-              scale: 1, delay: -1, onComplete: () => {
-                setLastProject(projectIndex)
-                setAnimating(false)
-                history.push(path)
-              }
-            })
-        })
-      }
+      })
     }
   }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
 

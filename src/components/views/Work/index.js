@@ -159,7 +159,7 @@ const Work = ({ setBodyHeight }) => {
                   history.push(path)
                 }
               })
-            }, 700)
+            }, 1000)
           }, 200)
         }
       })
@@ -194,8 +194,7 @@ const Work = ({ setBodyHeight }) => {
         showInterface();
         cursorBackToNormal()
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
-        gsap.to('.project__title div', 1, { y: 0 })
-        gsap.to('.work__pagination > div', 1, { y: 0 })
+        gsap.to('.project__title div, .work__pagination > div', 1, { y: 0 })
         gsap.to('.project .button', 1, {
           y: 0, onComplete: addListeners
         })
