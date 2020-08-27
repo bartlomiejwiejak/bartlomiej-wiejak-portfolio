@@ -1,40 +1,36 @@
 .home {
-  padding-top: 20rem;
-  margin: 0 auto;
-  max-width: 140rem;
+  max-width: 1400px;
   perspective: 700px;
+  margin: 0 auto;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  @media (max-width: 1700px) {
+    max-width: 1250px;
+  }
   @include respond(xlarge) {
-  max-width: 110rem;
+  max-width: 1050px;
   }
   @include respond(large) {
-    max-width: 100rem;
+    max-width: 900px;
   }
   @include respond(medium) {
-    max-width: 90rem;
+    max-width: 780px;
   }
   @include respond(small) {
-    max-width: 80rem;
+    max-width: 570px;
   }
   @include respond(xsmall) {
-   max-width: 60rem;
+   max-width: 500px;
   }
   @include respond(xxsmall) {
-    max-width: 40rem;
-    padding-top: 15rem;
-  }
-  @media (max-height: 600px) {
-    padding-top: 10rem;
-  }
-  @media (max-height: 500px) {
-    padding-top: 5rem;
+    max-width: 320px;
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    padding-top: 10rem;
-    max-width: 60rem;
+    max-width: 600px;
   }
   @media (max-width: 600px) and (orientation: landscape) {
-    padding-top: 7.5rem;
-    max-width: 60rem;
+    max-width: 600px;
   }
   &__welcome {
     font-weight: normal;
@@ -84,20 +80,26 @@
       }
     }
     @include respond(xlarge) {
-      font-size: 8rem;
+      font-size: 8.5rem;
     }
     @include respond(large) {
-      font-size: 7rem;
+      font-size: 8rem;
     }
     @include respond(medium) {
-      font-size: 6rem;
+      font-size: 7.5rem;
     }
     @include respond(small) {
-      font-size: 5rem;
+      font-size: 7rem;
+    }
+    @include respond(xsmall) {
+      font-size: 6.5rem;
+    }
+    @include respond(xxsmall) {
+      font-size: 6rem;
     }
     
     @media (max-width: 850px) and (orientation: landscape) {
-      font-size: 4rem;
+      font-size: 6rem;
     }
   }
 }
