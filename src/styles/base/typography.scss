@@ -11,7 +11,7 @@
 html {
   font-family: 'Monument', sans-serif;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.4;
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,17 +20,6 @@ html {
     display: none;
   }
   color: var(--black);
-  font-weight: normal;
-  font-size: 62.5%;
-  @include respond(large) {
-    font-size: 56.25%;
-  }
-  @include respond(small) {
-    font-size: 50%;
-  }
-  @include respond(xxsmall) {
-    font-size: 43.75%;
-  }
 }
 h1, h2, h3, .highlight-text {
   font-family: Peace Sans, sans-serif;

@@ -3,7 +3,7 @@
   right: 0;
   bottom: 0;
   color: var(--white);
-  font-size: 1.5rem;
+  font-size: var(--font-size-s);
   width: 200px;
   z-index: 3;
   margin-bottom: 4rem;
@@ -17,12 +17,12 @@
     margin-bottom: 2rem;
   }
   @include respond(xxsmall) {
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
   }
   text-align: center;
   &__content {
@@ -33,7 +33,10 @@
       position: relative;
       opacity: 0;
       transform: translateY(100%);
-      font-size: 2rem;
+      font-size: var(--font-size-s);
+      @include respond(xxsmall) {
+        font-size: var(--font-size-m);
+      }
     }
   }
   &__line {
@@ -54,7 +57,7 @@
   &__song {
     overflow: hidden;
     display: inline-block;
-    margin-top: .5rem;
+    margin-top: 1rem;
     span {
         display: inline-block;
         transform: translateY(100%);

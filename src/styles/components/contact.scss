@@ -17,13 +17,12 @@
     bottom: 2rem;
   }
   @include respond(xxsmall) {
-    left: 1.5rem;
+    left: 2rem;
     bottom: 0rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    left: 1rem;
+    left: 2rem;
     bottom: 0rem;
-    font-size: 1.2rem;
   }
   &__list {
     list-style: none;
@@ -33,12 +32,9 @@
     margin-right: 5rem;
     position: relative;
     overflow: hidden;
-    font-size: 1.5rem;
+    font-size: var(--font-size-s);
     .button {
       transform: translateY(100%);
-    }
-    @include respond(xxsmall) {
-      font-size: 1.2rem;
     }
     @include respond(large) {
       margin-right: 4rem;
@@ -47,10 +43,10 @@
       margin-right: 3rem;
     }
     @include respond(xxsmall) {
-      margin-right: 1.5rem;
+      margin-right: 2rem;
     }
     @media (max-width: 850px) and (orientation: landscape) {
-      margin-right: 1.5rem;
+      margin-right: 2rem;
     }
   }
   &__reach {
@@ -68,10 +64,10 @@
       margin-bottom: 3rem;
     }
     @include respond(xxsmall) {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     @media (max-width: 850px) and (orientation: landscape) {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
   }
 }

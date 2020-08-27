@@ -14,10 +14,10 @@
     padding: 3rem;
   }
   @include respond(xxsmall) {
-    padding: 1.5rem;
+    padding: 2rem;
   }
   @media (max-width: 850px) and (orientation: landscape) {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 }
 

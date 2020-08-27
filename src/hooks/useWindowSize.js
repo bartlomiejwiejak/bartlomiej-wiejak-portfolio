@@ -11,7 +11,9 @@ export default function useWindowSize() {
   const [windowSize, setWindowSize] = useState(getSize);
 
   useEffect(() => {
+    document.querySelector('html').style.fontSize = 10 - (1920 - window.innerWidth) / 300 + 'px';
     function handleResize() {
+      document.querySelector('html').style.fontSize = 10 - (1920 - window.innerWidth) / 300 + 'px';
       setWindowSize(getSize());
     }
 

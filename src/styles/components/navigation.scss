@@ -1,12 +1,9 @@
 .navigation {
   display: flex;
   &__item {
-  font-size: 1.7rem;
+  font-size: var(--font-size-s);
   letter-spacing: 2px;
   overflow: hidden;
-  @include respond(xxsmall) {
-    font-size: 1.3rem;
-  }
   .button {
     transform: translateY(100%);
   }
@@ -23,10 +20,10 @@
         margin-left: 3rem;
       }
       @include respond(xxsmall) {
-        margin-left: 1.5rem;
+        margin-left: 2rem;
       }
       @media (max-width: 850px) and (orientation: landscape) {
-        margin-left: 1.5rem;
+        margin-left: 2rem;
       }
     }
   }
