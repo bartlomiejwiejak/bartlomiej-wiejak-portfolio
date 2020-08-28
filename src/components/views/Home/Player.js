@@ -4,7 +4,6 @@ import gsap from 'gsap';
 import { cursorExpand } from '../../../animations/cursor';
 import { cursorBackToNormal } from '../../../animations/cursor';
 import { LoadingContext } from '../../../context/index';
-import isMobile from '../../../functions/isMobile';
 import audio from '../../../config/player';
 
 function Player() {
@@ -34,22 +33,20 @@ function Player() {
       } else {
         contextAnalyser = analyser;
       }
-
+      let shadowScale = 1.05;
+      if (window.innerWidth <= 650) {
+        shadowScale = 1.2;
+      }
       let animatingContent = (fbc_array) => {
         gsap.set('.player__line', { width: fbc_array[1] / 5 })
         gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 })
-        gsap.set('.home__welcome--shadow', { scale: 1.05 + (fbc_array[1] / 50) / 100 })
-      }
-      if (isMobile()) {
-        animatingContent = (fbc_array) => {
-          gsap.set('.player__line', { width: fbc_array[1] / 5 })
-        }
+        gsap.set('.home__welcome--shadow', { scale: shadowScale + (fbc_array[1] / 50) / 100 })
       }
 
       const frameLooper = () => {
         const fbc_array = new Uint8Array(contextAnalyser.frequencyBinCount);
         contextAnalyser.getByteFrequencyData(fbc_array);
-        if (!!document.querySelector('.light') || !!document.querySelector('.player__line--left')) {
+        if (!!document.querySelector('.light')) {
           animatingContent(fbc_array);
           requestAnimationFrame(frameLooper)
         } else return;

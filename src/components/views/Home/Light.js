@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
 import isMobile from '../../../functions/isMobile';
 
 const Light = () => {
 
-  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
     if (!isMobile()) {
@@ -15,13 +14,11 @@ const Light = () => {
       document.addEventListener('mousemove', moveLight)
       return () => document.removeEventListener('mousemove', moveLight)
     } else {
-      setMounted(false)
+      gsap.set('.light', { x: window.innerWidth / 2, y: window.innerHeight / 2 })
     }
   }, [])
 
-  return (
-    mounted ? <div className='light'></div> : null
-  );
+  return <div className='light'></div>
 }
 
 export default Light;

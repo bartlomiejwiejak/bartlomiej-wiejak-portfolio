@@ -11,4 +11,10 @@
   pointer-events: none;
   opacity: 1;
   transform: scale(0);
+  @include respond(xsmall) {
+    width: 100vw;
+    height: 100vw;
+    top: -50vw;
+    left: -50vw;
+  }
 }

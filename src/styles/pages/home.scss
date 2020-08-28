@@ -71,6 +71,9 @@
       top: 0;
       filter: blur(1px);
       pointer-events: none;
+      @include respond(xsmall) {
+        transform: scale(1.2);
+      }
       span {
         -webkit-text-stroke-color: var(--dark);
         overflow: hidden;
