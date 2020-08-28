@@ -16,4 +16,7 @@ $breakpoints: (
 --brown: #A52A2A;
 --font-size-s: 1.6rem;
 --font-size-m: 2.5rem;
+@include respond(xxsmall) {
+  --font-size-s: 2rem;
+}
 }

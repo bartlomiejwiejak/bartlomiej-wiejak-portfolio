@@ -104,14 +104,18 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       cursorHide()
       setToggle(true)
       scrollTo(0, () => {
+        let positionY = 0;
+        if (window.innerWidth <= 460) {
+          positionY = '5%'
+        }
         scrollbarHide();
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
           .to('.project-header__title--left', .5, { rotateY: '15deg', delay: .5 })
           .to('.project-header__title--right', .5, { rotateY: '-15deg', delay: -.5 })
           .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-          .to('.project-header__title--left', 1, { bottom: 0, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -0.5 })
-          .to('.project-header__title--right', 1, { top: 0, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1 })
+          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -0.5 })
+          .to('.project-header__title--right', 1, { top: positionY, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1 })
           .to('.project-header__img', 1, {
             scale: 1, delay: -1, onComplete: () => {
               setLastProject(projectIndex)
