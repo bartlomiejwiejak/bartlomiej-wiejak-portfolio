@@ -7,6 +7,10 @@
   cursor: none !important;
 }
 
+body {
+  overscroll-behavior: contain;
+}
+
 .view {
   position: fixed;
   left: 0;
