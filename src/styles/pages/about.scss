@@ -119,6 +119,10 @@
       margin-top: -13rem;
       font-size: 3.5rem;
     }
+    @media (max-width: 350px) {
+      font-size: 3rem;
+      margin-top: -11rem;
+    }
    }
    &__paragraph {
      margin-top: 20rem;
@@ -466,10 +470,22 @@
       margin: 10rem 0;
       }
       @include respond(xxsmall) {
-        justify-content: space-between;
+        flex-direction: column;
       }
     ul:first-child {
       flex-basis: 60%;
+      @include respond(xxsmall) {
+        margin-bottom: 5rem;
+      }
+    }
+    ul:nth-child(2) {
+      @include respond(xxsmall) {
+        h3 {
+          flex-basis: 100%;
+        }
+        flex-wrap: wrap;
+        display: flex;
+      }
     }
     ul {
       list-style: none;
@@ -483,9 +499,6 @@
       li {
         font-size: var(--font-size-m);
       }
-    }
-    ul:first-child {
-      flex-basis: 60%;
     }
   }
   &__footer {
