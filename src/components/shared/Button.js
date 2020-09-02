@@ -58,7 +58,7 @@ const Button = ({ children, type, href, inactive }) => {
     </div>
   </div>
 
-  if (href) return <a href={href} target='blank'>{content}</a>
+  if (href) return <a draggable={false} href={href} target='blank'>{content}</a>
 
   return content;
 }

@@ -36,7 +36,7 @@ function Player() {
       }
 
       let animatingContent = (fbc_array) => {
-        gsap.set('.player__line', { width: fbc_array[1] / 5 })
+        gsap.set('.player__line', { width: fbc_array[1] / 3 })
         gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 })
         gsap.set('.home__welcome--shadow', { scale: 1.05 + (fbc_array[1] / 50) / 100 })
       }
@@ -68,7 +68,7 @@ function Player() {
       setIsPlaying(false)
     } else {
       if (!audio.src) {
-        const url = `//api.soundcloud.com/resolve.json?url=https://soundcloud.com/downtownrecords/justice-dvno&client_id=${process.env.REACT_APP_CLIENT_ID}`
+        const url = `//api.soundcloud.com/resolve.json?url=https://soundcloud.com/halfaliveco/still-feel&client_id=${process.env.REACT_APP_CLIENT_ID}`
         const response = await fetch(url);
         const responseData = await response.json();
 
@@ -101,7 +101,7 @@ function Player() {
       <div className="player__content">
         {content}
       </div>
-      <a href='https://soundcloud.com/downtownrecords/justice-dvno' target='_blank' rel='noopener noreferrer'><span className="player__song"><span>dvno - justice</span></span></a>
+      <a draggable={false} href='https://soundcloud.com/halfaliveco/still-feel' target='_blank' rel='noopener noreferrer'><span className="player__song"><span>still feel - half•alive</span></span></a>
     </div>
   )
 }

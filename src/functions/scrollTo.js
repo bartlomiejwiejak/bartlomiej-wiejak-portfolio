@@ -5,8 +5,7 @@ export default function (offset, callback) {
     top: offset
   })
   function frame() {
-    console.log(skewConfig.previous)
-    if (skewConfig.previous - offset < 50) {
+    if (skewConfig.previous - offset < 100) {
       callback();
     } else requestAnimationFrame(frame)
   }
