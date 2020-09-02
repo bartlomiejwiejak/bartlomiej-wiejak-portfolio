@@ -15,7 +15,7 @@ function Info() {
           <span><span>create</span></span><span><span>account,</span></span><span><span>place</span></span><span><span>orders</span></span>
           <span><span>in</span></span><span><span>the</span></span><span><span>most</span></span><span><span>enjoyable</span></span><span><span>way.</span></span>
         </div>
-        <div className='project-content__launch'><span><span><a href='https://burger-project-ed64a.web.app/' target='blank'><Button type='white'>Launch Project<i className='fas fa-long-arrow-alt-right'></i></Button></a></span></span>
+        <div className='project-content__launch'><span><span><Button href='https://burger-project-ed64a.web.app/' type='white' arrow>Launch Project</Button></span></span>
         </div>
       </div>
     </div>

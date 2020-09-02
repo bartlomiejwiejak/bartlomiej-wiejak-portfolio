@@ -1,6 +1,6 @@
 .button {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   pointer-events: auto;
   &:hover &__underline--fill {
     width: 100%;
@@ -48,8 +48,15 @@
   }
   &--fill {
     height: 1px;
-    transition: .5s;
+    transition: .5s ease-out;
     width: 0;
   }
+}
+i {
+  transition: .3s ease-out;
+  transform: rotate(45deg) translate(40%, -10%);
+}
+&:hover i {
+  transform: rotate(45deg) translate(80%, -35%);
 }
 }

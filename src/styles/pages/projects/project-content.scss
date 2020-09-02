@@ -82,10 +82,7 @@
   }
   &__launch {
     margin-left: auto;
-    overflow: hidden;
-    i {
-      margin-left: 1rem;
-    }
+    white-space: nowrap;
   }
   &__description {
     margin: 5rem 0;

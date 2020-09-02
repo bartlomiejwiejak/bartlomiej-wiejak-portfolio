@@ -7,7 +7,7 @@ import { cursorMultiDot } from '../../animations/cursor';
 import isMobile from '../../functions/isMobile';
 import { RoutingContext } from '../../context/index';
 
-const Button = ({ children, type, href, inactive }) => {
+const Button = ({ children, type, href, arrow }) => {
 
   const location = useLocation();
   const { animating } = useContext(RoutingContext)
@@ -46,7 +46,7 @@ const Button = ({ children, type, href, inactive }) => {
 
   selectType()
 
-  const content = <div onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
+  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
     <div className="button__content">{children}</div>
     <div className="button__underline">
       <div className="button__underline--left">
@@ -56,6 +56,7 @@ const Button = ({ children, type, href, inactive }) => {
         <div className="button__underline--fill"></div>
       </div>
     </div>
+    {arrow && <i className="fas fa-arrow-right"></i>}
   </div>
 
   if (href) return <a draggable={false} href={href} target='blank'>{content}</a>

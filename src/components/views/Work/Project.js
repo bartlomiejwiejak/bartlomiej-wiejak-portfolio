@@ -54,7 +54,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, proj
           <img style={stylesRef.current.projectImg} draggable={false} src={src} alt="project" className="project__img" />
           <div style={stylesRef.current.imgReveal} className="project__img-reveal"></div>
         </div>
-        <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type={inactive ? 'inactive' : 'black'}><Link to={url}>{inactive ? 'In developing' : 'Explore project'}</Link></Button></div>
+        <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type={inactive ? 'inactive' : 'black'} arrow><Link to={url}>{inactive ? 'In developing' : 'Explore project'}</Link></Button></div>
       </div>
       <h2 className="project__title project__title--down"><div style={stylesRef.current.title}>{titleDown}</div></h2>
       <h2 className="project__title project__title--up"><div style={stylesRef.current.title}>{titleUp}</div></h2>
