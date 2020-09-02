@@ -58,5 +58,8 @@ i {
 }
 &:hover i {
   transform: rotate(45deg) translate(80%, -35%);
+  @include respond(xxsmall) {
+    transform: rotate(45deg) translate(40%, -10%);
+  }
 }
 }
