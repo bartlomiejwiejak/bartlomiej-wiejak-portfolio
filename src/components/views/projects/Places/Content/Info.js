@@ -17,7 +17,7 @@ function Info() {
           <span><span>create</span></span><span><span>places,</span></span><span><span>navigate</span></span><span><span>them</span></span><span><span>through</span></span><span><span>google</span></span><span><span>maps,</span></span><span><span>as</span></span>
           <span><span>well</span></span><span><span>as</span></span><span><span>place</span></span><span><span>comments,</span></span><span><span>like</span></span><span><span>or</span></span><span><span>follow</span></span><span><span>others.</span></span>
         </div>
-        <div className='project-content__launch'><span><span><a href='https://places-app-mern2020.herokuapp.com/' target='blank'><Button type='black'>Launch Project<i className='fas fa-long-arrow-alt-right'></i></Button></a></span></span>
+        <div className='project-content__launch'><span><span><Button href='https://places-app-mern2020.herokuapp.com/' type='black' arrow>Launch Project</Button></span></span>
         </div>
       </div>
     </div>
