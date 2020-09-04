@@ -7,7 +7,7 @@ export default function (top, delay, element) {
   gsap.to(`${element} div`, .5, {
     scrollTrigger: {
       trigger: element,
-      start: `${top} bottom`,
+      start: `${top} bottom`
     },
     y: 0,
     x: 0,

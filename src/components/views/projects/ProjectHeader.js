@@ -85,7 +85,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
         scrollbarHide();
         gsap.to('.project-header__scroll-indicator span', 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 })
         gsap.to('.project-header', .75, {
-          y: '-100%', scaleX: .2, scaleY: .5, delay: 1, ease: 'power2.out', onComplete: () => setTimeout(() => {
+          y: '-100%', scaleX: .2, scaleY: .5, delay: 1.2, ease: 'power2.out', onComplete: () => setTimeout(() => {
             setAnimating(false)
             if (path !== '/about' && path !== '/') {
               setLastProject(projectIndex)
