@@ -173,6 +173,8 @@ const Work = ({ setBodyHeight }) => {
 
   useEffect(() => {
     let timeout;
+    let timeoutListeners;
+
     if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
       const background = document.querySelector('.background')
@@ -196,12 +198,14 @@ const Work = ({ setBodyHeight }) => {
         gsap.to('.circle', 1, { y: '50%', x: '50%' })
         gsap.to('.project__title div, .work__pagination > div', 1, { y: 0 })
         gsap.to('.project .button', 1, {
-          y: 0, onComplete: addListeners
+          y: 0
         })
+        timeoutListeners = setTimeout(addListeners, 1000)
       }, time2)
     }
     return () => {
       clearTimeout(timeout)
+      clearTimeout(timeoutListeners)
     }
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
   useEffect(() => {
@@ -218,9 +222,12 @@ const Work = ({ setBodyHeight }) => {
         y: 0, onComplete: () => {
           setLastProject(null)
           isMountedRef.current = true;
-          addListeners()
         }
       })
+    }
+    const timeout = setTimeout(addListeners, 1000)
+    return () => {
+      clearTimeout(timeout)
     }
   }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
   const styleRef = useRef({})
