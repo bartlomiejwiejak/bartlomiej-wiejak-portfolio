@@ -31,6 +31,7 @@
   height: 1px;
   width: 100%;
   display: flex;
+  pointer-events: none;
   &--left {
     height: 1px;
     transform: rotate(180deg);

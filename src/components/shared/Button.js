@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 
@@ -32,7 +32,7 @@ const Button = ({ children, type, href, arrow }) => {
     }
   }
 
-  const mouseEnter = () => {
+  const mouseEnterHandle = useCallback(() => {
     if (isMobile() || type === 'inactive') return;
     cursorExpand();
     gsap.set([fillLeftRef.current, fillRightRef.current], { x: '-100%' })
@@ -40,8 +40,8 @@ const Button = ({ children, type, href, arrow }) => {
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
-  }
-  const mouseOut = () => {
+  }, [location.pathname, type])
+  const mouseOutHandle = useCallback(() => {
     if (isMobile() || type === 'inactive') return;
     cursorBackToNormal();
     gsap.set([fillLeftRef.current, fillRightRef.current], { x: 0 })
@@ -49,11 +49,11 @@ const Button = ({ children, type, href, arrow }) => {
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);
     }
-  }
+  }, [type, location.pathname])
 
   selectType()
 
-  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseEnter={animating ? null : mouseEnter} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
+  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseEnter={animating ? null : mouseEnterHandle} onMouseOut={animating ? null : mouseOutHandle} onClick={mouseOutHandle} className={classes.join(' ')}>
     <div className="button__content">
       {children}
       <div className="button__underline">
