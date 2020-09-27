@@ -56,7 +56,7 @@ export default function () {
         <Loader />
         <ScrollBar bodyHeight={bodyHeight} />
         <Header />
-        <div className="background"></div>
+        <div className="background" />
         <div ref={appRef} className="view">
           <div ref={scrollRef} className="scroll">
             <Switch>
