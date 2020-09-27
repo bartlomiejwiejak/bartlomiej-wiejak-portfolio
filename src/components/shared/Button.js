@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import gsap from 'gsap';
 
 import { cursorExpand } from '../../animations/cursor';
 import { cursorBackToNormal } from '../../animations/cursor';
@@ -11,6 +12,8 @@ const Button = ({ children, type, href, arrow }) => {
 
   const location = useLocation();
   const { animating } = useContext(RoutingContext)
+  const fillLeftRef = useRef(null);
+  const fillRightRef = useRef(null);
 
   let classes = ['button'];
 
@@ -29,9 +32,11 @@ const Button = ({ children, type, href, arrow }) => {
     }
   }
 
-  const mouseOver = () => {
+  const mouseEnter = () => {
     if (isMobile() || type === 'inactive') return;
     cursorExpand();
+    gsap.set([fillLeftRef.current, fillRightRef.current], { x: '-100%' })
+    gsap.to([fillLeftRef.current, fillRightRef.current], .5, { x: 0 })
     if (location.pathname === '/work') {
       document.removeEventListener('mousedown', cursorMultiDot);
     }
@@ -39,6 +44,8 @@ const Button = ({ children, type, href, arrow }) => {
   const mouseOut = () => {
     if (isMobile() || type === 'inactive') return;
     cursorBackToNormal();
+    gsap.set([fillLeftRef.current, fillRightRef.current], { x: 0 })
+    gsap.to([fillLeftRef.current, fillRightRef.current], .5, { x: '100%', ease: 'power2.out' })
     if (location.pathname === '/work') {
       document.addEventListener('mousedown', cursorMultiDot);
     }
@@ -46,14 +53,16 @@ const Button = ({ children, type, href, arrow }) => {
 
   selectType()
 
-  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
-    <div className="button__content">{children}</div>
-    <div className="button__underline">
-      <div className="button__underline--left">
-        <div className="button__underline--fill"></div>
-      </div>
-      <div className="button__underline--right">
-        <div className="button__underline--fill"></div>
+  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseEnter={animating ? null : mouseEnter} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>
+    <div className="button__content">
+      {children}
+      <div className="button__underline">
+        <div className="button__underline--left">
+          <div ref={fillLeftRef} className="button__underline--fill"></div>
+        </div>
+        <div className="button__underline--right">
+          <div ref={fillRightRef} className="button__underline--fill"></div>
+        </div>
       </div>
     </div>
     {arrow && <i className="fas fa-arrow-right"></i>}

@@ -2,12 +2,6 @@
   position: relative;
   display: inline-flex;
   pointer-events: auto;
-  &:hover &__underline--fill {
-    width: 100%;
-    @include respond(xxsmall) {
-      width: 0%;
-    }
-  }
   &__content {
     position: relative;
     z-index: 3;
@@ -41,15 +35,16 @@
     height: 1px;
     transform: rotate(180deg);
     width: 50%;
+    overflow: hidden;
   }
   &--right{
     width: 50%;
     height: 1px;
+    overflow: hidden;
   }
   &--fill {
     height: 1px;
-    transition: .5s ease-out;
-    width: 0;
+    transform: translate(-100%);
   }
 }
 i {
