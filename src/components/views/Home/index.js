@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import useAnimation from '../../../hooks/useAnimation';
@@ -7,14 +7,7 @@ import Light from './Light';
 import Header from './Header';
 import Player from './Player';
 
-const Home = ({ setBodyHeight }) => {
-
-  useEffect(() => {
-    setTimeout(() => {
-      setBodyHeight();
-    }, 1000)
-    setBodyHeight()
-  }, [setBodyHeight])
+const Home = () => {
 
   useAnimation('HOME')
 

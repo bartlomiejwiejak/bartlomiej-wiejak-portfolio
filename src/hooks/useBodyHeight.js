@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const useContentHeight = () => {
+const useBodyHeight = () => {
   const [bodyHeight, changeBodyHeight] = useState(0)
 
   const setBodyHeight = useCallback(() => {
@@ -12,4 +12,4 @@ const useContentHeight = () => {
   return { bodyHeight, setBodyHeight }
 }
 
-export default useContentHeight;
+export default useBodyHeight;

@@ -2,8 +2,32 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--dark);
-  transition: .7s;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  > * {
+    position: absolute;
+  }
+  &__dark {
+    background-color: var(--dark);
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(100%);
+  }
+  &__light {
+    background-color: var(--light);
+    z-index: 1;
+    left: 0;
+    right: 0;
+    &--down {
+      top: 50%;
+      height: 50vh;
+    }
+    &--up {
+      bottom: 50%;
+      height: 50vh;
+    }
+  }
 }

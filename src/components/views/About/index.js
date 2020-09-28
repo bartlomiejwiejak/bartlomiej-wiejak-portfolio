@@ -21,19 +21,13 @@ import Footer from './Footer';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 
-const About = ({ setBodyHeight }) => {
+const About = () => {
 
   const { animating, path, setAnimating } = useContext(RoutingContext);
   const { loaded } = useContext(LoadingContext);
   const history = useHistory();
   const [locked, setLocked] = useToggle(loaded);
   useLockBodyScroll(locked);
-
-  useEffect(() => {
-    if (!loaded) return;
-    setBodyHeight()
-    setTimeout(setBodyHeight, 2000)
-  }, [setBodyHeight, loaded])
 
   useEffect(() => {
     if (animating) {
@@ -81,7 +75,6 @@ const About = ({ setBodyHeight }) => {
       setTimeout(scrollbarAppear, time1);
       timeout = setTimeout(() => {
         setLocked(false);
-        setBodyHeight();
         gsap.registerPlugin(ScrollTrigger)
         document.querySelectorAll('.about span span').forEach(span => {
           if (span.classList.contains('highlight-text')) return;
@@ -95,7 +88,7 @@ const About = ({ setBodyHeight }) => {
     return () => {
       if (timeout) clearTimeout(timeout)
     }
-  }, [loaded, setLocked, setBodyHeight])
+  }, [loaded, setLocked])
 
   return (
     <div className='about'>

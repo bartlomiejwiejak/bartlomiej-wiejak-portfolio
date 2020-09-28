@@ -37,13 +37,16 @@ const useAnimation = (type) => {
   useEffect(() => {
     if (!loaded) return;
     let listener;
-    showInterface();
-    cursorBackToNormal();
+    setTimeout(() => {
+      showInterface();
+      cursorBackToNormal();
+    }, 700)
     switch (type) {
       case 'HOME':
         homeEnter();
         if (!isMobile()) {
-          listener = document.addEventListener('mousemove', homeMoveHeader)
+          document.addEventListener('mousemove', homeMoveHeader);
+          listener = homeMoveHeader;
         }
         break;
       default: return;
@@ -52,7 +55,6 @@ const useAnimation = (type) => {
       document.removeEventListener('mousemove', listener)
     }
   }, [loaded, type])
-
 }
 
 export default useAnimation;

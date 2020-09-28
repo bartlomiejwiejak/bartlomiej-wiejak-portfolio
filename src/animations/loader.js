@@ -42,9 +42,5 @@ export const loadingComplete = (callback) => {
   const tl = gsap.timeline({ defaults: { ease: 'custom' } })
   tl.to('.loader span', 1.5, { y: '100%', ease: 'power2.out' })
     .to('.loader__loading-left, .loader__loading-right', .5, { autoAlpha: 0, delay: -1 })
-    .to('.loader__overlay', 1, { height: '50vh' })
-    .to('.loader__overlay', 1, { x: '-100%' })
-    .to('.loader', .5, {
-      autoAlpha: 0, ease: 'power2.out', onComplete: callback
-    })
+    .to('.loader__overlay', 1, { height: '50vh', onComplete: callback })
 }

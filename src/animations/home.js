@@ -1,19 +1,30 @@
 import gsap from 'gsap';
 
 import isMobile from '../functions/isMobile';
+import { turnBackgroundDark } from './background';
 
 export const homeEnter = () => {
-  document.querySelector('.background').style.setProperty('background-color', 'var(--dark)');
-  if (!isMobile()) {
-    gsap.to('.light', 1, { scale: .5, delay: .5, ease: 'power2.out' })
-  } else {
-    gsap.to('.light', 1, { scale: .5, ease: 'power2.out', delay: 1.5 })
+  let isLight = false;
+  if (document.querySelector('.background__light--up').offsetHeight > 0) {
+    isLight = true;
   }
-  gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power2.out' });
-  gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
-  gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
-  gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
-  gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
+  let timeout = 0;
+  if (isLight) {
+    turnBackgroundDark();
+    timeout = 1000;
+  }
+  setTimeout(() => {
+    if (!isMobile()) {
+      gsap.to('.light', 1, { scale: .5, delay: .5, ease: 'power2.out' })
+    } else {
+      gsap.to('.light', 1, { scale: .5, ease: 'power2.out', delay: 1.5 })
+    }
+    gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power2.out' });
+    gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
+    gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
+    gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
+    gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .1, ease: 'power2.out', opacity: 1 });
+  }, timeout)
 }
 export const homeLeave = () => {
   gsap.to('.light', .5, { opacity: 0 })
