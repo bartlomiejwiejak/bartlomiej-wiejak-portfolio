@@ -102,4 +102,4 @@ function Description() {
   )
 }
 
-export default Description
+export default Description;

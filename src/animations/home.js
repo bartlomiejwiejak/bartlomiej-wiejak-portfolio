@@ -10,8 +10,8 @@ export const homeEnter = (callafter) => {
       gsap.to('.light', 1, { scale: .5, delay: .5, ease: 'power2.out' })
       gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1 });
     } else {
-      gsap.to('.light', 1, { scale: .5, ease: 'power2.out', delay: 1.5 })
-      gsap.to('.home .home__welcome--shadow span span', 1.2, { opacity: 1, delay: 1.5 });
+      gsap.to('.light', 1, { scale: .5, ease: 'power2.out', delay: 2 })
+      gsap.to('.home .home__welcome--shadow span span', 1, { opacity: 1, y: 0, delay: 2 });
     }
     gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power2.out' });
     gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })

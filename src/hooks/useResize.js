@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-
-export default function useWindowSize(callback) {
+const useResize = (callback) => {
   useEffect(() => {
     const html = document.querySelector('html');
     const documentEl = document.documentElement;
@@ -20,3 +19,5 @@ export default function useWindowSize(callback) {
     return () => window.removeEventListener("resize", handleResize);
   }, [callback]);
 }
+
+export default useResize;

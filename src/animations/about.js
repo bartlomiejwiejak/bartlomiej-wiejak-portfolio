@@ -15,9 +15,9 @@ export const aboutEnter = (callafter, callback) => {
   setTimeout(() => {
     callafter();
     scrollbarAppear();
-    let topText = '100px';
+    let topText = '200px';
     if (isMobile()) {
-      topText = '50px';
+      topText = '0px';
     }
     gsap.to('.about__line', 1, {
       x: 0, ease: 'power2.out', onComplete: () => {
@@ -25,7 +25,7 @@ export const aboutEnter = (callafter, callback) => {
         gsap.to('.about__line--1, .about__line--3', {
           x: '30%', scrollTrigger: {
             trigger: '.about__heading',
-            start: '-100px top',
+            start: `-${topText} top`,
             end: 'bottom top',
             scrub: 1.5
           }
@@ -33,7 +33,7 @@ export const aboutEnter = (callafter, callback) => {
         gsap.to('.about__line--2', {
           x: '-30%', scrollTrigger: {
             trigger: '.about__heading',
-            start: 'top top',
+            start: `-${topText} top`,
             end: 'bottom top',
             scrub: 1.5
           }

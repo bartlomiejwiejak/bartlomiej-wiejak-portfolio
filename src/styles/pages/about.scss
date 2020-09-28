@@ -254,6 +254,7 @@
     &__technologies {
       margin: 15rem auto;
       display: grid;
+      justify-content: center;
       backface-visibility: hidden;
       grid-template-columns: repeat(4, 32.5rem);
       @include respond(xlarge) {
@@ -269,14 +270,8 @@
         grid-template-columns: repeat(4, 22.5rem);
       }
       @include respond(xsmall) {
-        grid-template-columns: repeat(4, 20rem);
+        grid-template-columns: repeat(3, 22.5rem);
         margin: 10rem auto;
-      }
-      @include respond(xxsmall) {
-        grid-template-columns: repeat(4, 17.5rem);
-      }
-      @media (max-width: 350px) {
-        grid-template-columns: repeat(4, 15rem);
       }
       &-wrapper {
         display: flex;
@@ -300,13 +295,9 @@
           height: 22.5rem;
         }
         @include respond(xsmall) {
-          height: 20rem;
-        }
-        @include respond(xxsmall) {
-          height: 17.5rem;
-        }
-        @media (max-width: 350px) {
-          height: 15rem;
+          &:last-child {
+            grid-column: 2/3;
+          }
         }
         div {
           width: 100%;
@@ -316,9 +307,16 @@
           align-items: center;
           justify-content: center;
           filter: grayscale(1);
+          transform: translateY(-100%);
+          transition: .5s ease-out;
+          &:hover {
+            filter: grayscale(0);
+          }
         }
         img {
           width: 35%;
+          transform: translateY(-100%);
+            opacity: 0;
           @include respond(xxsmall) {
             width: 40%;
           }
@@ -335,126 +333,11 @@
           @include respond(medium) {
            font-size: 2rem;
           }
-          @include respond(xsmall) {
-            font-size: 1.75rem;
-          }
-          @include respond(xxsmall) {
-            font-size: 1.5rem;
-          }
           div {
+            transform: none;
             width: auto;
             height: auto;
             border: none;
-          }
-        }
-        &--2 {
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--3 {
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--4 {
-          grid-row: 2/3;
-          div {
-            transform: translateX(100%);
-            img {
-              transform: translateX(-100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--5 {
-          grid-row: 2/3;
-          div {
-            transform: translateY(-100%);
-            img {
-              transform: translateY(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--6 {
-          grid-row: 2/3;
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--7 {
-          grid-row: 3/4;
-          div {
-            transform: translateY(-100%);
-            img {
-              transform: translateY(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--8 {
-          grid-row: 3/4;
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--9 {
-          grid-row: 3/4;
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--10 {
-          grid-row: 3/4;
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--11 {
-          grid-row: 4/5;
-          grid-column: 2/3;
-          div {
-            transform: translateY(-100%);
-            img {
-              transform: translateY(100%);
-              opacity: 0;
-            }
-          }
-        }
-        &--12 {
-          grid-row: 4/5;
-          grid-column: 3/4;
-          div {
-            transform: translateX(-100%);
-            img {
-              transform: translateX(100%);
-              opacity: 0;
-            }
           }
         }
       }
