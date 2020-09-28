@@ -79,6 +79,10 @@
         overflow: hidden;
         span {
           transform: translateY(110%);
+          @include respond(xsmall){
+            transform: none;
+            opacity: 1;
+          }
         }
       }
     }
