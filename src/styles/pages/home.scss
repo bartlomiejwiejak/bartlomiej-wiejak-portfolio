@@ -4,6 +4,7 @@
   margin: 0 auto;
   display: flex;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   align-items: center;
   @media (max-width: 1700px) {
     max-width: 1250px;
@@ -81,7 +82,6 @@
           transform: translateY(110%);
           @include respond(xsmall){
             transform: none;
-            opacity: 1;
           }
         }
       }
