@@ -1,21 +1,6 @@
-import React, { useEffect, useContext } from 'react'
-import gsap from 'gsap';
-
-import aboutheader from '../../../animations/aboutHeader';
-import { moveLines } from '../../../animations/aboutHeader';
-import { LoadingContext } from '../../../context';
+import React from 'react'
 
 function Header() {
-
-  const { loaded } = useContext(LoadingContext)
-
-  useEffect(() => {
-    if (!loaded) return;
-    gsap.to('.about__line', 1, { x: 0, ease: 'power2.out', onComplete: aboutheader }, .2)
-    return () => {
-      document.removeEventListener('mousemove', moveLines);
-    }
-  }, [loaded])
 
   return (
     <h1 className='about__heading'>

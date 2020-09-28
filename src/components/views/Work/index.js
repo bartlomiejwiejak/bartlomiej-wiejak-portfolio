@@ -19,7 +19,7 @@ import Circle from './Circle';
 import CustomEase from 'gsap/CustomEase';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 
-const Work = ({ setBodyHeight }) => {
+const Work = () => {
   const { loaded } = useContext(LoadingContext);
   const { animating, path, setAnimating, lastProject, setLastProject } = useContext(RoutingContext)
   const canScrollRef = useRef(true)
@@ -167,9 +167,6 @@ const Work = ({ setBodyHeight }) => {
   }, [animating, path, slider, history, setAnimating, removeListeners, setLastProject])
 
   useLockBodyScroll(true)
-  useEffect(() => {
-    setBodyHeight()
-  }, [setBodyHeight])
 
   useEffect(() => {
     let timeout;

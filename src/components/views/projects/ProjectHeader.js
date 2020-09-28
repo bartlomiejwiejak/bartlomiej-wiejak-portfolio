@@ -12,7 +12,7 @@ import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import projectContentAnimation from '../../../animations/projectContent';
 
-const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex }) => {
+const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
 
   const { loaded } = useContext(LoadingContext);
   const { animating, path, setAnimating, setLastProject, lastProject } = useContext(RoutingContext);
@@ -47,7 +47,6 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
             y: 0, opacity: 1, onComplete: () => {
               setToggle(false)
               setIsMounted(true)
-              setBodyHeight();
               scrollbarAppear();
               projectContentAnimation();
             }
@@ -66,7 +65,6 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
           .to('.project-header__scroll-indicator span', 1, {
             y: 0, opacity: 1, onComplete: () => {
               setToggle(false);
-              setBodyHeight();
               setIsMounted(true)
               projectContentAnimation();
             }
@@ -74,7 +72,7 @@ const ProjectHeader = ({ src, titleLeft, titleRight, setBodyHeight, projectIndex
       }
     }
   }
-    , [setBodyHeight, setToggle, loaded, lastProject, isMounted])
+    , [setToggle, loaded, lastProject, isMounted])
 
   useEffect(() => {
     if (animating && path !== '/work') {

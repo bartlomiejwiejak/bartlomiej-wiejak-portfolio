@@ -1,19 +1,12 @@
 import gsap from 'gsap';
 
 import isMobile from '../functions/isMobile';
-import { turnBackgroundDark } from './background';
+import { toDark } from '../functions/handleBackground';
 
-export const homeEnter = () => {
-  let isLight = false;
-  if (document.querySelector('.background__light--up').offsetHeight > 0) {
-    isLight = true;
-  }
-  let timeout = 0;
-  if (isLight) {
-    turnBackgroundDark();
-    timeout = 1000;
-  }
+export const homeEnter = (callafter) => {
+  const timeout = toDark(500);
   setTimeout(() => {
+    callafter();
     if (!isMobile()) {
       gsap.to('.light', 1, { scale: .5, delay: .5, ease: 'power2.out' })
     } else {

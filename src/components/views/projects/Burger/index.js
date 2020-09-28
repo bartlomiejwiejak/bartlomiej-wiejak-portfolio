@@ -5,11 +5,11 @@ import ProjectHeader from '../ProjectHeader';
 import headerImg from '../../../../assets/projects/burger/header.jpg';
 import Content from './Content';
 
-const Burger = ({ setBodyHeight }) => {
+const Burger = () => {
 
   return (
     <div>
-      {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' setBodyHeight={setBodyHeight} projectIndex={0} />, document.getElementById('root'))}
+      {ReactDOM.createPortal(<ProjectHeader src={headerImg} titleLeft='Burger' titleRight='Project' projectIndex={0} />, document.getElementById('root'))}
       <div className='project-content__header'></div>
       <Content />
     </div>

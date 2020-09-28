@@ -53,8 +53,8 @@ const Loader = () => {
           <h2><span>Portfolio 2020</span></h2>
         </div>
         <div className="loader__loading">
-          <div className="loader__loading-right"></div>
-          <div className="loader__loading-left"></div>
+          <div className="loader__loading-right" />
+          <div className="loader__loading-left" />
           <div className="loader__loading-text">
             <span>
               <span>L</span>

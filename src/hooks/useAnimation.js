@@ -6,6 +6,7 @@ import { cursorHide, cursorBackToNormal } from '../animations/cursor';
 import { hideInterface, showInterface } from '../animations/interface';
 import { RoutingContext, LoadingContext } from '../context';
 import { homeEnter, homeLeave, homeMoveHeader } from '../animations/home';
+import { aboutEnter, moveLines, aboutLeave } from '../animations/about';
 
 const useAnimation = (type) => {
 
@@ -29,6 +30,11 @@ const useAnimation = (type) => {
           animationEnd();
         }, 1200)
         break;
+      case 'ABOUT':
+        aboutLeave(() => {
+          animationEnd();
+        });
+        break;
       default: return;
     }
 
@@ -37,17 +43,23 @@ const useAnimation = (type) => {
   useEffect(() => {
     if (!loaded) return;
     let listener;
-    setTimeout(() => {
+    const showInterfaceElements = () => {
       showInterface();
       cursorBackToNormal();
-    }, 700)
+    }
     switch (type) {
       case 'HOME':
-        homeEnter();
+        homeEnter(showInterfaceElements);
         if (!isMobile()) {
           document.addEventListener('mousemove', homeMoveHeader);
           listener = homeMoveHeader;
         }
+        break;
+      case 'ABOUT':
+        aboutEnter(showInterfaceElements, () => {
+          document.addEventListener('mousemove', moveLines);
+          listener = moveLines;
+        });
         break;
       default: return;
     }
