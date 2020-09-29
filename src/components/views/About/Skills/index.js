@@ -16,6 +16,8 @@ import Skill from './Skill';
 import webgl from '../../../../assets/about/technologies/webgl.png';
 import opengl from '../../../../assets/about/technologies/opengl.png';
 import reactthreefiber from '../../../../assets/about/technologies/react-three-fiber.png';
+import Button from '../../../shared/Button';
+import Link from '../../../shared/Link';
 
 const Skills = () => {
   return (
@@ -91,6 +93,7 @@ const Skills = () => {
           <Skill src={opengl} />
         </div>
       </div>
+      <p className="about__skills__description"><span><span>You</span></span><span><span>can</span></span><span><span>meet</span></span><span><span>some</span></span><span><span>the</span></span><span><span>skills</span></span><span><span>in</span></span><span><span>my</span></span><span><span><Button type='brown'><Link to='/work'>portfolio</Link></Button></span></span><span><span>page</span></span><span><span>with</span></span><span><span>personal</span></span> <span><span>projects.</span></span><span><span>The</span></span><span><span>code</span></span><span><span>of</span></span><span><span>these</span></span><span><span>as well</span></span><span><span>as this</span></span><span><span>very</span></span><span><span>website</span></span><span><span>is</span></span><span><span>all</span></span><span><span>transparent,</span></span><span><span>avaible</span></span><span><span>on</span></span><span><span>my</span></span><span><span><Button href='https://github.com/bartlomiejwiejak' type='brown'>github</Button></span></span><span><span>profile.</span></span></p>
     </div>
   )
 }

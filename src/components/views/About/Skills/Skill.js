@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,6 +6,7 @@ import { CustomEase } from 'gsap/CustomEase';
 
 import isMobile from '../../../../functions/isMobile';
 import { cursorBackToNormal, cursorHide } from '../../../../animations/cursor';
+import { LoadingContext } from '../../../../context';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(CustomEase);
@@ -17,6 +18,8 @@ const Skill = ({ src, children, infoColor }) => {
   const imgRef = useRef(null);
   const infoRef = useRef(null);
   const iRef = useRef(null);
+
+  const { loaded } = useContext(LoadingContext);
 
   const moveInfo = useCallback((e) => {
     const element = infoRef.current.querySelector('.about__skills__technologies__technology__info');
@@ -46,10 +49,11 @@ const Skill = ({ src, children, infoColor }) => {
     const tl = gsap.timeline({ defaults: { ease: 'custom' } });
     gsap.to([itemRef.current, infoRef.current.querySelector('.content')], .5, { filter: 'grayscale(1)' })
     tl.to(infoRef.current.querySelectorAll('.content > *'), .3, { autoAlpha: 0, delay: .1 })
-      .fromTo(infoRef.current.querySelector('.content'), .4, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)' })
+      .fromTo(infoRef.current.querySelector('.content'), .6, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-150%,0)' })
     document.removeEventListener('mousemove', moveInfo);
   }
   useEffect(() => {
+    if (!loaded) return;
     let top = '200px'
     if (isMobile()) {
       top = '100px';
@@ -68,7 +72,7 @@ const Skill = ({ src, children, infoColor }) => {
         }
       })
     }, 3000)
-  }, [])
+  }, [loaded])
 
   useEffect(() => {
     if (infoColor) {
@@ -80,7 +84,7 @@ const Skill = ({ src, children, infoColor }) => {
       {children ? ReactDOM.createPortal(<div className='skill-info' ref={infoRef}>{children}</div>, document.getElementById('root')) : null}
       <div ref={containerRef} className="about__skills__technologies__technology">
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={itemRef}>
-          {(children && !isMobile()) && <i style={{ color: infoColor }} ref={iRef} className="far fa-lightbulb"></i>}
+          {(children && !isMobile()) && <span className='info-container' style={{ color: infoColor }} ref={iRef}><span>Explore</span><i className="far fa-lightbulb"></i></span>}
           <img ref={imgRef} draggable={false} src={src} alt='' />
         </div>
       </div>

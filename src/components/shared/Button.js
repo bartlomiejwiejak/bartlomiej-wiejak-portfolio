@@ -28,6 +28,9 @@ const Button = ({ children, type, href, arrow }) => {
       case 'inactive':
         classes.push('button--inactive');
         return;
+      case 'brown':
+        classes.push('button--brown');
+        return;
       default: return;
     }
   }

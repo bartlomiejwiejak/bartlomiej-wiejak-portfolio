@@ -251,6 +251,21 @@
         text-align: center;
       }
     }
+    &__description {
+      font-size: var(--font-size-m);
+      width: 40%;
+      @include respond(xlarge) {
+        width: 50%;
+      }
+      @include respond(medium) {
+        width: 60%;
+      }
+      @include respond(xsmall) {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
     &__technologies {
       margin: 15rem auto;
       display: grid;
@@ -351,6 +366,7 @@
           border: 1px solid var(--black);
           display: flex;
           align-items: center;
+          position: relative;
           justify-content: center;
           filter: grayscale(1);
           transform: translateY(-100%);
@@ -362,12 +378,17 @@
               width: 40%;
             }
           }
-          i {
+          .info-container {
             position: absolute;
+            display: flex;
+            align-items: center;
             top: 5%;
             right: 5%;
             opacity: 0;
             font-size: var(--font-size-m);
+            span {
+              font-size: var(--font-size-s);
+            }
           }
         }
         &--1 {
@@ -393,17 +414,33 @@
     }
   }
   &__contact {
-    display: flex;
     margin: 20rem 0;
     @include respond(xlarge) {
-    margin: 15rem 0;
+     margin: 15rem 0;
     }
     @include respond(medium) {
-      margin: 10rem 0;
-      }
+     margin: 10rem 0;
+    }
+    &__circle {
+      width: 30rem;
+      margin: -20rem 0 0 auto;
+      display: block;
+      @include respond(xlarge) {
+        margin: -15rem 0 0 auto;
+       }
+       @include respond(medium) {
+        margin: -10rem 0 0 auto;
+       }
+       @include respond(xsmall) {
+        margin: 0 auto 5rem;
+       }
+    }
+    &__content {
+      display: flex;
       @include respond(xxsmall) {
         flex-direction: column;
       }
+    }
     ul:first-child {
       flex-basis: 60%;
       @include respond(xxsmall) {

@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useRef, useCallback } from 'react'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import circle from '../../../assets/about/circle.png';
+import circle from '../../../assets/about/circle-interactivedeveloper.png';
 import { LoadingContext } from '../../../context';
 import img1 from '../../../assets/projects/burger/menu-mobile.png';
 import img2 from '../../../assets/projects/burger/builder-mobile.png';
