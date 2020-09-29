@@ -25,10 +25,7 @@ const useAnimation = (type) => {
     hideInterface();
     switch (type) {
       case 'HOME':
-        homeLeave();
-        setTimeout(() => {
-          animationEnd();
-        }, 1200)
+        homeLeave(animationEnd);
         break;
       case 'ABOUT':
         aboutLeave(() => {

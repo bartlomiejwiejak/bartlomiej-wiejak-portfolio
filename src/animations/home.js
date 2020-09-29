@@ -19,15 +19,15 @@ export const homeEnter = (callafter) => {
     gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1 });
   }, timeout)
 }
-export const homeLeave = () => {
+export const homeLeave = (callback) => {
   gsap.to('.light', .5, { opacity: 0 })
-  gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0 })
-  gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0 })
+  gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power2.out' })
+  gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power2.out' })
   gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power2.out', delay: .2 });
   gsap.to('.home > .home__welcome > span span', .5, {
-    color: 'transparent'
+    color: 'transparent', ease: 'power2.out'
   })
-  gsap.to('.home > .home__welcome > span span', .5, { delay: .6, y: '110%' })
+  gsap.to('.home > .home__welcome > span span', 1, { delay: .6, y: '110%', onComplete: callback, ease: 'power2.out' })
 }
 export const homeMoveHeader = e => {
   const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
