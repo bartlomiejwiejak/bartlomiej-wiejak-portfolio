@@ -1,7 +1,4 @@
 .cursor {
-  @include respond(medium) {
-    display: none;
-  }
   &__circle {
   width: 65px;
   height: 65px;
