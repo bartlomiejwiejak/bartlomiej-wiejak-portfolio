@@ -282,6 +282,52 @@
         overflow: hidden;
         margin-top: -1px;
         margin-left: -1px;
+        &__info {
+          overflow: hidden;
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 4;
+          color: var(--white);
+          font-size: var(--font-size-s);
+          pointer-events: none;
+          .content {
+          transform: translateY(100%);
+          display: flex;
+          padding: 2rem;
+          filter: grayscale(1);
+          flex-direction: column;
+          span {
+            display: inline-block;
+          }
+          .row {
+            overflow: hidden;
+          }
+          .line {
+            height: 2px;
+            background-color: var(--white);
+            margin-right: 1rem;
+            width: 2rem;
+            transform: translateX(-100%);
+          }
+          h1 {
+            transform: translateY(100%);
+            opacity: 0;
+            margin-bottom: 1rem;
+          }
+          .line-content {
+          transform: translateY(100%);
+          opacity: 0;
+          }
+          i {
+              margin-left: 1rem;
+          }
+          > .row {
+              display: flex;
+              align-items: center;
+          }
+         }
+        }
         @include respond(xlarge) {
           height: 30rem;
         }
@@ -308,17 +354,20 @@
           justify-content: center;
           filter: grayscale(1);
           transform: translateY(-100%);
-          transition: .5s ease-out;
-          &:hover {
-            filter: grayscale(0);
+          img {
+            width: 35%;
+            transform: translateY(-100%);
+              opacity: 0;
+            @include respond(xxsmall) {
+              width: 40%;
+            }
           }
-        }
-        img {
-          width: 35%;
-          transform: translateY(-100%);
+          i {
+            position: absolute;
+            top: 5%;
+            right: 5%;
             opacity: 0;
-          @include respond(xxsmall) {
-            width: 40%;
+            font-size: var(--font-size-m);
           }
         }
         &--1 {

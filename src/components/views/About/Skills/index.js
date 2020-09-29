@@ -26,20 +26,69 @@ const Skills = () => {
           <div className="about__skills__technologies__technology about__skills__technologies__technology--1"><div>Technologies:</div></div>
           <Skill src={html} />
           <Skill src={css} />
-          <Skill src={js} />
-          <Skill src={react} />
-          <Skill src={redux} />
+          <Skill src={js} infoColor='#d4bc33'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>JavaScript</h1>
+                <span className='row'><span className='line' /><span className='line-content'>ECMAScript ES2015+<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Audio API<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
+          <Skill src={react} infoColor='#63dbfb'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>React</h1>
+                <span className='row'><span className='line' /><span className='line-content'>React 16.8 +</span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Hooks<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Styled Components<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Context API<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
           <Skill src={webpack} />
-          <Skill src={sass} />
-          <Skill src={node} />
-          <Skill src={mongo} />
-          <Skill src={firebase} />
+          <Skill src={redux} infoColor='#744bbc'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>Redux</h1>
+                <span className='row'><span className='line' /><span className='line-content'>Sagas<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Thunk<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Reselect<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Redux Persist<i className="fas fa-check"></i></span></span>
+                <span className='row'><span className='line' /><span className='line-content'>Hooks<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
           <Skill src={git} />
-          <Skill src={gsapLogo} />
+          <Skill src={node} />
+          <Skill src={mongo} infoColor='#73b65b'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>MongoDB</h1>
+                <span className='row'><span className='line' /><span className='line-content'>Mongoose<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
+          <Skill src={firebase} />
+          <Skill src={sass} infoColor='#cc649c'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>Sass</h1>
+                <span className='row'><span className='line' /><span className='line-content'>BEM<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
+          <Skill src={gsapLogo} infoColor='#7fb314'>
+            <div className='about__skills__technologies__technology__info'>
+              <div className="content">
+                <h1>GSAP</h1>
+                <span className='row'><span className='line' /><span className='line-content'>GSAP member plugins<i className="fas fa-check"></i></span></span>
+              </div>
+            </div>
+          </Skill>
           <Skill src={webgl} />
           <Skill src={reactthreefiber} />
           <Skill src={opengl} />
-
         </div>
       </div>
     </div>
