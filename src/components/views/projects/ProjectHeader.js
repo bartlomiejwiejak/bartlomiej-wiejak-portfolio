@@ -11,6 +11,7 @@ import scrollInstant from '../../../functions/scrollInstant';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import projectContentAnimation from '../../../animations/projectContent';
+import { toLight } from '../../../functions/handleBackground';
 
 const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
 
@@ -23,53 +24,55 @@ const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
   useLockBodyScroll(toggle)
 
   useEffect(() => {
-    document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
     if (isMounted) return;
     if (loaded) {
       scrollInstant(0)
+      const timeout = toLight(500);
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-      if (lastProject === null) {
-        let translatesLeft = {}
-        let translatesRight = {}
-        if (navigator.userAgent.indexOf("Firefox") > -1) {
-          translatesLeft = { x: '-80%', y: '50%' }
-          translatesRight = { x: '80%', y: '-50%' }
-        }
-        tl.to('.project-header__title--left', .5, { rotateY: '-15deg', delay: .5 })
-          .to('.project-header__title--right', .5, { rotateY: '15deg', delay: -.5 })
-          .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-          .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
-          .to('.project-header__title--right', 1, { top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1 })
-          .to('.project-header__img', 1, {
-            scale: 2, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
-          })
-          .to('.project-header__scroll-indicator span', 1, {
-            y: 0, opacity: 1, onComplete: () => {
-              setToggle(false)
-              setIsMounted(true)
-              scrollbarAppear();
-              projectContentAnimation();
-            }
-          })
-      }
-      else {
-        gsap.set('.project-header__img', { scale: 2 })
-        tl.to('.project-header', 1.5, {
-          delay: .3,
-          transform: 'scaleX(1) scaleY(1) translate3d(0,0,0)', ease: 'power2.out', onComplete: () => {
-            showInterface();
-            cursorBackToNormal();
-            scrollbarAppear();
+      setTimeout(() => {
+        if (lastProject === null) {
+          let translatesLeft = {}
+          let translatesRight = {}
+          if (navigator.userAgent.indexOf("Firefox") > -1) {
+            translatesLeft = { x: '-80%', y: '50%' }
+            translatesRight = { x: '80%', y: '-50%' }
           }
-        })
-          .to('.project-header__scroll-indicator span', 1, {
-            y: 0, opacity: 1, onComplete: () => {
-              setToggle(false);
-              setIsMounted(true)
-              projectContentAnimation();
+          tl.to('.project-header__title--left', .5, { rotateY: '-15deg', delay: .5 })
+            .to('.project-header__title--right', .5, { rotateY: '15deg', delay: -.5 })
+            .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
+            .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
+            .to('.project-header__title--right', 1, { top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1 })
+            .to('.project-header__img', 1, {
+              scale: 2, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
+            })
+            .to('.project-header__scroll-indicator span', 1, {
+              y: 0, opacity: 1, onComplete: () => {
+                setToggle(false)
+                setIsMounted(true)
+                scrollbarAppear();
+                projectContentAnimation();
+              }
+            })
+        }
+        else {
+          gsap.set('.project-header__img', { scale: 2 })
+          tl.to('.project-header', 1.5, {
+            delay: .3,
+            transform: 'scaleX(1) scaleY(1) translate3d(0,0,0)', ease: 'power2.out', onComplete: () => {
+              showInterface();
+              cursorBackToNormal();
+              scrollbarAppear();
             }
           })
-      }
+            .to('.project-header__scroll-indicator span', 1, {
+              y: 0, opacity: 1, onComplete: () => {
+                setToggle(false);
+                setIsMounted(true)
+                projectContentAnimation();
+              }
+            })
+        }
+      }, timeout)
     }
   }
     , [setToggle, loaded, lastProject, isMounted])

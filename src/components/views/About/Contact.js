@@ -21,7 +21,7 @@ function Contact() {
           end: 'bottom top',
           scrub: 2
         },
-        rotate: '360deg'
+        rotate: '180deg'
       })
     }, 3000)
   }, [loaded])

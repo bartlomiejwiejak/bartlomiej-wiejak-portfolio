@@ -32,7 +32,7 @@ export default function () {
     setBodyHeight();
     setTimeout(() => {
       setBodyHeight();
-    }, 1500);
+    }, 3000);
   }, [location, setBodyHeight])
 
   return (

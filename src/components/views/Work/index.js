@@ -18,6 +18,10 @@ import WorkPagination from './WorkPagination';
 import Circle from './Circle';
 import CustomEase from 'gsap/CustomEase';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
+import { toLight } from '../../../functions/handleBackground';
+
+gsap.registerPlugin(CustomEase)
+CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
 const Work = () => {
   const { loaded } = useContext(LoadingContext);
@@ -33,9 +37,6 @@ const Work = () => {
   if (lastProject !== null && !animating && !isMountedRef.current) {
     currentProjectIndexRef.current = lastProject;
   }
-
-  gsap.registerPlugin(CustomEase)
-  CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
   useEffect(() => {
     projectsRef.current = document.querySelectorAll('.project')
@@ -174,21 +175,14 @@ const Work = () => {
 
     if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
-      const background = document.querySelector('.background')
-      let time1 = 700;
-      let time2 = 2200;
-      if (getComputedStyle(background).backgroundColor !== 'rgb(25, 25, 25)') {
-        time1 = 200;
-        time2 = 1700;
-      } else {
-        background.style.setProperty('background-color', 'var(--light)');
-      }
+      const time = toLight(500);
+      let time2 = time + 1500;
       setTimeout(() => {
         document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
         gsap.set('.project__img', { opacity: 1 })
         gsap.to('.project__img-reveal', 1.4, { x: '100%' })
         gsap.from('.project__img', 1.4, { scale: 1.6 })
-      }, time1)
+      }, time)
       timeout = setTimeout(() => {
         showInterface();
         cursorBackToNormal()
@@ -207,8 +201,8 @@ const Work = () => {
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
   useEffect(() => {
     if (lastProject !== null) {
+      toLight();
       cursorBackToNormal()
-      document.querySelector('.background').style.setProperty('background-color', 'var(--light)');
       showInterface();
       gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })
       gsap.to('.work__pagination > div', 1, { y: 0 })
