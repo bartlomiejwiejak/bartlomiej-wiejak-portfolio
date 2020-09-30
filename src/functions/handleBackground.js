@@ -2,7 +2,7 @@ import { turnBackgroundDark, turnBackgroundLight } from '../animations/backgroun
 
 export const toDark = (time) => {
   let isLight = false;
-  if (document.querySelector('.background__light--up').offsetHeight > 0) {
+  if (document.querySelector('.background__light--up').offsetHeight > 100) {
     isLight = true;
   }
   let timeout = 0;
@@ -14,7 +14,7 @@ export const toDark = (time) => {
 }
 export const toLight = (time) => {
   let isDark = false;
-  if (document.querySelector('.background__light--up').offsetHeight < 20) {
+  if (document.querySelector('.background__light--up').offsetHeight < 100) {
     isDark = true;
   }
   let timeout = 0;

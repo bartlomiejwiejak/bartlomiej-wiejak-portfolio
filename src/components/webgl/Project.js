@@ -14,11 +14,12 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const clock = new THREE.Clock();
 
-const Project = ({ texture, index, loaded, currentScrollIndex, leavingWork }) => {
+const Project = ({ texture, index, loaded, currentScrollIndex, path }) => {
   const ref = useRef()
   const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
+  const leavingWorkRef = useRef(false);
 
   useFrame(() => {
     uniformsRef.current.u_time.value = clock.getElapsedTime() / 5;
@@ -42,14 +43,26 @@ const Project = ({ texture, index, loaded, currentScrollIndex, leavingWork }) =>
     }
     const difference = Math.abs(currentScrollIndex - lastScrollIndexRef.current);
     let time = difference * .9;
-    if (difference > 1) {
+    if (path === '/about' || path === '/') {
+      if (!leavingWorkRef.current && currentScrollIndex !== 0) {
+        leavingWorkRef.current = true;
+        return;
+      }
       time = difference * .4;
     }
-    gsap.to(ref.current.position, time, { y: -index * 20 + currentScrollIndex * 20, ease: 'custom' })
-    gsap.to(uniformsRef.current.u_waveIntensity, time * .33333, { ease: 'custom', value: 0.9 })
-    gsap.to(uniformsRef.current.u_waveIntensity, time * .66666, { ease: 'custom', value: 0.3, delay: time * .33333 })
+    if (difference !== 0) {
+      gsap.to(ref.current.position, time, { y: -index * 20 + currentScrollIndex * 20, ease: 'custom' })
+      gsap.to(uniformsRef.current.u_waveIntensity, time * .33333, { ease: 'custom', value: 0.9 })
+      gsap.to(uniformsRef.current.u_waveIntensity, time * .66666, { ease: 'custom', value: 0.3, delay: time * .33333 })
+    }
+    if (index === 0 && (path === '/about' || path === '/')) {
+      gsap.to(uniformsRef.current.u_progress, .3, { value: 1, ease: 'power2.out', delay: time + 1.2 })
+      gsap.to(ref.current.position, 1, { y: 20, ease: 'power2.out', delay: time + 1.2 })
+      gsap.set(uniformsRef.current.u_progress, { value: .5, delay: time + 2.2 })
+    }
+
     lastScrollIndexRef.current = currentScrollIndex;
-  }, [currentScrollIndex, index])
+  }, [currentScrollIndex, index, path])
 
   return (
     <mesh
