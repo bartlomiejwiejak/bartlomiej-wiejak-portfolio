@@ -25,11 +25,12 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const Work = () => {
   const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating, lastProject, setLastProject } = useContext(RoutingContext)
+  const { animating, path, setAnimating, lastProject, setLastProject, setCurrentScrollIndex } = useContext(RoutingContext)
+  const history = useHistory();
+
   const canScrollRef = useRef(true)
   const currentProjectIndexRef = useRef(0);
   const initialYRef = useRef(0);
-  const history = useHistory();
   const initialMouseClientYRef = useRef(0);
   const projectsRef = useRef(null);
   const isMountedRef = useRef(false)
@@ -77,10 +78,11 @@ const Work = () => {
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
+      setCurrentScrollIndex(currentProjectIndexRef.current)
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       gsap.to('.work__scroller', .9, { y: -currentProjectIndexRef.current * window.innerHeight, ease: 'custom' })
     }, 300)
-  }, [])
+  }, [setCurrentScrollIndex])
 
   const slider = useCallback((event) => {
     if (!canScrollRef.current) return;
@@ -146,6 +148,7 @@ const Work = () => {
       hideInterface();
       cursorHide()
       gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
+      setCurrentScrollIndex(0);
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
         y: 0, ease: 'custom', onComplete: () => {
           setTimeout(() => {
@@ -165,7 +168,7 @@ const Work = () => {
         }
       })
     }
-  }, [animating, path, slider, history, setAnimating, removeListeners, setLastProject])
+  }, [animating, path, slider, history, setAnimating, removeListeners, setLastProject, setCurrentScrollIndex])
 
   useLockBodyScroll(true)
 

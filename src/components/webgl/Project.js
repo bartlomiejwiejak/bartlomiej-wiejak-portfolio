@@ -2,28 +2,54 @@ import React, { useRef, useEffect, } from 'react';
 import * as THREE from 'three';
 import { useFrame } from 'react-three-fiber';
 import gsap from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
 
 import uniforms from './shaders/uniforms';
 import fragment from './shaders/fragment';
 import vertex from './shaders/vertex';
 import { toLight } from '../../functions/handleBackground';
 
+gsap.registerPlugin(CustomEase)
+CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
 const clock = new THREE.Clock();
 
-const Project = ({ texture, index, loaded }) => {
+const Project = ({ texture, index, loaded, currentScrollIndex, leavingWork }) => {
   const ref = useRef()
   const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
+  const initializedRef = useRef(false);
+  const lastScrollIndexRef = useRef(0);
 
   useFrame(() => {
-    uniformsRef.current.u_time.value = clock.getElapsedTime() / 4;
+    uniformsRef.current.u_time.value = clock.getElapsedTime() / 5;
   })
 
   useEffect(() => {
     if (!loaded) return;
     const timeout = toLight(1000);
-    gsap.to(ref.current.position, 3, { y: -index * 20, delay: timeout / 1000, ease: 'power3.out' })
+
+    const delay = timeout / 1000;
+
+    gsap.to(ref.current.position, 3.3, { y: -index * 20, delay: delay, ease: 'power3.out' })
+    gsap.to(uniformsRef.current.u_waveIntensity, 1.1, { value: 0.9, delay: delay })
+    gsap.to(uniformsRef.current.u_waveIntensity, 2.2, { value: 0.3, delay: delay + 1 })
   }, [index, loaded])
+
+  useEffect(() => {
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+      return;
+    }
+    const difference = Math.abs(currentScrollIndex - lastScrollIndexRef.current);
+    let time = difference * .9;
+    if (difference > 1) {
+      time = difference * .4;
+    }
+    gsap.to(ref.current.position, time, { y: -index * 20 + currentScrollIndex * 20, ease: 'custom' })
+    gsap.to(uniformsRef.current.u_waveIntensity, time * .33333, { ease: 'custom', value: 0.9 })
+    gsap.to(uniformsRef.current.u_waveIntensity, time * .66666, { ease: 'custom', value: 0.3, delay: time * .33333 })
+    lastScrollIndexRef.current = currentScrollIndex;
+  }, [currentScrollIndex, index])
 
   return (
     <mesh
