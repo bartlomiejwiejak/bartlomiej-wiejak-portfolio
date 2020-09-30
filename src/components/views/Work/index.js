@@ -170,7 +170,7 @@ const Work = () => {
         }
       })
     }
-  }, [animating, path, slider, history, setAnimating, removeListeners, setLastProject, setCurrentScrollIndex])
+  }, [animating, path, slider, history, setAnimating, removeListeners, setCurrentScrollIndex])
 
   useLockBodyScroll(true)
 

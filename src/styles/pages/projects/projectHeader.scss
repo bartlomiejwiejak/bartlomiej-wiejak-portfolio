@@ -63,4 +63,22 @@
       }
     }
    }
+   &--animated {
+    .project-header__title {
+      div {
+        transform: translate3d(0,100%,0);
+        opacity: 0;
+      }
+      &--left {
+        bottom: 50%;
+        left: 50%;
+        transform: translate3d(-80%, 50%,0) scale(0.5);
+      }
+      &--right {
+        right: 50%;
+        top: 50%;
+        transform: translate3d(80%, -50%,0) scale(0.5);
+      }
+     }
+   }
 }

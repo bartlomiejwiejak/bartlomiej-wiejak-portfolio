@@ -8,7 +8,7 @@ import projectsData from '../../data/projects';
 
 const WebGLRenderer = () => {
   const { loaded } = useContext(LoadingContext);
-  const { currentScrollIndex, path, setCurrentScrollIndex, lastProject } = useContext(RoutingContext);
+  const { currentScrollIndex, path, setCurrentScrollIndex, lastProject, animating } = useContext(RoutingContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const WebGLRenderer = () => {
   return (
     <div className='WebGLRenderer'>
       <Canvas>
-        {projectsData.map(({ index, texture, url }) => <Project key={index} index={index} texture={texture} url={url} loaded={loaded} currentScrollIndex={currentScrollIndex} path={path} pathname={location.pathname} lastProject={lastProject} />)}
+        {projectsData.map(({ index, texture, url }) => <Project key={index} index={index} texture={texture} url={url} loaded={loaded} currentScrollIndex={currentScrollIndex} path={path} pathname={location.pathname} lastProject={lastProject} animating={animating} />)}
       </Canvas>
     </div>
   )

@@ -11,7 +11,6 @@ import scrollInstant from '../../../functions/scrollInstant';
 import { scrollbarAppear, scrollbarHide } from '../../../animations/scrollBar';
 import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import projectContentAnimation from '../../../animations/projectContent';
-import { toLight } from '../../../functions/handleBackground';
 
 const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
 
@@ -28,51 +27,48 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
     if (isMounted) return;
     if (loaded) {
       scrollInstant(0)
-      const timeout = toLight(500);
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
       setCurrentScrollIndex(projectIndex);
-      setTimeout(() => {
-        if (lastProject === null) {
-          let translatesLeft = {}
-          let translatesRight = {}
-          if (navigator.userAgent.indexOf("Firefox") > -1) {
-            translatesLeft = { x: '-80%', y: '50%' }
-            translatesRight = { x: '80%', y: '-50%' }
-          }
-          tl.to('.project-header__title--left', .5, { rotateY: '-20deg', delay: .5 })
-            .to('.project-header__title--right', .5, { rotateY: '20deg', delay: -.5 })
-            .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-            .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
-            .to('.project-header__title--right', 1, {
-              top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
-            })
-            .to('.project-header__scroll-indicator span', 1, {
-              y: 0, opacity: 1, onComplete: () => {
-                setToggle(false)
-                setIsMounted(true)
-                scrollbarAppear();
-                projectContentAnimation();
-              }
-            })
+      if (lastProject === null) {
+        let translatesLeft = {}
+        let translatesRight = {}
+        if (navigator.userAgent.indexOf("Firefox") > -1) {
+          translatesLeft = { x: '-80%', y: '50%' }
+          translatesRight = { x: '80%', y: '-50%' }
         }
-        else {
-          tl.to('.project-header', 1.5, {
-            delay: .3,
-            transform: 'scaleX(1) scaleY(1) translate3d(0,0,0)', ease: 'power2.out', onComplete: () => {
-              showInterface();
-              cursorBackToNormal();
+        tl.to('.project-header__title--left', .5, { rotateY: '-20deg', delay: .5 })
+          .to('.project-header__title--right', .5, { rotateY: '20deg', delay: -.5 })
+          .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
+          .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
+          .to('.project-header__title--right', 1, {
+            top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
+          })
+          .to('.project-header__scroll-indicator span', 1, {
+            y: 0, opacity: 1, onComplete: () => {
+              setToggle(false)
+              setIsMounted(true)
               scrollbarAppear();
+              projectContentAnimation();
             }
           })
-            .to('.project-header__scroll-indicator span', 1, {
-              y: 0, opacity: 1, onComplete: () => {
-                setToggle(false);
-                setIsMounted(true)
-                projectContentAnimation();
-              }
-            })
-        }
-      }, timeout)
+      }
+      else {
+        tl.to('.project-header__title div', 1, {
+          delay: 3.3,
+          y: 0, autoAlpha: 1, ease: 'power2.out', onComplete: () => {
+            showInterface();
+            cursorBackToNormal();
+            scrollbarAppear();
+          }
+        })
+          .to('.project-header__scroll-indicator span', 1, {
+            y: 0, opacity: 1, onComplete: () => {
+              setToggle(false);
+              setIsMounted(true)
+              projectContentAnimation();
+            }
+          })
+      }
     }
   }
     , [setToggle, loaded, lastProject, isMounted, path, setCurrentScrollIndex, projectIndex])
@@ -113,7 +109,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
 
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)' })
+          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: .3 })
           .to('.project-header__title--right', 1, {
             top: positionY, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1, onComplete: () => {
               setAnimating(false)
@@ -123,26 +119,15 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       })
     }
   }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
-
-  let content = <header className='project-header'>
+  let classRef = useRef('');
+  if (lastProject !== null && !animating) {
+    classRef.current = 'project-header--animated';
+  }
+  return <header className={`project-header ${classRef.current}`}>
     <h1 className='project-header__title project-header__title--left'><div>{titleLeft}</div></h1>
     <h1 className='project-header__title project-header__title--right'><div>{titleRight}</div></h1>
     <div className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
   </header>
-
-  if (lastProject !== null && !animating) {
-    const style = {
-      projectHeader: { transform: 'scaleX(.3) scaleY(0.5) translate3d(0,200%,0)' },
-      projectTitleLeft: { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)' },
-      projectTitleRight: { top: '50%', y: '-50%', right: '50%', transform: 'translate3d(80%, -50%,0) scale(0.5)' }
-    }
-    content = <header className='project-header'>
-      <h1 style={style.projectHeader} className='project-header__title project-header__title--left'><div>{titleLeft}</div></h1>
-      <h1 style={style.projectTitleRight} className='project-header__title project-header__title--right'><div>{titleRight}</div></h1>
-      <div style={style.projectTitleRight} className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
-    </header>
-  }
-  return content;
 }
 
 export default ProjectHeader;
