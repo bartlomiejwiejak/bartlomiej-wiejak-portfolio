@@ -14,7 +14,7 @@ export const toDark = (time) => {
 }
 export const toLight = (time) => {
   let isDark = false;
-  if (document.querySelector('.background__light--up').offsetHeight === 0) {
+  if (document.querySelector('.background__light--up').offsetHeight < 20) {
     isDark = true;
   }
   let timeout = 0;

@@ -175,14 +175,8 @@ const Work = () => {
 
     if (loaded && lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
-      const time = toLight(500);
-      let time2 = time + 1500;
-      setTimeout(() => {
-        document.querySelector('.project__img-reveal').style.setProperty('background-color', 'var(--light)');
-        gsap.set('.project__img', { opacity: 1 })
-        gsap.to('.project__img-reveal', 1.4, { x: '100%' })
-        gsap.from('.project__img', 1.4, { scale: 1.6 })
-      }, time)
+      const time = toLight(1000) + 3000;
+
       timeout = setTimeout(() => {
         showInterface();
         cursorBackToNormal()
@@ -192,7 +186,8 @@ const Work = () => {
           y: 0
         })
         timeoutListeners = setTimeout(addListeners, 1000)
-      }, time2)
+      }, time)
+
     }
     return () => {
       clearTimeout(timeout)
@@ -201,7 +196,6 @@ const Work = () => {
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
   useEffect(() => {
     if (lastProject !== null) {
-      toLight();
       cursorBackToNormal()
       showInterface();
       gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })

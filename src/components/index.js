@@ -15,6 +15,7 @@ import Background from './layout/Background';
 import useSkewScrolling from '../hooks/useSkewScrolling';
 import useBodyHeight from '../hooks/useBodyHeight';
 import useResize from '../hooks/useResize';
+import WebGLRenderer from '../components/webgl';
 
 export default function () {
 
@@ -42,6 +43,7 @@ export default function () {
         <ScrollBar bodyHeight={bodyHeight} />
         <Header />
         <Background />
+        <Route path='/work' component={WebGLRenderer} />
         <div className="view">
           <div ref={scrollRef} className="scroll">
             <Switch>
