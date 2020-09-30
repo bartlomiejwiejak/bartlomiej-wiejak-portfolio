@@ -1,10 +1,12 @@
 .project {
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: relative;
   perspective: 700px;
   &__container {
     height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
     transform: translate(-50%,-50%);
     position: absolute;
     left: 50%;

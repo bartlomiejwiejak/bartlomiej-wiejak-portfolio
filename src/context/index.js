@@ -6,8 +6,9 @@ export const LoadingContext = createContext(null);
 export default ({ children }) => {
   const [path, setPath] = useState('/');
   const [animating, setAnimating] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const [lastProject, setLastProject] = useState(null);
+
+  const [loaded, setLoaded] = useState(false);
   const [analyser, setAnalyser] = useState(null);
 
   return (
