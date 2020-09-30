@@ -76,7 +76,8 @@ const Work = () => {
       currentProjectIndexRef.current += direction;
       setCurrentScrollIndex(currentProjectIndexRef.current)
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
-      gsap.to('.work__scroller', .9, { y: -currentProjectIndexRef.current * window.innerHeight, ease: 'custom' })
+      const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
+      gsap.to('.work__scroller', .9, { y: `${scrollValue}%`, ease: 'custom' })
     }, 300)
   }, [setCurrentScrollIndex])
 
