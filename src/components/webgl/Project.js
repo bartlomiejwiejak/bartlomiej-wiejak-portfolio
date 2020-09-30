@@ -14,7 +14,7 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const clock = new THREE.Clock();
 
-const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname }) => {
+const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject }) => {
   const ref = useRef()
   const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
   const initializedRef = useRef(false);
@@ -64,12 +64,20 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   }, [currentScrollIndex, index, path])
 
   useEffect(() => {
-    if (pathname === url) {
+    if (pathname === url && path !== '/work') {
       gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
       gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'power2.out', delay: 1.8 })
       gsap.to(uniformsRef.current.u_progress, 1, { value: 0, ease: 'power2.out', delay: 1 })
     }
-  }, [pathname, url])
+  }, [pathname, url, path])
+
+  useEffect(() => {
+    if (pathname === url && path === '/work' && lastProject === index) {
+      gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
+      gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: .3, ease: 'power2.out', delay: 1.3 })
+      gsap.to(uniformsRef.current.u_progress, 1, { value: .5, ease: 'power2.out', delay: 1 })
+    }
+  }, [pathname, path, lastProject, index, url])
   return (
     <mesh
       ref={ref}

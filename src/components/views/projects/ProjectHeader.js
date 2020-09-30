@@ -19,6 +19,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
   const { animating, path, setAnimating, setLastProject, lastProject } = useContext(RoutingContext);
   const history = useHistory();
   const [isMounted, setIsMounted] = useState(false);
+  const leavingToWorkRef = useRef(false);
 
   const [toggle, setToggle] = useToggle(true);
   useLockBodyScroll(toggle)
@@ -37,8 +38,8 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
             translatesLeft = { x: '-80%', y: '50%' }
             translatesRight = { x: '80%', y: '-50%' }
           }
-          tl.to('.project-header__title--left', .5, { rotateY: '-15deg', delay: .5 })
-            .to('.project-header__title--right', .5, { rotateY: '15deg', delay: -.5 })
+          tl.to('.project-header__title--left', .5, { rotateY: '-20deg', delay: .5 })
+            .to('.project-header__title--right', .5, { rotateY: '20deg', delay: -.5 })
             .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
             .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
             .to('.project-header__title--right', 1, {
@@ -99,7 +100,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
   }, [animating, path, history, setAnimating, setToggle, projectIndex, setLastProject])
 
   useEffect(() => {
-    if (animating && path === '/work') {
+    if (animating && path === '/work' && !leavingToWorkRef.current) {
       hideInterface()
       cursorHide()
       setToggle(true)
@@ -109,16 +110,14 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
           positionY = '5%'
         }
         scrollbarHide();
+        leavingToWorkRef.current = true;
+        setLastProject(projectIndex);
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
+
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title--left', .5, { rotateY: '15deg', delay: .5 })
-          .to('.project-header__title--right', .5, { rotateY: '-15deg', delay: -.5 })
-          .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -0.5 })
-          .to('.project-header__title--right', 1, { top: positionY, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1 })
-          .to('.project-header__img', 1, {
-            scale: 1, delay: -1, onComplete: () => {
-              setLastProject(projectIndex)
+          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)' })
+          .to('.project-header__title--right', 1, {
+            top: positionY, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1, onComplete: () => {
               setAnimating(false)
               history.push(path)
             }
@@ -127,21 +126,25 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
     }
   }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
 
-  const styleRef = useRef({})
-  if (lastProject !== null) {
-    styleRef.current = {
+  let content = <header className='project-header'>
+    <h1 className='project-header__title project-header__title--left'>{titleLeft}</h1>
+    <h1 className='project-header__title project-header__title--right'>{titleRight}</h1>
+    <div className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
+  </header>
+
+  if (lastProject !== null && !animating) {
+    const style = {
       projectHeader: { transform: 'scaleX(.3) scaleY(0.5) translate3d(0,200%,0)' },
       projectTitleLeft: { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)' },
       projectTitleRight: { top: '50%', y: '-50%', right: '50%', transform: 'translate3d(80%, -50%,0) scale(0.5)' }
     }
-  }
-  return (
-    <header style={styleRef.current.projectHeader} className='project-header'>
-      <h1 style={styleRef.current.projectTitleLeft} className='project-header__title project-header__title--left'>{titleLeft}</h1>
-      <h1 style={styleRef.current.projectTitleRight} className='project-header__title project-header__title--right'>{titleRight}</h1>
-      <div className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
+    content = <header className='project-header'>
+      <h1 style={style.projectHeader} className='project-header__title project-header__title--left'>{titleLeft}</h1>
+      <h1 style={style.projectTitleRight} className='project-header__title project-header__title--right'>{titleRight}</h1>
+      <div style={style.projectTitleRight} className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
     </header>
-  );
+  }
+  return content;
 }
 
 export default ProjectHeader;
