@@ -152,9 +152,8 @@ const Work = () => {
             gsap.to('.work__pagination > div', .5, { y: '100%', ease: 'power2.out' })
             setTimeout(() => {
               gsap.to('.project__title--down', 1, { x: '300%', ease: 'power2.out' })
-              gsap.to('.project__title--up', 1, { x: '-300%', ease: 'power2.out' })
-              gsap.to('.project:nth-child(1) .project__img-container', 1, {
-                y: '-200%', scaleX: .1, scaleY: .5, onComplete: () => {
+              gsap.to('.project__title--up', 1, {
+                x: '-300%', ease: 'power2.out', onComplete: () => {
                   setAnimating(false)
                   history.push(path)
                 }

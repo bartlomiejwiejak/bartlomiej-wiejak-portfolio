@@ -7,13 +7,6 @@
    letter-spacing: 2px;
    perspective: 700px;
    z-index: 1;
-   &__img {
-     position: absolute;
-     left: 50%;
-     top: 50%;
-     height: 50vh;
-     transform: translate(-50%,-50%);
-   }
    &__scroll-indicator {
      position: absolute;
      right: 10%;

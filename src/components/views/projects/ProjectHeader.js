@@ -13,7 +13,7 @@ import { cursorBackToNormal, cursorHide } from '../../../animations/cursor';
 import projectContentAnimation from '../../../animations/projectContent';
 import { toLight } from '../../../functions/handleBackground';
 
-const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
+const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
 
   const { loaded } = useContext(LoadingContext);
   const { animating, path, setAnimating, setLastProject, lastProject } = useContext(RoutingContext);
@@ -41,9 +41,8 @@ const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
             .to('.project-header__title--right', .5, { rotateY: '15deg', delay: -.5 })
             .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
             .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
-            .to('.project-header__title--right', 1, { top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1 })
-            .to('.project-header__img', 1, {
-              scale: 2, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
+            .to('.project-header__title--right', 1, {
+              top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
             })
             .to('.project-header__scroll-indicator span', 1, {
               y: 0, opacity: 1, onComplete: () => {
@@ -55,7 +54,6 @@ const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
             })
         }
         else {
-          gsap.set('.project-header__img', { scale: 2 })
           tl.to('.project-header', 1.5, {
             delay: .3,
             transform: 'scaleX(1) scaleY(1) translate3d(0,0,0)', ease: 'power2.out', onComplete: () => {
@@ -133,14 +131,12 @@ const ProjectHeader = ({ src, titleLeft, titleRight, projectIndex }) => {
   if (lastProject !== null) {
     styleRef.current = {
       projectHeader: { transform: 'scaleX(.3) scaleY(0.5) translate3d(0,200%,0)' },
-      projectImg: { transform: 'translate3d(-50%, -50%, 0)' },
       projectTitleLeft: { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)' },
       projectTitleRight: { top: '50%', y: '-50%', right: '50%', transform: 'translate3d(80%, -50%,0) scale(0.5)' }
     }
   }
   return (
     <header style={styleRef.current.projectHeader} className='project-header'>
-      <img style={styleRef.current.projectImg} className='project-header__img' src={src} alt="project" />
       <h1 style={styleRef.current.projectTitleLeft} className='project-header__title project-header__title--left'>{titleLeft}</h1>
       <h1 style={styleRef.current.projectTitleRight} className='project-header__title project-header__title--right'>{titleRight}</h1>
       <div className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
