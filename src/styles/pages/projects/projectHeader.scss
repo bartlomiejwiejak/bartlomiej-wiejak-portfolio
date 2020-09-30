@@ -29,6 +29,7 @@
     font-size: 25rem;
     position: absolute;
     font-weight: bold;
+    overflow: hidden;
     @include respond(xlarge) {
       font-size: 23rem;
     }

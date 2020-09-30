@@ -16,7 +16,7 @@ import { toLight } from '../../../functions/handleBackground';
 const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
 
   const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating, setLastProject, lastProject } = useContext(RoutingContext);
+  const { animating, path, setAnimating, setLastProject, lastProject, setCurrentScrollIndex } = useContext(RoutingContext);
   const history = useHistory();
   const [isMounted, setIsMounted] = useState(false);
   const leavingToWorkRef = useRef(false);
@@ -30,6 +30,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       scrollInstant(0)
       const timeout = toLight(500);
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
+      setCurrentScrollIndex(projectIndex);
       setTimeout(() => {
         if (lastProject === null) {
           let translatesLeft = {}
@@ -74,7 +75,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       }, timeout)
     }
   }
-    , [setToggle, loaded, lastProject, isMounted])
+    , [setToggle, loaded, lastProject, isMounted, path, setCurrentScrollIndex, projectIndex])
 
   useEffect(() => {
     if (animating && path !== '/work') {
@@ -83,18 +84,15 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       cursorHide()
       scrollTo(0, () => {
         scrollbarHide();
-        gsap.to('.project-header__scroll-indicator span', 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 })
-        gsap.to('.project-header', .75, {
-          y: '-100%', scaleX: .2, scaleY: .5, delay: 1.2, ease: 'power2.out', onComplete: () => setTimeout(() => {
-            setAnimating(false)
-            if (path !== '/about' && path !== '/') {
-              setLastProject(projectIndex)
-            } else {
-              setLastProject(null)
-            }
-            history.push(path)
-          }, 200)
-        })
+        setLastProject(projectIndex);
+        gsap.to('.project-header__scroll-indicator span, .project-header__title div', 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 })
+        setTimeout(() => {
+          setAnimating(false)
+          history.push(path)
+          if (path === '/about' || path === '/') {
+            setLastProject(null);
+          }
+        }, 2500)
       })
     }
   }, [animating, path, history, setAnimating, setToggle, projectIndex, setLastProject])
@@ -127,8 +125,8 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
   }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
 
   let content = <header className='project-header'>
-    <h1 className='project-header__title project-header__title--left'>{titleLeft}</h1>
-    <h1 className='project-header__title project-header__title--right'>{titleRight}</h1>
+    <h1 className='project-header__title project-header__title--left'><div>{titleLeft}</div></h1>
+    <h1 className='project-header__title project-header__title--right'><div>{titleRight}</div></h1>
     <div className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
   </header>
 
@@ -139,8 +137,8 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       projectTitleRight: { top: '50%', y: '-50%', right: '50%', transform: 'translate3d(80%, -50%,0) scale(0.5)' }
     }
     content = <header className='project-header'>
-      <h1 style={style.projectHeader} className='project-header__title project-header__title--left'>{titleLeft}</h1>
-      <h1 style={style.projectTitleRight} className='project-header__title project-header__title--right'>{titleRight}</h1>
+      <h1 style={style.projectHeader} className='project-header__title project-header__title--left'><div>{titleLeft}</div></h1>
+      <h1 style={style.projectTitleRight} className='project-header__title project-header__title--right'><div>{titleRight}</div></h1>
       <div style={style.projectTitleRight} className="project-header__scroll-indicator"><span>Scroll<i className="fas fa-long-arrow-alt-down"></i></span></div>
     </header>
   }

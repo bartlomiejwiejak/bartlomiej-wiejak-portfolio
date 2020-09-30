@@ -16,30 +16,44 @@ const clock = new THREE.Clock();
 
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject }) => {
   const ref = useRef()
-  const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
+  const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture), u_progress: { type: "f", value: .5 }, u_waveIntensity: { type: "f", value: .3 } } })
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
+  const loadedRef = useRef(false);
 
   useFrame(() => {
     uniformsRef.current.u_time.value = clock.getElapsedTime() / 5;
   })
 
   useEffect(() => {
-    if (!loaded) return;
+    if (pathname !== '/work') {
+      lastScrollIndexRef.current = currentScrollIndex;       //guards scrolling index while changing projects
+    }
+  }, [currentScrollIndex, pathname])
+
+  useEffect(() => {
+    if (loaded && pathname !== '/work' && !loadedRef.current && currentScrollIndex !== null) {
+      gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 })
+      loadedRef.current = true;
+    }
+    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;            //work enter animation
     const timeout = toLight(1000);
     const delay = timeout / 1000;
 
     gsap.to(ref.current.position, 3, { y: -index * 20, delay: delay, ease: 'power3.out' })
     gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1, delay: delay })
     gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: delay + 1 })
-  }, [index, loaded])
+    loadedRef.current = true;
+  }, [index, loaded, pathname, currentScrollIndex])
 
-  useEffect(() => {
+  useEffect(() => {                     //work scrolling feature
+    if (currentScrollIndex === null) return;
     if (!initializedRef.current) {
       initializedRef.current = true;
       return;
     }
+    if (pathname !== '/work') return;
     const difference = Math.abs(currentScrollIndex - lastScrollIndexRef.current);
     let time = difference * .9;
     if (path === '/about' || path === '/') {
@@ -55,29 +69,44 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       gsap.to(uniformsRef.current.u_waveIntensity, time * .66666, { ease: 'custom', value: 0.3, delay: time * .33333 })
     }
     if (index === 0 && (path === '/about' || path === '/')) {
-      gsap.to(uniformsRef.current.u_progress, .3, { value: 1, ease: 'power2.out', delay: time + 1.2 })
+      gsap.to(uniformsRef.current.u_progress, .5, { value: 1, ease: 'power2.out', delay: time + 1.2 })
       gsap.to(ref.current.position, 1, { y: 20, ease: 'power2.out', delay: time + 1.2 })
+      gsap.to(uniformsRef.current.u_waveIntensity, .25, { value: 1, ease: 'power2.out', delay: time + 1.2 })
       gsap.set(uniformsRef.current.u_progress, { value: .5, delay: time + 2.2 })
     }
 
     lastScrollIndexRef.current = currentScrollIndex;
-  }, [currentScrollIndex, index, path])
+  }, [currentScrollIndex, index, path, pathname])
 
-  useEffect(() => {
-    if (pathname === url && path !== '/work') {
+  useEffect(() => {  // project enter animation
+    if (loaded && pathname === url && lastProject === null) {
+      console.log('entering project')
       gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
       gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'power2.out', delay: 1.8 })
       gsap.to(uniformsRef.current.u_progress, 1, { value: 0, ease: 'power2.out', delay: 1 })
     }
-  }, [pathname, url, path])
+  }, [pathname, url, lastProject, loaded])
 
-  useEffect(() => {
+  useEffect(() => {  //going work
     if (pathname === url && path === '/work' && lastProject === index) {
+      console.log('going work')
       gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
       gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: .3, ease: 'power2.out', delay: 1.3 })
       gsap.to(uniformsRef.current.u_progress, 1, { value: .5, ease: 'power2.out', delay: 1 })
     }
   }, [pathname, path, lastProject, index, url])
+
+  useEffect(() => {         // leaving project
+    if (pathname === url && path !== '/work' && lastProject === index) {
+      console.log('leaving project')
+      gsap.to(uniformsRef.current.u_progress, .5, { value: 1, ease: 'power2.out', delay: 1.5 })
+      gsap.to(uniformsRef.current.u_waveIntensity, .25, { value: 1, ease: 'power2.out', delay: 1.5 })
+      gsap.to(ref.current.position, 1, { y: 20, ease: 'power2.out', delay: 1.5 })
+      gsap.set(uniformsRef.current.u_progress, { value: .5, delay: 2.5 })
+      gsap.set(uniformsRef.current.u_waveIntensity, { value: .3, delay: 2.5 })
+    }
+  }, [pathname, url, path, lastProject, index])
+
   return (
     <mesh
       ref={ref}

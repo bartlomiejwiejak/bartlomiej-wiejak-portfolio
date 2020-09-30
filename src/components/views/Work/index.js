@@ -21,7 +21,7 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const Work = () => {
   const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating, lastProject, setLastProject, setCurrentScrollIndex } = useContext(RoutingContext)
+  const { animating, path, setAnimating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex } = useContext(RoutingContext)
   const history = useHistory();
 
   const canScrollRef = useRef(true)
@@ -38,6 +38,12 @@ const Work = () => {
   useEffect(() => {
     projectsRef.current = document.querySelectorAll('.project')
   }, [])
+
+  useEffect(() => {
+    if (currentScrollIndex === null) {
+      setCurrentScrollIndex(0);
+    }
+  }, [currentScrollIndex, setCurrentScrollIndex])
 
   const slideHandle = useCallback((direction) => {
     if (direction === 1) {
@@ -147,7 +153,7 @@ const Work = () => {
       gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
       setCurrentScrollIndex(0);
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
-        y: 0, ease: 'custom', onComplete: () => {
+        y: '0%', ease: 'custom', onComplete: () => {
           setTimeout(() => {
             gsap.to('.circle', .5, { y: '100%', x: '100%', ease: 'power2.out' })
             gsap.to('.work__pagination > div', .5, { y: '100%', ease: 'power2.out' })
@@ -200,8 +206,6 @@ const Work = () => {
       gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })
       gsap.to('.work__pagination > div', 1, { y: 0 })
       gsap.set('.work__pagination__active', { y: -lastProject * 34 })
-      gsap.set('.project__img', { opacity: 1 })
-      gsap.set('.project__img-reveal', { width: 0 })
       gsap.to('.project .button', 1, {
         y: 0, onComplete: () => {
           setLastProject(null)
@@ -216,7 +220,7 @@ const Work = () => {
   }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
   const styleRef = useRef({})
   if (lastProject !== null) {
-    styleRef.current = { transform: `translateY(-${lastProject * window.innerHeight}px)` }
+    styleRef.current = { transform: `translate3d(0,-${lastProject * 25}%,0)` }
   }
 
   return (

@@ -13,7 +13,7 @@ const WebGLRenderer = () => {
 
   useEffect(() => {
     return () => {
-      setCurrentScrollIndex(0);
+      setCurrentScrollIndex(null);
     }
   }, [setCurrentScrollIndex])
 

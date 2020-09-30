@@ -7,7 +7,7 @@ export default ({ children }) => {
   const [path, setPath] = useState(null);
   const [animating, setAnimating] = useState(false);
   const [lastProject, setLastProject] = useState(null);
-  const [currentScrollIndex, setCurrentScrollIndex] = useState(0);
+  const [currentScrollIndex, setCurrentScrollIndex] = useState(null);
 
   const [loaded, setIsLoaded] = useState(false);
   const [analyser, setAnalyser] = useState(null);
