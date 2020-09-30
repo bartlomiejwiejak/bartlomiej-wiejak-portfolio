@@ -4,65 +4,19 @@
   height: calc(var(--vh, 1vh) * 100);
   position: relative;
   perspective: 700px;
-  &__container {
-    height: 50vh;
-    height: calc(var(--vh, 1vh) * 50);
-    transform: translate(-50%,-50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-  }
-  &__img {
-    height: 100%;
-    opacity: 0;
-     &-container {
-       height: 100%;
-       width: 100%;
-       overflow: hidden;
-       position: relative;
-       visibility: hidden;
-     }
-     &-reveal {
-       width: 100%;
-       height: 100%;
-       position: absolute;
-       top: 0;
-       right: 0;
-     }
-  }
   &__button-container {
     font-size: var(--font-size-s);
     overflow: hidden;
     position: absolute;
-    right: -3rem;
-    bottom: -8rem;
-    @include respond(xlarge) {
-      right: -2.5rem;
-      bottom: -7rem;
-    }
-    @include respond(large) {
-      right: -2rem;
-      bottom: -6rem;
-    }
-    @include respond(medium) {
-      right: 0rem;
-      bottom: -5rem;
-    }
-    @include respond(small) {
-      right: 2rem;
-    }
-    @include respond(xsmall) {
-      right: 4rem;
-    }
+    right: 20%;
+    bottom: 15%;
     @include respond(xxsmall) {
-      right: auto;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -4rem;
+      right: 50%;
+      transform: translateX(50%);
+      bottom: 20%;
     }
     @media (max-width: 1100px) and (orientation: portrait) and (min-width: 600px) {
-      right: 45rem;
-      bottom: -9rem;
+      
     }
   }
   .button {

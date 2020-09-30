@@ -4,7 +4,7 @@ export const RoutingContext = createContext(null);
 export const LoadingContext = createContext(null);
 
 export default ({ children }) => {
-  const [path, setPath] = useState('/');
+  const [path, setPath] = useState(null);
   const [animating, setAnimating] = useState(false);
   const [lastProject, setLastProject] = useState(null);
   const [currentScrollIndex, setCurrentScrollIndex] = useState(0);

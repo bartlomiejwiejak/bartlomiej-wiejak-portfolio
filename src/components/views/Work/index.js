@@ -7,11 +7,7 @@ import gsap from 'gsap';
 import { showInterface } from '../../../animations/interface';
 import { LoadingContext, RoutingContext } from '../../../context';
 import Project from './Project';
-import burger from '../../../assets/projects/burger/header.jpg';
-import places from '../../../assets/projects/places/header.jpg';
-import eCommerce from '../../../assets/projects/e-commerce.jpg';
 import { hideInterface } from '../../../animations/interface';
-import incoming from '../../../assets/projects/incoming.jpg';
 import { cursorMultiDot } from '../../../animations/cursor';
 import scrollInstant from '../../../functions/scrollInstant';
 import WorkPagination from './WorkPagination';
@@ -228,10 +224,10 @@ const Work = () => {
       <div className='work__scroller' style={styleRef.current}>
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
-        <Project projectIndex={0} src={burger} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
-        <Project projectIndex={1} src={places} titleUp='Place' titleDown='Your' url='/work/places-app' removeListeners={removeListeners} />
-        <Project projectIndex={2} src={eCommerce} titleUp='E-com' titleDown='Project' url='/work' inactive={true} />
-        <Project projectIndex={3} src={incoming} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
+        <Project projectIndex={0} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
+        <Project projectIndex={1} titleUp='Place' titleDown='Your' url='/work/places-app' removeListeners={removeListeners} />
+        <Project projectIndex={2} titleUp='E-com' titleDown='Project' url='/work' inactive={true} />
+        <Project projectIndex={3} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
       </div>
     </div>
   );

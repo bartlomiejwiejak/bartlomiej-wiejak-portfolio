@@ -32,7 +32,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path }) => {
     const delay = timeout / 1000;
 
     gsap.to(ref.current.position, 3.3, { y: -index * 20, delay: delay, ease: 'power3.out' })
-    gsap.to(uniformsRef.current.u_waveIntensity, 1.1, { value: 0.9, delay: delay })
+    gsap.to(uniformsRef.current.u_waveIntensity, 1.1, { value: 1, delay: delay })
     gsap.to(uniformsRef.current.u_waveIntensity, 2.2, { value: 0.3, delay: delay + 1 })
   }, [index, loaded])
 
@@ -52,7 +52,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path }) => {
     }
     if (difference !== 0) {
       gsap.to(ref.current.position, time, { y: -index * 20 + currentScrollIndex * 20, ease: 'custom' })
-      gsap.to(uniformsRef.current.u_waveIntensity, time * .33333, { ease: 'custom', value: 0.9 })
+      gsap.to(uniformsRef.current.u_waveIntensity, time * .33333, { ease: 'custom', value: 1 })
       gsap.to(uniformsRef.current.u_waveIntensity, time * .66666, { ease: 'custom', value: 0.3, delay: time * .33333 })
     }
     if (index === 0 && (path === '/about' || path === '/')) {

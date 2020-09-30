@@ -2,6 +2,9 @@
   position: relative;
   display: inline-flex;
   pointer-events: auto;
+  span {
+    display: block;
+  }
   &__content {
     position: relative;
     z-index: 3;

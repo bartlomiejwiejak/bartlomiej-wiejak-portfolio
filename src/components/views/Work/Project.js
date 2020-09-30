@@ -9,7 +9,7 @@ import { hideInterface } from '../../../animations/interface';
 import scrollInstant from '../../../functions/scrollInstant';
 import { cursorHide } from '../../../animations/cursor';
 
-const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, projectIndex }) => {
+const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIndex }) => {
 
   const { path, setAnimating, animating, lastProject } = useContext(RoutingContext);
   const history = useHistory()
@@ -22,8 +22,6 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, proj
 
   if (lastProject === projectIndex) {
     stylesRef.current = {
-      projectImg: { opacity: 1 },
-      imgReveal: { width: 0 },
       title: { transform: 'translate3d(0,0,0)' }
     }
   }
@@ -49,13 +47,7 @@ const Project = ({ src, titleUp, titleDown, removeListeners, url, inactive, proj
 
   return (
     <div ref={projectRef} className='project'>
-      <div className="project__container">
-        <div className="project__img-container">
-          <img style={stylesRef.current.projectImg} draggable={false} src={src} alt="project" className="project__img" />
-          <div style={stylesRef.current.imgReveal} className="project__img-reveal"></div>
-        </div>
-        <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type={inactive ? 'inactive' : 'black'} arrow><Link to={url}>{inactive ? 'In developing' : 'Explore project'}</Link></Button></div>
-      </div>
+      <div ref={ref} onClick={removeListeners} className="project__button-container"><Button type={inactive ? 'inactive' : 'black'} arrow><Link to={url}>{inactive ? 'In developing' : 'Explore project'}</Link></Button></div>
       <h2 className="project__title project__title--down"><div style={stylesRef.current.title}>{titleDown}</div></h2>
       <h2 className="project__title project__title--up"><div style={stylesRef.current.title}>{titleUp}</div></h2>
     </div>
