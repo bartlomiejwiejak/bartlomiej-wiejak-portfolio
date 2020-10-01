@@ -82,11 +82,12 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
         gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'power2.out', delay: 1.8 })
         gsap.to(uniformsRef.current.u_progress, 1, { value: 0, ease: 'power2.out', delay: 1 })
-      } else if (currentScrollIndex !== lastScrollIndexRef.current) {
-        console.log('entering project from inside')
+      } else if (currentScrollIndex !== lastScrollIndexRef.current && lastProject < index && currentScrollIndex !== lastProject) {
+        console.log('entering project from inside', index)
         gsap.set(uniformsRef.current.u_progress, { value: .25 })
         gsap.set(uniformsRef.current.u_waveIntensity, { value: .3 })
-        gsap.set(ref.current.position, { y: -index * 20 + lastScrollIndexRef.current * 20 })
+        console.log('start y', -index * 20 + currentScrollIndex * 20 - 20)
+        gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 - 20 })
         gsap.to(ref.current.position, 2, { y: -index * 20 + currentScrollIndex * 20, ease: 'none' })
         gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'none', delay: 2.3 })
         gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'none', delay: 2.6 })
