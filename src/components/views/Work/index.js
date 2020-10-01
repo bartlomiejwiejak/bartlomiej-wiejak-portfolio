@@ -83,7 +83,7 @@ const Work = () => {
       setCurrentScrollIndex(currentProjectIndexRef.current)
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-      gsap.to('.work__scroller', .9, { y: `${scrollValue}%`, ease: 'custom' })
+      gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
     }, 300)
   }, [setCurrentScrollIndex])
 
@@ -218,11 +218,11 @@ const Work = () => {
       clearTimeout(timeout)
     }
   }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
+
   const styleRef = useRef({})
   if (lastProject !== null) {
     styleRef.current = { transform: `translate3d(0,-${lastProject * 25}%,0)` }
   }
-
   return (
     <div style={{ overflow: 'hidden' }} className='work'>
       <div className='work__scroller' style={styleRef.current}>

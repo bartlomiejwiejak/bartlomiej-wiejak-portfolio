@@ -54,7 +54,7 @@ function Content() {
       </section>
       <section className="project-content__section project-content__section--dark">
         <div className="project-content__next-project project-content__next-project--white">
-          <p><span><span>See</span></span></p>
+          <p><span><span>Go to</span></span></p>
           <HighLightText type='white' to='/work/burger-project' >Burger Project</HighLightText>
         </div>
       </section>
