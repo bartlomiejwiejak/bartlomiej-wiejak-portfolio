@@ -18,15 +18,15 @@ function Content() {
       <section className="project-content__section project-content__section--light">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
-            <img draggable={false} className='project-content__image' alt='places-home-desktop' src={homeDesktop} />
-            <img draggable={false} src={homeMobile} className='project-content__image__mobile' alt='places-home-mobile' />
+            <img draggable={false} className='project-content__image' alt='' src={homeDesktop} />
+            <img draggable={false} src={homeMobile} className='project-content__image__mobile' alt='' />
           </div>
         </div>
       </section>
       <section className="project-content__section project-content__section--light">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
-            <img draggable={false} src={userProfile} alt="Order" className='project-content__image' />
+            <img draggable={false} src={userProfile} alt='' className='project-content__image' />
           </div>
         </div>
       </section>
@@ -40,22 +40,22 @@ function Content() {
       </section>
       <section className="project-content__section project-content__section--dark">
         <div className="project-content__phones">
-          <img draggable={false} src={mobile1} alt='mobile burger 1' />
-          <img draggable={false} src={mobile2} alt='mobile burger 1' />
-          <img draggable={false} src={mobile3} alt='mobile burger 1' />
+          <img draggable={false} src={mobile1} alt='' />
+          <img draggable={false} src={mobile2} alt='' />
+          <img draggable={false} src={mobile3} alt='' />
         </div>
       </section>
       <section className="project-content__section project-content__section--dark">
         <div className='project-content__image-wrapper'>
           <div className="project-content__image-container">
-            <img className='project-content__image' alt='desktop-userssection' src={desktopUsers} />
+            <img className='project-content__image' alt='' src={desktopUsers} />
           </div>
         </div>
       </section>
       <section className="project-content__section project-content__section--dark">
         <div className="project-content__next-project project-content__next-project--white">
           <p><span><span>See</span></span></p>
-          <HighLightText type='white' to='/work' >More Projects</HighLightText>
+          <HighLightText type='white' to='/work/burger-project' >Burger Project</HighLightText>
         </div>
       </section>
     </div>

@@ -9,6 +9,7 @@ import ContextProvider from '../context';
 import Loader from './layout/Loader';
 import Work from './views/Work';
 import BurgerProject from './views/projects/Burger'
+import VaultClothing from './views/projects/Vault';
 import PlacesApp from './views/projects/Places';
 import ScrollBar from './layout/ScrollBar';
 import Background from './layout/Background';
@@ -47,11 +48,12 @@ export default function () {
         <div className="view">
           <div ref={scrollRef} className="scroll">
             <Switch>
-              <Route path='/' exact render={() => <Home />} />
-              <Route path='/about' exact render={() => <About />} />
-              <Route path='/work' exact render={() => <Work />} />
-              <Route path='/work/burger-project' exact render={() => <BurgerProject />} />
-              <Route path='/work/places-app' exact render={() => <PlacesApp />} />
+              <Route path='/' exact component={Home} />
+              <Route path='/about' exact component={About} />
+              <Route path='/work' exact component={Work} />
+              <Route path='/work/burger-project' exact component={BurgerProject} />
+              <Route path='/work/places-app' exact component={PlacesApp} />
+              <Route path='/work/vault-clothing' exact component={VaultClothing} />
               <Redirect to='/' />
             </Switch>
           </div>

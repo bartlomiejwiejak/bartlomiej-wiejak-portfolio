@@ -1,13 +1,13 @@
 import burger from '../assets/projects/burger/header.jpg';
 import places from '../assets/projects/places/header.jpg';
-import ecomm from '../assets/projects/e-commerce.jpg';
+import vault from '../assets/projects/vault/header.jpg';
 import incoming from '../assets/projects/incoming.jpg';
 
 export default [
   {
     index: 0,
-    url: '/work/burger-project',
-    texture: burger
+    url: '/work/vault-clothing',
+    texture: vault
   },
   {
     index: 1,
@@ -16,8 +16,8 @@ export default [
   },
   {
     index: 2,
-    url: '',
-    texture: ecomm
+    url: '/work/burger-project',
+    texture: burger
   },
   {
     index: 3,

@@ -228,9 +228,9 @@ const Work = () => {
       <div className='work__scroller' style={styleRef.current}>
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
-        <Project projectIndex={0} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
+        <Project projectIndex={0} titleUp='Cloth' titleDown='Vault' url='/work/vault-clothing' removeListeners={removeListeners} />
         <Project projectIndex={1} titleUp='Place' titleDown='Your' url='/work/places-app' removeListeners={removeListeners} />
-        <Project projectIndex={2} titleUp='E-com' titleDown='Project' url='/work' inactive={true} />
+        <Project projectIndex={2} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
         <Project projectIndex={3} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
       </div>
     </div>
