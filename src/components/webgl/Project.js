@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import * as THREE from 'three';
 import { useFrame } from 'react-three-fiber';
 import gsap from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 
-import uniforms from './shaders/uniforms';
 import fragment from './shaders/fragment';
 import vertex from './shaders/vertex';
 import { toLight } from '../../functions/handleBackground';
@@ -14,16 +13,74 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const clock = new THREE.Clock();
 
+const uniforms = {
+  u_time: { type: "f", value: 0 },
+  u_res: {
+    type: "v2",
+    value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+  },
+  u_mouse: { type: "v2", value: new THREE.Vector2(0, 0) },
+  u_directionMouse: { type: "v2", value: new THREE.Vector2(0, 0) },
+  u_text0: { value: null },
+  u_progress: { type: "f", value: .5 },
+  u_waveIntensity: { type: "f", value: .3 },
+  u_direction: { type: "f", value: .5 },
+  u_offset: { type: "f", value: 10 },
+  u_volatility: { type: "f", value: 1 },
+  u_textureFactor: { type: "v2", value: new THREE.Vector2(1, 1) }
+}
+
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
   const ref = useRef()
-  const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture), u_progress: { type: "f", value: .5 }, u_waveIntensity: { type: "f", value: .3 } } })
+  const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
   const loadedRef = useRef(false);
 
+  const mouseRef = useRef({
+    x: 0,
+    y: 0
+  });
+  const lastMouseRef = useRef({
+    x: 0,
+    y: 0
+  })
+
+  const onMouse = useCallback(() => {
+    const x = mouseRef.current.x;
+    const y = mouseRef.current.y;
+    const lastX = lastMouseRef.current.x;
+    const lastY = lastMouseRef.current.y;
+
+    let directionX;
+    if (lastX - x < 0) {
+      directionX = 1;
+    } else if (lastX - x === 0) {
+      directionX = 0;
+    } else {
+      directionX = -1
+    }
+
+    let directionY;
+    if (lastY - y < 0) {
+      directionY = 1;
+    } else if (lastY - y === 0) {
+      directionY = 0;
+    } else {
+      directionY = -1
+    }
+    gsap.to(uniformsRef.current.u_directionMouse.value, 1, {
+      x: directionX,
+      y: directionY
+    });
+
+    lastMouseRef.current = { ...mouseRef.current };
+  }, []);
+
   useFrame(() => {
     uniformsRef.current.u_time.value = clock.getElapsedTime() / 5;
+    onMouse()
   })
 
   useEffect(() => {
@@ -115,6 +172,20 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       gsap.set(uniformsRef.current.u_waveIntensity, { value: .3, delay: 2.5 })
     }
   }, [pathname, url, path, lastProject, index])
+
+  useEffect(() => {
+    const handleMousemove = ({ clientX, clientY }) => {
+      mouseRef.current.x = clientX;
+      mouseRef.current.y = clientY;
+
+      gsap.to(uniformsRef.current.u_mouse.value, 1, {
+        x: mouseRef.current.x,
+        y: window.innerHeight - mouseRef.current.y
+      })
+    }
+    document.addEventListener('mousemove', handleMousemove)
+    return () => document.removeEventListener('mousemove', handleMousemove)
+  }, [])
 
   return (
     <mesh
