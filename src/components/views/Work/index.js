@@ -242,14 +242,11 @@ const Work = () => {
       gsap.set('.work__pagination__active', { y: -lastProject * 34 })
       gsap.to('.project .button', 1, {
         y: 0, onComplete: () => {
-          setLastProject(null)
+          setLastProject(null);
           isMountedRef.current = true;
+          addListeners();
         }
       })
-    }
-    const timeout = setTimeout(addListeners, 1000)
-    return () => {
-      clearTimeout(timeout)
     }
   }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
 

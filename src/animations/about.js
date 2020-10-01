@@ -40,6 +40,16 @@ export const aboutEnter = (callafter, callback) => {
         })
       }, delay: .2
     })
+    if (isMobile()) {
+      document.querySelectorAll('.about span span').forEach(span => {
+        if (span.classList.contains('highlight-text')) return;
+        gsap.set(span, {
+          y: 0, ease: 'power2.out', delay: .2, opacity: 1
+        })
+      })
+      gsap.set('.about .highlight-text', { y: 0, autoAlpha: 1 })
+      return;
+    }
     document.querySelectorAll('.about span span').forEach(span => {
       if (span.classList.contains('highlight-text')) return;
       gsap.to(span, 1.5, {
