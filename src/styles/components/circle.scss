@@ -5,7 +5,7 @@
   bottom: 0;
   right: 0;
   z-index: 4;
-  transform: translate(100%, 100%) rotate(95deg);
+  transform: translate(100%, 100%) rotate(90deg);
   @include respond(xlarge) {
     width: 32.5rem;
     height: 32.5rem;

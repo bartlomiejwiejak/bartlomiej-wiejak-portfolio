@@ -55,25 +55,42 @@ const Work = () => {
       if (firstProject) return;
     }
     canScrollRef.current = false;
+    let circleRotation;
+    switch (currentProjectIndexRef.current + direction) {
+      case 0:
+        circleRotation = '90deg';
+        break;
+      case 1:
+        circleRotation = '185deg';
+        break;
+      case 2:
+        circleRotation = '269deg'
+        break;
+      case 3:
+        circleRotation = '357deg'
+        break;
+      default:
+        circleRotation = '90deg';
+    }
     if (navigator.userAgent.indexOf("Firefox") > -1) {
       if (direction > 0) {
-        gsap.to('.circle', 1, { rotate: '+=90deg', delay: .3, ease: 'custom' })
+        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.to('.circle', 1, { rotate: '+=90deg', delay: .3, ease: 'custom' })
+        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
       if (direction > 0) {
-        gsap.to('.circle', 1, { rotate: '+=90deg', delay: .3, ease: 'custom' })
+        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.to('.circle', 1, { rotate: '-=90deg', delay: .3, ease: 'custom' })
+        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
@@ -150,7 +167,7 @@ const Work = () => {
       gsap.to('.project .button', 1, { y: '100%', ease: 'power2.out' })
       hideInterface();
       cursorHide()
-      gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '-265deg', ease: 'custom' })
+      gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '90deg', ease: 'custom' })
       setCurrentScrollIndex(0);
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
         y: '0%', ease: 'custom', onComplete: () => {
@@ -203,7 +220,24 @@ const Work = () => {
     if (lastProject !== null) {
       cursorBackToNormal()
       showInterface();
-      gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: `+=${90 * lastProject}deg` })
+      let circleRotation;
+      switch (lastProject) {
+        case 0:
+          circleRotation = '90deg';
+          break;
+        case 1:
+          circleRotation = '185deg';
+          break;
+        case 2:
+          circleRotation = '269deg'
+          break;
+        case 3:
+          circleRotation = '357deg'
+          break;
+        default:
+          circleRotation = '90deg';
+      }
+      gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: circleRotation })
       gsap.to('.work__pagination > div', 1, { y: 0 })
       gsap.set('.work__pagination__active', { y: -lastProject * 34 })
       gsap.to('.project .button', 1, {
