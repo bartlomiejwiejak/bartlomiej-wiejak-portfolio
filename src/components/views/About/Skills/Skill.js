@@ -49,7 +49,7 @@ const Skill = ({ src, children, infoColor }) => {
     const tl = gsap.timeline({ defaults: { ease: 'custom' } });
     gsap.to([itemRef.current, infoRef.current.querySelector('.content')], .5, { filter: 'grayscale(1)' })
     tl.to(infoRef.current.querySelectorAll('.content > *'), .3, { autoAlpha: 0, delay: .1 })
-      .fromTo(infoRef.current.querySelector('.content'), .6, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-150%,0)' })
+      .fromTo(infoRef.current.querySelector('.content'), .6, { y: '0%' }, { y: '-150%' })
     document.removeEventListener('mousemove', moveInfo);
   }
   useEffect(() => {
@@ -84,7 +84,7 @@ const Skill = ({ src, children, infoColor }) => {
       {children ? ReactDOM.createPortal(<div className='skill-info' ref={infoRef}>{children}</div>, document.getElementById('root')) : null}
       <div ref={containerRef} className="about__skills__technologies__technology">
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={itemRef}>
-          {(children && !isMobile()) && <span className='info-container' style={{ color: infoColor }} ref={iRef}><span>Explore</span><i className="far fa-lightbulb"></i></span>}
+          {(children && !isMobile()) && <span className='info-container' style={{ color: infoColor }} ref={iRef}><i className="far fa-lightbulb"></i></span>}
           <img ref={imgRef} draggable={false} src={src} alt='' />
         </div>
       </div>
