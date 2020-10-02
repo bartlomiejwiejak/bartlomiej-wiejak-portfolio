@@ -6,9 +6,15 @@ import circle from '../../../assets/about/circle-interactivedeveloper.png';
 import { LoadingContext } from '../../../context';
 import img1 from '../../../assets/projects/burger/menu-mobile.png';
 import img2 from '../../../assets/projects/burger/builder-mobile.png';
-import img3 from '../../../assets/projects/places/mobile-posts.jpg';
-import img4 from '../../../assets/projects/places/home-mobile.jpg';
-const images = [img1, img2, img3, img4]
+import img3 from '../../../assets/projects/burger/home-mobile.png';
+import img4 from '../../../assets/projects/places/mobile-posts.jpg';
+import img5 from '../../../assets/projects/places/home-mobile.jpg';
+import img6 from '../../../assets/projects/places/user-profile-mobile.jpg';
+import img7 from '../../../assets/projects/vault/mobile-1.png';
+import img8 from '../../../assets/projects/vault/mobile-2.png';
+import img9 from '../../../assets/projects/vault/mobile-3.png';
+
+const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
 
 function Circle() {
 
@@ -25,7 +31,7 @@ function Circle() {
     }, 100)
     const image = document.createElement('img');
     image.className = 'about__circle__inner';
-    image.src = images[(Math.random() * 3).toFixed(0)];
+    image.src = images[(Math.random() * 8).toFixed(0)];
     image.draggable = false;
     const parent = document.querySelector('.about__circle')
     parent.appendChild(image);
