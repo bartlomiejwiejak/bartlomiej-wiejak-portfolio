@@ -18,7 +18,7 @@ const uniforms = {
   u_time: { type: "f", value: 0 },
   u_res: {
     type: "v2",
-    value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+    value: new THREE.Vector2(1920, 1280)
   },
   u_mouse: { type: "v2", value: new THREE.Vector2(0, 0) },
   u_directionMouse: { type: "v2", value: new THREE.Vector2(0, 0) },
@@ -176,8 +176,8 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     }
   }, [pathname, url, path, lastProject, index])
 
-  useEffect(() => {
-    const handleMousemove = ({ clientX, clientY }) => {
+  useEffect(() => {                                     //events
+    const onMousemove = ({ clientX, clientY }) => {
       mouseRef.current.x = clientX;
       mouseRef.current.y = clientY;
 
@@ -186,7 +186,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         y: window.innerHeight - mouseRef.current.y
       })
     }
-    const handleTouch = (({ touches }) => {
+    const onTouch = (({ touches }) => {
       mouseRef.current.x = touches[0].clientX;
       mouseRef.current.y = touches[0].clientY;
 
@@ -196,15 +196,25 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       })
     })
 
-    if (isMobile()) {
-      document.addEventListener('touchmove', handleTouch)
-      uniformsRef.current.u_volatility.value = 5;
-    } else {
-      document.addEventListener('mousemove', handleMousemove)
+    const onResize = () => {
+      const ratio = window.innerHeight / window.innerWidth;
+      if (ratio > 1) {
+        uniformsRef.current.u_offset.value = 10 * ratio + 12.5;       //optimizing for mobile devices
+      } else {
+        uniformsRef.current.u_offset.value = 10;
+      }
+      if (isMobile()) {
+        uniformsRef.current.u_volatility.value = 5;
+      }
     }
+    onResize();
+    document.addEventListener('touchmove', onTouch)
+    document.addEventListener('mousemove', onMousemove)
 
     return () => {
-      document.removeEventListener('mousemove', handleMousemove)
+      document.removeEventListener('mousemove', onMousemove)
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('touchmove', onTouch)
     }
   }, [])
 
