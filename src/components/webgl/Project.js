@@ -7,6 +7,7 @@ import { CustomEase } from 'gsap/CustomEase';
 import fragment from './shaders/fragment';
 import vertex from './shaders/vertex';
 import { toLight } from '../../functions/handleBackground';
+import isMobile from '../../functions/isMobile';
 
 gsap.registerPlugin(CustomEase)
 CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
@@ -185,8 +186,26 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         y: window.innerHeight - mouseRef.current.y
       })
     }
-    document.addEventListener('mousemove', handleMousemove)
-    return () => document.removeEventListener('mousemove', handleMousemove)
+    const handleTouch = (({ touches }) => {
+      mouseRef.current.x = touches[0].clientX;
+      mouseRef.current.y = touches[0].clientY;
+
+      gsap.to(uniformsRef.current.u_mouse.value, 1, {
+        x: mouseRef.current.x,
+        y: window.innerHeight - mouseRef.current.y
+      })
+    })
+
+    if (isMobile()) {
+      document.addEventListener('touchmove', handleTouch)
+      uniformsRef.current.u_volatility.value = 5;
+    } else {
+      document.addEventListener('mousemove', handleMousemove)
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMousemove)
+    }
   }, [])
 
   return (
