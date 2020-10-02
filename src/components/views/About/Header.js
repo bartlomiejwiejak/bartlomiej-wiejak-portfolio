@@ -13,6 +13,12 @@ function Header() {
       <p className='about__line about__line--3'>
         <span>DEVELOPER</span>
       </p>
+      <div className="about__heading__indicator">
+        <span><span>Scroll to discover</span></span>
+        <div className='about__heading__indicator__line'>
+          <div className='about__heading__indicator__line-fill' />
+        </div>
+      </div>
     </h1>
   )
 }

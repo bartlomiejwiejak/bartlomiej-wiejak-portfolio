@@ -15,16 +15,31 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 export const aboutEnter = (callafter, callback) => {
   const timeout = toLight(700);
   scrollInstant(0);
+  let interval;
   setTimeout(() => {
     callafter();
     scrollbarAppear();
+
+    const ease = 'power4.out';
+    const duration = 1.5;
+    const delay = 0.5;
     let topText = '200px';
     if (isMobile()) {
       topText = '0px';
     }
+
     gsap.to('.about__line', 1, {
       x: 0, ease: 'power2.out', onComplete: () => {
         callback();
+        gsap.to('.about__heading__indicator span span', duration, { ease, y: 0, autoAlpha: 1 })
+        gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
+        gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
+        interval = setInterval(() => {
+          gsap.set('.about__heading__indicator__line-fill', { y: '-100%' })
+          gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
+          gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
+        }, 2000)
+
         gsap.to('.about__line--1, .about__line--3', {
           x: '30%', scrollTrigger: {
             trigger: '.about__heading',
@@ -44,16 +59,14 @@ export const aboutEnter = (callafter, callback) => {
       }, delay: .2
     })
 
-    const ease = 'power4.out';
-    const duration = 1.5;
-    const delay = 0.5;
-
     gsap.to('.about__description__heading__line span span', 1, {
       ease: 'custom', y: 0, autoAlpha: 1, scrollTrigger: {
         trigger: '.about__description__img',
         start: 'center bottom'
       },
       onComplete: () => {
+        gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
+        clearInterval(interval)
         const tl = gsap.timeline({ defaults: { ease: 'custom' } })
           .set('.about__description__img-container', { autoAlpha: 1 })
         tl.to('.about__description__img-reveal', 1.2, { height: '0%' })
@@ -104,6 +117,7 @@ export const aboutEnter = (callafter, callback) => {
       }
     })
   }, timeout)
+  return interval;
 }
 export const aboutLeave = (callback) => {
   gsap.set('body', { overflow: 'hidden' });

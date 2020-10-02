@@ -42,6 +42,27 @@
     @include respond(xxsmall){
       font-size: 10rem;
     }
+    &__indicator {
+      text-align: center;
+      font-size: var(--font-size-s);
+      transform: translateY(100%);
+      @include respond(small) {
+        display: none;
+      }
+      span {
+        margin: 0;
+      }
+      &__line {
+        width: 2px;
+        margin: 1rem auto 0;
+        overflow: hidden;
+        &-fill {
+          background-color: var(--black);
+          height: 3rem;
+          transform: translateY(-100%);
+        }
+      }
+    }
   }
   &__line {
     span {
@@ -65,23 +86,23 @@
    justify-content: space-between;
    @include respond(xlarge) {
     margin-top: 37.5rem;
-  }
-  @include respond(large) {
+   }
+   @include respond(large) {
     margin-top: 35rem;
-  }
-  @include respond(medium) {
+   }
+   @include respond(medium) {
     margin-top: 32.5rem;
-  }
-  @include respond(small) {
+   }
+   @include respond(small) {
     margin-top: 30rem;
-  }
-  @include respond(xsmall) {
+   }
+   @include respond(xsmall) {
     margin-top: 27.5rem;
-  }
-  @include respond(xxsmall) {
+   }
+   @include respond(xxsmall) {
     margin-top: 25rem;
-  }
-  &__gif {
+   }
+   &__gif {
     position: fixed;
     left: 0;
     top: 0;
@@ -90,7 +111,7 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-  }
+   }
    &__heading {
      font-size: 6.5rem;
      line-height: 1.1;

@@ -38,6 +38,7 @@ const useAnimation = (type) => {
   useEffect(() => {
     if (!loaded) return;
     let listener;
+    let interval;
     const showInterfaceElements = () => {
       showInterface();
       cursorBackToNormal();
@@ -51,7 +52,7 @@ const useAnimation = (type) => {
         }
         break;
       case 'ABOUT':
-        aboutEnter(showInterfaceElements, () => {
+        interval = aboutEnter(showInterfaceElements, () => {
           document.addEventListener('mousemove', moveLines);
           listener = moveLines;
         });
@@ -59,6 +60,9 @@ const useAnimation = (type) => {
       default: return;
     }
     return () => {
+      if (interval) {
+        clearInterval(interval)
+      }
       document.removeEventListener('mousemove', listener)
     }
   }, [loaded, type])
