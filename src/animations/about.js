@@ -13,7 +13,7 @@ gsap.registerPlugin(CustomEase)
 CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
 export const aboutEnter = (callafter, callback) => {
-  const timeout = toLight(700);
+  const timeout = toLight(1000);
   scrollInstant(0);
   let interval;
   setTimeout(() => {
@@ -30,7 +30,9 @@ export const aboutEnter = (callafter, callback) => {
 
     gsap.to('.about__line', 1, {
       x: 0, ease: 'power2.out', onComplete: () => {
-        callback();
+        if (!isMobile()) {
+          callback();
+        }
         gsap.to('.about__heading__indicator span span', duration, { ease, y: 0, autoAlpha: 1 })
         gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
         gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
@@ -56,32 +58,31 @@ export const aboutEnter = (callafter, callback) => {
             scrub: 1.5
           }
         })
+        gsap.to('.about__description__heading__line span span', 1, {
+          ease: 'custom', y: 0, autoAlpha: 1, scrollTrigger: {
+            trigger: '.about__description__img',
+            start: 'center bottom'
+          },
+          onComplete: () => {
+            gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
+            clearInterval(interval)
+            const tl = gsap.timeline({ defaults: { ease: 'custom' } })
+              .set('.about__description__img-container', { autoAlpha: 1 })
+            tl.to('.about__description__img-reveal', 1.2, { height: '0%' })
+              .from('.about__description__img', 1.2, { scale: 1.6, delay: -1.4 })
+          }
+        })
       }, delay: .2
     })
 
-    gsap.to('.about__description__heading__line span span', 1, {
-      ease: 'custom', y: 0, autoAlpha: 1, scrollTrigger: {
-        trigger: '.about__description__img',
-        start: 'center bottom'
-      },
-      onComplete: () => {
-        gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-        clearInterval(interval)
-        const tl = gsap.timeline({ defaults: { ease: 'custom' } })
-          .set('.about__description__img-container', { autoAlpha: 1 })
-        tl.to('.about__description__img-reveal', 1.2, { height: '0%' })
-          .from('.about__description__img', 1.2, { scale: 1.6, delay: -1.4 })
-      }
-    })
-
     gsap.to('.about__description__paragraph span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
         trigger: '.about__description__paragraph',
         start: 'bottom bottom'
       }
     })
     gsap.to('.about__description__paragraph--mobile span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
         trigger: '.about__description__paragraph--mobile',
         start: 'bottom bottom'
       }
