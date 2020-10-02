@@ -91,17 +91,17 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       lastScrollIndexRef.current = currentScrollIndex;
       loadedRef.current = true;
     }
-    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;            //work enter animation
+    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;            // /work enter animation
     const timeout = toLight(1000);
     const delay = timeout / 1000;
 
-    gsap.to(ref.current.position, 3, { y: -index * 20, delay: delay, ease: 'power3.out' })
-    gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1, delay: delay })
-    gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: delay + 1 })
+    gsap.to(ref.current.position, 3.3, { y: -index * 20, delay: delay, ease: 'power3.out' })
+    gsap.to(uniformsRef.current.u_waveIntensity, 1.1, { value: 1, delay: delay })
+    gsap.to(uniformsRef.current.u_waveIntensity, 2.2, { value: 0.3, delay: delay + 1 })
     loadedRef.current = true;
   }, [index, loaded, pathname, currentScrollIndex])
 
-  useEffect(() => {                     //work scrolling feature
+  useEffect(() => {                     // /work scrolling feature
     if (currentScrollIndex === null) return;
     if (!initializedRef.current) {
       initializedRef.current = true;
@@ -155,7 +155,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     }
   }, [pathname, url, lastProject, loaded, currentScrollIndex, index, path, animating])
 
-  useEffect(() => {  //going work
+  useEffect(() => {  // going work
     if (pathname === url && path === '/work' && lastProject === index) {
       console.log('going work')
       gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1.3 })

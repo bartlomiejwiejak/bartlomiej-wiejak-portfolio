@@ -4,7 +4,7 @@ import { toDark } from '../functions/handleBackground';
 import isMobile from '../functions/isMobile';
 
 export const homeEnter = (callafter) => {
-  const timeout = toDark(500);
+  const timeout = toDark(700);
   setTimeout(() => {
     callafter();
     gsap.to('.light', 1, { scale: .5, ease: 'power2.out' })
@@ -30,7 +30,7 @@ export const homeLeave = (callback) => {
   gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power2.out', delay: .2 });
   if (isMobile()) {
     gsap.to('.home .home__welcome--shadow > span span', 1, { delay: .6, y: '115%', ease: 'power2.out' })
-    gsap.to('.light', .3, { opacity: 0, delay: 1.6 })
+    gsap.to('.light', .15, { opacity: 0, delay: 1.6 })
     setTimeout(callback, 2000);
   } else {
     gsap.to('.light', .5, { opacity: 0 })

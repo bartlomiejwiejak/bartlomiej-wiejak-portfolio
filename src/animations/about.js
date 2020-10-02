@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
 
 import isMobile from '../functions/isMobile';
 import scrollTo from '../functions/scrollTo';
@@ -8,9 +9,11 @@ import { scrollbarAppear, scrollbarHide } from './scrollBar';
 import scrollInstant from '../functions/scrollInstant';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(CustomEase)
+CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
 export const aboutEnter = (callafter, callback) => {
-  const timeout = toLight(500);
+  const timeout = toLight(700);
   scrollInstant(0);
   setTimeout(() => {
     callafter();
@@ -40,24 +43,60 @@ export const aboutEnter = (callafter, callback) => {
         })
       }, delay: .2
     })
-    if (isMobile()) {
-      document.querySelectorAll('.about span span').forEach(span => {
-        if (span.classList.contains('highlight-text')) return;
-        gsap.set(span, {
-          y: 0, ease: 'power2.out', delay: .2, opacity: 1
-        })
-      })
-      gsap.set('.about .highlight-text', { y: 0, autoAlpha: 1 })
-      return;
-    }
-    document.querySelectorAll('.about span span').forEach(span => {
-      if (span.classList.contains('highlight-text')) return;
-      gsap.to(span, 1.5, {
-        scrollTrigger: { trigger: span, start: `${topText} bottom` }, y: 0, ease: 'power2.out', delay: .2, opacity: 1
-      })
+    gsap.to('.about__description__heading__line:nth-child(1) span span', 1, {
+      ease: 'power2.out', y: 0, autoAlpha: 1, scrollTrigger: {
+        trigger: '.about__description__img',
+        start: 'center bottom'
+      }, onStart: () => {
+        const tl = gsap.timeline({ defaults: { ease: 'custom' } })
+        tl.to('.about__description__heading__line:nth-child(2) span span', 1, { y: 0, autoAlpha: 1, delay: .05 })
+          .set('.about__description__img-container', { autoAlpha: 1 })
+          .to('.about__description__img-reveal', 1.2, { height: '0%', })
+          .from('.about__description__img', 1.2, { scale: 1.6, delay: -1.4 })
+      }
     })
-    gsap.to('.about .highlight-text', 1.5, { y: 0, autoAlpha: 1, scrollTrigger: '.about .highlight-text' })
-
+    gsap.to('.about__description__paragraph span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__description__paragraph',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__description__paragraph--mobile span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__description__paragraph--mobile',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__skills__heading span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__skills__heading',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__skills__description span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__skills__description',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__contact__content span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__contact__content',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__footer span span', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__footer',
+        start: 'bottom bottom'
+      }
+    })
+    gsap.to('.about__go-to-work span span, .about__go-to-work .highlight-text', 1, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay: .2, scrollTrigger: {
+        trigger: '.about__go-to-work',
+        start: 'bottom bottom'
+      }
+    })
   }, timeout)
 }
 export const aboutLeave = (callback) => {
