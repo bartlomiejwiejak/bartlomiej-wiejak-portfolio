@@ -6,7 +6,7 @@ export default function () {
   const ease = 'power4.out';
   const time = 1.5;
   gsap.to('.project-content__info span span', time, {
-    y: '0%', autoAlpha: 1, ease, delay: .5, stagger: 0.05, scrollTrigger: {
+    y: '0%', autoAlpha: 1, ease, delay: .25, stagger: 0.05, scrollTrigger: {
       trigger: '.project-content__info',
       start: 'bottom bottom'
     }
@@ -20,7 +20,7 @@ export default function () {
     }
   })
   gsap.to('.project-content__next-project span span, .project-content__next-project .highlight-text', time, {
-    ease, y: '0%', autoAlpha: 1, delay: .5, trigger: {
+    ease, y: '0%', autoAlpha: 1, delay: .5, scrollTrigger: {
       trigger: '.project-content__next-project',
       start: 'bottom bottom'
     }

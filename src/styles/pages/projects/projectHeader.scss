@@ -51,6 +51,7 @@
     &--left {
       bottom: 0;
       left: 0;
+      padding-right: 1rem;
       @include respond(xxsmall) {
         bottom: 5%;
       }
