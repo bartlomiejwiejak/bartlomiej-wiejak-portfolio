@@ -114,7 +114,7 @@ const Work = () => {
   const swipeListen = useCallback((event) => {
     if (!canScrollRef.current) return;
     const currentY = event.touches[0].clientY;
-    if (Math.abs(currentY - initialYRef.current) < 50) return;
+    if (Math.abs(currentY - initialYRef.current) < 200) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
     document.removeEventListener('touchmove', swipeListen)
     slideHandle(direction)
@@ -129,7 +129,7 @@ const Work = () => {
   const swipeMouseListen = useCallback((event) => {
     if (!canScrollRef.current) return;
     const currentY = event.clientY;
-    if (Math.abs(currentY - initialMouseClientYRef.current) < 100) return;
+    if (Math.abs(currentY - initialMouseClientYRef.current) < 200) return;
     const direction = initialMouseClientYRef.current - currentY > 0 ? 1 : -1;
     document.removeEventListener('mousemove', swipeMouseListen)
     slideHandle(direction)
