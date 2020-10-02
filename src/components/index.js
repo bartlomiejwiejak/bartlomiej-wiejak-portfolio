@@ -30,11 +30,11 @@ export default function () {
   useEffect(() => {
     setScrollElement(scrollRef.current)
   }, [setScrollElement])
+
   useEffect(() => {
     setBodyHeight();
-    setTimeout(() => {
-      setBodyHeight();
-    }, 3000);
+    setTimeout(setBodyHeight, 1500)
+    setTimeout(setBodyHeight, 3000);
   }, [location, setBodyHeight])
 
   return (

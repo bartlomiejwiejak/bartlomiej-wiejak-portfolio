@@ -9,31 +9,31 @@ export const homeEnter = (callafter) => {
     callafter();
     gsap.to('.light', 1, { scale: .5, ease: 'power2.out' })
     if (!isMobile()) {
-      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1 });
-      gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1 });
+      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
+      gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
     } else {
-      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1, delay: 1 });
-      gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power2.out', opacity: 1, delay: 1 });
+      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1, delay: 1 });
+      gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1, delay: 1 });
     }
-    gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power2.out' });
-    gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
-    gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power2.out' })
+    gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power4.out' });
+    gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
+    gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
   }, timeout)
 }
 export const homeLeave = (callback) => {
   gsap.to('.home > .home__welcome > span span', .5, {
     color: 'transparent', ease: 'power2.out'
   })
-  gsap.to('.home > .home__welcome > span span', 1, { delay: .6, y: '115%', ease: 'power2.out' })
-  gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power2.out' })
-  gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power2.out' })
-  gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power2.out', delay: .2 });
+  gsap.to('.home > .home__welcome > span span', 1, { delay: .6, y: '115%', ease: 'power4.out' })
+  gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
+  gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
+  gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power4.out', delay: .2 });
   if (isMobile()) {
-    gsap.to('.home .home__welcome--shadow > span span', 1, { delay: .6, y: '115%', ease: 'power2.out' })
-    gsap.to('.light', .15, { opacity: 0, delay: 1.6 })
+    gsap.to('.home .home__welcome--shadow > span span', 1, { delay: .6, y: '115%', ease: 'power4.out' })
+    gsap.to('.light', .15, { opacity: 0, delay: 1.6, ease: 'power2.out' })
     setTimeout(callback, 2000);
   } else {
-    gsap.to('.light', .5, { opacity: 0 })
+    gsap.to('.light', .5, { opacity: 0, ease: 'power2.out' })
     setTimeout(callback, 1800);
   }
 }

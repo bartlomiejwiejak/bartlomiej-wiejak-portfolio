@@ -3,20 +3,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
 
 export default function () {
-  document.querySelectorAll('.project-content span span').forEach(span => {
-    if (span.classList.contains('highlight-text')) {
-      return;
-    }
-    gsap.to(span, 1.5, {
-      y: 0, autoAlpha: 1, delay: .2, scrollTrigger: {
-        trigger: span,
-        start: '100px bottom'
-      }
-    })
-  })
-  gsap.to('.project-content__next-project .highlight-text', 1, {
-    y: 0, autoAlpha: 1, scrollTrigger: {
-      trigger: '.project-content__next-project > span',
+  const ease = 'power4.out';
+  const time = 1.5;
+  gsap.to('.project-content__info span span', time, {
+    y: '0%', autoAlpha: 1, ease, delay: .5, stagger: 0.05, scrollTrigger: {
+      trigger: '.project-content__info',
       start: 'bottom bottom'
     }
   })
@@ -26,6 +17,12 @@ export default function () {
       start: 'top bottom',
       end: 'bottom top',
       scrub: 5
+    }
+  })
+  gsap.to('.project-content__next-project span span, .project-content__next-project .highlight-text', time, {
+    ease, y: '0%', autoAlpha: 1, delay: .5, trigger: {
+      trigger: '.project-content__next-project',
+      start: 'bottom bottom'
     }
   })
   document.querySelectorAll('.project-content__image').forEach(item => {
