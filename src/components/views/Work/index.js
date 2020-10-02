@@ -170,7 +170,7 @@ const Work = () => {
       gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '90deg', ease: 'custom' })
       setCurrentScrollIndex(0);
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
-        y: '0%', ease: 'custom', onComplete: () => {
+        transform: 'translate3d(0,0%,0)', ease: 'custom', onComplete: () => {
           setTimeout(() => {
             gsap.to('.circle', .5, { y: '100%', x: '100%', ease: 'power2.out' })
             gsap.to('.work__pagination > div', .5, { y: '100%', ease: 'power2.out' })

@@ -28,9 +28,7 @@ const useAnimation = (type) => {
         homeLeave(animationEnd);
         break;
       case 'ABOUT':
-        aboutLeave(() => {
-          animationEnd();
-        });
+        aboutLeave(animationEnd);
         break;
       default: return;
     }

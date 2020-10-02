@@ -77,13 +77,6 @@
       }
       span {
         -webkit-text-stroke-color: var(--dark);
-        overflow: hidden;
-        span {
-          transform: translateY(110%);
-          @include respond(xsmall){
-            transform: none;
-          }
-        }
       }
     }
     @include respond(xlarge) {
@@ -104,7 +97,6 @@
     @include respond(xxsmall) {
       font-size: 6rem;
     }
-    
     @media (max-width: 850px) and (orientation: landscape) {
       font-size: 6rem;
     }

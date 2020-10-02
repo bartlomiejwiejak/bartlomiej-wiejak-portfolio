@@ -32,7 +32,9 @@ const uniforms = {
 
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
   const ref = useRef()
-  const uniformsRef = useRef({ ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) } })
+  const uniformsRef = useRef({
+    ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) }
+  })
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
