@@ -1,5 +1,8 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import isMobile from '../functions/isMobile';
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function () {
@@ -25,14 +28,16 @@ export default function () {
       start: 'bottom bottom'
     }
   })
-  document.querySelectorAll('.project-content__image').forEach(item => {
-    gsap.from(item, {
-      scale: 1.1, scrollTrigger: {
-        trigger: item,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1
-      }
+  if (!isMobile) {
+    document.querySelectorAll('.project-content__image').forEach(item => {
+      gsap.from(item, {
+        scale: 1.1, scrollTrigger: {
+          trigger: item,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      })
     })
-  })
+  }
 }

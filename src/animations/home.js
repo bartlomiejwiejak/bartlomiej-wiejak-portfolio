@@ -12,7 +12,7 @@ export const homeEnter = (callafter) => {
       gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
       gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
     } else {
-      gsap.to('.light', 1, { scale: .75, ease: 'power2.out' })
+      gsap.to('.light', 1, { scale: .65, ease: 'power2.out' })
       gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, delay: 1, ease: 'power4.out', opacity: 1 });
       gsap.to('.home > .home__welcome >  span span', 1.2, {
         y: 0, stagger: .15, ease: 'power4.out', opacity: 1, delay: 1
@@ -34,7 +34,6 @@ export const homeLeave = (callback) => {
     })
     gsap.to('.home > .home__welcome > span span', 1, { delay: 1, y: '115%', ease: 'power4.out' })
     gsap.to('.home .home__welcome--shadow > span span', 1, { delay: 1, y: '115%', ease: 'power4.out' })
-    gsap.to('.light', .5, { opacity: 0, ease: 'power2.out', delay: 2 })
     setTimeout(callback, 2500);
   } else {
     gsap.to('.home > .home__welcome > span span', .75, {

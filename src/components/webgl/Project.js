@@ -174,7 +174,11 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         gsap.fromTo(uniformsRef.current.u_direction, 1, { value: .5 }, { value: 1, ease: 'power2.out', delay: 1 })
       } else if (currentScrollIndex !== lastScrollIndexRef.current && lastProject < index && currentScrollIndex !== lastProject) {
         console.log('entering project from inside', index)
-        gsap.set(uniformsRef.current.u_progress, { value: .25 })
+        if (window.innerWidth / window.innerHeight > 1) {
+          gsap.set(uniformsRef.current.u_progress, { value: .25 })
+        } else {
+          gsap.set(uniformsRef.current.u_progress, { value: .5 })
+        }
         gsap.set(uniformsRef.current.u_direction, { value: .5 })
         gsap.set(uniformsRef.current.u_waveIntensity, { value: .3 })
         console.log('start y', -index * 20 + currentScrollIndex * 20 - 20)
