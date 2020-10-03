@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame } from 'react-three-fiber';
 import gsap from 'gsap';
@@ -7,7 +7,6 @@ import { CustomEase } from 'gsap/CustomEase';
 import fragment from './shaders/fragment';
 import vertex from './shaders/vertex';
 import { toLight } from '../../functions/handleBackground';
-import isMobile from '../../functions/isMobile';
 
 gsap.registerPlugin(CustomEase)
 CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
@@ -18,7 +17,7 @@ const uniforms = {
   u_time: { type: "f", value: 0 },
   u_res: {
     type: "v2",
-    value: new THREE.Vector2(1920, 1280)
+    value: new THREE.Vector2(window.innerWidth, window.innerHeight)
   },
   u_mouse: { type: "v2", value: new THREE.Vector2(0, 0) },
   u_directionMouse: { type: "v2", value: new THREE.Vector2(0, 0) },
@@ -33,13 +32,47 @@ const uniforms = {
 
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
   const ref = useRef()
-  const uniformsRef = useRef({
-    ...uniforms, u_text0: { value: new THREE.TextureLoader().load(texture) }
-  })
+  const textureResRef = useRef(null)
+
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
   const loadedRef = useRef(false);
+
+  const uniformsRef = useRef({
+    ...uniforms, u_text0: {
+      value: new THREE.TextureLoader().load(texture, (text) => {
+        if (textureResRef.current) return;
+        textureResRef.current = { width: text.image.width, height: text.image.height };
+        calculateAspectRatio();
+      })
+    }
+  })
+  const [planeSize, setPlaneSize] = useState([16, 8])
+  const calculateAspectRatio = useCallback(() => {
+    if (!textureResRef.current) return;
+    const windowRatio = window.innerWidth / window.innerHeight;
+    const imageRatio = textureResRef.current.width / textureResRef.current.height;
+    let factorX = 1;
+    let factorY = 1;
+
+    if (windowRatio > imageRatio) {
+      factorX = 1;
+      factorY = 1 / windowRatio * imageRatio;
+    } else {
+      factorX = 1 * windowRatio / imageRatio;
+      factorY = 1;
+    }
+
+    let width = 16;
+    if (windowRatio < 1.1) {
+      width = 16 * windowRatio - 1;
+    }
+    console.log(width);
+    setPlaneSize([width, 8]);
+    uniformsRef.current.u_textureFactor.value = new THREE.Vector2(factorX, factorY);
+    uniformsRef.current.u_textureFactor.needsUpdate = true;
+  }, [])
 
   const mouseRef = useRef({
     x: 0,
@@ -58,20 +91,20 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
 
     let directionX;
     if (lastX - x < 0) {
-      directionX = 1;
+      directionX = 1.5;
     } else if (lastX - x === 0) {
       directionX = 0;
     } else {
-      directionX = -1
+      directionX = -1.5;
     }
 
     let directionY;
     if (lastY - y < 0) {
-      directionY = 1;
+      directionY = 1.5;
     } else if (lastY - y === 0) {
       directionY = 0;
     } else {
-      directionY = -1
+      directionY = -1.5;
     }
     gsap.to(uniformsRef.current.u_directionMouse.value, 1, {
       x: directionX,
@@ -86,13 +119,13 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     onMouse()
   })
 
-  useEffect(() => {
+  useEffect(() => {                                    // /work enter animation
     if (loaded && pathname !== '/work' && !loadedRef.current && currentScrollIndex !== null) {
       gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 })
       lastScrollIndexRef.current = currentScrollIndex;
       loadedRef.current = true;
     }
-    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;            // /work enter animation
+    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;
     const timeout = toLight(1000);
     const delay = timeout / 1000;
 
@@ -178,52 +211,48 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
 
   useEffect(() => {                                     //events
     const onMousemove = ({ clientX, clientY }) => {
+      const pixelRatio = window.devicePixelRatio;
       mouseRef.current.x = clientX;
       mouseRef.current.y = clientY;
 
       gsap.to(uniformsRef.current.u_mouse.value, 1, {
-        x: mouseRef.current.x,
-        y: window.innerHeight - mouseRef.current.y
+        x: mouseRef.current.x * pixelRatio,
+        y: (window.innerHeight - mouseRef.current.y) * pixelRatio
       })
     }
     const onTouch = (({ touches }) => {
+      const pixelRatio = window.devicePixelRatio;
       mouseRef.current.x = touches[0].clientX;
       mouseRef.current.y = touches[0].clientY;
 
       gsap.to(uniformsRef.current.u_mouse.value, 1, {
-        x: mouseRef.current.x,
-        y: window.innerHeight - mouseRef.current.y
+        x: mouseRef.current.x * pixelRatio,
+        y: (window.innerHeight - mouseRef.current.y) * pixelRatio
       })
     })
-
     const onResize = () => {
-      const ratio = window.innerHeight / window.innerWidth;
-      if (ratio > 1) {
-        uniformsRef.current.u_offset.value = 10 * ratio + 12.5;       //optimizing for mobile devices
-      } else {
-        uniformsRef.current.u_offset.value = 10;
-      }
-      if (isMobile()) {
-        uniformsRef.current.u_volatility.value = 5;
-      }
+      uniformsRef.current.u_res.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+      calculateAspectRatio();
     }
     onResize();
+
     document.addEventListener('touchmove', onTouch)
     document.addEventListener('mousemove', onMousemove)
+    window.addEventListener('resize', onResize);
 
     return () => {
       document.removeEventListener('mousemove', onMousemove)
       window.removeEventListener('resize', onResize);
       document.removeEventListener('touchmove', onTouch)
     }
-  }, [])
+  }, [calculateAspectRatio])
 
   return (
     <mesh
       ref={ref}
       position={[0, 80 - index * 20, 0]}
     >
-      <planeBufferGeometry attach='geometry' args={[16, 8, 60, 60]} />
+      <planeBufferGeometry attach='geometry' args={[...planeSize, 60, 60]} />
       <shaderMaterial
         uniforms={uniformsRef.current}
         vertexShader={vertex}

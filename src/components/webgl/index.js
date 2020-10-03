@@ -19,7 +19,9 @@ const WebGLRenderer = () => {
 
   return (
     <div className='WebGLRenderer'>
-      <Canvas>
+      <Canvas
+        pixelRatio={window.devicePixelRatio}
+      >
         {projectsData.map(({ index, texture, url }) => <Project key={index} index={index} texture={texture} url={url} loaded={loaded} currentScrollIndex={currentScrollIndex} path={path} pathname={location.pathname} lastProject={lastProject} animating={animating} />)}
       </Canvas>
     </div>
