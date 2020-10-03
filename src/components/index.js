@@ -17,6 +17,7 @@ import useSkewScrolling from '../hooks/useSkewScrolling';
 import useBodyHeight from '../hooks/useBodyHeight';
 import useResize from '../hooks/useResize';
 import WebGLRenderer from '../components/webgl';
+import isMobile from '../functions/isMobile';
 
 export default function () {
 
@@ -41,7 +42,7 @@ export default function () {
     <Suspense fallback={null}>
       <ContextProvider>
         <Loader />
-        <ScrollBar bodyHeight={bodyHeight} />
+        {!isMobile() && <ScrollBar bodyHeight={bodyHeight} />}
         <Header />
         <Background />
         <Route path='/work' component={WebGLRenderer} />
@@ -58,7 +59,7 @@ export default function () {
             </Switch>
           </div>
         </div>
-        <Cursor />
+        {!isMobile() && <Cursor />}
       </ContextProvider>
     </Suspense>
   );

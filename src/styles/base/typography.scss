@@ -15,8 +15,11 @@ html {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
   scrollbar-width: none;
   ::-webkit-scrollbar {
+    width: 0 !important;
     display: none;
   }
   color: var(--black);

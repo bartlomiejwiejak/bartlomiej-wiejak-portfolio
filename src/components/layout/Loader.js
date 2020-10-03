@@ -2,12 +2,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useLockBodyScroll, useToggle } from 'react-use';
 
 import { LoadingContext } from '../../context';
-import header from '../../assets/projects/burger/header.jpg';
-import photo from '../../assets/about/photo.jpg';
-import incoming from '../../assets/projects/incoming.jpg';
+import img1 from '../../assets/projects/burger/header.jpg';
+import img2 from '../../assets/projects/vault/header.jpg';
+import img3 from '../../assets/about/photo.jpg';
+import img4 from '../../assets/projects/incoming.jpg';
+import img5 from '../../assets/projects/places/header.jpg';
 import { loading, loadingComplete } from '../../animations/loader';
 
-const images = [header, photo, incoming]
+const images = [img1, img2, img3, img4, img5]
 
 const Loader = () => {
   const { setIsLoaded } = useContext(LoadingContext)
