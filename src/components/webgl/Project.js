@@ -13,23 +13,6 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 
 const clock = new THREE.Clock();
 
-const uniforms = {
-  u_time: { type: "f", value: 0 },
-  u_res: {
-    type: "v2",
-    value: new THREE.Vector2(window.innerWidth, window.innerHeight)
-  },
-  u_mouse: { type: "v2", value: new THREE.Vector2(0, 0) },
-  u_directionMouse: { type: "v2", value: new THREE.Vector2(0, 0) },
-  u_text0: { value: null },
-  u_progress: { type: "f", value: .5 },
-  u_waveIntensity: { type: "f", value: .3 },
-  u_direction: { type: "f", value: .5 },
-  u_offset: { type: "f", value: 10 },
-  u_volatility: { type: "f", value: 1 },
-  u_textureFactor: { type: "v2", value: new THREE.Vector2(1, 1) }
-}
-
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
   const ref = useRef()
   const textureResRef = useRef(null)
@@ -38,17 +21,31 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
   const loadedRef = useRef(false);
+  const [planeSize, setPlaneSize] = useState([16, 8])
 
   const uniformsRef = useRef({
-    ...uniforms, u_text0: {
+    u_time: { type: "f", value: 0 },
+    u_text0: {
       value: new THREE.TextureLoader().load(texture, (text) => {
         if (textureResRef.current) return;
         textureResRef.current = { width: text.image.width, height: text.image.height };
         calculateAspectRatio();
       })
-    }
+    },
+    u_res: {
+      type: "v2",
+      value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+    },
+    u_mouse: { type: "v2", value: new THREE.Vector2(0, 0) },
+    u_directionMouse: { type: "v2", value: new THREE.Vector2(0, 0) },
+    u_progress: { type: "f", value: .5 },
+    u_waveIntensity: { type: "f", value: .3 },
+    u_direction: { type: "f", value: .5 },
+    u_offset: { type: "f", value: 10 },
+    u_volatility: { type: "f", value: 1 },
+    u_textureFactor: { type: "v2", value: new THREE.Vector2(1, 1) }
   })
-  const [planeSize, setPlaneSize] = useState([16, 8])
+
   const calculateAspectRatio = useCallback(() => {
     if (!textureResRef.current) return;
     const windowRatio = window.innerWidth / window.innerHeight;
@@ -174,9 +171,11 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
         gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'power2.out', delay: 1.8 })
         gsap.to(uniformsRef.current.u_progress, 1, { value: 0, ease: 'power2.out', delay: 1 })
+        gsap.fromTo(uniformsRef.current.u_direction, 1, { value: .5 }, { value: 1, ease: 'power2.out', delay: 1 })
       } else if (currentScrollIndex !== lastScrollIndexRef.current && lastProject < index && currentScrollIndex !== lastProject) {
         console.log('entering project from inside', index)
         gsap.set(uniformsRef.current.u_progress, { value: .25 })
+        gsap.set(uniformsRef.current.u_direction, { value: .5 })
         gsap.set(uniformsRef.current.u_waveIntensity, { value: .3 })
         console.log('start y', -index * 20 + currentScrollIndex * 20 - 20)
         gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 - 20 })
@@ -184,6 +183,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'none', delay: 2.3 })
         gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'none', delay: 2.6 })
         gsap.to(uniformsRef.current.u_progress, 1, { value: 0, delay: 2.3 })
+        gsap.fromTo(uniformsRef.current.u_direction, 1, { value: .5 }, { value: 1, ease: 'power2.out', delay: 2.3 })
       }
     }
   }, [pathname, url, lastProject, loaded, currentScrollIndex, index, path, animating])
@@ -194,6 +194,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1.3 })
       gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: .3, ease: 'power2.out', delay: 1.6 })
       gsap.to(uniformsRef.current.u_progress, 1, { value: .5, ease: 'power2.out', delay: 1.3 })
+      gsap.fromTo(uniformsRef.current.u_direction, 1, { value: 1 }, { value: .5, ease: 'power2.out', delay: 1.3 })
     }
   }, [pathname, path, lastProject, index, url])
 
@@ -202,9 +203,12 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
       console.log('leaving project')
       gsap.to(uniformsRef.current.u_progress, .5, { value: 1, ease: 'power2.out', delay: 1.5 })
       gsap.to(uniformsRef.current.u_waveIntensity, .25, { value: 1, ease: 'power2.out', delay: 1.5 })
-      gsap.to(ref.current.position, 1, { y: 20, ease: 'power2.out', delay: 1.5 })
-      gsap.set(uniformsRef.current.u_progress, { value: .5, delay: 2.5 })
-      gsap.set(uniformsRef.current.u_waveIntensity, { value: .3, delay: 2.5 })
+      gsap.to(ref.current.position, 1, {
+        y: 20, ease: 'power2.out', delay: 1.5, onComplete: () => {
+          gsap.set(uniformsRef.current.u_progress, { value: .5 })
+        }
+      })
+      gsap.fromTo(uniformsRef.current.u_direction, .5, { value: 1 }, { value: .5, ease: 'power2.out', delay: 1.5 })
     }
   }, [pathname, url, path, lastProject, index])
 
