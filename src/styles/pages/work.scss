@@ -1,4 +1,8 @@
 .work {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh)*100);
   &__pagination {
     position: fixed;
     left: 12%;

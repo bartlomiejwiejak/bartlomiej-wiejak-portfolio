@@ -255,7 +255,7 @@ const Work = () => {
     styleRef.current = { transform: `translate3d(0,-${lastProject * 25}%,0)` }
   }
   return (
-    <div style={{ overflow: 'hidden' }} className='work'>
+    <div className='work'>
       <div className='work__scroller' style={styleRef.current}>
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}

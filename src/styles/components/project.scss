@@ -13,10 +13,7 @@
     @include respond(xxsmall) {
       right: 50%;
       transform: translateX(50%);
-      bottom: 25%;
-    }
-    @media (max-width: 1100px) and (orientation: portrait) and (min-width: 600px) {
-      
+      bottom: 21%;
     }
   }
   .button {
