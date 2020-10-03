@@ -68,7 +68,6 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     if (windowRatio < 1.1) {
       width = 16 * windowRatio - 1;
     }
-    console.log(width);
     setPlaneSize([width, 8]);
     uniformsRef.current.u_textureFactor.value = new THREE.Vector2(factorX, factorY);
     uniformsRef.current.u_textureFactor.needsUpdate = true;

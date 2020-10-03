@@ -24,7 +24,8 @@ const Work = () => {
   const { animating, path, setAnimating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex } = useContext(RoutingContext)
   const history = useHistory();
 
-  const canScrollRef = useRef(true)
+  const canScrollRef = useRef(true);
+  const scrollIntervalRef = useRef(null);
   const currentProjectIndexRef = useRef(0);
   const initialYRef = useRef(0);
   const initialMouseClientYRef = useRef(0);
@@ -73,24 +74,26 @@ const Work = () => {
         circleRotation = '90deg';
     }
     if (navigator.userAgent.indexOf("Firefox") > -1) {
+      gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
+      clearInterval(scrollIntervalRef.current)
+      gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
       if (direction > 0) {
-        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
+      gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
+      clearInterval(scrollIntervalRef.current)
+      gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
       if (direction > 0) {
-        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
         gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
@@ -148,6 +151,9 @@ const Work = () => {
     document.removeEventListener('mousedown', cursorMultiDot)
     document.removeEventListener('mousedown', swiperMouse)
     document.removeEventListener('mousemove', swipeMouseListen)
+    clearInterval(scrollIntervalRef.current);
+
+    gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
   }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
 
   const addListeners = useCallback(() => {
@@ -207,6 +213,15 @@ const Work = () => {
         gsap.to('.project .button', 1, {
           y: 0
         })
+        gsap.to('.work__indicator__text', 1.5, { y: '0%', autoAlpha: 1, ease: 'power4.out' })
+
+        gsap.fromTo('.work__indicator__line', .5, { y: '-100%' }, { y: '0%', ease: 'custom' })
+        gsap.fromTo('.work__indicator__line', .5, { y: '0%' }, { y: '100%', ease: 'custom', delay: 1 })
+        scrollIntervalRef.current = setInterval(() => {
+          gsap.fromTo('.work__indicator__line', .5, { y: '-100%' }, { y: '0%', ease: 'custom' })
+          gsap.fromTo('.work__indicator__line', .5, { y: '0%' }, { y: '100%', ease: 'custom', delay: 1 })
+        }, 2000)
+
         timeoutListeners = setTimeout(addListeners, 1000)
       }, time)
 
@@ -214,6 +229,7 @@ const Work = () => {
     return () => {
       clearTimeout(timeout)
       clearTimeout(timeoutListeners)
+      clearInterval(scrollIntervalRef.current)
     }
   }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
   useEffect(() => {
@@ -263,6 +279,12 @@ const Work = () => {
         <Project projectIndex={1} titleUp='Place' titleDown='Your' url='/work/places-app' removeListeners={removeListeners} />
         <Project projectIndex={2} titleUp='Project' titleDown='Burger' url='/work/burger-project' removeListeners={removeListeners} />
         <Project projectIndex={3} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
+      </div>
+      <div className="work__indicator">
+        <span className='work__indicator__text-container'><span className='work__indicator__text'>Swipe to navigate</span></span>
+        <div className='work__indicator__line-container'>
+          <div className='work__indicator__line' />
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   height: calc(var(--vh, 1vh)*100);
+  position: relative;
   &__pagination {
     position: fixed;
     left: 12%;
@@ -45,6 +46,31 @@
       div {
         height: 34px;
       }
+    }
+  }
+  &__indicator {
+    position: absolute;
+    bottom: .5%;
+    left: 50%;
+    transform: translateX(-50%);
+    &__text {
+      &-container {
+        overflow: hidden;
+      }
+      font-size: var(--font-size-s);
+      transform: translateY(110%);
+      opacity: 0;
+      display: inline-block;
+    }
+    &__line {
+      &-container {
+        overflow: hidden;
+      }
+      height: 3rem;
+      width: 2px;
+      background-color: var(--black);
+      margin: 0 auto;
+      transform: translateY(-100%);
     }
   }
 }
