@@ -7,9 +7,20 @@ import img2 from '../../assets/projects/vault/header.jpg';
 import img3 from '../../assets/about/photo.jpg';
 import img4 from '../../assets/projects/incoming.jpg';
 import img5 from '../../assets/projects/places/header.jpg';
+import img6 from '../../assets/about/circle-interactivedeveloper.png';
+import img7 from '../../assets/projects/burger/menu-mobile.png';
+import img8 from '../../assets/projects/burger/builder-mobile.png';
+import img9 from '../../assets/projects/burger/home-mobile.png';
+import img10 from '../../assets/projects/places/mobile-posts.jpg';
+import img11 from '../../assets/projects/places/home-mobile.jpg';
+import img12 from '../../assets/projects/places/user-profile-mobile.jpg';
+import img13 from '../../assets/projects/vault/mobile-1.png';
+import img14 from '../../assets/projects/vault/mobile-2.png';
+import img15 from '../../assets/projects/vault/mobile-3.png';
+import img16 from '../../assets/about/circle-letswork.png';
 import { loading, loadingComplete } from '../../animations/loader';
 
-const images = [img1, img2, img3, img4, img5]
+const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16]
 
 const Loader = () => {
   const { setIsLoaded } = useContext(LoadingContext)

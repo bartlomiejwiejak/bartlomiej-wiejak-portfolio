@@ -210,10 +210,12 @@
   }
   &__circle {
     width: 60rem;
+    height: 60rem;
     margin: -7.5rem 0 0 15rem;
     position: relative;
     @include respond(xlarge) {
       width: 50rem;
+      height: 50rem;
       margin: -5rem 0 0 10rem;
     }
     @include respond(large) {
@@ -222,9 +224,11 @@
     @include respond(medium) {
     margin: 7.5rem 0 0 5rem;
     width: 45rem;
+    height: 45rem;
     }
     @include respond(small) {
       width: 40rem;
+      height: 40rem;
     }
     @include respond(xsmall) {
       margin: 15rem auto 15rem auto;
@@ -446,6 +450,7 @@
     }
     &__circle {
       width: 30rem;
+      height: 30rem;
       margin: -20rem 0 0 auto;
       display: block;
       @include respond(xlarge) {
