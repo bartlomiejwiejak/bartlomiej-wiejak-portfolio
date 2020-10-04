@@ -15,7 +15,7 @@ function Info() {
           <span><span>React,</span></span><span><span>while</span></span><span><span>server</span></span><span><span>side</span></span><span><span>technologies</span></span><span><span>are</span></span><span><span>Express,</span></span><span><span>MongoDB</span></span>
           <span><span>and</span></span><span><span>Mongoose.</span></span>
         </div>
-        <div className='project-content__launch'><span><span><Button href='https://places-app-mern2020.herokuapp.com/' type='black' arrow>Launch Project</Button></span></span>
+        <div className='project-content__launch'><span><span><Button href='https://your-place-2020.herokuapp.com/' type='black' arrow>Launch Project</Button></span></span>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ function Info() {
           <span><span>online</span></span><span><span>shopping</span></span><span><span>into</span></span><span><span>an</span></span><span><span>experience.</span></span><span><span>In</span></span><span><span>order</span></span><span><span>to</span></span><span><span>accomplish</span></span><span><span>it's</span></span><span><span>goals,</span></span><span><span>technologies</span></span><span><span>such as</span></span><span><span>React,</span></span><span><span>Redux</span></span><span><span>and</span></span><span><span>GSAP</span></span><span><span>are</span></span><span><span>involved.</span></span><span><span>Backend</span></span><span><span>is</span></span>
           <span><span>handled</span></span><span><span>using</span></span><span><span>firebase/firestore,</span></span><span><span>stripe</span></span><span><span>and</span></span><span><span>express.</span></span>
         </div>
-        <div className='project-content__launch'><span><span><Button href='https://places-app-mern2020.herokuapp.com/' type='white' arrow>Launch Project</Button></span></span>
+        <div className='project-content__launch'><span><span><Button href='https://vault-clothing.herokuapp.com/' type='white' arrow>Launch Project</Button></span></span>
         </div>
       </div>
     </div>
