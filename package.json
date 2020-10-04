@@ -20,7 +20,7 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "start": "env-cmd react-scripts start",
-    "build": "prod-cmd react-scripts build"
+    "build": "env-cmd react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
