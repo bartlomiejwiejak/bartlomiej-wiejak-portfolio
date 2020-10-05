@@ -117,7 +117,7 @@ const Work = () => {
   const swipeListen = useCallback((event) => {
     if (!canScrollRef.current) return;
     const currentY = event.touches[0].clientY;
-    if (Math.abs(currentY - initialYRef.current) < 200) return;
+    if (Math.abs(currentY - initialYRef.current) < 100) return;
     const direction = initialYRef.current - currentY > 0 ? 1 : -1;
     document.removeEventListener('touchmove', swipeListen)
     slideHandle(direction)
