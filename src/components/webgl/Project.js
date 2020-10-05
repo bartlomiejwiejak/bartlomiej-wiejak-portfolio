@@ -15,7 +15,6 @@ const clock = new THREE.Clock();
 
 const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
   const ref = useRef()
-  const textureResRef = useRef(null)
 
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
@@ -26,11 +25,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   const uniformsRef = useRef({
     u_time: { type: "f", value: 0 },
     u_text0: {
-      value: new THREE.TextureLoader().load(texture, (text) => {
-        if (textureResRef.current) return;
-        textureResRef.current = { width: text.image.width, height: text.image.height };
-        calculateAspectRatio();
-      })
+      value: texture
     },
     u_res: {
       type: "v2",
@@ -47,9 +42,9 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   })
 
   const calculateAspectRatio = useCallback(() => {
-    if (!textureResRef.current) return;
+    if (!texture.image) return;
     const windowRatio = window.innerWidth / window.innerHeight;
-    const imageRatio = textureResRef.current.width / textureResRef.current.height;
+    const imageRatio = texture.image.width / texture.image.height;
     let factorX = 1;
     let factorY = 1;
 
@@ -68,7 +63,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     setPlaneSize([width, 8]);
     uniformsRef.current.u_textureFactor.value = new THREE.Vector2(factorX, factorY);
     uniformsRef.current.u_textureFactor.needsUpdate = true;
-  }, [])
+  }, [texture.image])
 
   const mouseRef = useRef({
     x: 0,
