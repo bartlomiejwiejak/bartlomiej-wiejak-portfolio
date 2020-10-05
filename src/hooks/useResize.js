@@ -11,6 +11,7 @@ const useResize = (callback) => {
       html.style.fontSize = fontSize;
       documentEl.style.setProperty('--vh', `${vh}px`);
       callback();
+      setTimeout(callback, 3000);
     }
 
     handleResize();

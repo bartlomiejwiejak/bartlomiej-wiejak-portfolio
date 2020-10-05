@@ -16,6 +16,8 @@ $breakpoints: (
 --brown: #A52A2A;
 --font-size-s: 1.6rem;
 --font-size-m: 2.5rem;
+--image-ratio: 0.4865;
+--phone-section-ratio: 0.354;
 @include respond(xxsmall) {
   --font-size-s: 2.1rem;
 }

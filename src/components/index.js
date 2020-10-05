@@ -34,9 +34,8 @@ export default function () {
 
   useEffect(() => {
     setBodyHeight();
-    setTimeout(setBodyHeight, 1500)
     setTimeout(setBodyHeight, 3000);
-  }, [location, setBodyHeight])
+  }, [setBodyHeight, location.pathname])
 
   return (
     <Suspense fallback={null}>

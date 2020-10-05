@@ -18,9 +18,24 @@ import img13 from '../../assets/projects/vault/mobile-1.png';
 import img14 from '../../assets/projects/vault/mobile-2.png';
 import img15 from '../../assets/projects/vault/mobile-3.png';
 import img16 from '../../assets/about/circle-letswork.png';
+import img17 from '../../assets/about/technologies/css.png';
+import img18 from '../../assets/about/technologies/firebase.png';
+import img19 from '../../assets/about/technologies/git.png';
+import img20 from '../../assets/about/technologies/gsap.png';
+import img21 from '../../assets/about/technologies/html.png';
+import img22 from '../../assets/about/technologies/js.png';
+import img23 from '../../assets/about/technologies/mongo.png';
+import img24 from '../../assets/about/technologies/node.png';
+import img25 from '../../assets/about/technologies/opengl.png';
+import img26 from '../../assets/about/technologies/react-three-fiber.png';
+import img27 from '../../assets/about/technologies/react.png';
+import img28 from '../../assets/about/technologies/redux.png';
+import img29 from '../../assets/about/technologies/sass.png';
+import img30 from '../../assets/about/technologies/webgl.png';
+import img31 from '../../assets/about/technologies/webpack.png';
 import { loading, loadingComplete } from '../../animations/loader';
 
-const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16]
+const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, img26, img27, img28, img29, img30, img31]
 
 const Loader = () => {
   const { setIsLoaded } = useContext(LoadingContext)

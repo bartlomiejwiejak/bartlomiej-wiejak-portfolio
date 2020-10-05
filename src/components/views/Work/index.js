@@ -281,7 +281,7 @@ const Work = () => {
         <Project projectIndex={3} titleUp='Soon' titleDown='Coming' url='/work' inactive={true} />
       </div>
       <div className="work__indicator">
-        <span className='work__indicator__text-container'><span className='work__indicator__text'>Swipe to navigate</span></span>
+        <span className='work__indicator__text-container'><span className='work__indicator__text'>Swipe to explore</span></span>
         <div className='work__indicator__line-container'>
           <div className='work__indicator__line' />
         </div>
