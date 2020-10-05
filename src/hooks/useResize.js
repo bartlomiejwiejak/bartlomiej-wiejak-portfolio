@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useResize = (callback) => {
+const useResize = () => {
   useEffect(() => {
     const html = document.querySelector('html');
     const documentEl = document.documentElement;
@@ -10,15 +10,13 @@ const useResize = (callback) => {
       const vh = window.innerHeight * 0.01;
       html.style.fontSize = fontSize;
       documentEl.style.setProperty('--vh', `${vh}px`);
-      callback();
-      setTimeout(callback, 3000);
     }
 
     handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [callback]);
+  }, []);
 }
 
 export default useResize;

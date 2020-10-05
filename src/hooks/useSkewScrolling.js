@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import skewConfig from '../config/skewScrolling';
 import isMobile from '../functions/isMobile';
 
-const useSkewScrolling = () => {
+const useSkewScrolling = (callback) => {
 
   const [scrollElement, setScrollElement] = useState(null);
 
@@ -21,6 +21,7 @@ const useSkewScrolling = () => {
       const skew = velocity * 10;
       scrollElement.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
       const bodyHeight = document.querySelector('body').getBoundingClientRect().height;
+      callback();
       if (bodyHeight && !isMobile()) {
         const y = (window.innerHeight / bodyHeight) * window.scrollY;
         gsap.to('.scrollbar__thumb', 1, { y: y })
@@ -30,7 +31,7 @@ const useSkewScrolling = () => {
     }
     const animationFrame = requestAnimationFrame(skewScrolling)
     return () => cancelAnimationFrame(animationFrame)
-  }, [scrollElement])
+  }, [scrollElement, callback])
 
   return { setScrollElement };
 

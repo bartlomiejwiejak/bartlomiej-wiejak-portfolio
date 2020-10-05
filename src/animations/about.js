@@ -111,10 +111,14 @@ export const aboutEnter = (callafter, callback) => {
         start: 'bottom bottom'
       }
     })
+    let startAnimation = 'bottom';
+    if (isMobile()) {
+      startAnimation = 'center';
+    }
     gsap.to('.about__go-to-work span span, .about__go-to-work .highlight-text', duration, {
       y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
         trigger: '.about__go-to-work',
-        start: 'bottom bottom'
+        start: `${startAnimation} bottom`
       }
     })
   }, timeout)

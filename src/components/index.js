@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, Suspense } from 'react';
-import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './layout/Header';
 import Cursor from './layout/Cursor';
@@ -14,28 +14,22 @@ import PlacesApp from './views/projects/Places';
 import ScrollBar from './layout/ScrollBar';
 import Background from './layout/Background';
 import useSkewScrolling from '../hooks/useSkewScrolling';
-import useBodyHeight from '../hooks/useBodyHeight';
 import useResize from '../hooks/useResize';
 import WebGLRenderer from '../components/webgl';
+import useBodyHeight from '../hooks/useBodyHeight';
 import isMobile from '../functions/isMobile';
 
 export default function () {
 
   const scrollRef = useRef();
-  const location = useLocation();
 
-  const { setScrollElement } = useSkewScrolling();
   const { bodyHeight, setBodyHeight } = useBodyHeight();
-  useResize(setBodyHeight);
+  const { setScrollElement } = useSkewScrolling(setBodyHeight);
+  useResize();
 
   useEffect(() => {
     setScrollElement(scrollRef.current)
   }, [setScrollElement])
-
-  useEffect(() => {
-    setBodyHeight();
-    setTimeout(setBodyHeight, 3000);
-  }, [setBodyHeight, location.pathname])
 
   return (
     <Suspense fallback={null}>
