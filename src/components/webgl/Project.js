@@ -253,7 +253,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   return (
     <mesh
       ref={ref}
-      position={[0, 80 - index * 20, 0]}
+      position={[0, 75 - index * 20, 0]}
     >
       <planeBufferGeometry attach='geometry' args={[...planeSize, 60, 60]} />
       <shaderMaterial
