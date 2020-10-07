@@ -15,7 +15,7 @@ CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,
 export const aboutEnter = (callafter, callback) => {
   const timeout = toLight(1000);
   scrollInstant(0);
-  let interval;
+  const intervals = [];
   setTimeout(() => {
     callafter();
     scrollbarAppear();
@@ -36,11 +36,11 @@ export const aboutEnter = (callafter, callback) => {
         gsap.to('.about__heading__indicator span span', duration, { ease, y: 0, autoAlpha: 1 })
         gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
         gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
-        interval = setInterval(() => {
+        intervals.push(setInterval(() => {
           gsap.set('.about__heading__indicator__line-fill', { y: '-100%' })
           gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
           gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
-        }, 2000)
+        }, 2000))
 
         gsap.to('.about__line--1, .about__line--3', {
           x: '30%', scrollTrigger: {
@@ -65,7 +65,7 @@ export const aboutEnter = (callafter, callback) => {
           },
           onComplete: () => {
             gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-            clearInterval(interval)
+            clearInterval(intervals[0])
             const tl = gsap.timeline({ defaults: { ease: 'custom' } })
               .set('.about__description__img-container', { autoAlpha: 1 })
             tl.to('.about__description__img-reveal', 1.2, { height: '0%' })
@@ -122,7 +122,7 @@ export const aboutEnter = (callafter, callback) => {
       }
     })
   }, timeout)
-  return interval;
+  return intervals;
 }
 export const aboutLeave = (callback) => {
   gsap.set('body', { overflow: 'hidden' });
