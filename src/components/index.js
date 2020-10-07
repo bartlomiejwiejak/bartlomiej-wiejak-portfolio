@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './layout/Header';
@@ -16,31 +16,23 @@ import Background from './layout/Background';
 import useSkewScrolling from '../hooks/useSkewScrolling';
 import useResize from '../hooks/useResize';
 import WebGLRenderer from '../components/webgl';
-import useBodyHeight from '../hooks/useBodyHeight';
 import isMobile from '../functions/isMobile';
 
 export default function () {
 
-  const scrollRef = useRef();
-
-  const { bodyHeight, setBodyHeight } = useBodyHeight();
-  const { setScrollElement } = useSkewScrolling(setBodyHeight);
+  useSkewScrolling();
   useResize();
-
-  useEffect(() => {
-    setScrollElement(scrollRef.current)
-  }, [setScrollElement])
 
   return (
     <Suspense fallback={null}>
       <ContextProvider>
         <Loader />
-        {!isMobile() && <ScrollBar bodyHeight={bodyHeight} />}
+        {!isMobile() && <ScrollBar />}
         <Header />
         <Background />
         <Route path='/work' component={WebGLRenderer} />
         <div className="view">
-          <div ref={scrollRef} className="scroll">
+          <div className="scroll">
             <Switch>
               <Route path='/' exact component={Home} />
               <Route path='/about' exact component={About} />

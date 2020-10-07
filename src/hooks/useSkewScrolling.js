@@ -1,16 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 
 import skewConfig from '../config/skewScrolling';
 import isMobile from '../functions/isMobile';
 
-const useSkewScrolling = (callback) => {
-
-  const [scrollElement, setScrollElement] = useState(null);
+const useSkewScrolling = () => {
 
   useEffect(() => {
-    if (!scrollElement) return;
+    const body = document.querySelector('body');
+    const scrollBarThumb = document.querySelector('.scrollbar__thumb');
+    const scrollElement = document.querySelector('.scroll');
+    const setScrollbarHeight = (bodyHeight) => {
+      if (bodyHeight === 0) return;
+      if (bodyHeight <= window.innerHeight) {
+        scrollBarThumb.style.height = '0px';
+      } else {
+        scrollBarThumb.style.height = `${(window.innerHeight * window.innerHeight) / bodyHeight}px`
+      }
+    }
+
     const skewScrolling = () => {
+      body.style.height = scrollElement.offsetHeight + 'px';
       skewConfig.current = window.scrollY;
       skewConfig.previous += (skewConfig.current - skewConfig.previous) * skewConfig.ease;
       skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
@@ -20,9 +30,10 @@ const useSkewScrolling = (callback) => {
       const velocity = +acceleration;
       const skew = velocity * 10;
       scrollElement.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
-      const bodyHeight = document.querySelector('body').getBoundingClientRect().height;
-      callback();
+
+      const bodyHeight = body.offsetHeight;
       if (bodyHeight && !isMobile()) {
+        setScrollbarHeight(bodyHeight);
         const y = (window.innerHeight / bodyHeight) * window.scrollY;
         gsap.to('.scrollbar__thumb', 1, { y: y })
       }
@@ -31,9 +42,7 @@ const useSkewScrolling = (callback) => {
     }
     const animationFrame = requestAnimationFrame(skewScrolling)
     return () => cancelAnimationFrame(animationFrame)
-  }, [scrollElement, callback])
-
-  return { setScrollElement };
+  }, [])
 
 }
 
