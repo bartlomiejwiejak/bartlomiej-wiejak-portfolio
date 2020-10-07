@@ -34,32 +34,40 @@ function Player() {
       } else {
         contextAnalyser = analyser;
       }
-
+      const playerLine = document.querySelectorAll('.player__line');
+      const light = document.querySelector('.light');
+      const shadow = document.querySelector('.home__welcome--shadow');
       let animatingContent = (fbc_array) => {
-        gsap.set('.player__line', { width: fbc_array[1] / 3 })
-        gsap.set('.light', { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 })
-        gsap.set('.home__welcome--shadow', { scale: 1.05 + (fbc_array[1] / 50) / 100 })
+        playerLine[0].style.width = fbc_array[1] / 3 + 'px';
+        playerLine[1].style.width = fbc_array[1] / 3 + 'px';
+        gsap.set(light, { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 });
+        gsap.set(shadow, { scale: 1.05 + (fbc_array[1] / 50) / 100 });
       }
       if (isMobile()) {
         animatingContent = (fbc_array) => {
-          gsap.set('.player__line', { width: fbc_array[1] / 5 })
+          playerLine[0].style.width = fbc_array[1] / 3 + 'px';
+          playerLine[1].style.width = fbc_array[1] / 3 + 'px';
         }
       }
 
       const frameLooper = () => {
         const fbc_array = new Uint8Array(contextAnalyser.frequencyBinCount);
         contextAnalyser.getByteFrequencyData(fbc_array);
-        if (!!document.querySelector('.light')) {
-          animatingContent(fbc_array);
-          requestAnimationFrame(frameLooper)
-        } else return;
+        animatingContent(fbc_array);
+        animation = requestAnimationFrame(frameLooper);
       }
 
       animation = requestAnimationFrame(frameLooper);
-
-      return () => cancelAnimationFrame(animation);
     }
-    return () => cancelAnimationFrame(animation);
+
+    return () => {
+      gsap.to('.player__line', .5, { width: 0 })
+      if (!isMobile()) {
+        gsap.to('.light', .5, { scaleX: .5, scaleY: .5 })
+        gsap.to('.home__welcome--shadow', .5, { scale: 1.05 })
+      }
+      cancelAnimationFrame(animation);
+    }
   }, [isPlaying, loaded, analyser, setAnalyser])
 
   const playHandle = async () => {

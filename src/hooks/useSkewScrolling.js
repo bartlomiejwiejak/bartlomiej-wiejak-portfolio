@@ -18,6 +18,7 @@ const useSkewScrolling = () => {
         scrollBarThumb.style.height = `${(window.innerHeight * window.innerHeight) / bodyHeight}px`
       }
     }
+    let animationFrame;
 
     const skewScrolling = () => {
       body.style.height = scrollElement.offsetHeight + 'px';
@@ -38,9 +39,9 @@ const useSkewScrolling = () => {
         gsap.to('.scrollbar__thumb', 1, { y: y })
       }
 
-      requestAnimationFrame(skewScrolling);
+      animationFrame = requestAnimationFrame(skewScrolling);
     }
-    const animationFrame = requestAnimationFrame(skewScrolling)
+    animationFrame = requestAnimationFrame(skewScrolling)
     return () => cancelAnimationFrame(animationFrame)
   }, [])
 
