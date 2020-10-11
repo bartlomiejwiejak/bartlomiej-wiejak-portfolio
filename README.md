@@ -9,12 +9,12 @@ Portfolio was made with React. Secondary, I used GSAP for animations. Besides th
 ## Getting Started
 You need to have Node.js and npm installed to run this project locally. After that, you are able to run this project without any problems, by running commands below in your terminal.
 
+Note that 'file:gsap-bonus.tgz' file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
 ```
 # Clone the project.
 npm clone https://github.com/bartlomiejwiejak/bartlomiej-wiejak-portfolio.git
 
 # Install npm dependencies.
-Note that file:gsap-bonus.tgz file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
 npm install
 
 # Run the website.
