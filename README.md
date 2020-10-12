@@ -15,7 +15,6 @@ Note that 'file:gsap-bonus.tgz' file in root project's folder directory is requi
 npm clone https://github.com/bartlomiejwiejak/bartlomiej-wiejak-portfolio.git
 
 # Install npm dependencies.
-Note that file:gsap-bonus.tgz file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
 npm install
 
 # Run the website.
