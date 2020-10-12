@@ -12,7 +12,7 @@ You need to have Node.js and npm installed to run this project locally. After th
 Note that 'file:gsap-bonus.tgz' file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
 ```
 # Clone the project.
-npm clone https://github.com/bartlomiejwiejak/bartlomiej-wiejak-portfolio.git
+git clone https://github.com/bartlomiejwiejak/bartlomiej-wiejak-portfolio.git
 
 # Install npm dependencies.
 npm install
