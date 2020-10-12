@@ -11,13 +11,13 @@ const Contact = () => {
       <div className='contact'>
         <ul className='contact__list'>
           <li className='contact__item'>
-            <Button href='https://www.linkedin.com/in/bart%C5%82omiej-wiejak-4b9a891b3/' type='white'>Linkedin</Button>
+            <Button href='linkedin.com/in/barłomiej-wiejak-3431941b9' type='white'>Linkedin</Button>
           </li>
           <li className='contact__item'>
             <Button href='https://github.com/bartlomiejwiejak' type='white'>Github</Button>
           </li>
           <li className='contact__item'>
-            <Button href='https://twitter.com/BartekWiejak' type='white'>Twitter</Button>
+            <Button href='https://www.facebook.com/wiejaczek/' type='white'>Facebook</Button>
           </li>
         </ul>
       </div>
