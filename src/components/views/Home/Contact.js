@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <>
       <div className="contact__item contact__reach">
-        <Button type='white'>Reach Out</Button>
+        <Button href="mailto:hello@bartlomiejwiejak.com" type='white'>Reach Out</Button>
       </div>
       <div className='contact'>
         <ul className='contact__list'>
