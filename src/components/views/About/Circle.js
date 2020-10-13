@@ -10,9 +10,9 @@ import img3 from '../../../assets/projects/burger/home-mobile.webp';
 import img4 from '../../../assets/projects/places/mobile-posts.webp';
 import img5 from '../../../assets/projects/places/home-mobile.webp';
 import img6 from '../../../assets/projects/places/user-profile-mobile.webp';
-import img7 from '../../../assets/projects/vault/mobile-1.png';
-import img8 from '../../../assets/projects/vault/mobile-2.png';
-import img9 from '../../../assets/projects/vault/mobile-3.png';
+import img7 from '../../../assets/projects/vault/mobile-1.webp';
+import img8 from '../../../assets/projects/vault/mobile-2.webp';
+import img9 from '../../../assets/projects/vault/mobile-3.webp';
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
 

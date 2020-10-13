@@ -1,12 +1,12 @@
 import React from 'react'
 
-import mobile1 from '../../../../../assets/projects/vault/mobile-1.png';
-import mobile2 from '../../../../../assets/projects/vault/mobile-2.png';
-import mobile3 from '../../../../../assets/projects/vault/mobile-3.png';
+import mobile1 from '../../../../../assets/projects/vault/mobile-1.webp';
+import mobile2 from '../../../../../assets/projects/vault/mobile-2.webp';
+import mobile3 from '../../../../../assets/projects/vault/mobile-3.webp';
 import HighLightText from '../../../../shared/HighlightText';
 import homeEnterDesktop from '../../../../../assets/projects/vault/home-enter-desktop.mp4';
 import homeEnterMobile from '../../../../../assets/projects/vault/home-enter-mobile.mp4';
-import desktopLogin from '../../../../../assets/projects/vault/desktop-login.png';
+import desktopLogin from '../../../../../assets/projects/vault/desktop-login.webp';
 import shopDesktop from '../../../../../assets/projects/vault/shop-desktop.mp4';
 import aboutDesktop from '../../../../../assets/projects/vault/about-video-desktop.mp4';
 import Info from './Info';

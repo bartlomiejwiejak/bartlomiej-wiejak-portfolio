@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 import burger from '../assets/projects/burger/header.webp';
 import places from '../assets/projects/places/header.webp';
-import vault from '../assets/projects/vault/header.jpg';
+import vault from '../assets/projects/vault/header.webp';
 import incoming from '../assets/projects/incoming.webp';
 
 const loader = new THREE.TextureLoader();
