@@ -3,11 +3,8 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './layout/Header';
 import Cursor from './layout/Cursor';
-import Home from './views/Home';
-import About from './views/About';
 import ContextProvider from '../context';
 import Loader from './layout/Loader';
-import Work from './views/Work';
 import BurgerProject from './views/projects/Burger'
 import VaultClothing from './views/projects/Vault';
 import PlacesApp from './views/projects/Places';
@@ -18,22 +15,32 @@ import useResize from '../hooks/useResize';
 import WebGLRenderer from '../components/webgl';
 import isMobile from '../functions/isMobile';
 
+const Home = React.lazy(() => {
+  return import('./views/Home');
+})
+const About = React.lazy(() => {
+  return import('./views/About');
+})
+const Work = React.lazy(() => {
+  return import('./views/Work');
+})
+
 export default function () {
 
   useSkewScrolling();
   useResize();
 
   return (
-    <Suspense fallback={null}>
-      <ContextProvider>
-        <Loader />
-        {!isMobile() && <ScrollBar />}
-        <Header />
-        <Background />
-        <Route path='/work' component={WebGLRenderer} />
-        <div className="view">
-          <div className="scroll">
-            <Switch>
+    <ContextProvider>
+      <Loader />
+      {!isMobile() && <ScrollBar />}
+      <Header />
+      <Background />
+      <Route path='/work' component={WebGLRenderer} />
+      <div className="view">
+        <div className="scroll">
+          <Switch>
+            <Suspense fallback={null}>
               <Route path='/' exact component={Home} />
               <Route path='/about' exact component={About} />
               <Route path='/work' exact component={Work} />
@@ -41,11 +48,11 @@ export default function () {
               <Route path='/work/places-app' exact component={PlacesApp} />
               <Route path='/work/vault-clothing' exact component={VaultClothing} />
               <Redirect to='/' />
-            </Switch>
-          </div>
+            </Suspense>
+          </Switch>
         </div>
-        {!isMobile() && <Cursor />}
-      </ContextProvider>
-    </Suspense>
+      </div>
+      {!isMobile() && <Cursor />}
+    </ContextProvider>
   );
 }
