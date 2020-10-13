@@ -11,7 +11,7 @@ const Contact = () => {
       <aside className='contact'>
         <ul className='contact__list'>
           <li className='contact__item'>
-            <Button href='linkedin.com/in/barłomiej-wiejak-3431941b9' type='white'>Linkedin</Button>
+            <Button href='https://linkedin.com/in/barłomiej-wiejak-3431941b9' type='white'>LinkedIn</Button>
           </li>
           <li className='contact__item'>
             <Button href='https://github.com/bartlomiejwiejak' type='white'>Github</Button>

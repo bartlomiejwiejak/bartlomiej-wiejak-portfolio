@@ -38,7 +38,7 @@ function Contact() {
           <h3><span><span>Social</span></span></h3>
           <li><span><span><Button href='https://www.facebook.com/wiejaczek/' type='black' arrow>Facebook</Button></span></span></li>
           <li><span><span><Button href='https://github.com/bartlomiejwiejak' type='black' arrow>Github</Button></span></span></li>
-          <li><span><span><Button href='linkedin.com/in/barłomiej-wiejak-3431941b9' type='black' arrow>Linkedin</Button></span></span></li>
+          <li><span><span><Button href='https://linkedin.com/in/barłomiej-wiejak-3431941b9' type='black' arrow>LinkedIn</Button></span></span></li>
         </ul>
       </div>
     </div>
