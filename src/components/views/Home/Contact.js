@@ -8,7 +8,7 @@ const Contact = () => {
       <div className="contact__item contact__reach">
         <Button href="mailto:hello@bartlomiejwiejak.com" type='white'>Reach Out</Button>
       </div>
-      <div className='contact'>
+      <aside className='contact'>
         <ul className='contact__list'>
           <li className='contact__item'>
             <Button href='linkedin.com/in/barłomiej-wiejak-3431941b9' type='white'>Linkedin</Button>
@@ -20,7 +20,7 @@ const Contact = () => {
             <Button href='https://www.facebook.com/wiejaczek/' type='white'>Facebook</Button>
           </li>
         </ul>
-      </div>
+      </aside>
     </>
   );
 }

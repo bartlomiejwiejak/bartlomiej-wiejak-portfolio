@@ -1,13 +1,13 @@
 import React from 'react'
 
 import homeVideo from '../../../../../assets/projects/burger/home-video.mp4';
-import mobile1 from '../../../../../assets/projects/burger/home-mobile.png';
-import mobile2 from '../../../../../assets/projects/burger/builder-mobile.png';
-import mobile3 from '../../../../../assets/projects/burger/menu-mobile.png';
+import mobile1 from '../../../../../assets/projects/burger/home-mobile.webp';
+import mobile2 from '../../../../../assets/projects/burger/builder-mobile.webp';
+import mobile3 from '../../../../../assets/projects/burger/menu-mobile.webp';
 import buildingVideo from '../../../../../assets/projects/burger/building-video.mp4';
 import homeLoad from '../../../../../assets/projects/burger/home-load.mp4';
 import homeLoadMobile from '../../../../../assets/projects/burger/home-load-mobile.mp4';
-import order from '../../../../../assets/projects/burger/order.png';
+import order from '../../../../../assets/projects/burger/order.webp';
 import HighLightText from '../../../../shared/HighlightText';
 import Info from './Info';
 

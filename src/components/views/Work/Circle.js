@@ -1,6 +1,6 @@
 import React from 'react';
 
-import circle from '../../../assets/work/circle-interactivecreative.png';
+import circle from '../../../assets/work/circle-interactivecreative.webp';
 
 const Circle = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 
-import photo from '../../../assets/about/photo.jpg';
+import photo from '../../../assets/about/photo.webp';
 import isMobile from '../../../functions/isMobile';
 import { cursorHide, cursorBackToNormal } from '../../../animations/cursor';
 import gif1 from '../../../assets/about/giphs/giph1.gif'
