@@ -119,7 +119,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       })
     }
   }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
-  let classRef = useRef('');
+  const classRef = useRef('');
   if (lastProject !== null && !animating) {
     classRef.current = 'project-header--animated';
   }

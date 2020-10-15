@@ -28,7 +28,7 @@ export default function () {
       start: 'bottom bottom'
     }
   })
-  if (!isMobile) {
+  if (!isMobile()) {
     document.querySelectorAll('.project-content__image').forEach(item => {
       gsap.from(item, {
         scale: 1.1, scrollTrigger: {
