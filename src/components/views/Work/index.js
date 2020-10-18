@@ -48,10 +48,7 @@ const Work = () => {
 
   const slideHandle = useCallback((direction) => {
     if (direction === 1) {
-      console.log('current', currentProjectIndexRef.current);
-      console.log('length', projectsRef.current.length - 1);
       const isLastProject = currentProjectIndexRef.current === projectsRef.current.length - 1;
-      console.log("canScroll", isLastProject)
       if (isLastProject) return;
     }
     if (direction === -1) {
@@ -81,12 +78,12 @@ const Work = () => {
       clearInterval(scrollIntervalRef.current)
       gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
       if (direction > 0) {
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
       gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
