@@ -6,7 +6,7 @@
    left: 0;
    letter-spacing: 2px;
    perspective: 700px;
-   z-index: 1;
+   z-index: 2;
    &__scroll-indicator {
      position: absolute;
      right: 10%;
@@ -30,6 +30,8 @@
     position: absolute;
     font-weight: bold;
     overflow: hidden;
+    line-height: 2;
+    -webkit-text-stroke-width: 1px;
     @include respond(xlarge) {
       font-size: 23rem;
     }
@@ -44,6 +46,7 @@
     }
     @include respond(xsmall) {
       font-size: 18rem;
+      line-height: 1.2;
     }
     @include respond(xxsmall) {
       font-size: 16rem;

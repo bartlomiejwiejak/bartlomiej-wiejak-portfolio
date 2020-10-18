@@ -37,7 +37,7 @@ const Work = () => {
   }
 
   useEffect(() => {
-    projectsRef.current = document.querySelectorAll('.project')
+    projectsRef.current = document.querySelectorAll('.view .project')
   }, [])
 
   useEffect(() => {
@@ -48,7 +48,10 @@ const Work = () => {
 
   const slideHandle = useCallback((direction) => {
     if (direction === 1) {
+      console.log('current', currentProjectIndexRef.current);
+      console.log('length', projectsRef.current.length - 1);
       const isLastProject = currentProjectIndexRef.current === projectsRef.current.length - 1;
+      console.log("canScroll", isLastProject)
       if (isLastProject) return;
     }
     if (direction === -1) {
@@ -90,12 +93,12 @@ const Work = () => {
       clearInterval(scrollIntervalRef.current)
       gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
       if (direction > 0) {
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
-        gsap.fromTo(projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), 1.2, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     }
     setTimeout(() => {
@@ -266,6 +269,24 @@ const Work = () => {
     }
   }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
 
+  useEffect(() => {
+    let timeout;
+
+    const onResize = () => {
+      if (timeout) return;
+      timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        timeout = null;
+        const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
+        gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' });
+      }, 500)
+    }
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    }
+  }, [])
   const styleRef = useRef({})
   if (lastProject !== null) {
     styleRef.current = { transform: `translate3d(0,-${lastProject * 25}%,0)` }

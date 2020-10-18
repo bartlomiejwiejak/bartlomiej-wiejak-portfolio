@@ -8,6 +8,7 @@ export default ({ children }) => {
   const [animating, setAnimating] = useState(false);
   const [lastProject, setLastProject] = useState(null);
   const [currentScrollIndex, setCurrentScrollIndex] = useState(null);
+  const [wave, setWave] = useState(null);
 
   const [loaded, setIsLoaded] = useState(false);
   const [analyser, setAnalyser] = useState(null);
@@ -16,7 +17,7 @@ export default ({ children }) => {
     <LoadingContext.Provider
       value={{ loaded, setIsLoaded, analyser, setAnalyser }}>
       <RoutingContext.Provider
-        value={{ path, setPath, setAnimating, animating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex }}>
+        value={{ path, setPath, setAnimating, animating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex, wave, setWave }}>
         {children}
       </RoutingContext.Provider>
     </LoadingContext.Provider>

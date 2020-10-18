@@ -14,14 +14,14 @@ CustomEase.create('work-enter', 'M0,0 C0.068,0.044 -0.038,-0.021 0.208,0.128 0.3
 
 const clock = new THREE.Clock();
 
-const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating }) => {
-  const ref = useRef()
-
+const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating, wave }) => {
+  const ref = useRef();
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
   const leavingWorkRef = useRef(false);
   const loadedRef = useRef(false);
-  const [planeSize, setPlaneSize] = useState([16, 8])
+
+  const [planeSize, setPlaneSize] = useState([16, 8]);
 
   const uniformsRef = useRef({
     u_time: { type: "f", value: 0 },
@@ -110,7 +110,16 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     uniformsRef.current.u_time.value = clock.getElapsedTime() / 5;
     onMouse()
   })
-
+  useEffect(() => {                        //handling project's button mouseover
+    if (wave === index) {
+      gsap.to(uniformsRef.current.u_waveIntensity, .5, { value: .45 });
+      gsap.to(uniformsRef.current.u_progress, .5, { value: .25 });
+    } else {
+      gsap.to(uniformsRef.current.u_waveIntensity, .5, { value: .3 });
+      if (wave === false) return;
+      gsap.to(uniformsRef.current.u_progress, .5, { value: .5 });
+    }
+  }, [wave, index])
   useEffect(() => {                                    // /work enter animation
     if (loaded && pathname !== '/work' && !loadedRef.current && currentScrollIndex !== null) {
       gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 })

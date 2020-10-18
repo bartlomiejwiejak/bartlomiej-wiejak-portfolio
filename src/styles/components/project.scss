@@ -4,6 +4,11 @@
   height: calc(var(--vh, 1vh) * 100);
   position: relative;
   perspective: 700px;
+  &--fill {
+    .project__title {
+      -webkit-text-fill-color: var(--color-black);
+    }
+  }
   &__button-container {
     font-size: var(--font-size-s);
     overflow: hidden;
@@ -26,6 +31,9 @@
     overflow: hidden;
     pointer-events: none;
     letter-spacing: 2px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: transparent;
+    line-height: 2;
     @include respond(xlarge) {
        font-size: 23rem;
     }
@@ -40,6 +48,7 @@
     }
     @include respond(xsmall) {
     font-size: 18rem;
+    line-height: 1.2;
     }
     @include respond(xxsmall) {
     font-size: 16rem;

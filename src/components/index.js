@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './layout/Header';
@@ -14,16 +14,10 @@ import useSkewScrolling from '../hooks/useSkewScrolling';
 import useResize from '../hooks/useResize';
 import WebGLRenderer from '../components/webgl';
 import isMobile from '../functions/isMobile';
-
-const Home = React.lazy(() => {
-  return import('./views/Home');
-})
-const About = React.lazy(() => {
-  return import('./views/About');
-})
-const Work = React.lazy(() => {
-  return import('./views/Work');
-})
+import Home from './views/Home';
+import About from './views/About';
+import Work from './views/Work';
+import WorkFill from './views/Work/WorkFill';
 
 export default function () {
 
@@ -40,18 +34,17 @@ export default function () {
       <div className="view">
         <div className="scroll">
           <Switch>
-            <Suspense fallback={null}>
-              <Route path='/' exact component={Home} />
-              <Route path='/about' exact component={About} />
-              <Route path='/work' exact component={Work} />
-              <Route path='/work/burger-project' exact component={BurgerProject} />
-              <Route path='/work/places-app' exact component={PlacesApp} />
-              <Route path='/work/vault-clothing' exact component={VaultClothing} />
-              <Redirect to='/' />
-            </Suspense>
+            <Route path='/' exact component={Home} />
+            <Route path='/about' exact component={About} />
+            <Route path='/work' exact component={Work} />
+            <Route path='/work/burger-project' exact component={BurgerProject} />
+            <Route path='/work/places-app' exact component={PlacesApp} />
+            <Route path='/work/vault-clothing' exact component={VaultClothing} />
+            <Redirect to='/' />
           </Switch>
         </div>
       </div>
+      <Route path='/work' exact component={WorkFill} />
       {!isMobile() && <Cursor />}
     </ContextProvider>
   );
