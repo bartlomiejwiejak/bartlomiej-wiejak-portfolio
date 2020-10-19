@@ -78,12 +78,12 @@ const Work = () => {
       clearInterval(scrollIntervalRef.current)
       gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
       if (direction > 0) {
-        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: 0 }, { y: '-100%', ease: 'power2.out' })
-        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { y: '100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: '0%' }, { y: '-100%', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { y: '100%' }, { y: '0%', onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
       if (direction < 0) {
-        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: 0 }, { y: '100%', ease: 'power2.out' })
-        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { y: '-100%' }, { y: 0, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: '0%' }, { y: '100%', ease: 'power2.out' })
+        gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { y: '-100%' }, { y: '0%', onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
     } else {
       gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
@@ -103,7 +103,11 @@ const Work = () => {
       setCurrentScrollIndex(currentProjectIndexRef.current)
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-      gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
+      if (navigator.userAgent.indexOf("Firefox") > -1) {
+        gsap.fromTo('.work__scroller', .9, { y: `${-(currentProjectIndexRef.current - direction) * (100 / projectsRef.current.length)}%` }, { y: `${scrollValue}%`, transform: 'translate(0,0)', ease: 'custom' })
+      } else {
+        gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
+      }
     }, 300)
   }, [setCurrentScrollIndex])
 
@@ -275,7 +279,11 @@ const Work = () => {
         clearTimeout(timeout);
         timeout = null;
         const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-        gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' });
+        if (navigator.userAgent.indexOf("Firefox") > -1) {
+          gsap.to('.work__scroller', .5, { y: `${scrollValue}%`, ease: 'custom' })
+        } else {
+          gsap.to('.work__scroller', .5, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
+        }
       }, 500)
     }
     window.addEventListener('resize', onResize)

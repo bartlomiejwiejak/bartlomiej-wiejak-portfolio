@@ -107,11 +107,16 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         leavingToWorkRef.current = true;
         setLastProject(projectIndex);
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-
+        let styles;
+        if (navigator.userAgent.indexOf("Firefox") > -1) {
+          styles = { x: 0, y: 0, scale: 1 };
+        } else {
+          styles = { transform: 'translate3d(0, 0, 0) scale(1)' }
+        }
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: .3 })
+          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, ...styles, delay: .3 })
           .to('.project-header__title--right', 1, {
-            top: positionY, right: 0, transform: 'translate3d(0, 0, 0) scale(1)', delay: -1, onComplete: () => {
+            top: positionY, right: 0, ...styles, delay: -1, onComplete: () => {
               setAnimating(false)
               history.push(path)
             }
