@@ -4,7 +4,7 @@
   transform: rotate(-90deg);
   transform-origin: 0 0;
   letter-spacing: 2px;
-  z-index: 3;
+  z-index: 4;
   left: 5rem;
   bottom: 4rem;
   backface-visibility: hidden;
@@ -56,7 +56,7 @@
     letter-spacing: 1px;
     margin-bottom: 5rem;
     overflow: hidden;
-    z-index: 3;
+    z-index: 4;
     @include respond(large) {
       margin-bottom: 4rem;
     }
