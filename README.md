@@ -4,7 +4,7 @@ This is the repository of my personal portfolio website. The entire project was 
 Finally, after many weeks of developing, reaching its final form. It's an app I'm most proud of (so far) and definitely going to update it every once in a while.
 
 ## Overview
-Portfolio was made with React and WebGL (THREE.JS and react-three-fiber). Secondary, I used GSAP for animations. Besides that, all other features, like custom scrollbar, skew scrolling, player or cursor were handled with no help from off party libraries.
+Portfolio was made with React and WebGL (THREE.JS with react-three-fiber and GLSL). Secondary, I used GSAP for animations. Besides that, all other features, like custom scrollbar, skew scrolling, player or cursor were handled with no help from off party libraries.
 
 ## Getting Started
 You need to have Node.js and npm installed to run this project locally. After that, you are able to run this project without any problems, by running commands below in your terminal.
