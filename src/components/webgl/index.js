@@ -7,22 +7,22 @@ import { LoadingContext, RoutingContext } from '../../context';
 import projectsData from '../../data/projects';
 
 const WebGLRenderer = () => {
-  const { loaded } = useContext(LoadingContext);
-  const { currentScrollIndex, path, setCurrentScrollIndex, lastProject, animating, wave } = useContext(RoutingContext);
+  const { loadingState } = useContext(LoadingContext);
+  const { routingState, dispatch } = useContext(RoutingContext);
   const location = useLocation();
 
   useEffect(() => {
     return () => {
-      setCurrentScrollIndex(null);
+      dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: null });
     }
-  }, [setCurrentScrollIndex])
+  }, [dispatch])
 
   return (
     <div className='WebGLRenderer'>
       <Canvas
         pixelRatio={window.devicePixelRatio}
       >
-        {projectsData.map(({ index, texture, url }) => <Project key={index} index={index} wave={wave} texture={texture} url={url} loaded={loaded} currentScrollIndex={currentScrollIndex} path={path} pathname={location.pathname} lastProject={lastProject} animating={animating} />)}
+        {projectsData.map(({ index, texture, url }) => <Project key={index} index={index} wave={routingState.wave} texture={texture} url={url} isLoaded={loadingState.isLoaded} currentScrollIndex={routingState.currentScrollIndex} path={routingState.path} pathname={location.pathname} lastProject={routingState.lastProject} animating={routingState.animating} />)}
       </Canvas>
     </div>
   )

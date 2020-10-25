@@ -18,7 +18,7 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
 
 function Circle() {
 
-  const { loaded } = useContext(LoadingContext)
+  const { loadingState } = useContext(LoadingContext)
 
   const canThrowPictureRef = useRef(true)
   const animationTriggeredRef = useRef(false);
@@ -46,7 +46,7 @@ function Circle() {
 
 
   useEffect(() => {
-    if (!loaded) return
+    if (!loadingState.isLoaded) return
     let timeout;
     gsap.registerPlugin(ScrollTrigger)
 
@@ -87,7 +87,7 @@ function Circle() {
       animation = null;
       if (timeout) clearTimeout(timeout)
     }
-  }, [loaded, throwPicture])
+  }, [loadingState.isLoaded, throwPicture])
 
   return (
     <div onClick={() => throwPicture()} className='about__circle'>

@@ -14,7 +14,7 @@ CustomEase.create('work-enter', 'M0,0 C0.068,0.044 -0.038,-0.021 0.208,0.128 0.3
 
 const clock = new THREE.Clock();
 
-const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathname, lastProject, animating, wave }) => {
+const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, pathname, lastProject, animating, wave }) => {
   const ref = useRef();
   const initializedRef = useRef(false);
   const lastScrollIndexRef = useRef(0);
@@ -121,12 +121,12 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     }
   }, [wave, index])
   useEffect(() => {                                    // /work enter animation
-    if (loaded && pathname !== '/work' && !loadedRef.current && currentScrollIndex !== null) {
+    if (isLoaded && pathname !== '/work' && !loadedRef.current && currentScrollIndex !== null) {
       gsap.set(ref.current.position, { y: -index * 20 + currentScrollIndex * 20 })
       lastScrollIndexRef.current = currentScrollIndex;
       loadedRef.current = true;
     }
-    if (!loaded || pathname !== '/work' || loadedRef.current === true) return;
+    if (!isLoaded || pathname !== '/work' || loadedRef.current === true) return;
     const timeout = toLight(1000);
     const delay = timeout / 1000;
 
@@ -134,7 +134,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
     gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1, delay: delay })
     gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: delay + 1 })
     loadedRef.current = true;
-  }, [index, loaded, pathname, currentScrollIndex])
+  }, [index, isLoaded, pathname, currentScrollIndex])
 
   useEffect(() => {                     // /work scrolling feature
     if (currentScrollIndex === null) return;
@@ -170,7 +170,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
   }, [currentScrollIndex, index, path, pathname, lastProject])
 
   useEffect(() => {  // project enter animation
-    if (loaded && pathname === url && path !== '/work' && path !== '/about' && path !== '/' && !animating) {
+    if (isLoaded && pathname === url && path !== '/work' && path !== '/about' && path !== '/' && !animating) {
       if (lastProject === null) {
         gsap.to(uniformsRef.current.u_waveIntensity, .3, { value: 1, ease: 'power2.out', delay: 1 })
         gsap.to(uniformsRef.current.u_waveIntensity, .7, { value: 0, ease: 'power2.out', delay: 1.8 })
@@ -192,7 +192,7 @@ const Project = ({ texture, index, loaded, currentScrollIndex, path, url, pathna
         gsap.fromTo(uniformsRef.current.u_direction, 1, { value: .5 }, { value: 1, ease: 'power2.out', delay: 2.3 })
       }
     }
-  }, [pathname, url, lastProject, loaded, currentScrollIndex, index, path, animating])
+  }, [pathname, url, lastProject, isLoaded, currentScrollIndex, index, path, animating])
 
   useEffect(() => {  // going work
     if (pathname === url && path === '/work' && lastProject === index) {

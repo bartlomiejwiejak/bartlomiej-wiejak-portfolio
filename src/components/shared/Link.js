@@ -5,13 +5,13 @@ import { useLocation } from 'react-router-dom';
 
 const Link = ({ children, to }) => {
 
-  const { setPath, setAnimating, animating } = useContext(RoutingContext);
+  const { routingState, dispatch } = useContext(RoutingContext);
   const location = useLocation();
 
   function startRedirecting() {
-    if (animating || location.pathname === to) return;
-    setPath(to);
-    setAnimating(true);
+    if (routingState.animating || location.pathname === to) return;
+    dispatch({ type: 'SET_PATH', payload: to });
+    dispatch({ type: 'SET_ANIMATING', payload: true });
   }
 
   return (

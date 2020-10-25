@@ -19,7 +19,7 @@ const Skill = ({ src, children, infoColor }) => {
   const infoRef = useRef(null);
   const iRef = useRef(null);
 
-  const { loaded } = useContext(LoadingContext);
+  const { loadingState } = useContext(LoadingContext);
 
   const moveInfo = useCallback((e) => {
     const element = infoRef.current.querySelector('.about__skills__technologies__technology__info');
@@ -53,7 +53,7 @@ const Skill = ({ src, children, infoColor }) => {
     document.removeEventListener('mousemove', moveInfo);
   }
   useEffect(() => {
-    if (!loaded) return;
+    if (!loadingState.isLoaded) return;
     let top = '200px'
     if (isMobile()) {
       top = '100px';
@@ -72,7 +72,7 @@ const Skill = ({ src, children, infoColor }) => {
         }
       })
     }, 3000)
-  }, [loaded])
+  }, [loadingState.isLoaded])
 
   useEffect(() => {
     if (infoColor) {

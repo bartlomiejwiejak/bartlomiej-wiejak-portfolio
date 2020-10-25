@@ -12,7 +12,7 @@ import isMobile from '../../../functions/isMobile';
 
 const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIndex }) => {
 
-  const { path, setAnimating, animating, lastProject, setWave } = useContext(RoutingContext);
+  const { routingState, dispatch } = useContext(RoutingContext);
   const history = useHistory()
 
   const projectRef = useRef(null);
@@ -21,7 +21,7 @@ const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIn
 
   const stylesRef = useRef({});
 
-  if (lastProject === projectIndex) {
+  if (routingState.lastProject === projectIndex) {
     stylesRef.current = {
       title: { transform: 'translate3d(0,0,0)' },
       stroke: { WebkitTextFillColor: 'black' }
@@ -35,7 +35,7 @@ const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIn
     gsap.to(projectRef.current.querySelectorAll('.project__title'), .75, { WebkitTextFillColor: 'transparent' });
   }, [])
   useEffect(() => {
-    if (animating && path === url) {
+    if (routingState.animating && routingState.path === url) {
       removeListeners();
       const project = projectRef.current;
       const btn = project.querySelector('.button');
@@ -46,25 +46,25 @@ const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIn
       gsap.to('.circle', 1, {
         y: '100%', x: '100%', ease: 'power2.out', onComplete: () => {
           scrollInstant(0)
-          setAnimating(false)
-          history.push(path)
+          dispatch({ type: 'SET_ANIMATING', payload: false })
+          history.push(routingState.path)
         }
       })
     }
-  }, [animating, removeListeners, path, url, setAnimating, history, inactive])
+  }, [routingState.animating, removeListeners, routingState.path, url, history, inactive, dispatch])
 
   const handleHover = () => {
     if (inactive || isMobile()) return;
-    setWave(projectIndex);
+    dispatch({ type: 'SET_WAVE', payload: projectIndex })
   }
   const handleMouseOut = () => {
-    if (animating || inactive || isMobile()) return;
-    setWave(null);
+    if (routingState.animating || inactive || isMobile()) return;
+    dispatch({ type: 'SET_WAVE', payload: null })
   }
   const handleClick = () => {
     if (inactive || isMobile()) return;
     removeListeners();
-    setWave(false);
+    dispatch({ type: 'SET_WAVE', payload: false })
     gsap.to(projectRef.current.querySelectorAll('.project__title'), .75, { WebkitTextFillColor: 'black' });
   }
 

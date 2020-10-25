@@ -8,10 +8,10 @@ import { LoadingContext } from '../../../context';
 
 function Contact() {
 
-  const { loaded } = useContext(LoadingContext);
+  const { loadingState } = useContext(LoadingContext);
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loadingState.isLoaded) return;
     gsap.registerPlugin(ScrollTrigger);
     setTimeout(() => {
       gsap.to('.about__contact__circle', {
@@ -24,7 +24,7 @@ function Contact() {
         rotate: '180deg'
       })
     }, 3000)
-  }, [loaded])
+  }, [loadingState.isLoaded])
 
   return (
     <div className="about__contact">

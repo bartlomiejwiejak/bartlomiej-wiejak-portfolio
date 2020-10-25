@@ -14,8 +14,8 @@ import projectContentAnimation from '../../../animations/projectContent';
 
 const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
 
-  const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating, setLastProject, lastProject, setCurrentScrollIndex } = useContext(RoutingContext);
+  const { loadingState } = useContext(LoadingContext);
+  const { routingState, dispatch } = useContext(RoutingContext);
   const history = useHistory();
   const [isMounted, setIsMounted] = useState(false);
   const leavingToWorkRef = useRef(false);
@@ -25,11 +25,11 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
 
   useEffect(() => {
     if (isMounted) return;
-    if (loaded) {
+    if (loadingState.isLoaded) {
       scrollInstant(0)
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-      setCurrentScrollIndex(projectIndex);
-      if (lastProject === null) {
+      dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: projectIndex });
+      if (routingState.lastProject === null) {
         let translatesLeft = {}
         let translatesRight = {}
         if (navigator.userAgent.indexOf("Firefox") > -1) {
@@ -71,30 +71,30 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       }
     }
   }
-    , [setToggle, loaded, lastProject, isMounted, path, setCurrentScrollIndex, projectIndex])
+    , [setToggle, loadingState.isLoaded, routingState.lastProject, isMounted, routingState.path, dispatch, projectIndex])
 
   useEffect(() => {
-    if (animating && path !== '/work') {
+    if (routingState.animating && routingState.path !== '/work') {
       setToggle(true)
       hideInterface()
       cursorHide()
       scrollTo(0, () => {
         scrollbarHide();
-        setLastProject(projectIndex);
+        dispatch({ type: 'SET_LAST_PROJECT', payload: projectIndex });
         gsap.to('.project-header__scroll-indicator span, .project-header__title div', 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 })
         setTimeout(() => {
-          setAnimating(false)
-          history.push(path)
-          if (path === '/about' || path === '/') {
-            setLastProject(null);
+          dispatch({ type: 'SET_ANIMATING', payload: false })
+          history.push(routingState.path)
+          if (routingState.path === '/about' || routingState.path === '/') {
+            dispatch({ type: 'SET_LAST_PROJECT', payload: null });
           }
         }, 2500)
       })
     }
-  }, [animating, path, history, setAnimating, setToggle, projectIndex, setLastProject])
+  }, [routingState.animating, routingState.path, history, dispatch, setToggle, projectIndex])
 
   useEffect(() => {
-    if (animating && path === '/work' && !leavingToWorkRef.current) {
+    if (routingState.animating && routingState.path === '/work' && !leavingToWorkRef.current) {
       hideInterface()
       cursorHide()
       setToggle(true)
@@ -105,7 +105,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         }
         scrollbarHide();
         leavingToWorkRef.current = true;
-        setLastProject(projectIndex);
+        dispatch({ type: 'SET_LAST_PROJECT', payload: projectIndex });
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
         let styles;
         if (navigator.userAgent.indexOf("Firefox") > -1) {
@@ -117,15 +117,15 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
           .to('.project-header__title--left', 1, { bottom: positionY, left: 0, ...styles, delay: .3 })
           .to('.project-header__title--right', 1, {
             top: positionY, right: 0, ...styles, delay: -1, onComplete: () => {
-              setAnimating(false)
-              history.push(path)
+              dispatch({ type: 'SET_ANIMATING', payload: false })
+              history.push(routingState.path)
             }
           })
       })
     }
-  }, [animating, path, setToggle, setAnimating, history, setLastProject, projectIndex])
+  }, [routingState.animating, routingState.path, setToggle, dispatch, history, projectIndex])
   const classRef = useRef('');
-  if (lastProject !== null && !animating) {
+  if (routingState.lastProject !== null && !routingState.animating) {
     classRef.current = 'project-header--animated';
   }
   return <header className={`project-header ${classRef.current}`}>

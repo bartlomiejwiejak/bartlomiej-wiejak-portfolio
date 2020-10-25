@@ -1,23 +1,20 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useReducer } from 'react';
+
+import reducer from './reducer';
+import { initialState } from './reducer';
 
 export const RoutingContext = createContext(null);
 export const LoadingContext = createContext(null);
 
 export default ({ children }) => {
-  const [path, setPath] = useState(null);
-  const [animating, setAnimating] = useState(false);
-  const [lastProject, setLastProject] = useState(null);
-  const [currentScrollIndex, setCurrentScrollIndex] = useState(null);
-  const [wave, setWave] = useState(null);
 
-  const [loaded, setIsLoaded] = useState(false);
-  const [analyser, setAnalyser] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <LoadingContext.Provider
-      value={{ loaded, setIsLoaded, analyser, setAnalyser }}>
+      value={{ loadingState: state.loading, dispatch }}>
       <RoutingContext.Provider
-        value={{ path, setPath, setAnimating, animating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex, wave, setWave }}>
+        value={{ routingState: state.routing, dispatch }}>
         {children}
       </RoutingContext.Provider>
     </LoadingContext.Provider>

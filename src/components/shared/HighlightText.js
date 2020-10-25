@@ -9,7 +9,7 @@ import isMobile from '../../functions/isMobile'
 import { RoutingContext } from '../../context/index';
 
 const HighlightText = ({ children, type, to }) => {
-  const { animating } = useContext(RoutingContext)
+  const { routingState } = useContext(RoutingContext)
 
   let classes = ['highlight-text']
   const location = useLocation()
@@ -59,7 +59,7 @@ const HighlightText = ({ children, type, to }) => {
 
   return (
     <span>
-      <span data-text={children} tabIndex="-1" onMouseOver={animating ? null : mouseOver} onMouseOut={animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
+      <span data-text={children} tabIndex="-1" onMouseOver={routingState.animating ? null : mouseOver} onMouseOut={routingState.animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
     </span>
   );
 }

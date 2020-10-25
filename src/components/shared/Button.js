@@ -11,7 +11,7 @@ import { RoutingContext } from '../../context/index';
 const Button = ({ children, type, href, arrow }) => {
 
   const location = useLocation();
-  const { animating } = useContext(RoutingContext)
+  const { routingState } = useContext(RoutingContext)
   const fillLeftRef = useRef(null);
   const fillRightRef = useRef(null);
 
@@ -56,7 +56,7 @@ const Button = ({ children, type, href, arrow }) => {
 
   selectType()
 
-  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseEnter={animating ? null : mouseEnterHandle} onMouseOut={animating ? null : mouseOutHandle} onClick={mouseOutHandle} className={classes.join(' ')}>
+  const content = <div style={arrow ? { paddingRight: '2.5rem' } : {}} onMouseEnter={routingState.animating ? null : mouseEnterHandle} onMouseOut={routingState.animating ? null : mouseOutHandle} onClick={mouseOutHandle} className={classes.join(' ')}>
     <div className="button__content">
       {children}
       <div className="button__underline">

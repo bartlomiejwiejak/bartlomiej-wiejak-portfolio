@@ -4,12 +4,12 @@ import { RoutingContext } from '../../../context';
 
 const WorkFill = () => {
 
-  const { lastProject } = useContext(RoutingContext);
+  const { routingState } = useContext(RoutingContext);
   const stylesRef = useRef({});
-  if (lastProject !== null) {
+  if (routingState.lastProject !== null) {
     stylesRef.current = {
       title: { transform: 'translate3d(0,0,0)' },
-      scroller: { transform: `translate3d(0,-${lastProject * 25}%,0)` }
+      scroller: { transform: `translate3d(0,-${routingState.lastProject * 25}%,0)` }
     }
   }
 

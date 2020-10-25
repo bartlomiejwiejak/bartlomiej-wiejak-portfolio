@@ -9,30 +9,30 @@ import isMobile from '../../../functions/isMobile';
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const { loaded, analyser, setAnalyser } = useContext(LoadingContext);
+  const { loadingState, dispatch } = useContext(LoadingContext);
 
   useEffect(() => {
-    if (loaded) {
+    if (loadingState.isLoaded) {
       if (!audio.paused) {
         setIsPlaying(true)
       }
       return;
     }
-  }, [loaded])
+  }, [loadingState.isLoaded])
 
   useEffect(() => {
     let animation;
-    if (loaded & isPlaying) {
+    if (loadingState.isLoaded & isPlaying) {
       let contextAnalyser;
-      if (!analyser) {
+      if (!loadingState.analyser) {
         const context = new AudioContext();
         contextAnalyser = context.createAnalyser();
         const source = context.createMediaElementSource(audio);
         source.connect(contextAnalyser);
         contextAnalyser.connect(context.destination);
-        setAnalyser(contextAnalyser)
+        dispatch({ type: 'SET_ANALYSER', payload: contextAnalyser })
       } else {
-        contextAnalyser = analyser;
+        contextAnalyser = loadingState.analyser;
       }
       const playerLine = document.querySelectorAll('.player__line');
       const light = document.querySelector('.light');
@@ -68,7 +68,7 @@ function Player() {
       }
       cancelAnimationFrame(animation);
     }
-  }, [isPlaying, loaded, analyser, setAnalyser])
+  }, [isPlaying, loadingState.isLoaded, loadingState.analyser, dispatch])
 
   const playHandle = async () => {
     if (isPlaying) {

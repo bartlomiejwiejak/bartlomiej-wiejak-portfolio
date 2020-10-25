@@ -20,8 +20,8 @@ gsap.registerPlugin(CustomEase)
 CustomEase.create('custom', 'M0,0 C0,0 0.094,0.019 0.174,0.058 0.231,0.085 0.24,0.088 0.318,0.15 0.426,0.25 0.627,0.701 0.718,0.836 0.819,0.985 1,1 1,1 ')
 
 const Work = () => {
-  const { loaded } = useContext(LoadingContext);
-  const { animating, path, setAnimating, lastProject, setLastProject, currentScrollIndex, setCurrentScrollIndex } = useContext(RoutingContext)
+  const { loadingState } = useContext(LoadingContext);
+  const { routingState, dispatch } = useContext(RoutingContext)
   const history = useHistory();
 
   const canScrollRef = useRef(true);
@@ -32,8 +32,8 @@ const Work = () => {
   const projectsRef = useRef(null);
   const isMountedRef = useRef(false)
 
-  if (lastProject !== null && !animating && !isMountedRef.current) {
-    currentProjectIndexRef.current = lastProject;
+  if (routingState.lastProject !== null && !routingState.animating && !isMountedRef.current) {
+    currentProjectIndexRef.current = routingState.lastProject;
   }
 
   useEffect(() => {
@@ -41,10 +41,10 @@ const Work = () => {
   }, [])
 
   useEffect(() => {
-    if (currentScrollIndex === null) {
-      setCurrentScrollIndex(0);
+    if (routingState.currentScrollIndex === null) {
+      dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: 0 });
     }
-  }, [currentScrollIndex, setCurrentScrollIndex])
+  }, [routingState.currentScrollIndex, dispatch])
 
   const slideHandle = useCallback((direction) => {
     if (direction === 1) {
@@ -100,7 +100,7 @@ const Work = () => {
     }
     setTimeout(() => {
       currentProjectIndexRef.current += direction;
-      setCurrentScrollIndex(currentProjectIndexRef.current)
+      dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: currentProjectIndexRef.current })
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
       if (navigator.userAgent.indexOf("Firefox") > -1) {
@@ -109,7 +109,7 @@ const Work = () => {
         gsap.to('.work__scroller', .9, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
       }
     }, 300)
-  }, [setCurrentScrollIndex])
+  }, [dispatch])
 
   const slider = useCallback((event) => {
     if (!canScrollRef.current) return;
@@ -170,7 +170,7 @@ const Work = () => {
   }, [slider, swiper, swipeListen, swiperMouse, swipeMouseListen])
 
   useEffect(() => {
-    if (animating && (path === '/' || path === '/about')) {
+    if (routingState.animating && (routingState.path === '/' || routingState.path === '/about')) {
       removeListeners();
       gsap.set('.project__title div', { y: 0 })
       gsap.to('.work__pagination__active', currentProjectIndexRef.current * .4, { y: 0, ease: 'custom' })
@@ -178,7 +178,7 @@ const Work = () => {
       hideInterface();
       cursorHide()
       gsap.to('.circle', currentProjectIndexRef.current * .4, { rotate: '90deg', ease: 'custom' })
-      setCurrentScrollIndex(0);
+      dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: 0 });
       gsap.to('.work__scroller', currentProjectIndexRef.current * .4, {
         transform: 'translate3d(0,0%,0)', ease: 'custom', onComplete: () => {
           setTimeout(() => {
@@ -188,8 +188,8 @@ const Work = () => {
               gsap.to('.project__title--down', 1, { x: '300%', ease: 'power2.out' })
               gsap.to('.project__title--up', 1, {
                 x: '-300%', ease: 'power2.out', onComplete: () => {
-                  setAnimating(false)
-                  history.push(path)
+                  dispatch({ type: 'SET_ANIMATING', payload: false })
+                  history.push(routingState.path)
                 }
               })
             }, 1000)
@@ -197,7 +197,7 @@ const Work = () => {
         }
       })
     }
-  }, [animating, path, slider, history, setAnimating, removeListeners, setCurrentScrollIndex])
+  }, [routingState.animating, routingState.path, slider, history, removeListeners, dispatch])
 
   useLockBodyScroll(true)
 
@@ -205,7 +205,7 @@ const Work = () => {
     let timeout;
     let timeoutListeners;
 
-    if (loaded && lastProject === null && !isMountedRef.current) {
+    if (loadingState.isLoaded && routingState.lastProject === null && !isMountedRef.current) {
       scrollInstant(0);
       const time = toLight(1000) + 3000;
 
@@ -235,13 +235,13 @@ const Work = () => {
       clearTimeout(timeoutListeners)
       clearInterval(scrollIntervalRef.current)
     }
-  }, [loaded, slider, swiper, swipeListen, removeListeners, lastProject, addListeners])
+  }, [loadingState.isLoaded, slider, swiper, swipeListen, removeListeners, routingState.lastProject, addListeners])
   useEffect(() => {
-    if (lastProject !== null) {
+    if (routingState.lastProject !== null) {
       cursorBackToNormal()
       showInterface();
       let circleRotation;
-      switch (lastProject) {
+      switch (routingState.lastProject) {
         case 0:
           circleRotation = '90deg';
           break;
@@ -259,16 +259,16 @@ const Work = () => {
       }
       gsap.to('.circle', 1, { y: '50%', x: '50%', rotate: circleRotation })
       gsap.to('.work__pagination > div', 1, { y: 0 })
-      gsap.set('.work__pagination__active', { y: -lastProject * 34 })
+      gsap.set('.work__pagination__active', { y: -routingState.lastProject * 34 })
       gsap.to('.project .button', 1, {
         y: 0, onComplete: () => {
-          setLastProject(null);
+          dispatch({ type: 'SET_LAST_PROJECT', payload: null })
           isMountedRef.current = true;
           addListeners();
         }
       })
     }
-  }, [lastProject, slider, swipeListen, swiper, addListeners, setLastProject])
+  }, [routingState.lastProject, slider, swipeListen, swiper, addListeners, dispatch])
 
   useEffect(() => {
     let timeout;
@@ -293,8 +293,8 @@ const Work = () => {
     }
   }, [])
   const styleRef = useRef({})
-  if (lastProject !== null) {
-    styleRef.current = { transform: `translate3d(0,-${lastProject * 25}%,0)` }
+  if (routingState.lastProject !== null) {
+    styleRef.current = { transform: `translate3d(0,-${routingState.lastProject * 25}%,0)` }
   }
   return (
     <div className='work'>

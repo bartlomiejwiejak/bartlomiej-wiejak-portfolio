@@ -10,17 +10,17 @@ import { aboutEnter, moveLines, aboutLeave } from '../animations/about';
 
 const useAnimation = (type) => {
 
-  const { animating, setAnimating, path } = useContext(RoutingContext);
-  const { loaded } = useContext(LoadingContext);
+  const { routingState, dispatch } = useContext(RoutingContext);
+  const { loadingState } = useContext(LoadingContext);
   const history = useHistory();
 
   const animationEnd = useCallback(() => {
-    setAnimating(false)
-    history.push(path)
-  }, [history, path, setAnimating])
+    dispatch({ type: 'SET_ANIMATING', payload: false })
+    history.push(routingState.path)
+  }, [history, routingState.path, dispatch])
 
   useEffect(() => {
-    if (!animating) return;
+    if (!routingState.animating) return;
     cursorHide();
     hideInterface();
     switch (type) {
@@ -33,10 +33,10 @@ const useAnimation = (type) => {
       default: return;
     }
 
-  }, [animating, type, animationEnd])
+  }, [routingState.animating, type, animationEnd])
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loadingState.isLoaded) return;
     let listener;
     let intervals;
     const showInterfaceElements = () => {
@@ -65,7 +65,7 @@ const useAnimation = (type) => {
       }
       document.removeEventListener('mousemove', listener)
     }
-  }, [loaded, type])
+  }, [loadingState.isLoaded, type])
 }
 
 export default useAnimation;
