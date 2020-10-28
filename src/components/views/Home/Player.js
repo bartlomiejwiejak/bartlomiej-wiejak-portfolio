@@ -40,8 +40,8 @@ function Player() {
       let animatingContent = (fbc_array) => {
         playerLine[0].style.width = fbc_array[1] / 3 + 'px';
         playerLine[1].style.width = fbc_array[1] / 3 + 'px';
-        gsap.set(light, { scaleX: .5 + (fbc_array[1] / 3) / 100, scaleY: .5 + (fbc_array[99] / 3) / 100 });
-        gsap.set(shadow, { scale: 1.05 + (fbc_array[1] / 50) / 100 });
+        gsap.to(light, 0.05, { scaleX: .5 + (fbc_array[1] / 4) / 100, scaleY: .5 + (fbc_array[99] / 4) / 100 });
+        gsap.to(shadow, 0.05, { scale: 1.05 + (fbc_array[1] / 50) / 100 });
       }
       if (isMobile()) {
         animatingContent = (fbc_array) => {

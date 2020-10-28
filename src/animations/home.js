@@ -1,22 +1,27 @@
 import gsap from 'gsap';
 
 import { toDark } from '../functions/handleBackground';
+import isMobile from '../functions/isMobile';
 
 export const homeEnter = (callafter) => {
   const timeout = toDark(1000);
   setTimeout(() => {
     callafter();
-    gsap.to('.light', 1.5, { autoAlpha: 1, ease: 'power2.out' })
-    gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
-    gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
+    if (!isMobile()) {
+      gsap.to('.light', 1.5, { autoAlpha: 1, ease: 'power2.out' })
+      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
+    }
 
+    gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
     gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power4.out' });
     gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
     gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
   }, timeout)
 }
 export const homeLeave = (callback) => {
-
+  if (!isMobile()) {
+    gsap.to('.light', 1, { opacity: 0, ease: 'power2.out' })
+  }
   gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
   gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
   gsap.to('.contact__item .button', 1, { y: '100%', ease: 'power4.out', delay: .2 });
@@ -25,7 +30,6 @@ export const homeLeave = (callback) => {
     color: 'transparent', ease: 'power2.out'
   })
   gsap.to('.home > .home__welcome > span span', 1, { delay: 1, y: '115%', ease: 'power4.out' })
-  gsap.to('.light', 1, { opacity: 0, ease: 'power2.out' })
   setTimeout(callback, 2100);
 }
 export const homeMoveHeader = e => {
@@ -35,6 +39,7 @@ export const homeMoveHeader = e => {
   const rotateY = ((((window.innerHeight / 2) - e.clientY) / window.innerHeight) * 10);
 
   gsap.to('.home > .home__welcome', .2, { rotateY: `${rotateX}deg`, rotateX: `${rotateY}deg`, x: positionX, y: positionY })
+  gsap.to('.background__dark', .2, { rotateY: `${rotateX}deg`, rotateX: `${rotateY}deg` })
 
   document.querySelectorAll('.home__welcome--shadow > span').forEach((el, i) => {
     const span = document.querySelector(`.home > .home__welcome > span:nth-of-type(${i + 1})`)

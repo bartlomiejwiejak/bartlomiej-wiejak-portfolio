@@ -1,9 +1,9 @@
 .light {
   position: absolute;
-  top: -15vw;
-  left: -15vw;
-  width: 30vw;
-  height: 30vw;
+  top: -25vw;
+  left: -25vw;
+  width: 50vw;
+  height: 50vw;
   border-radius: 50%;
   filter: blur(120px);
   background-color: rgba(255,255,255,0.125);
@@ -12,10 +12,7 @@
   opacity: 0;
   visibility: hidden;
   transform: scale(.5);
-  @include respond(xsmall) {
-    width: 100vw;
-    height: 100vw;
-    top: -50vw;
-    left: -50vw;
+  @media only screen and (hover: none) and (pointer: coarse){
+    display: none;
   }
 }

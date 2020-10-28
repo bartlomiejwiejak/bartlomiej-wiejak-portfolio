@@ -66,7 +66,7 @@
     }
     &--shadow {
       position: absolute;
-      color: var(--dark);
+      color:var(--black);
       left: 0;
       transform: scale(1.05);
       top: 0;
@@ -75,8 +75,11 @@
       @include respond(xsmall) {
         transform: scale(1.2);
       }
+      @media only screen and (hover: none) and (pointer: coarse){
+        display: none;
+      }
       span {
-        -webkit-text-stroke-color: var(--dark);
+        -webkit-text-stroke-color: var(--black);
       }
     }
     @include respond(xlarge) {

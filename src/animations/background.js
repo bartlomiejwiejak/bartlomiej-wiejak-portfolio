@@ -8,7 +8,7 @@ export const turnBackgroundLight = () => {
   gsap.set('.background__light--up,.background__light--down', { zIndex: 1 });
   gsap.set('.background__dark', { zIndex: 0 });
   gsap.to('.background__light--up,.background__light--down', 1, { ease: 'custom', height: '50vh' });
-  gsap.set('.background__dark', { x: '100%', delay: 1 });
+  gsap.set('.background__dark', { x: '90%', delay: 1 });
 }
 export const turnBackgroundDark = () => {
   gsap.set('.background__light--up,.background__light--down', { zIndex: 0 });

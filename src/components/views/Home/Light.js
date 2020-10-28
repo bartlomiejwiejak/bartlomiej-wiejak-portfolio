@@ -13,8 +13,6 @@ const Light = () => {
       }
       document.addEventListener('mousemove', moveLight)
       return () => document.removeEventListener('mousemove', moveLight)
-    } else {
-      gsap.set('.light', { x: window.innerWidth / 2, y: window.innerHeight / 2 })
     }
   }, [])
 

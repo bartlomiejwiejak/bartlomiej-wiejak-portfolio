@@ -23,7 +23,7 @@ const HighlightText = ({ children, type, to }) => {
         return;
       }
       case 'dark': {
-        classes.push('highlight-text--dark')
+        classes.push('highlight-text--black')
         return;
       }
       default: return;

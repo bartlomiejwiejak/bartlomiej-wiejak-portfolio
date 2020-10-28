@@ -1,20 +1,21 @@
 .background {
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  top: -15%;
+  left: -15%;
+  bottom: -15%;
+  right: -15%;
   overflow: hidden;
+  perspective: 700px;
   > * {
     position: absolute;
   }
   &__dark {
-    background-color: var(--dark);
+    background: url(../../assets/home/texture.png);
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
-    transform: translateX(100%);
+    transform: translateX(90%);
   }
   &__light {
     background-color: var(--light);
@@ -23,11 +24,11 @@
     right: 0;
     &--down {
       top: 50%;
-      height: 50vh;
+      height: 65vh;
     }
     &--up {
       bottom: 50%;
-      height: 50vh;
+      height: 65vh;
     }
   }
 }
