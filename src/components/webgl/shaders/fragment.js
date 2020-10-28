@@ -1,7 +1,5 @@
 export default `
-#define S(a,b,n) smoothstep(a,b,n)
-  #define pi2 6.28318530718
-  #define pi 3.14159265359
+  #define S(a,b,n) smoothstep(a,b,n)
   
   uniform float u_time;
   uniform float u_volatility;
@@ -10,9 +8,8 @@ export default `
   uniform vec2 u_mouse;
   uniform vec2 u_directionMouse;
   uniform vec2 u_textureFactor;
-  uniform vec2 u_texture2Factor;
 
-  uniform sampler2D u_text0;
+  uniform sampler2D u_text;
 
   varying vec2 vUv;
   
@@ -36,15 +33,15 @@ export default `
     
     uv.x -= (sin(uv.y) * m_color * vel / 100.) * u_directionMouse.x;
     uv.y -= (sin(uv.x) * m_color * vel / 100.) * u_directionMouse.y;
-    tex1.r = texture2D(u_text0, centeredAspectRatio(uv, u_textureFactor)).r;
+    tex1.r = texture2D(u_text, centeredAspectRatio(uv, u_textureFactor)).r;
     
     uv.x -= (sin(uv.y) * m_color * vel / 150.) * u_directionMouse.x;
     uv.y -= (sin(uv.x) * m_color * vel / 150.) * u_directionMouse.y;
-    tex1.g = texture2D(u_text0, centeredAspectRatio(uv, u_textureFactor)).g;
+    tex1.g = texture2D(u_text, centeredAspectRatio(uv, u_textureFactor)).g;
     
     uv.x -= (sin(uv.y) * m_color * vel / 300.) * u_directionMouse.x;
     uv.y -= (sin(uv.x) * m_color * vel / 300.) * u_directionMouse.y;
-    tex1.b = texture2D(u_text0, centeredAspectRatio(uv, u_textureFactor)).b;
+    tex1.b = texture2D(u_text, centeredAspectRatio(uv, u_textureFactor)).b;
            
     gl_FragColor = tex1;
   }
