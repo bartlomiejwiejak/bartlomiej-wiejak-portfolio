@@ -25,7 +25,7 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
 
   const uniformsRef = useRef({
     u_time: { type: "f", value: 0 },
-    u_text0: {
+    u_text: {
       value: texture
     },
     u_res: {
@@ -128,11 +128,13 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
     }
     if (!isLoaded || pathname !== '/work' || loadedRef.current === true) return;
     const timeout = toLight(1000);
-    const delay = timeout / 1000;
 
-    gsap.to(ref.current.position, 3, { y: -index * 20, delay: delay, ease: 'work-enter' })
-    gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1, delay: delay })
-    gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: delay + 1 })
+    setTimeout(() => {
+      gsap.to(ref.current.position, 3, { y: -index * 20, ease: 'work-enter' })
+      gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1 })
+      gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: 1 })
+    }, timeout + 100)
+
     loadedRef.current = true;
   }, [index, isLoaded, pathname, currentScrollIndex])
 

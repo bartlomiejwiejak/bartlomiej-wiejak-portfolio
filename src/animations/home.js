@@ -21,6 +21,7 @@ export const homeEnter = (callafter) => {
 export const homeLeave = (callback) => {
   if (!isMobile()) {
     gsap.to('.light', 1, { opacity: 0, ease: 'power2.out' })
+    gsap.to('.home .home__welcome--shadow', .15, { delay: 2, autoAlpha: 0 })
   }
   gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
   gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
@@ -30,7 +31,7 @@ export const homeLeave = (callback) => {
     color: 'transparent', ease: 'power2.out'
   })
   gsap.to('.home > .home__welcome > span span', 1, { delay: 1, y: '115%', ease: 'power4.out' })
-  setTimeout(callback, 2100);
+  setTimeout(callback, 2200);
 }
 export const homeMoveHeader = e => {
   const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
