@@ -21,7 +21,7 @@ export const homeEnter = (callafter) => {
 export const homeLeave = (callback) => {
   if (!isMobile()) {
     gsap.to('.light', 1, { opacity: 0, ease: 'power2.out' })
-    gsap.to('.home .home__welcome--shadow', .15, { delay: 2, autoAlpha: 0 })
+    gsap.to('.home .home__welcome--shadow', 1, { delay: 1, autoAlpha: 0 })
   }
   gsap.to('.player__content i', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
   gsap.to('.player__song span', 1, { y: '100%', autoAlpha: 0, ease: 'power4.out' })
@@ -36,8 +36,8 @@ export const homeLeave = (callback) => {
 export const homeMoveHeader = e => {
   const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
   const positionY = -(window.innerHeight / 2 - e.clientY) * 0.03;
-  const rotateX = -((((window.innerWidth / 2) - e.clientX) / window.innerWidth) * 10);
-  const rotateY = ((((window.innerHeight / 2) - e.clientY) / window.innerHeight) * 10);
+  const rotateX = -((((window.innerWidth / 2) - e.clientX) / window.innerWidth) * 15);
+  const rotateY = ((((window.innerHeight / 2) - e.clientY) / window.innerHeight) * 15);
 
   gsap.to('.home > .home__welcome', .2, { rotateY: `${rotateX}deg`, rotateX: `${rotateY}deg`, x: positionX, y: positionY })
   gsap.to('.background__dark', .2, { rotateY: `${rotateX}deg`, rotateX: `${rotateY}deg` })

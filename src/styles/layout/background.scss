@@ -1,9 +1,9 @@
 .background {
   position: fixed;
-  top: -15%;
-  left: -15%;
-  bottom: -15%;
-  right: -15%;
+  top: -20%;
+  left: -20%;
+  bottom: -20%;
+  right: -20%;
   overflow: hidden;
   perspective: 700px;
   > * {
@@ -15,7 +15,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    transform: translateX(90%);
+    transform: translateX(85%);
   }
   &__light {
     background-color: var(--light);
@@ -24,11 +24,11 @@
     right: 0;
     &--down {
       top: 50%;
-      height: 65vh;
+      height: 70vh;
     }
     &--up {
       bottom: 50%;
-      height: 65vh;
+      height: 70vh;
     }
   }
 }
