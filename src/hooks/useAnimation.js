@@ -1,7 +1,6 @@
-import { useEffect, useContext, useCallback } from 'react';
+import { useEffect, useContext, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import isMobile from '../functions/isMobile';
 import { cursorHide, cursorBackToNormal } from '../animations/cursor';
 import { hideInterface, showInterface } from '../animations/interface';
 import { RoutingContext, LoadingContext } from '../context';
@@ -12,6 +11,8 @@ const useAnimation = (type) => {
 
   const { routingState, dispatch } = useContext(RoutingContext);
   const { loadingState } = useContext(LoadingContext);
+  const interval = useRef(null);
+  const listener = useRef(null);
   const history = useHistory();
 
   const animationEnd = useCallback(() => {
@@ -19,53 +20,57 @@ const useAnimation = (type) => {
     history.push(routingState.path)
   }, [history, routingState.path, dispatch])
 
+  const clearEvents = useCallback(() => {
+    if (listener.current) {
+      document.removeEventListener('mousemove', listener.current);
+    }
+    if (interval.current) {
+      clearInterval(interval.current);
+    }
+  }, [])
+
   useEffect(() => {
     if (!routingState.animating) return;
     cursorHide();
     hideInterface();
+
     switch (type) {
       case 'HOME':
-        homeLeave(animationEnd);
+        homeLeave(animationEnd, clearEvents);
         break;
       case 'ABOUT':
-        aboutLeave(animationEnd);
+        aboutLeave(animationEnd, clearEvents);
         break;
       default: return;
     }
 
-  }, [routingState.animating, type, animationEnd])
+  }, [routingState.animating, type, animationEnd, clearEvents])
 
   useEffect(() => {
     if (!loadingState.isLoaded) return;
-    let listener;
-    let intervals;
     const showInterfaceElements = () => {
       showInterface();
       cursorBackToNormal();
     }
     switch (type) {
       case 'HOME':
-        homeEnter(showInterfaceElements);
-        if (!isMobile()) {
+        homeEnter(showInterfaceElements, () => {
           document.addEventListener('mousemove', homeMoveHeader);
-          listener = homeMoveHeader;
-        }
+          listener.current = homeMoveHeader;
+        });
         break;
       case 'ABOUT':
-        intervals = aboutEnter(showInterfaceElements, () => {
+        interval.current = aboutEnter(showInterfaceElements, () => {
           document.addEventListener('mousemove', moveLines);
-          listener = moveLines;
+          listener.current = moveLines;
         });
         break;
       default: return;
     }
     return () => {
-      if (intervals) {
-        clearInterval(intervals[0])
-      }
-      document.removeEventListener('mousemove', listener)
+      clearEvents()
     }
-  }, [loadingState.isLoaded, type])
+  }, [loadingState.isLoaded, type, clearEvents])
 }
 
 export default useAnimation;

@@ -59,7 +59,7 @@ const HighlightText = ({ children, type, to }) => {
 
   return (
     <span>
-      <span data-text={children} tabIndex="-1" onMouseOver={routingState.animating ? null : mouseOver} onMouseOut={routingState.animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
+      <span style={routingState.animating ? { pointerEvents: 'none' } : {}} data-text={children} tabIndex="-1" onMouseOver={routingState.animating ? null : mouseOver} onMouseOut={routingState.animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
     </span>
   );
 }

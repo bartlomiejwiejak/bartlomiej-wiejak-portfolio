@@ -124,14 +124,15 @@ export const aboutEnter = (callafter, callback) => {
   }, timeout)
   return intervals;
 }
-export const aboutLeave = (callback) => {
+export const aboutLeave = (callback1, callback2) => {
   gsap.set('body', { overflow: 'hidden' });
+  callback2();
   scrollTo(0, () => {
     setTimeout(() => {
       scrollbarHide();
       gsap.to('.about__line--1', 1, {
         x: '150%', ease: 'power2.out', onComplete: () => {
-          callback();
+          callback1();
           gsap.set('body', { overflow: 'auto' });
         }
       })

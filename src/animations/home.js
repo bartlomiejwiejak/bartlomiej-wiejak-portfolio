@@ -3,11 +3,12 @@ import gsap from 'gsap';
 import { toDark } from '../functions/handleBackground';
 import isMobile from '../functions/isMobile';
 
-export const homeEnter = (callafter) => {
+export const homeEnter = (callafter, callback) => {
   const timeout = toDark(1000);
   setTimeout(() => {
     callafter();
     if (!isMobile()) {
+      callback();
       gsap.to('.light', 1.5, { autoAlpha: 1, ease: 'power2.out' })
       gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
     }
@@ -18,8 +19,9 @@ export const homeEnter = (callafter) => {
     gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
   }, timeout)
 }
-export const homeLeave = (callback) => {
+export const homeLeave = (callback1, callback2) => {
   if (!isMobile()) {
+    callback2();
     gsap.to('.light', 1, { opacity: 0, ease: 'power2.out' })
     gsap.to('.home .home__welcome--shadow', 1, { delay: 1, autoAlpha: 0 })
   }
@@ -30,8 +32,8 @@ export const homeLeave = (callback) => {
   gsap.to('.home > .home__welcome > span span', .75, {
     color: 'transparent', ease: 'power2.out'
   })
-  gsap.to('.home > .home__welcome > span span', 1, { delay: 1, y: '115%', ease: 'power4.out' })
-  setTimeout(callback, 2200);
+  gsap.to('.home > .home__welcome > span span', 1, { delay: 1, y: '115%', ease: 'power4.out', autoAlpha: 0 })
+  setTimeout(callback1, 2200);
 }
 export const homeMoveHeader = e => {
   const positionX = -(window.innerWidth / 2 - e.clientX) * 0.05;
