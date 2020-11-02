@@ -9,7 +9,6 @@ import { LoadingContext, RoutingContext } from '../../../context';
 import Project from './Project';
 import { hideInterface } from '../../../animations/interface';
 import { cursorMultiDot } from '../../../animations/cursor';
-import scrollInstant from '../../../functions/scrollInstant';
 import WorkPagination from './WorkPagination';
 import Circle from './Circle';
 import CustomEase from 'gsap/CustomEase';
@@ -206,7 +205,6 @@ const Work = () => {
     let timeoutListeners;
 
     if (loadingState.isLoaded && routingState.lastProject === null && !isMountedRef.current) {
-      scrollInstant(0);
       const time = toLight(1000) + 3000;
 
       timeout = setTimeout(() => {

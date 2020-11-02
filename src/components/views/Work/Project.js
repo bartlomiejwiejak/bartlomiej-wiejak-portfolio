@@ -6,7 +6,6 @@ import Button from '../../shared/Button';
 import Link from '../../shared/Link';
 import { RoutingContext } from '../../../context';
 import { hideInterface } from '../../../animations/interface';
-import scrollInstant from '../../../functions/scrollInstant';
 import { cursorHide } from '../../../animations/cursor';
 import isMobile from '../../../functions/isMobile';
 
@@ -45,7 +44,6 @@ const Project = ({ titleUp, titleDown, removeListeners, url, inactive, projectIn
       gsap.to([btn, '.work__pagination div'], 1, { y: '100%', ease: 'power2.out', autoAlpha: 0 });
       gsap.to('.circle', 1, {
         y: '100%', x: '100%', ease: 'power2.out', onComplete: () => {
-          scrollInstant(0)
           dispatch({ type: 'SET_ANIMATING', payload: false })
           history.push(routingState.path)
         }

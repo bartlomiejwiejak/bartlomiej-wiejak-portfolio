@@ -133,7 +133,7 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
       gsap.to(ref.current.position, 3, { y: -index * 20, ease: 'work-enter' })
       gsap.to(uniformsRef.current.u_waveIntensity, 1, { value: 1 })
       gsap.to(uniformsRef.current.u_waveIntensity, 2, { value: 0.3, delay: 1 })
-    }, timeout + 100)
+    }, timeout)
 
     loadedRef.current = true;
   }, [index, isLoaded, pathname, currentScrollIndex])
