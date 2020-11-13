@@ -2,13 +2,13 @@ import React, { useCallback, useState } from 'react'
 import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 
-import photo from '../../../assets/about/photo.webp';
+import photo from '../../../assets/about/photo.jpg';
 import isMobile from '../../../functions/isMobile';
 import { cursorHide, cursorBackToNormal } from '../../../animations/cursor';
 import gif1 from '../../../assets/about/giphs/giph1.gif'
-import gif2 from '../../../assets/about/giphs/giph2.webp'
-import gif3 from '../../../assets/about/giphs/giph3.webp'
-import gif4 from '../../../assets/about/giphs/giph4.webp'
+import gif2 from '../../../assets/about/giphs/giph2.gif'
+import gif3 from '../../../assets/about/giphs/giph3.gif'
+import gif4 from '../../../assets/about/giphs/giph4.gif'
 
 function Description() {
 

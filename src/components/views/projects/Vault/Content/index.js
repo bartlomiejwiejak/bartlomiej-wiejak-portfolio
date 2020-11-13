@@ -1,12 +1,12 @@
 import React from 'react'
 
-import mobile1 from '../../../../../assets/projects/vault/mobile-1.webp';
-import mobile2 from '../../../../../assets/projects/vault/mobile-2.webp';
-import mobile3 from '../../../../../assets/projects/vault/mobile-3.webp';
+import mobile1 from '../../../../../assets/projects/vault/mobile-1.jpg';
+import mobile2 from '../../../../../assets/projects/vault/mobile-2.jpg';
+import mobile3 from '../../../../../assets/projects/vault/mobile-3.jpg';
 import HighLightText from '../../../../shared/HighlightText';
 import homeEnterDesktop from '../../../../../assets/projects/vault/home-enter-desktop.mp4';
 import homeEnterMobile from '../../../../../assets/projects/vault/home-enter-mobile.mp4';
-import desktopLogin from '../../../../../assets/projects/vault/desktop-login.webp';
+import desktopLogin from '../../../../../assets/projects/vault/desktop-login.jpg';
 import shopDesktop from '../../../../../assets/projects/vault/shop-desktop.mp4';
 import aboutDesktop from '../../../../../assets/projects/vault/about-video-desktop.mp4';
 import Info from './Info';
@@ -17,9 +17,12 @@ function Content() {
       <Info />
       <section className="project-content__section project-content__section--dark">
         <div className='project-content__image-wrapper'>
-          <div className="project-content__image-container">
-            <video draggable={false} className='project-content__image' autoPlay loop src={homeEnterDesktop} />
-            <video draggable={false} src={homeEnterMobile} className='project-content__image__mobile' autoPlay loop />
+          <div className="project-content__image-container" dangerouslySetInnerHTML={{
+            __html: `
+          <video muted playsinline type='video/mp4' draggable=false class='project-content__image' autoplay loop src=${homeEnterDesktop}></video>
+          <video muted playsinline type='video/mp4' draggable=false src=${homeEnterMobile} class='project-content__image__mobile' autoplay loop ></video>
+          `}}>
+
           </div>
         </div>
       </section>
@@ -34,8 +37,10 @@ function Content() {
         <h2 className='project-content__line project-content__line--white'>Vault Clothing — Vault Clothing — Vault Clothing — Vault Clothing</h2>
       </section>
       <section className="project-content__section project-content__section--dark">
-        <div className="project-content__image-container">
-          <video src={aboutDesktop} draggable={false} autoPlay loop className="project-content__image" />
+        <div className="project-content__image-container" dangerouslySetInnerHTML={{
+          __html: `
+          <video muted playsinline type='video/mp4' src=${aboutDesktop} draggable=false autoplay loop class="project-content__image" />
+        `}}>
         </div>
       </section>
       <section className="project-content__section project-content__section--light">
@@ -47,8 +52,10 @@ function Content() {
       </section>
       <section className="project-content__section project-content__section--light">
         <div className='project-content__image-wrapper'>
-          <div className="project-content__image-container">
-            <video draggable={false} autoPlay loop className='project-content__image' src={shopDesktop} />
+          <div className="project-content__image-container" dangerouslySetInnerHTML={{
+            __html: `
+            <video muted playsinline type='video/mp4' draggable=false autoplay loop class='project-content__image' src=${shopDesktop} />
+          `}}>
           </div>
         </div>
       </section>

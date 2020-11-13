@@ -1,13 +1,13 @@
 import React from 'react'
 
-import mobile1 from '../../../../../assets/projects/places/user-profile-mobile.webp';
-import mobile2 from '../../../../../assets/projects/places/mobile-posts.webp';
-import mobile3 from '../../../../../assets/projects/places/mobile-users.webp';
-import desktopUsers from '../../../../../assets/projects/places/desktop-users.webp';
+import mobile1 from '../../../../../assets/projects/places/user-profile-mobile.jpg';
+import mobile2 from '../../../../../assets/projects/places/mobile-posts.jpg';
+import mobile3 from '../../../../../assets/projects/places/mobile-users.jpg';
+import desktopUsers from '../../../../../assets/projects/places/desktop-users.jpg';
 import HighLightText from '../../../../shared/HighlightText';
-import homeDesktop from '../../../../../assets/projects/places/home-desktop.webp';
-import homeMobile from '../../../../../assets/projects/places/home-mobile.webp';
-import userProfile from '../../../../../assets/projects/places/user-profile.webp';
+import homeDesktop from '../../../../../assets/projects/places/home-desktop.jpg';
+import homeMobile from '../../../../../assets/projects/places/home-mobile.jpg';
+import userProfile from '../../../../../assets/projects/places/user-profile.jpg';
 import homeVideo from '../../../../../assets/projects/places/home-video.mp4';
 import Info from './Info';
 
@@ -34,8 +34,10 @@ function Content() {
         <h2 className='project-content__line project-content__line--black'>Places App — Places App — Places App — Places App</h2>
       </section>
       <section className="project-content__section project-content__section--light">
-        <div className="project-content__image-container">
-          <video src={homeVideo} autoPlay loop className="project-content__image"></video>
+        <div className="project-content__image-container" dangerouslySetInnerHTML={{
+          __html: `
+          <video muted draggable=false playsinline type='video/mp4' src=${homeVideo} autoplay loop class="project-content__image"></video>
+        `}}>
         </div>
       </section>
       <section className="project-content__section project-content__section--dark">

@@ -2,17 +2,17 @@ import React, { useEffect, useContext, useRef, useCallback } from 'react'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import circle from '../../../assets/about/circle-interactivedeveloper.webp';
+import circle from '../../../assets/about/circle-interactivedeveloper.png';
 import { LoadingContext } from '../../../context';
-import img1 from '../../../assets/projects/burger/menu-mobile.webp';
-import img2 from '../../../assets/projects/burger/builder-mobile.webp';
-import img3 from '../../../assets/projects/burger/home-mobile.webp';
-import img4 from '../../../assets/projects/places/mobile-posts.webp';
-import img5 from '../../../assets/projects/places/home-mobile.webp';
-import img6 from '../../../assets/projects/places/user-profile-mobile.webp';
-import img7 from '../../../assets/projects/vault/mobile-1.webp';
-import img8 from '../../../assets/projects/vault/mobile-2.webp';
-import img9 from '../../../assets/projects/vault/mobile-3.webp';
+import img1 from '../../../assets/projects/burger/menu-mobile.jpg';
+import img2 from '../../../assets/projects/burger/builder-mobile.jpg';
+import img3 from '../../../assets/projects/burger/home-mobile.jpg';
+import img4 from '../../../assets/projects/places/mobile-posts.jpg';
+import img5 from '../../../assets/projects/places/home-mobile.jpg';
+import img6 from '../../../assets/projects/places/user-profile-mobile.jpg';
+import img7 from '../../../assets/projects/vault/mobile-1.jpg';
+import img8 from '../../../assets/projects/vault/mobile-2.jpg';
+import img9 from '../../../assets/projects/vault/mobile-3.jpg';
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
 

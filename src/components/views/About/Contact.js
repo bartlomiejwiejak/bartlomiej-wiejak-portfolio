@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Button from '../../shared/Button';
-import circle from '../../../assets/about/circle-letswork.webp';
+import circle from '../../../assets/about/circle-letswork.png';
 import { LoadingContext } from '../../../context';
 
 function Contact() {

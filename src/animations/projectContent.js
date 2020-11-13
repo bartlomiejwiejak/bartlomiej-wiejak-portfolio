@@ -22,10 +22,16 @@ export default function () {
       scrub: 5
     }
   })
+
+  let offset = 'bottom';
+  if (isMobile()) {
+    offset = 'center'
+  }
+
   gsap.to('.project-content__next-project span span, .project-content__next-project .highlight-text', time, {
     ease, y: '0%', autoAlpha: 1, delay: .5, scrollTrigger: {
       trigger: '.project-content__next-project',
-      start: 'bottom bottom'
+      start: `${offset} bottom`
     }
   })
   if (!isMobile()) {
