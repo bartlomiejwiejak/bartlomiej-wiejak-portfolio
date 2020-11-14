@@ -51,11 +51,15 @@
   }
   &__loading {
     font-size: 10rem;
+    font-family: "Peace Sans", sans-serif;
     color: var(--grey);
     position: relative;
     display: flex;
     justify-content: center;
-    @include respond(xsmall) {
+    @include respond(medium) {
+      font-size: 7.5rem;
+    }
+    @include respond(xxsmall) {
       font-size: 5rem;
     }
     &-right {
@@ -91,7 +95,6 @@
          right: 0;
          overflow-y: hidden;
          &:first-child {
-          padding-left: .5rem;
           background-color: var(--dark);
          }
          &:last-child {
@@ -111,10 +114,10 @@
         overflow: hidden;
         background-color: var(--dark);
         @include respond(medium) {
-          font-size: 3rem;
+          font-size: 4rem;
         }
         @include respond(xxsmall) {
-          font-size: 2rem;
+          font-size: 3rem;
         }
       }
     }
