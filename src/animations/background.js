@@ -6,13 +6,17 @@ CustomEase.create('custom', 'M0,0,C0.214,0.041,0.097,0.01,0.24,0.054,0.24,0.054,
 
 export const turnBackgroundLight = () => {
   gsap.set('.background__light--up,.background__light--down', { zIndex: 1 });
+  gsap.set('body', { overflow: 'hidden' });
   gsap.set('.background__dark', { zIndex: 0 });
   gsap.to('.background__light--up,.background__light--down', 1, { ease: 'custom', height: '50vh' });
   gsap.set('.background__dark', { x: '85%', delay: 1 });
+  gsap.set('body', { overflow: 'auto', delay: 1 });
 }
 export const turnBackgroundDark = () => {
   gsap.set('.background__light--up,.background__light--down', { zIndex: 0 });
+  gsap.set('body', { overflow: 'hidden' });
   gsap.set('.background__dark', { zIndex: 1, rotateX: 0, rotateY: 0 });
   gsap.to('.background__dark', 1, { ease: 'custom', x: 0 });
   gsap.set('.background__light--up,.background__light--down', { delay: 1, height: 0 });
+  gsap.set('body', { overflow: 'auto', delay: 1 });
 }
