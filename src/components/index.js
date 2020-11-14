@@ -4,7 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import Header from './layout/Header';
 import Cursor from './layout/Cursor';
 import ContextProvider from '../context';
-import Loader from './layout/Loader';
+import PreLoader from './layout/PreLoader';
 import BurgerProject from './views/projects/Burger'
 import VaultClothing from './views/projects/Vault';
 import PlacesApp from './views/projects/Places';
@@ -26,7 +26,7 @@ export default function () {
 
   return (
     <ContextProvider>
-      <Loader />
+      <PreLoader />
       {!isMobile() && <ScrollBar />}
       <Header />
       <Background />

@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { useHistory } from 'react-router-dom';
 
 import { LoadingContext, RoutingContext } from '../../../context';
-import { useToggle, useLockBodyScroll } from 'react-use';
 import { showInterface } from '../../../animations/interface';
 import scrollTo from '../../../functions/scrollTo';
 import { hideInterface } from '../../../animations/interface';
@@ -20,12 +19,11 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
   const [isMounted, setIsMounted] = useState(false);
   const leavingToWorkRef = useRef(false);
 
-  const [toggle, setToggle] = useToggle(true);
-  useLockBodyScroll(toggle)
 
   useEffect(() => {
     if (isMounted) return;
     if (loadingState.isLoaded) {
+      gsap.set('body', { overflow: 'hidden' });
       scrollInstant(0)
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
       dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: projectIndex });
@@ -45,7 +43,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
           })
           .to('.project-header__scroll-indicator span', 1, {
             y: 0, opacity: 1, onComplete: () => {
-              setToggle(false)
+              gsap.set('body', { overflow: 'auto' });
               setIsMounted(true)
               scrollbarAppear();
               projectContentAnimation();
@@ -63,7 +61,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         })
           .to('.project-header__scroll-indicator span', 1, {
             y: 0, opacity: 1, onComplete: () => {
-              setToggle(false);
+              gsap.set('body', { overflow: 'auto' });
               setIsMounted(true)
               projectContentAnimation();
             }
@@ -71,11 +69,11 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       }
     }
   }
-    , [setToggle, loadingState.isLoaded, routingState.lastProject, isMounted, routingState.path, dispatch, projectIndex])
+    , [loadingState.isLoaded, routingState.lastProject, isMounted, routingState.path, dispatch, projectIndex])
 
   useEffect(() => {
     if (routingState.animating && routingState.path !== '/work') {
-      setToggle(true)
+      gsap.set('body', { overflow: 'hidden' });
       hideInterface()
       cursorHide()
       scrollTo(0, () => {
@@ -91,13 +89,13 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         }, 2500)
       })
     }
-  }, [routingState.animating, routingState.path, history, dispatch, setToggle, projectIndex])
+  }, [routingState.animating, routingState.path, history, dispatch, projectIndex])
 
   useEffect(() => {
     if (routingState.animating && routingState.path === '/work' && !leavingToWorkRef.current) {
       hideInterface()
       cursorHide()
-      setToggle(true)
+      gsap.set('body', { overflow: 'hidden' });
       scrollTo(0, () => {
         let positionY = 0;
         if (window.innerWidth <= 460) {
@@ -123,7 +121,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
           })
       })
     }
-  }, [routingState.animating, routingState.path, setToggle, dispatch, history, projectIndex])
+  }, [routingState.animating, routingState.path, dispatch, history, projectIndex])
   const classRef = useRef('');
   if (routingState.lastProject !== null && !routingState.animating) {
     classRef.current = 'project-header--animated';

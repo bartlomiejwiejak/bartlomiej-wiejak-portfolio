@@ -9,7 +9,7 @@ export const turnBackgroundLight = () => {
   gsap.set('body', { overflow: 'hidden' });
   gsap.set('.background__dark', { zIndex: 0 });
   gsap.to('.background__light--up,.background__light--down', 1, { ease: 'custom', height: '50vh' });
-  gsap.set('.background__dark', { x: '85%', delay: 1 });
+  gsap.set('.background__dark', { x: '87%', delay: 1 });
   gsap.set('body', { overflow: 'auto', delay: 1 });
 }
 export const turnBackgroundDark = () => {

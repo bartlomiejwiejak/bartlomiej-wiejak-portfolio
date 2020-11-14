@@ -77,8 +77,46 @@
     &-text {
       letter-spacing: 2px;
       position: relative;
-      overflow-y: hidden;
-      background-color: var(--dark);
+      display: flex;
+      span, .percent {
+        line-height: 0.85;
+      }
+      .values {
+        position: relative;
+       div {
+         position: absolute;
+         display: flex;
+         justify-content: flex-end;
+         top: 0;
+         right: 0;
+         overflow-y: hidden;
+         &:first-child {
+          padding-left: .5rem;
+          background-color: var(--dark);
+         }
+         &:last-child {
+           position: relative;
+           span {
+            background-color: var(--dark);
+           }
+         }
+       }
+      }
+      .percent {
+        font-size: 5rem;
+        align-self: flex-end;
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--dark);
+        @include respond(medium) {
+          font-size: 3rem;
+        }
+        @include respond(xxsmall) {
+          font-size: 2rem;
+        }
+      }
     }
   }
   &__copyright {

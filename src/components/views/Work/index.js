@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom';
-import { useLockBodyScroll } from 'react-use';
 import gsap from 'gsap';
 
 import { showInterface } from '../../../animations/interface';
@@ -197,8 +196,6 @@ const Work = () => {
       })
     }
   }, [routingState.animating, routingState.path, slider, history, removeListeners, dispatch])
-
-  useLockBodyScroll(true)
 
   useEffect(() => {
     let timeout;
