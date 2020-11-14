@@ -29,7 +29,7 @@ const PreLoader = () => {
           })
         }
       })
-    }, 1500)
+    }, 1000)
 
   }, [dispatch])
 
@@ -73,7 +73,7 @@ const PreLoader = () => {
               </div>
               <div>
                 <span>9</span>
-                <span>4</span>
+                <span>6</span>
               </div>
               <div>
                 <span>1</span>

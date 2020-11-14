@@ -9,6 +9,8 @@ export const toDark = (time) => {
   if (isLight) {
     turnBackgroundDark();
     timeout = time;
+  } else {
+    document.body.style.overflow = 'auto';
   }
   return timeout;
 }
@@ -21,6 +23,8 @@ export const toLight = (time) => {
   if (isDark) {
     turnBackgroundLight();
     timeout = time;
+  } else {
+    document.body.style.overflow = 'auto';
   }
   return timeout;
 }

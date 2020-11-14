@@ -36,7 +36,7 @@ function Header({ shadow, children }) {
         <span>developer</span>
       </span>
       <span>
-        <span> focused</span>
+        <span> focussed</span>
       </span>
       <span>
         <span>on</span>

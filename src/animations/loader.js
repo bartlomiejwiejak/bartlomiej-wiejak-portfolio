@@ -7,8 +7,8 @@ CustomEase.create('custom', 'M0,0,C0.214,0.041,0.097,0.01,0.24,0.054,0.24,0.054,
 
 export const loadingStart = () => {
   gsap.set('body', { overflow: 'hidden' })
-  gsap.to('.loader__name-box span, .loader__copyright span', 1.5, { y: 0, ease: 'power4.out' })
-  gsap.to(`.loader__loading-text .values div:nth-child(1) span, .percent span`, 1.5, { y: '0%', ease: 'power4.out' });
+  gsap.to('.loader__name-box span, .loader__copyright span', 1, { y: 0, ease: 'power4.out' })
+  gsap.to(`.loader__loading-text .values div:nth-child(1) span, .percent span`, 1, { y: '0%', ease: 'power4.out' });
 }
 const spikes = [];
 const loadingCompleteEvent = new Event('loading-complete');
@@ -19,10 +19,10 @@ const handleSpike = () => {
     width = (window.innerWidth / 2) * 0.25;
   }
   gsap.to('.loader__loading-right, .loader__loading-left', .25, { width })
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(1)`, .25, { y: '-100%' });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(2)`, .25, { y: '-100%', delay: .1 });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(1)`, .25, { y: '0%', delay: .1 });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(2)`, .25, { y: '0%', delay: .2 });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(1)`, .25, { y: '-100%', ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(2)`, .25, { y: '-100%', delay: .15, ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(1)`, .25, { y: '0%', delay: .15, ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(2)`, .25, { y: '0%', delay: .3, ease: 'none' });
   setTimeout(() => {
     if (spikes[0] === 7) {
       document.body.dispatchEvent(loadingCompleteEvent);
