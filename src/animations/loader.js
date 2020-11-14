@@ -14,7 +14,11 @@ const spikes = [];
 const loadingCompleteEvent = new Event('loading-complete');
 
 const handleSpike = () => {
-  gsap.to('.loader__loading-right, .loader__loading-left', .25, { width: (window.innerWidth / 2) * (spikes[0] / 7) })
+  let width = (window.innerWidth / 2) * (spikes[0] / 7);
+  if (spikes[0] === 1) {
+    width = (window.innerWidth / 2) * 0.25;
+  }
+  gsap.to('.loader__loading-right, .loader__loading-left', .25, { width })
   gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(1)`, .25, { y: '-100%' });
   gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(2)`, .25, { y: '-100%', delay: .1 });
   gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(1)`, .25, { y: '0%', delay: .1 });

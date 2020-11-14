@@ -10,10 +10,10 @@ export const homeEnter = (callafter, callback) => {
     if (!isMobile()) {
       callback();
       gsap.to('.light', 1.5, { autoAlpha: 1, ease: 'power2.out' })
-      gsap.to('.home .home__welcome--shadow span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
+      gsap.to('.home .home__welcome--shadow span span', 1.5, { y: 0, stagger: .1, ease: 'power4.out', opacity: 1 });
     }
 
-    gsap.to('.home > .home__welcome >  span span', 1.2, { y: 0, stagger: .15, ease: 'power4.out', opacity: 1 });
+    gsap.to('.home > .home__welcome >  span span', 1.5, { y: 0, stagger: .1, ease: 'power4.out', opacity: 1 });
     gsap.to('.contact__item .button', 1.5, { y: 0, ease: 'power4.out' });
     gsap.to('.player__content i', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
     gsap.to('.player__song span', 1.5, { y: 0, autoAlpha: 1, ease: 'power4.out' })
