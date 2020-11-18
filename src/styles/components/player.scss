@@ -35,6 +35,7 @@
       font-size: var(--font-size-s);
       @include respond(xxsmall) {
         font-size: var(--font-size-m);
+        padding: 1rem;
       }
     }
   }
