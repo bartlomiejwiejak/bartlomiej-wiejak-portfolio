@@ -1,7 +1,6 @@
 # Bartłomiej Wiejak Portfolio
 ![portfolio](https://user-images.githubusercontent.com/63016300/97499684-957c9980-196e-11eb-93e7-14d62966df57.jpg)
-This is the repository of my personal portfolio website. The entire project was built from scratch, placing entire layout up to date with no general idea from the beginning how it is going to be like. 
-Finally, after many weeks of developing, reaching its final form. It's an app I'm most proud of (so far) and definitely going to update it every once in a while.
+This is the repository of my personal portfolio website. After many, many weeks of developing, improving and seeking for perfection, I'm very excited with final result. It's an app I'm most proud of (so far) and definitely going to update it every once in a while.
 
 ## Overview
 Portfolio was made with React and WebGL (THREE.JS with react-three-fiber and GLSL). Secondary, I used GSAP for animations. Besides that, all other features, like custom scrollbar, skew scrolling, player or cursor were handled with no help from off party libraries.
@@ -9,7 +8,7 @@ Portfolio was made with React and WebGL (THREE.JS with react-three-fiber and GLS
 ## Getting Started
 You need to have Node.js and npm installed to run this project locally. After that, you are able to run this project without any problems, by running commands below in your terminal.
 
-Note that 'file:gsap-bonus.tgz' file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
+Note that 'gsap-bonus.tgz' file in root project's folder directory is required, which you can get from GSAP membership [Here](https://greensock.com/).
 ```
 # Clone the project.
 git clone https://github.com/bartlomiejwiejak/bartlomiej-wiejak-portfolio.git
