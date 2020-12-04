@@ -71,15 +71,16 @@ const Work = () => {
       default:
         circleRotation = '90deg';
     }
+
     if (navigator.userAgent.indexOf("Firefox") > -1) {
       gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
       clearInterval(scrollIntervalRef.current)
       gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
-      if (direction > 0) {
+      if (direction === 1) {
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: '0%' }, { y: '-100%', ease: 'power2.out' })
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { y: '100%' }, { y: '0%', onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
-      if (direction < 0) {
+      else {
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { y: '0%' }, { y: '100%', ease: 'power2.out' })
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { y: '-100%' }, { y: '0%', onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
@@ -87,11 +88,11 @@ const Work = () => {
       gsap.to('.circle', 1, { rotate: circleRotation, delay: .3, ease: 'custom' })
       clearInterval(scrollIntervalRef.current)
       gsap.to('.work__indicator__text, .work__indicator__line', 1, { y: '100%', autoAlpha: 0, ease: 'custom' })
-      if (direction > 0) {
+      if (direction === 1) {
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,-100%,0)', ease: 'power2.out' })
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current + 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 2}) .project__title div`], 1.2, { transform: 'translate3d(0,100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }
-      if (direction < 0) {
+      else {
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current + 1}) .project__title div`], 1.2, { transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(0,100%,0)', ease: 'power2.out' })
         gsap.fromTo([projectsRef.current[currentProjectIndexRef.current - 1].querySelectorAll('.project__title div'), `.work--fill .project:nth-child(${currentProjectIndexRef.current}) .project__title div`], 1.2, { transform: 'translate3d(0,-100%,0)' }, { transform: 'translate3d(0,0,0)', delay: .9, onComplete: () => canScrollRef.current = true, ease: 'power2.out' })
       }

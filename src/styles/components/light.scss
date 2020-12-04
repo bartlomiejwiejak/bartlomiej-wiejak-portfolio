@@ -12,6 +12,7 @@
   opacity: 0;
   visibility: hidden;
   transform: scale(.5);
+  will-change: transform, opacity;
   @media only screen and (hover: none) and (pointer: coarse){
     display: none;
   }
