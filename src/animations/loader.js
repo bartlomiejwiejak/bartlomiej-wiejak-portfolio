@@ -49,6 +49,6 @@ export const loadingComplete = (callback) => {
     tl.to('.loader__name-box span, .loader__copyright span,.loader__loading-text .values div:last-child span, .percent span', 1.5, { y: '115%', ease: 'power4.out' })
       .to('.loader__loading-text', .5, { scale: 0, delay: -.7 })
       .to('.loader__loading-left, .loader__loading-right', .5, { delay: -.7, backgroundColor: '#f5efe1' })
-      .to('.loader__overlay', 1, { height: '50vh', onComplete: callback })
+      .to('.loader__overlay', 1, { scaleY: 1, onComplete: callback })
   })
 }

@@ -1,13 +1,12 @@
 import { turnBackgroundDark, turnBackgroundLight } from '../animations/background';
 
+let isLight = true;
+
 export const toDark = (time) => {
-  let isLight = false;
-  if (document.querySelector('.background__light--up').offsetHeight > 100) {
-    isLight = true;
-  }
   let timeout = 0;
   if (isLight) {
     turnBackgroundDark();
+    isLight = false;
     timeout = time;
   } else {
     document.body.style.overflow = 'auto';
@@ -15,13 +14,11 @@ export const toDark = (time) => {
   return timeout;
 }
 export const toLight = (time) => {
-  let isDark = false;
-  if (document.querySelector('.background__light--up').offsetHeight < 100) {
-    isDark = true;
-  }
+
   let timeout = 0;
-  if (isDark) {
+  if (!isLight) {
     turnBackgroundLight();
+    isLight = true;
     timeout = time;
   } else {
     document.body.style.overflow = 'auto';

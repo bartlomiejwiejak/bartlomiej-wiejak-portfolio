@@ -17,17 +17,20 @@
     position: fixed;
     background-color: var(--light);
     z-index: 6;
+    transform: scaleY(0);
     &--up {
-      bottom: 50%;
+      bottom: 49.99%;
       left: 0;
       width: 100vw;
-      height: 0;
+      height: 70vh;
+      transform-origin: bottom;
     }
     &--down {
-      top: 50%;
+      top: 49.99%;
       left: 0;
       width: 100vw;
-      height: 0;
+      height: 70vh;
+      transform-origin: top;
     }
   }
   span {
