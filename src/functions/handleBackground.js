@@ -1,13 +1,19 @@
 import { turnBackgroundDark, turnBackgroundLight } from '../animations/background';
 
 let isLight = true;
+let isAnimating = false;
 
 export const toDark = (time) => {
   let timeout = 0;
   if (isLight) {
-    turnBackgroundDark();
-    isLight = false;
     timeout = time;
+    if (isAnimating) return timeout;
+    turnBackgroundDark();
+    isAnimating = true;
+    setTimeout(() => {
+      isAnimating = false;
+      isLight = false;
+    }, time)
   } else {
     document.body.style.overflow = 'auto';
   }
@@ -16,10 +22,16 @@ export const toDark = (time) => {
 export const toLight = (time) => {
 
   let timeout = 0;
+
   if (!isLight) {
-    turnBackgroundLight();
-    isLight = true;
     timeout = time;
+    if (isAnimating) return timeout;
+    turnBackgroundLight();
+    isAnimating = true;
+    setTimeout(() => {
+      isAnimating = false;
+      isLight = true;
+    }, time)
   } else {
     document.body.style.overflow = 'auto';
   }
