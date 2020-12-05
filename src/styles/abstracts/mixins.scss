@@ -9,3 +9,8 @@
     @error "#{$breakpoint} - error";
   }
 }
+@mixin isMobile() {
+  @media only screen and (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
