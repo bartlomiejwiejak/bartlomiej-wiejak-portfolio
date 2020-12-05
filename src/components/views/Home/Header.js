@@ -8,10 +8,13 @@ function Header({ shadow, children }) {
     <div className={`home__welcome ${shadow ? 'home__welcome--shadow' : ''}`}>
       {children}
       <span>
-        <span>Hello,</span>
+        <span>Hey</span>
       </span>
       <span>
-        <span>my</span>
+        <span>there.</span>
+      </span>
+      <span>
+        <span>My</span>
       </span>
       <span>
         <span>name</span>
@@ -22,7 +25,7 @@ function Header({ shadow, children }) {
       <span>
         <span>Bartłomiej</span>
       </span>
-      <HighLightText type={shadow ? 'dark' : 'white'} to='/about'>Wiejak.</HighLightText>
+      <HighLightText arrow type={shadow ? 'dark' : 'white'} to='/about'>Wiejak.</HighLightText>
       <span>
         <span>I'm</span>
       </span>
@@ -30,36 +33,33 @@ function Header({ shadow, children }) {
         <span>a</span>
       </span>
       <span>
-        <span>web</span>
+        <span>creative</span>
       </span>
       <span>
         <span>developer</span>
       </span>
       <span>
-        <span> focussed</span>
+        <span>focused</span>
       </span>
       <span>
         <span>on</span>
       </span>
       <span>
-        <span>creative</span>
+        <span>crafting</span>
       </span>
       <span>
-        <span>interactions</span>
+        <span>unique</span>
       </span>
       <span>
-        <span>& </span>
+        <span>and</span>
       </span>
       <span>
-        <span>animations</span>
+        <span>memorable </span>
       </span>
       <span>
-        <span>in</span>
+        <span>digital</span>
       </span>
-      <span>
-        <span>my</span>
-      </span>
-      <HighLightText type={shadow ? 'dark' : 'white'} to='/work'>apps.</HighLightText>
+      <HighLightText type={shadow ? 'dark' : 'white'} arrow to='/work'>experiences.</HighLightText>
     </div>
   )
 }
