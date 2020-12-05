@@ -12,16 +12,10 @@
   @include respond(large) {
     margin-bottom: 3rem;
   }
-  @include respond(small) {
-    margin-bottom: 2rem;
-  }
-  @include respond(xxsmall) {
-    margin-bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  @media (max-width: 850px) and (orientation: landscape) {
-    margin-bottom: 1rem;
+  @include respond(medium){
+    @include isMobile {
+      display: none;
+    }
   }
   text-align: center;
   &__content {
@@ -33,10 +27,6 @@
       opacity: 0;
       transform: translateY(100%);
       font-size: var(--font-size-s);
-      @include respond(xxsmall) {
-        font-size: var(--font-size-m);
-        padding: 1rem;
-      }
     }
   }
   &__line {

@@ -52,4 +52,24 @@
   &:focus::after {
     height: 100%;
   }
+  div > i {
+    position: relative;
+   }
+  i i {
+      height: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      transition: .5s;
+  }
+  &--black i i{
+      color: var(--black);
+  }
+  &--white i i{
+    color: var(--white);
+  }
+  &:hover i i {
+    height: 100%;
+  }
 }

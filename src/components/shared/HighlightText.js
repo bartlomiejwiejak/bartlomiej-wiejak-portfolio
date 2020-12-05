@@ -8,7 +8,7 @@ import { cursorMultiDot } from '../../animations/cursor'
 import isMobile from '../../functions/isMobile'
 import { RoutingContext } from '../../context/index';
 
-const HighlightText = ({ children, type, to }) => {
+const HighlightText = ({ children, type, to, arrow }) => {
   const { routingState } = useContext(RoutingContext)
 
   let classes = ['highlight-text']
@@ -33,7 +33,11 @@ const HighlightText = ({ children, type, to }) => {
   let content = children;
 
   if (to) {
-    content = <Link to={to}>{children}</Link>
+    if (arrow) {
+      content = <Link to={to}>{children}<i className="fas fa-arrow-right"><i className="fas fa-arrow-right"></i></i></Link>
+    } else {
+      content = <Link to={to}>{children}</Link>
+    }
   }
 
   const mouseOver = () => {
@@ -58,8 +62,9 @@ const HighlightText = ({ children, type, to }) => {
   }
 
   return (
-    <span>
-      <span style={routingState.animating ? { pointerEvents: 'none' } : {}} data-text={children} tabIndex="-1" onMouseOver={routingState.animating ? null : mouseOver} onMouseOut={routingState.animating ? null : mouseOut} className={classes.join(' ')}>{content}</span>
+    <span className='highlight-text-container'>
+      <span style={routingState.animating ? { pointerEvents: 'none' } : {}} data-text={children} tabIndex="-1" onMouseOver={routingState.animating ? null : mouseOver} onMouseOut={routingState.animating ? null : mouseOut} className={classes.join(' ')}>{content}
+      </span>
     </span>
   );
 }

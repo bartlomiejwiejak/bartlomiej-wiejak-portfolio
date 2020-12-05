@@ -5,36 +5,52 @@
   border-radius: 50%;
   border: 1px solid var(--white);
   position: fixed;
-  left: 0;
-  top: 0;
-  transform: translate(-65px,-65px) scale(0);
+  left: -32.5px;
+  top: -32.5px;
+  transform: scale(0);
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 5;
+  @include respond(medium) {
+    width: 40px;
+    height: 40px;
+    left: -20px;
+    top: -20px;
+  }
   }
   &__dot {
     &-container {
       position: fixed;
-      left: 0;
-      top: 0;
-      transform: translate(-65px,-65px);
+      left: -3px;
+      top: -3px;
       pointer-events: none;
       mix-blend-mode: difference;
       z-index: 5;
-
+      @include respond(medium) {
+        left: -2px;
+        top: -2px;
+      }
     }
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background-color: var(--white);
+    @include respond(medium) {
+      width: 4px;
+      height: 4px;
+    }
     &--inner {
       position: absolute;
-      left: 0%;
-      top: 0%;
+      left: 0;
+      top: 0;
       background-color: var(--white);
       border-radius: 50%;
       width: 6px;
       height: 6px;
+      @include respond(medium) {
+        width: 4px;
+        height: 4px;
+      }
     }
   }
 }
