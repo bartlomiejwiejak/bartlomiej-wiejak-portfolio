@@ -4,8 +4,8 @@ import gsap from 'gsap';
 const Cursor = () => {
   useEffect(() => {
     const moveCursor = (e) => {
-      gsap.set('.cursor__dot-container', { y: `${e.clientY - 3}px`, x: `${e.clientX - 3}px` })
-      gsap.to('.cursor__circle', .6, { x: `${e.clientX - 32.5}px`, y: `${e.clientY - 32.5}px`, ease: 'power2.out' })
+      gsap.set('.cursor__dot-container', { y: `${e.clientY}px`, x: `${e.clientX}px` })
+      gsap.to('.cursor__circle', .6, { x: `${e.clientX}px`, y: `${e.clientY}px`, ease: 'power2.out' })
     }
 
     const cursorMouseDown = () => {
