@@ -9,7 +9,6 @@
 
 body {
   overscroll-behavior: contain;
-  will-change: height;
 }
 
 .view {
@@ -19,12 +18,4 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 3;
-}
-
-.scroll {
-  will-change: transform;
-}
-
-span {
-  will-change: transform, opacity;
 }

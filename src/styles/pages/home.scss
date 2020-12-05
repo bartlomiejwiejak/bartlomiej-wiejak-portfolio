@@ -43,7 +43,6 @@
     text-transform: uppercase;
     letter-spacing: .15rem;
     color: var(--white);
-    will-change: transform;
     span {
       display: inline-block;
       padding: 0 .5rem;
@@ -63,7 +62,6 @@
       span {
         transform: translateY(110%);
         opacity: 0;
-        will-change: transform, opacity, color;
       }
     }
     &--shadow {
@@ -82,9 +80,6 @@
       }
       span {
         -webkit-text-stroke-color: var(--black);
-      }
-      > span {
-        will-change: transform;
       }
     }
     @include respond(xlarge) {

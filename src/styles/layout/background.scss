@@ -16,14 +16,12 @@
     bottom: 0;
     right: 0;
     transform: translateX(85%);
-    will-change: transform;
   }
   &__light {
     background-color: var(--light);
     z-index: 1;
     left: 0;
     right: 0;
-    will-change: transform;
     &--down {
       top: 49.99%;
       height: 70vh;
