@@ -11,7 +11,7 @@ const useSkewScrolling = () => {
     const scrollBarThumb = document.querySelector('.scrollbar__thumb');
     const scrollElement = document.querySelector('.scroll');
     const setScrollbarHeight = (bodyHeight) => {
-      if (bodyHeight === 0) return;
+      if (bodyHeight === 0 || scrollBarThumb === null) return;
       if (bodyHeight <= window.innerHeight) {
         scrollBarThumb.style.height = '0px';
       } else {
@@ -30,7 +30,10 @@ const useSkewScrolling = () => {
       const acceleration = difference / window.innerWidth;
       const velocity = +acceleration;
       const skew = velocity * 10;
-      scrollElement.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
+
+      if (scrollElement.style) {
+        scrollElement.style.transform = `translate3d(0, -${skewConfig.rounded}px, 0) skewY(${skew}deg)`;
+      }
 
       const bodyHeight = body.offsetHeight;
       if (bodyHeight && !isMobile()) {
