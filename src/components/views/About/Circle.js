@@ -13,6 +13,7 @@ import img6 from '../../../assets/projects/places/user-profile-mobile.jpg';
 import img7 from '../../../assets/projects/vault/mobile-1.jpg';
 import img8 from '../../../assets/projects/vault/mobile-2.jpg';
 import img9 from '../../../assets/projects/vault/mobile-3.jpg';
+import isMobile from '../../../functions/isMobile';
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
 
@@ -26,9 +27,13 @@ function Circle() {
   const throwPicture = useCallback((self = { direction: Math.random() * 2 - 1 }) => {
     if (!canThrowPictureRef.current) return;
     canThrowPictureRef.current = false;
+    let timeout = 150;
+    if (isMobile()) {
+      timeout = 250;
+    }
     setTimeout(() => {
       canThrowPictureRef.current = true;
-    }, 100)
+    }, timeout)
     const image = document.createElement('img');
     image.className = 'about__circle__inner';
     image.src = images[(Math.random() * 8).toFixed(0)];
@@ -90,7 +95,7 @@ function Circle() {
   }, [loadingState.isLoaded, throwPicture])
 
   return (
-    <div onClick={() => throwPicture()} className='about__circle'>
+    <div onClick={() => throwPicture()} onMouseMove={() => throwPicture()} onTouchMove={() => throwPicture()} className='about__circle'>
       <img draggable={false} className='about__circle__img' src={circle} alt='Creative Developer' />
     </div>
   )
