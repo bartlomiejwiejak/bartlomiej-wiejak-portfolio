@@ -441,9 +441,71 @@
     @include respond(medium) {
      margin: 10rem 0;
     }
+    h1 {
+      font-size: 8rem;
+      font-family: inherit;
+      line-height: 1.15;
+      width: 80%;
+      @include respond(xlarge) {
+        font-size: 7rem;
+      }
+      @include respond(large) {
+        font-size: 6.5rem;
+      }
+      @include respond(medium) {
+        font-size: 5.5rem;
+      }
+      @include respond(small) {
+        font-size: 4.5rem;
+      }
+      @include respond(xsmall) {
+        font-size: 4rem;
+        width: 90%;
+      }
+      @include respond(xxsmall) {
+        font-size: 3.5rem;
+        width: 90%;
+      }
+      span {
+        margin-right: 1rem;
+      }
+    }
+    h2 {
+      margin: 10rem 0 20rem;
+      font-size: 10rem;
+      @include respond(xlarge) {
+        font-size: 9rem;
+        margin: 7.5rem 0 15rem;
+      }
+      @include respond(large) {
+        font-size: 8.5rem;
+      }
+      @include respond(medium) {
+        font-size: 7.4rem;
+      }
+      @include respond(small) {
+        font-size: 6.5rem;
+      }
+      @include respond(xsmall) {
+        font-size: 5.25rem;
+      }
+      @include respond(xxsmall) {
+        margin: 5rem 0 10rem;
+        font-size: 4rem;
+      }
+      .highlight-text:hover a > i{
+        transform: rotate(90deg);
+      }
+      i {
+        padding-left: 3rem;
+        @include respond(xsmall) {
+          padding-left: 2rem;
+        }
+      }
+    }
     &__circle {
-      width: 30rem;
-      height: 30rem;
+      width: 20%;
+      height: 20%;
       margin: -20rem 0 0 auto;
       display: block;
       @include respond(xlarge) {
@@ -454,6 +516,7 @@
        }
        @include respond(xsmall) {
         margin: 0 auto 10rem;
+        width: 30%;
        }
     }
     &__content {

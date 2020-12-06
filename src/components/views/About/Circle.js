@@ -77,7 +77,9 @@ function Circle() {
           start: 'top center'
         },
         onStart: () => {
-          ScrollTrigger.getById('trigger-circle-appear').kill()
+          if (ScrollTrigger.getById('trigger-circle-appear')) {
+            ScrollTrigger.getById('trigger-circle-appear').kill()
+          }
         },
         onComplete: animation
       })

@@ -123,6 +123,18 @@ export const aboutEnter = (callafter, callback) => {
         start: 'bottom bottom'
       }
     })
+    gsap.to('.about__contact h1 span span', duration, {
+      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+        trigger: '.about__contact h1',
+        start: 'center bottom',
+      }
+    })
+    gsap.to('.about__contact h2 .highlight-text', duration, {
+      y: 0, autoAlpha: 1, delay, ease, scrollTrigger: {
+        trigger: '.about__contact h2',
+        start: 'bottom bottom',
+      }
+    })
     let startAnimation = 'bottom';
     if (isMobile()) {
       startAnimation = 'center';

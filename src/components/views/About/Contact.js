@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Button from '../../shared/Button';
 import circle from '../../../assets/about/circle-letswork.png';
+import HighlightText from '../../shared/HighlightText';
 import { LoadingContext } from '../../../context';
 
 function Contact() {
@@ -29,6 +30,8 @@ function Contact() {
   return (
     <div className="about__contact">
       <img className='about__contact__circle' src={circle} alt='' />
+      <h1><span><span>Do</span></span><span><span>you</span></span><span><span>have</span></span><span><span>a</span></span><span><span>project</span></span><span><span>on</span></span><span><span>mind,</span></span><span><span>that</span></span><span><span>you</span></span><span><span>think</span></span><span><span>I</span></span><span><span>could</span></span><span><span>help</span></span><span><span>with?</span></span></h1>
+      <h2><HighlightText arrow type='black' href='mailto:hello@bartlomiejwiejak.com'> Go ahead and drop me a line</HighlightText></h2>
       <div className="about__contact__content">
         <ul>
           <h3><span><span>Work Inquiries</span></span></h3>
@@ -46,3 +49,4 @@ function Contact() {
 }
 
 export default Contact
+

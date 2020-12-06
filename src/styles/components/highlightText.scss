@@ -52,6 +52,10 @@
   }
   div > i, a > i {
     position: relative;
+    -webkit-text-fill-color: transparent;
+    color: var(--black);
+    -webkit-text-stroke-width: .1rem;
+    transition: .5s ease-out;
    }
   i i {
       height: 0;
@@ -59,7 +63,9 @@
       overflow: hidden;
       position: absolute;
       top: 0;
-      transition: .5s;
+      transition: .5s ease-out;
+      color: var(--black);
+      -webkit-text-fill-color: black;
   }
   &--black i i{
       color: var(--black);
