@@ -17,6 +17,12 @@
       display: none;
     }
   }
+  @include respond(small) {
+    margin-bottom: 2rem;
+  }
+  @include respond(xxsmall) {
+    margin-bottom: 1rem;
+  }
   text-align: center;
   &__content {
     display: flex;
@@ -27,6 +33,9 @@
       opacity: 0;
       transform: translateY(100%);
       font-size: var(--font-size-s);
+      @include respond(xxsmall) {
+        font-size: var(--font-size-m);
+      }
     }
   }
   &__line {

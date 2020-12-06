@@ -17,6 +17,14 @@
       display: none;
     }
   }
+  @include respond(small) {
+    left: 3rem;
+    bottom: 2rem;
+  }
+  @include respond(xxsmall) {
+    left: 2rem;
+    bottom: 1rem;
+  }
   &__list {
     list-style: none;
     display: flex;
@@ -57,6 +65,12 @@
       @include isMobile {
         display: none;
       }
+    }
+    @include respond(small) {
+      margin-bottom: 3rem;
+    }
+    @include respond(xxsmall) {
+      margin-bottom: 2rem;
     }
   }
 }
