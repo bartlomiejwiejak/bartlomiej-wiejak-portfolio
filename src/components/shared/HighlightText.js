@@ -8,7 +8,7 @@ import { cursorMultiDot } from '../../animations/cursor'
 import isMobile from '../../functions/isMobile'
 import { RoutingContext } from '../../context/index';
 
-const HighlightText = ({ children, type, to, arrow }) => {
+const HighlightText = ({ children, type, to, arrow, href }) => {
   const { routingState } = useContext(RoutingContext)
 
   let classes = ['highlight-text']
@@ -37,6 +37,12 @@ const HighlightText = ({ children, type, to, arrow }) => {
       content = <Link to={to}>{children}<i className="fas fa-arrow-right"><i className="fas fa-arrow-right"></i></i></Link>
     } else {
       content = <Link to={to}>{children}</Link>
+    }
+  } else if (href) {
+    if (arrow) {
+      content = <a style={{ position: 'relative', zIndex: 1, }} target='_blank' rel='noreferrer' href={href}>{children}<i className="fas fa-arrow-right"><i className="fas fa-arrow-right"></i></i></a>
+    } else {
+      content = <a style={{ position: 'relative', zIndex: 1, }} target='_blank' rel='noreferrer' href={href}>{children}</a>
     }
   }
 

@@ -45,14 +45,12 @@
   }
   &:hover::after {
     height: 100%;
-    @include respond(xxsmall) {
-      height: 0;
-    }
+    
   }
   &:focus::after {
     height: 100%;
   }
-  div > i {
+  div > i, a > i {
     position: relative;
    }
   i i {

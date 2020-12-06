@@ -1,6 +1,7 @@
 import React from 'react'
 
 import HighLightText from '../../shared/HighlightText';
+import isMobile from '../../../functions/isMobile';
 
 function Header({ shadow, children }) {
 
@@ -60,6 +61,23 @@ function Header({ shadow, children }) {
         <span>digital</span>
       </span>
       <HighLightText type={shadow ? 'dark' : 'white'} arrow to='/work'>experiences.</HighLightText>
+      {
+        isMobile() && <>
+          <span>
+            <span>Don't</span>
+          </span>
+          <span>
+            <span>be </span>
+          </span>
+          <span>
+            <span>a</span>
+          </span>
+          <span>
+            <span>stranger.</span>
+          </span>
+          <HighLightText type={shadow ? 'dark' : 'white'} arrow href='mailto:hello@bartlomiejwiejak.com'>Say hello</HighLightText>
+        </>
+      }
     </div>
   )
 }
