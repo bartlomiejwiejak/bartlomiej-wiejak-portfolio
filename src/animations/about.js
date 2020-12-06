@@ -24,7 +24,7 @@ export const aboutEnter = (callafter, callback) => {
     const ease = 'power4.out';
     const duration = 1.5;
     const delay = 0.5;
-    let topText = '200px';
+    let topText = '150px';
     if (isMobile()) {
       topText = '0px';
     }
