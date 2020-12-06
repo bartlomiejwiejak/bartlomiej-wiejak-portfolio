@@ -16,6 +16,7 @@ export const aboutEnter = (callafter, callback) => {
   const timeout = toLight(1000);
   scrollInstant(0);
   const intervals = [];
+  let removeInterval;
   setTimeout(() => {
     callafter();
     scrollbarAppear();
@@ -42,8 +43,21 @@ export const aboutEnter = (callafter, callback) => {
           gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
         }, 2000))
 
+        const removeInterval = () => {
+          gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
+          clearInterval(intervals[0]);
+          window.removeEventListener('scroll', removeInterval);
+        }
+
+        window.addEventListener('scroll', removeInterval);
+
+        let transformY = '115%';
+        if (isMobile()) {
+          transformY = 0;
+        }
+
         gsap.to('.about__line--1, .about__line--3', {
-          x: '30%', scrollTrigger: {
+          x: '20%', opacity: 0, y: transformY, scrollTrigger: {
             trigger: '.about__heading',
             start: `-${topText} top`,
             end: 'bottom top',
@@ -51,7 +65,7 @@ export const aboutEnter = (callafter, callback) => {
           }
         })
         gsap.to('.about__line--2', {
-          x: '-30%', scrollTrigger: {
+          x: '-20%', opacity: 0, y: transformY, scrollTrigger: {
             trigger: '.about__heading',
             start: `-${topText} top`,
             end: 'bottom top',
@@ -64,8 +78,6 @@ export const aboutEnter = (callafter, callback) => {
             start: 'center bottom'
           },
           onComplete: () => {
-            gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-            clearInterval(intervals[0])
             const tl = gsap.timeline({ defaults: { ease: 'custom' } })
               .set('.about__description__img-container', { autoAlpha: 1 })
             tl.to('.about__description__img-reveal', 1.2, { height: '0%' })
@@ -122,7 +134,12 @@ export const aboutEnter = (callafter, callback) => {
       }
     })
   }, timeout)
-  return intervals;
+
+  return () => {
+    gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
+    clearInterval(intervals[1]);
+    window.removeEventListener('scroll', removeInterval)
+  };
 }
 export const aboutLeave = (callback1, callback2) => {
   gsap.set('body', { overflow: 'hidden' });

@@ -12,6 +12,7 @@ const useAnimation = (type) => {
   const { routingState, dispatch } = useContext(RoutingContext);
   const { loadingState } = useContext(LoadingContext);
   const interval = useRef(null);
+  const cleanup = useRef(null);
   const listener = useRef(null);
   const history = useHistory();
 
@@ -26,6 +27,9 @@ const useAnimation = (type) => {
     }
     if (interval.current) {
       clearInterval(interval.current);
+    }
+    if (typeof cleanup.current === 'function') {
+      cleanup.current();
     }
   }, [])
 
@@ -60,7 +64,7 @@ const useAnimation = (type) => {
         });
         break;
       case 'ABOUT':
-        interval.current = aboutEnter(showInterfaceElements, () => {
+        cleanup.current = aboutEnter(showInterfaceElements, () => {
           document.addEventListener('mousemove', moveLines);
           listener.current = moveLines;
         });
