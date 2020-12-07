@@ -18,7 +18,6 @@ export const aboutEnter = (callafter, callback) => {
   const intervals = [];
   const removeInterval = () => {
     gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-    console.log(intervals[0]);
     clearInterval(intervals[0]);
     window.removeEventListener('scroll', removeInterval);
   }
