@@ -89,7 +89,7 @@ const Work = () => {
       dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: currentProjectIndexRef.current })
       gsap.to('.work__pagination__active', 1, { y: `${-34 * (currentProjectIndexRef.current)}px` })
       const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-      gsap.fromTo('.work__scroller', .9, { y: `${-(currentProjectIndexRef.current - direction) * (100 / projectsRef.current.length)}%` }, { y: `${scrollValue}%`, transform: 'translate(0,0)', ease: 'custom' })
+      gsap.fromTo('.work__scroller', .9, { y: `${-(currentProjectIndexRef.current - direction) * (100 / projectsRef.current.length)}%`, transform: 'translate(0,0)' }, { y: `${scrollValue}%`, transform: 'translate(0,0)', ease: 'custom' })
     }, 300)
   }, [dispatch])
 
@@ -258,7 +258,7 @@ const Work = () => {
         clearTimeout(timeout);
         timeout = null;
         const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-        gsap.set('.work__scroller', { y: `${scrollValue}%` })
+        gsap.set('.work__scroller', { y: `${scrollValue}%`, transform: 'translate(0,0)' })
       }, 500)
     }
     window.addEventListener('resize', onResize)
