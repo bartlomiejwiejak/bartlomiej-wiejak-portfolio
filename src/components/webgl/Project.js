@@ -207,7 +207,7 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
 
   useEffect(() => {         // leaving project
     if (pathname === url && path !== '/work' && lastProject === index) {
-      gsap.to(uniformsRef.current.u_progress, .5, { value: 1, ease: 'none', delay: 1.5 })
+      gsap.to(uniformsRef.current.u_progress, 1, { value: 1, ease: 'none', delay: 1.5 })
       gsap.to(uniformsRef.current.u_waveIntensity, .25, { value: 1, ease: 'none', delay: 1.5 })
       gsap.to(ref.current.position, 1, {
         y: 20, ease: 'none', delay: 1.5, onComplete: () => {
