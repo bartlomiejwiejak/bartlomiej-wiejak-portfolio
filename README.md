@@ -1,5 +1,5 @@
 # Bartłomiej Wiejak Portfolio
-![portfolio](https://user-images.githubusercontent.com/63016300/97499684-957c9980-196e-11eb-93e7-14d62966df57.jpg)
+![portfolio](https://user-images.githubusercontent.com/63016300/101372198-ece62180-38ab-11eb-9a77-16f99c038b34.jpg)
 This is the repository of my personal portfolio website. After many, many weeks of developing, improving and seeking for perfection, I'm very excited with final result. It's an app I'm most proud of (so far) and definitely going to update it every once in a while.
 
 ## Overview
