@@ -138,7 +138,7 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
     loadedRef.current = true;
   }, [index, isLoaded, pathname, currentScrollIndex])
 
-  useEffect(() => {                     // /work scrolling feature
+  useEffect(() => {                     // /work scrolling feature | leaving /work to /about or /
     if (currentScrollIndex === null) return;
     if (!initializedRef.current) {
       initializedRef.current = true;
@@ -162,8 +162,8 @@ const Project = ({ texture, index, isLoaded, currentScrollIndex, path, url, path
       }
     }
     if (index === 0 && (path === '/about' || path === '/')) {
-      gsap.to(uniformsRef.current.u_progress, .5, { value: 1, ease: 'power2.out', delay: time + 1.2 })
-      gsap.to(ref.current.position, 1, { y: 20, ease: 'power2.out', delay: time + 1.2 })
+      gsap.to(uniformsRef.current.u_progress, .5, { value: 0.25, ease: 'power2.out', delay: time + 1.2 })
+      gsap.to(ref.current.position, 2, { y: 20, ease: 'power2.out', delay: time + 1.2 })
       gsap.to(uniformsRef.current.u_waveIntensity, .25, { value: 1, ease: 'power2.out', delay: time + 1.2 })
       gsap.set(uniformsRef.current.u_progress, { value: .5, delay: time + 2.2 })
     }
