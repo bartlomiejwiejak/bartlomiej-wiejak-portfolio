@@ -7,8 +7,8 @@ CustomEase.create('custom', 'M0,0,C0.214,0.041,0.097,0.01,0.24,0.054,0.24,0.054,
 
 export const loadingStart = () => {
   gsap.set('body', { overflow: 'hidden' })
-  gsap.to('.loader__name-box span, .loader__copyright span', 1, { y: 0, ease: 'power4.out' })
-  gsap.to(`.loader__loading-text .values div:nth-child(1) span, .percent span`, 1, { y: '0%', ease: 'power4.out' });
+  gsap.to('.loader__name-box span, .loader__copyright span', 1, { y: 0, ease: 'power4.out', delay: .25 })
+  gsap.to(`.loader__loading-text .values div:nth-child(1) span, .percent span`, 1, { y: '0%', ease: 'power4.out', delay: .25 });
 }
 const spikes = [];
 const loadingCompleteEvent = new Event('loading-complete');
@@ -22,9 +22,9 @@ const handleSpike = () => {
   }
   gsap.to('.loader__loading-right, .loader__loading-left', .25, { width })
   gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(1)`, .25, { y: '-100%', ease: 'none' });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(2)`, .25, { y: '-100%', delay: .15, ease: 'none' });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(1)`, .25, { y: '0%', delay: .15, ease: 'none' });
-  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(2)`, .25, { y: '0%', delay: .3, ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0]}) span:nth-child(2)`, .25, { y: '-100%', delay: .125, ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(1)`, .25, { y: '0%', delay: .125, ease: 'none' });
+  gsap.to(`.loader__loading-text .values div:nth-child(${spikes[0] + 1}) span:nth-child(2)`, .25, { y: '0%', delay: .25, ease: 'none' });
   setTimeout(() => {
     if (spikes[0] === 7) {
       document.body.dispatchEvent(loadingCompleteEvent);
@@ -34,7 +34,7 @@ const handleSpike = () => {
     if (spikes.length !== 0) {
       handleSpike();
     }
-  }, 650)
+  }, 600)
 }
 export const loadingProgress = (spike) => {
   spikes.push(spike);
@@ -47,8 +47,8 @@ export const loadingComplete = (callback) => {
     const tl = gsap.timeline({ defaults: { ease: 'custom' } })
     gsap.set('.loader__loading-text .values div:last-child', { backgroundColor: '#191919' })
     tl.to('.loader__name-box span, .loader__copyright span,.loader__loading-text .values div:last-child span, .percent span', 1.5, { y: '115%', ease: 'power4.out' })
-      .to('.loader__loading-text', .5, { scale: 0, delay: -.7 })
-      .to('.loader__loading-left, .loader__loading-right', .5, { delay: -.7, backgroundColor: '#f5efe1' })
+      .to('.loader__loading-text', .5, { scale: 0, delay: -1, ease: 'none' })
+      .to('.loader__loading-left, .loader__loading-right', .5, { delay: -.5, backgroundColor: '#f5efe1', ease: 'none' })
       .to('.loader__overlay', 1, { scaleY: 1, onComplete: callback })
   })
 }
