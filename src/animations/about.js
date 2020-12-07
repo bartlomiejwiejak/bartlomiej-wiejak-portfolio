@@ -51,13 +51,14 @@ export const aboutEnter = (callafter, callback) => {
 
         window.addEventListener('scroll', removeInterval);
 
-        let transformY = '115%';
+        const styles = { y: '115%', opacity: 0 };
         if (isMobile()) {
-          transformY = 0;
+          styles.y = '0%'
+          styles.opacity = 1
         }
 
         gsap.to('.about__line--1, .about__line--3', {
-          x: '20%', opacity: 0, y: transformY, scrollTrigger: {
+          x: '20%', ...styles, scrollTrigger: {
             trigger: '.about__heading',
             start: `-${topText} top`,
             end: 'bottom top',
@@ -65,7 +66,7 @@ export const aboutEnter = (callafter, callback) => {
           }
         })
         gsap.to('.about__line--2', {
-          x: '-20%', opacity: 0, y: transformY, scrollTrigger: {
+          x: '-20%', ...styles, scrollTrigger: {
             trigger: '.about__heading',
             start: `-${topText} top`,
             end: 'bottom top',
@@ -84,66 +85,65 @@ export const aboutEnter = (callafter, callback) => {
               .from('.about__description__img', 1.2, { scale: 1.6, delay: -1.4 })
           }
         })
+        gsap.to('.about__description__paragraph span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
+            trigger: '.about__description__paragraph',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__description__paragraph--mobile span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
+            trigger: '.about__description__paragraph--mobile',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__skills__heading span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__skills__heading',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__skills__description span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__skills__description',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__contact__content span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__contact__content',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__footer span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__footer',
+            start: 'bottom bottom'
+          }
+        })
+        gsap.to('.about__contact h1 span span', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__contact h1',
+            start: 'center bottom',
+          }
+        })
+        gsap.to('.about__contact h2 .highlight-text', duration, {
+          y: 0, autoAlpha: 1, delay, ease, scrollTrigger: {
+            trigger: '.about__contact h2',
+            start: 'bottom bottom',
+          }
+        })
+        let startAnimation = 'bottom';
+        if (isMobile()) {
+          startAnimation = 'center';
+        }
+        gsap.to('.about__go-to-work span span, .about__go-to-work .highlight-text', duration, {
+          y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
+            trigger: '.about__go-to-work',
+            start: `${startAnimation} bottom`
+          }
+        })
       }, delay: .2
-    })
-
-    gsap.to('.about__description__paragraph span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
-        trigger: '.about__description__paragraph',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__description__paragraph--mobile span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay: .3, ease, scrollTrigger: {
-        trigger: '.about__description__paragraph--mobile',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__skills__heading span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__skills__heading',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__skills__description span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__skills__description',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__contact__content span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__contact__content',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__footer span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__footer',
-        start: 'bottom bottom'
-      }
-    })
-    gsap.to('.about__contact h1 span span', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__contact h1',
-        start: 'center bottom',
-      }
-    })
-    gsap.to('.about__contact h2 .highlight-text', duration, {
-      y: 0, autoAlpha: 1, delay, ease, scrollTrigger: {
-        trigger: '.about__contact h2',
-        start: 'bottom bottom',
-      }
-    })
-    let startAnimation = 'bottom';
-    if (isMobile()) {
-      startAnimation = 'center';
-    }
-    gsap.to('.about__go-to-work span span, .about__go-to-work .highlight-text', duration, {
-      y: 0, autoAlpha: 1, stagger: 0.05, delay, ease, scrollTrigger: {
-        trigger: '.about__go-to-work',
-        start: `${startAnimation} bottom`
-      }
     })
   }, timeout)
 
