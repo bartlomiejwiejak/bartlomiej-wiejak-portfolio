@@ -258,11 +258,7 @@ const Work = () => {
         clearTimeout(timeout);
         timeout = null;
         const scrollValue = -currentProjectIndexRef.current * (100 / projectsRef.current.length);
-        if (navigator.userAgent.indexOf("Firefox") > -1) {
-          gsap.to('.work__scroller', .5, { y: `${scrollValue}%`, ease: 'custom' })
-        } else {
-          gsap.to('.work__scroller', .5, { transform: `translate3d(0,${scrollValue}%,0)`, ease: 'custom' })
-        }
+        gsap.set('.work__scroller', { y: `${scrollValue}%` })
       }, 500)
     }
     window.addEventListener('resize', onResize)
@@ -273,11 +269,11 @@ const Work = () => {
   }, [])
   const styleRef = useRef({})
   if (routingState.lastProject !== null) {
-    styleRef.current = { transform: `translate3d(0,-${routingState.lastProject * 25}%,0)` }
+    styleRef.current = { transform: `translate(0%,-${routingState.lastProject * 25}%)` }
   }
   return (
     <div className='work'>
-      <div className='work__scroller' style={styleRef.current}>
+      <div className='work__scroller' style={{ transform: styleRef.current.transform }}>
         {ReactDOM.createPortal(<WorkPagination />, document.getElementById('root'))}
         {ReactDOM.createPortal(<Circle />, document.getElementById('root'))}
         <Project projectIndex={0} titleUp='Cloth' titleDown='Vault' url='/work/vault-clothing' removeListeners={removeListeners} />
