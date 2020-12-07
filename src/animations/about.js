@@ -16,7 +16,12 @@ export const aboutEnter = (callafter, callback) => {
   const timeout = toLight(1000);
   scrollInstant(0);
   const intervals = [];
-  let removeInterval;
+  const removeInterval = () => {
+    gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
+    console.log(intervals[0]);
+    clearInterval(intervals[0]);
+    window.removeEventListener('scroll', removeInterval);
+  }
   setTimeout(() => {
     callafter();
     scrollbarAppear();
@@ -42,12 +47,6 @@ export const aboutEnter = (callafter, callback) => {
           gsap.to('.about__heading__indicator__line-fill', .5, { y: '0%', ease: 'custom' })
           gsap.to('.about__heading__indicator__line-fill', .5, { y: '100%', ease: 'custom', delay: 1 })
         }, 2000))
-
-        const removeInterval = () => {
-          gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-          clearInterval(intervals[0]);
-          window.removeEventListener('scroll', removeInterval);
-        }
 
         window.addEventListener('scroll', removeInterval);
 
@@ -147,11 +146,7 @@ export const aboutEnter = (callafter, callback) => {
     })
   }, timeout)
 
-  return () => {
-    gsap.to('.about__heading__indicator', .5, { autoAlpha: 0 })
-    clearInterval(intervals[1]);
-    window.removeEventListener('scroll', removeInterval)
-  };
+  return removeInterval;
 }
 export const aboutLeave = (callback1, callback2) => {
   gsap.set('body', { overflow: 'hidden' });
