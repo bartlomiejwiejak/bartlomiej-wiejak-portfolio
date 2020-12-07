@@ -105,7 +105,10 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
           styles = { yPercent: 0 };
         }
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title--left', 1, { bottom: positionY, left: '0%', x: '0%', y: '0%', scale: 1, delay: .3 })
+          .to('.project-header__title--left', .5, { rotateY: '45deg', delay: .5 })
+          .to('.project-header__title--right', .5, { rotateY: '-45deg', delay: -.5 })
+          .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
+          .to('.project-header__title--left', 1, { bottom: positionY, left: '0%', x: '0%', y: '0%', scale: 1, delay: -.5 })
           .to('.project-header__title--right', 1, {
             top: positionY, right: '0%', x: '0%', ...styles, scale: 1, delay: -1, onComplete: () => {
               dispatch({ type: 'SET_ANIMATING', payload: false })
