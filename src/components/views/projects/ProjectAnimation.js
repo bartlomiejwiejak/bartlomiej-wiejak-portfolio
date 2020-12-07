@@ -28,18 +28,13 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
       dispatch({ type: 'SET_CURRENT_SCROLL_INDEX', payload: projectIndex });
       if (routingState.lastProject === null) {
-        let translatesLeft = {}
-        let translatesRight = {}
-        if (navigator.userAgent.indexOf("Firefox") > -1) {
-          translatesLeft = { x: '-80%', y: '50%' }
-          translatesRight = { x: '80%', y: '-50%' }
-        }
+
         tl.to('.project-header__title--left', .5, { rotateY: '-20deg', delay: .5 })
           .to('.project-header__title--right', .5, { rotateY: '20deg', delay: -.5 })
           .to('.project-header__title--left, .project-header__title--right ', .5, { rotateY: 0 })
-          .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', transform: 'translate3d(-80%, 50%,0) scale(0.5)', ...translatesLeft, delay: -0.5 })
+          .to('.project-header__title--left', 1, { bottom: '50%', left: '50%', scale: 0.5, x: '-80%', y: '50%', delay: -0.5 })
           .to('.project-header__title--right', 1, {
-            top: '50%', right: '50%', transform: 'translate3d(80%, -50%, 0) scale(0.5)', ...translatesRight, delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
+            top: '50%', right: '50%', scale: 0.5, x: '80%', y: '-50%', delay: -1, onComplete: () => { showInterface(); cursorBackToNormal() }
           })
           .to('.project-header__scroll-indicator span', 1, {
             y: 0, opacity: 1, onComplete: () => {
@@ -97,7 +92,7 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
       cursorHide()
       gsap.set('body', { overflow: 'hidden' });
       scrollTo(0, () => {
-        let positionY = 0;
+        let positionY = '0%';
         if (window.innerWidth <= 460) {
           positionY = '5%'
         }
@@ -105,16 +100,11 @@ const ProjectHeader = ({ titleLeft, titleRight, projectIndex }) => {
         leavingToWorkRef.current = true;
         dispatch({ type: 'SET_LAST_PROJECT', payload: projectIndex });
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-        let styles;
-        if (navigator.userAgent.indexOf("Firefox") > -1) {
-          styles = { x: 0, y: 0, scale: 1 };
-        } else {
-          styles = { transform: 'translate3d(0, 0, 0) scale(1)' }
-        }
+
         tl.to('.project-header__scroll-indicator span', 1, { y: '100%', autoAlpha: 0 })
-          .to('.project-header__title--left', 1, { bottom: positionY, left: 0, ...styles, delay: .3 })
+          .to('.project-header__title--left', 1, { bottom: positionY, left: '0%', x: '0%', y: '0%', scale: 1, delay: .3 })
           .to('.project-header__title--right', 1, {
-            top: positionY, right: 0, ...styles, delay: -1, onComplete: () => {
+            top: positionY, right: '0%', x: '0%', y: '0%', scale: 1, delay: -1, onComplete: () => {
               dispatch({ type: 'SET_ANIMATING', payload: false })
               history.push(routingState.path)
             }
