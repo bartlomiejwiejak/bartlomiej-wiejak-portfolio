@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bartlomiej-wiejak-portfolio/static/css/main.1001c863.chunk.css",
-    "main.js": "/bartlomiej-wiejak-portfolio/static/js/main.e10f0e42.chunk.js",
-    "main.js.map": "/bartlomiej-wiejak-portfolio/static/js/main.e10f0e42.chunk.js.map",
-    "runtime-main.js": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.5a5a17c1.js",
-    "runtime-main.js.map": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.5a5a17c1.js.map",
-    "static/js/2.1427af66.chunk.js": "/bartlomiej-wiejak-portfolio/static/js/2.1427af66.chunk.js",
-    "static/js/2.1427af66.chunk.js.map": "/bartlomiej-wiejak-portfolio/static/js/2.1427af66.chunk.js.map",
+    "main.css": "/bartlomiej-wiejak-portfolio/static/css/main.3159fe9e.chunk.css",
+    "main.js": "/bartlomiej-wiejak-portfolio/static/js/main.eae6814f.chunk.js",
+    "main.js.map": "/bartlomiej-wiejak-portfolio/static/js/main.eae6814f.chunk.js.map",
+    "runtime-main.js": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.35cc940a.js",
+    "runtime-main.js.map": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.35cc940a.js.map",
+    "static/js/2.c3d83e58.chunk.js": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js",
+    "static/js/2.c3d83e58.chunk.js.map": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js.map",
     "index.html": "/bartlomiej-wiejak-portfolio/index.html",
-    "static/css/main.1001c863.chunk.css.map": "/bartlomiej-wiejak-portfolio/static/css/main.1001c863.chunk.css.map",
-    "static/js/2.1427af66.chunk.js.LICENSE.txt": "/bartlomiej-wiejak-portfolio/static/js/2.1427af66.chunk.js.LICENSE.txt",
+    "static/css/main.3159fe9e.chunk.css.map": "/bartlomiej-wiejak-portfolio/static/css/main.3159fe9e.chunk.css.map",
+    "static/js/2.c3d83e58.chunk.js.LICENSE.txt": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/bartlomiej-wiejak-portfolio/static/media/Peace Sans.f59a8de8.otf",
     "static/media/about-video-desktop.13bcf0c0.mp4": "/bartlomiej-wiejak-portfolio/static/media/about-video-desktop.13bcf0c0.mp4",
     "static/media/builder-mobile.7a6cecce.jpg": "/bartlomiej-wiejak-portfolio/static/media/builder-mobile.7a6cecce.jpg",
@@ -51,7 +51,7 @@
     "static/media/mongo.5d013e5a.png": "/bartlomiej-wiejak-portfolio/static/media/mongo.5d013e5a.png",
     "static/media/node.f6fe27e9.png": "/bartlomiej-wiejak-portfolio/static/media/node.f6fe27e9.png",
     "static/media/order.ab1273a4.jpg": "/bartlomiej-wiejak-portfolio/static/media/order.ab1273a4.jpg",
-    "static/media/photo.13472101.jpg": "/bartlomiej-wiejak-portfolio/static/media/photo.13472101.jpg",
+    "static/media/photo.db9170dd.jpeg": "/bartlomiej-wiejak-portfolio/static/media/photo.db9170dd.jpeg",
     "static/media/react.b85386b9.png": "/bartlomiej-wiejak-portfolio/static/media/react.b85386b9.png",
     "static/media/redux.374d9104.png": "/bartlomiej-wiejak-portfolio/static/media/redux.374d9104.png",
     "static/media/sass.8ca420bf.png": "/bartlomiej-wiejak-portfolio/static/media/sass.8ca420bf.png",
@@ -61,9 +61,9 @@
     "static/media/webpack.ae2a469c.png": "/bartlomiej-wiejak-portfolio/static/media/webpack.ae2a469c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.5a5a17c1.js",
-    "static/js/2.1427af66.chunk.js",
-    "static/css/main.1001c863.chunk.css",
-    "static/js/main.e10f0e42.chunk.js"
+    "static/js/runtime-main.35cc940a.js",
+    "static/js/2.c3d83e58.chunk.js",
+    "static/css/main.3159fe9e.chunk.css",
+    "static/js/main.eae6814f.chunk.js"
   ]
 }
