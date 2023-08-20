@@ -64,8 +64,6 @@ object-assign
  * @author: Jack Doyle, jack@greensock.com
 */
 
-/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-
 /** @license React v0.19.1
  * scheduler.production.min.js
  *

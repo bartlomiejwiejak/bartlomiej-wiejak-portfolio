@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bartlomiej-wiejak-portfolio/static/css/main.3159fe9e.chunk.css",
-    "main.js": "/bartlomiej-wiejak-portfolio/static/js/main.5e5334fa.chunk.js",
-    "main.js.map": "/bartlomiej-wiejak-portfolio/static/js/main.5e5334fa.chunk.js.map",
+    "main.css": "/bartlomiej-wiejak-portfolio/static/css/main.0010e39c.chunk.css",
+    "main.js": "/bartlomiej-wiejak-portfolio/static/js/main.fc61e67f.chunk.js",
+    "main.js.map": "/bartlomiej-wiejak-portfolio/static/js/main.fc61e67f.chunk.js.map",
     "runtime-main.js": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.35cc940a.js",
     "runtime-main.js.map": "/bartlomiej-wiejak-portfolio/static/js/runtime-main.35cc940a.js.map",
-    "static/js/2.c3d83e58.chunk.js": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js",
-    "static/js/2.c3d83e58.chunk.js.map": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js.map",
+    "static/js/2.ce5870df.chunk.js": "/bartlomiej-wiejak-portfolio/static/js/2.ce5870df.chunk.js",
+    "static/js/2.ce5870df.chunk.js.map": "/bartlomiej-wiejak-portfolio/static/js/2.ce5870df.chunk.js.map",
     "index.html": "/bartlomiej-wiejak-portfolio/index.html",
-    "static/css/main.3159fe9e.chunk.css.map": "/bartlomiej-wiejak-portfolio/static/css/main.3159fe9e.chunk.css.map",
-    "static/js/2.c3d83e58.chunk.js.LICENSE.txt": "/bartlomiej-wiejak-portfolio/static/js/2.c3d83e58.chunk.js.LICENSE.txt",
+    "static/css/main.0010e39c.chunk.css.map": "/bartlomiej-wiejak-portfolio/static/css/main.0010e39c.chunk.css.map",
+    "static/js/2.ce5870df.chunk.js.LICENSE.txt": "/bartlomiej-wiejak-portfolio/static/js/2.ce5870df.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/bartlomiej-wiejak-portfolio/static/media/Peace Sans.f59a8de8.otf",
     "static/media/about-video-desktop.13bcf0c0.mp4": "/bartlomiej-wiejak-portfolio/static/media/about-video-desktop.13bcf0c0.mp4",
     "static/media/builder-mobile.7a6cecce.jpg": "/bartlomiej-wiejak-portfolio/static/media/builder-mobile.7a6cecce.jpg",
@@ -40,6 +40,7 @@
     "static/media/home-video.0a7bb946.mp4": "/bartlomiej-wiejak-portfolio/static/media/home-video.0a7bb946.mp4",
     "static/media/home-video.bd7dd977.mp4": "/bartlomiej-wiejak-portfolio/static/media/home-video.bd7dd977.mp4",
     "static/media/html.460875c1.png": "/bartlomiej-wiejak-portfolio/static/media/html.460875c1.png",
+    "static/media/icde.8ef955fd.webp": "/bartlomiej-wiejak-portfolio/static/media/icde.8ef955fd.webp",
     "static/media/incoming.e4ace720.jpg": "/bartlomiej-wiejak-portfolio/static/media/incoming.e4ace720.jpg",
     "static/media/js.880f7862.png": "/bartlomiej-wiejak-portfolio/static/media/js.880f7862.png",
     "static/media/menu-mobile.e1124de8.jpg": "/bartlomiej-wiejak-portfolio/static/media/menu-mobile.e1124de8.jpg",
@@ -62,8 +63,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.35cc940a.js",
-    "static/js/2.c3d83e58.chunk.js",
-    "static/css/main.3159fe9e.chunk.css",
-    "static/js/main.5e5334fa.chunk.js"
+    "static/js/2.ce5870df.chunk.js",
+    "static/css/main.0010e39c.chunk.css",
+    "static/js/main.fc61e67f.chunk.js"
   ]
 }
